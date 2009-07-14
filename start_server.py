@@ -26,7 +26,7 @@ HG = os.environ["HG"]
 import pyver
 pyver.checkPyVersion()
 
-os.system(HG + ' pull "http://hg.assembla.com/openrpg_rc"')
+os.system(HG + ' pull "http://hg.assembla.com/traipse"')
 os.system(HG + ' update')
 
 import orpg.networking.mplay_server
