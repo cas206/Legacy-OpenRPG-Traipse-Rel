@@ -1,0 +1,59 @@
+
+<nodehandler class="group_handler" icon="image" module="containers" name="QuoteBox" version="1.0">
+  <group_atts border="1" cols="1"/>
+  <nodehandler class="group_handler" icon="image" module="containers" name="QuoteBox Settings" version="1.0">
+    <group_atts border="1" cols="1"/>
+    <nodehandler class="macro_handler" icon="8ball" module="chatmacro" name="Show Settings" version="1.0">
+      <text>/box</text>
+    </nodehandler>
+    <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set BG Color" version="1.0">
+      <text>/box_bgcol</text>
+    </nodehandler>
+    <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set Font Color" version="1.0">
+      <text>/box_fontcol</text>
+    </nodehandler>
+    <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Toggle Border" version="1.0">
+      <text>/box_border</text>
+    </nodehandler>
+    <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Toggle Italics" version="1.0">
+      <text>/box_italics</text>
+    </nodehandler>
+    <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Toggle Bold" version="1.0">
+      <text>/box_bold</text>
+    </nodehandler>
+    <nodehandler class="group_handler" icon="divider" module="containers" name="Change Size" version="1.0">
+      <group_atts border="1" cols="1"/>
+      <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set Size 1" version="1.0">
+        <text>/box_size 1</text>
+      </nodehandler>
+      <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set Size 2" version="1.0">
+        <text>/box_size 2</text>
+      </nodehandler>
+      <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set Size 3" version="1.0">
+        <text>/box_size 3</text>
+      </nodehandler>
+      <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set Size 4" version="1.0">
+        <text>/box_size 4</text>
+      </nodehandler>
+      <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set Size 5" version="1.0">
+        <text>/box_size 5</text>
+      </nodehandler>
+      <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set Size 6" version="1.0">
+        <text>/box_size 6</text>
+      </nodehandler>
+      <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set Size 7" version="1.0">
+        <text>/box_size 7</text>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Set All Default" version="1.0">
+      <text>/box_default</text>
+    </nodehandler>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="QuoteBox Help!" version="1.0">
+    <text hide_title="0" multiline="1" raw_mode="0" send_button="0">To use the QuoteBox, simply type into the chat:
+
+    /box *yourmessage*
+
+To change your QuoteBox's font color, size, etc., look in Settings under this node of your gametree.</text>
+  </nodehandler>
+</nodehandler>

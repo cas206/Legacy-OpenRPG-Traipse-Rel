@@ -1,0 +1,15 @@
+
+<nodehandler class="static_handler" icon="browser" module="core" name="d20 Sites">
+  <nodehandler class="webbrowser_handler" icon="d20" module="core" name="d20 Adventures">
+    <link href="http://www.rpgarchive.com/index.php?sysid=37&amp;page=adv&amp;sort=Alpha"/>
+  </nodehandler>
+  <nodehandler class="webbrowser_handler" icon="browser" module="core" name="D&amp;D 3rd Edition (official site)   ">
+    <link href="http://www.wizards.com/dnd/Welcomex.asp"/>
+  </nodehandler>
+  <nodehandler class="webbrowser_handler" icon="browser" module="core" name="Open Gaming Foundation">
+    <link href="http://www.opengamingfoundation.org/"/>
+  </nodehandler>
+  <nodehandler class="webbrowser_handler" icon="browser" module="core" name="Eric Noah's DnD3e News ">
+    <link href="http://www.rpgplanet.com/dnd3e/"/>
+  </nodehandler>
+</nodehandler>

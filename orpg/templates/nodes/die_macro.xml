@@ -1,0 +1,2 @@
+
+<nodehandler class="dieroll_handler" icon="d20" module="core" name="Die Macro">example roll [1d20+4]</nodehandler>

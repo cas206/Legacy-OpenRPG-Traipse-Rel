@@ -1,0 +1,294 @@
+<powers>
+<power test='============================' name=' ' level=' ' desc=' ' />
+<power test='    Psionic Combat Powers' name=' ' level=' ' desc=' ' />
+<power test='============================' name=' ' level=' ' desc=' ' />
+<power test='Psionic Attack' name='Ego Whip' level='2' desc='Mental Lash (DC 1d20 + Dex Mod + DC Mod) Damage: 1d4 Dex' point='3' />
+<power test='Psionic Defense' name='Empty Mind' level='1' desc='Hide your mind - DC Mods EW: +1 II: -2 MB: +3 MT: -3 PC: -5' point='1' />
+<power test='Psionic Attack' name='Id Insinuation' level='2' desc='Tendrils of thought disrupt target (DC 1d20 + ST Mod + DC Mod) Damage:1d2 Str' point='3' />
+<power test='Psionic Defense' name='Intellect Fortress' level='1' desc='Incase mind in fortress of determination - DC Mods EW: -2 II: +1 MB: +0 MT: +6 PC: +4 / Mental Hardness 3' point='5' />
+<power test='Psionic Defense' name='Mental Barrier' level='1' desc='A construct of dissembling thoughts - DC Mods EW: -1 II: +1 MB: +0 MT: +1 PC: +3 / Mental Hardness 2' point='3' />
+<power test='Psionic Attack' name='Mind Blast' level='5' desc='Blast the minds of all in 60ft-cone (DC 1d20 + Chr Mod + DC Mod) Damage : 1d4 Chr (nonpsionics stunned for 3d4 rounds)' point='9' />
+<power test='Psionic Attack' name='Mind Thrust' level='1' desc='Massive assult on mental pathways (DC 1d20 + Int Mod + DC Mod) Damage: 1d2 Int' point='1' />
+<power test='Psionic Attack' name='Psychic Crush' level='3' desc='Your will surrounds target squeezes mercilessly (DC 1d20 + Wis Mod + DC Mod)' point='5' />
+<power test='Psionic Defense' name='Thought Shield' level='1' desc='Erect a shield of hope - DC Mods EW: -4 II: -1 MB: -2 MT: +4 PC: +2 / Mental Hardness 1' point='1' />
+<power test='Psionic Defense' name='Tower of Iron Will' level='1' desc='Generates a bastion of thought - DC Mods EW: +3 II: +0 MB: -1 MT: +5 PC: -3 / Mental Hardness 2 (10ft-radius)' point='5' />
+<power test='============================' name=' ' level=' ' desc=' ' />
+<power test='       Psionic Powers' name=' ' level=' ' desc=' ' />
+<power test='============================' name=' ' level=' ' desc=' ' />
+<power test='Metacreativity' name='Bolt' level='0' desc='Create a bolt, arrow, bullet' point='1' />
+<power test='Psychoportation' name='Burst' level='0' desc='Speed +10ft for 1 round' point='1' />
+<power test='Psychoportation' name='Catfall' level='0' desc='You recover well from a fall' point='1' />
+<power test='Psycokinesis' name='Control Shadow' level='0' desc='Control normal shadow like puppet' point='1' />
+<power test='Telepathy' name='Daze' level='0' desc='Creature loses next action' point='1' />
+<power test='Clairsentience' name='Detect Posion' level='0' desc='Detect the presence of poison' point='1' />
+<power test='Clairsentience' name='Detect Psionics' level='0' desc='Detect the presence of psionics' point='1' />
+<power test='Telepathy' name='Distract' level='0' desc='Subjects mind wanders -1 to some actions' point='1' />
+<power test='Psychometabolism' name='Elfsight' level='0' desc='You have low-light vision' point='1' />
+<power test='Psychokinesis' name='Far Hand' level='0' desc='Minor Telekinesis' point='1' />
+<power test='Psychokinesis' name='Far Punch' level='0' desc='Telekinetic punch deals 1 damage' point='1' />
+<power test='Metacreativity' name='Finger of Fire' level='0' desc='Deal 1d3 damage to target' point='1' />
+<power test='Psychoportation' name='Float' level='0' desc='You buoy a subject in water or liquid' point='1' />
+<power test='Telepathy' name='Inkling' level='0' desc='50% likely to know if action is good/bad' point='1' />
+<power test='Clairsentience' name='Know Direction' level='0' desc='You know which way is North' point='1' />
+<power test='Psychometabolism' name='Lesser Natural Armor' level='0' desc='+1 Natural Armor Bonus' point='1' />
+<power test='Telepathy' name='Missive' level='0' desc='Send one-way message to subject' point='1' />
+<power test='Psychokinesis' name='My Light' level='0' desc='Eyes emit 20ft cone of light' point='1' />
+<power test='Psychometabolism' name='Talons' level='0' desc='Unarmed attacks deal +1 damage' point='1' />
+<power test='Telepathy' name='Telempathic Projection' level='0' desc='You modify targets emotions' point='1' />
+<power test='Metacreativity' name='Trinket' level='0' desc='You create a short lived trinket' point='1' />
+<power test='Psychometabolism' name='Valor' level='0' desc='+1 Moral Bonus on saves' point='1' />
+<power test='Psychometabolism' name='Verve' level='0' desc='Gain +1 temp hit point' point='1' />
+<power test='Metacreativity' name='Astral Construct I' level='1' desc='Create Astral construct to fight for you' point='1' />
+<power test='Telepathy' name='Attraction' level='1' desc='Subject has an attraction you specify' point='1' />
+<power test='Psychokinesis' name='Biocurrent' level='1' desc='Deal 1d4 electrical / round to target' point='1' />
+<power test='Psychometabolism' name='Biofeedback' level='1' desc='Take some damage as subdual damage' point='1' />
+<power test='Psychometabolism' name='Bite of the Wolf' level='1' desc='Gain bite attack 1d8 damage' point='1' />
+<power test='Psychoportation' name='Call Weaponry' level='1' desc='Summon weapon' point='1+' />
+<power test='Telepathy' name='Charm Person' level='1' desc='Makes one person your friend' point='1' />
+<power test='Clairsentience' name='Combat Precognition' level='1' desc='+1 insight bonus to AC' point='1' />
+<power test='Psychometabolism' name='Compression' level='1' desc='You shrink 10%/Lvl max 50%' point='1' />
+<power test='Telepathy' name='Conceal Thoughts' level='1' desc='Conceal motive +20 bluff +4 save vs mind reading' point='1' />
+<power test='Psychokinesis' name='Control Light' level='1' desc='Adjust light levels up or down' point='1' />
+<power test='Psychokinesis' name='Control Object' level='1' desc='Telekinetically control small object' point='1' />
+<power test='Psychokinesis' name='Create Sound' level='1' desc='Create any sound desired' point='1' />
+<power test='Telepathy' name='Demoralize' level='1' desc='Foes suffer -1 on some actions' point='1' />
+<power test='Clairsentience' name='Destiny Dissonance' level='1' desc='Touch attack 1d8 subdual' point='1' />
+<power test='Telepathy' name='Disable' level='1' desc='Hold creatures in 15ft radius' point='1' />
+<power test='Psychoportation' name='Dissipating Touch' level='1' desc='Touch deals 1d8 damage' point='1' />
+<power test='Psychometabolism' name='Emapthic Transfer' level='1' desc='Transfer others wounds' point='1' />
+<power test='Telepathy' name='Empathy' level='1' desc='You know targets surface emotions' point='1' />
+<power test='Clairsentience' name='Expanded Vision' level='1' desc='315-degree sight' point='1' />
+<power test='Psychoportation' name='Feather Fall' level='1' desc='Target falls slowly' point='1' />
+<power test='Psychometabolism' name='Feel Light' level='1' desc='Use tactile sensations to see' point='1' />
+<power test='Psychometabolism' name='Feel Sound' level='1' desc='Use tactile sensations to hear' point='1' />
+<power test='Metacreativity' name='Firefall' level='1' desc='Fiery sparks deal 1d4 within 10ft radius' point='1' />
+<power test='Metacreativity' name='Grease' level='1' desc='Makes 10ft square or object slippery' point='1' />
+<power test='Psychometabolism' name='Hammer' level='1' desc='Touch attack deals 1d8' point='1' />
+<power test='Psychometabolism' name='Hear Light' level='1' desc='Use auditory senses to see' point='1' />
+<power test='Psychometabolism' name='Hustle' level='1' desc='You gain one extra partial action next round' point='1' />
+<power test='Clairsentience' name='Identify' level='1' desc='Identify single feature of psionic item' point='1' />
+<power test='Clairsentience' name='Know Location' level='1' desc='You know, generally, where you are' point='1' />
+<power test='Psychometabolism' name='Lesser Body Adjustment' level='1' desc='Heal 1d8 or +1 fort save, or heal 1 abil pt.' point='1' />
+<power test='Psychokinesis' name='Lesser Concussion' level='1' desc='Pummel foe for 1d6' point='1' />
+<power test='Metacreativity' name='Lesser Metaphysical Weapon' level='1' desc='Weapon gains +1 bonus' point='1' />
+<power test='Telepathy' name='Lesser MindLink' level='1' desc='Limited mental bond with target' point='1' />
+<power test='Psychokinesis' name='Matter Agitation' level='1' desc='Heat creature or object' point='1' />
+<power test='Metacreativity' name='Minor Creation' level='1' desc='Create one wood or cloth item' point='1' />
+<power test='Clairsentience' name='Object Reading' level='1' desc='You know about an objects past' point='1' />
+<power test='Metacreativity' name='Psycoluminescence' level='1' desc='Object emits silvery light 20ft-radius' point='1' />
+<power test='Psychometabolism' name='See Sound' level='1' desc='Use visual senses to hear' point='1' />
+<power test='Telepathy' name='Sense Link' level='1' desc='You sense what a subject senses' point='1' />
+<power test='Psychoportation' name='Skate' level='1' desc='Target slides along ground as if ice' point='1' />
+<power test='Psychoportation' name='Spider Climb' level='1' desc='You can walk on walls or ceilings' point='1' />
+<power test='Clairsentience' name='Steadfast Gaze' level='1' desc='Immune to gaze attacks' point='1' />
+<power test='Psychokinesis' name='Stomp' level='1' desc='Create shockwave does 1d4 subdual' point='1' />
+<power test='Clairsentience' name='Steadfast Gaze' level='1' desc='Immune to gaze attacks' point='1' />
+<power test='Psychometabolism' name='Vigor' level='1' desc='Gain +3 temp hp / lvl (18 max)' point='1' />
+<power test='Psychometabolism' name='Animal Affinity' level='2' desc='Increase ability score by 1d4+1 by emulating an animal' point='3' />
+<power test='Metacreativity' name='Astral Construct II' level='2' desc='Create Astral Construct to fight for you' point='3' />
+<power test='Clairsentience' name='Augury' level='2' desc='Learn if action will be good or bad' point='3' />
+<power test='Telepathy' name='Aversion' level='2' desc='Subject has aversion you specify' point='3' />
+<power test='Psychometabolism' name='Body Adjustment' level='2' desc='Heal 3d6, or fort save bonus, or heal 2 abil pts.' point='3' />
+<power test='Psychometabolism' name='Body Equilibrium' level='2' desc='You can walk on non-solid surfaces' point='3' />
+<power test='Telepathy' name='Brain Lock' level='2' desc='Target cant move or take actions' point='3' />
+<power test='Metacreativity' name='Burning Ray' level='2' desc='Do 3d6 damage to target' point='3' />
+<power test='Psychometabolism' name='Chameleon' level='2' desc='+10 bonus to hide' point='3' />
+<power test='Clairsentience' name='Clairaudience/Clairvoyance' level='2' desc='Hear or See at a distance' point='3' />
+<power test='Psychometabolism' name='Claws of the Bear' level='2' desc='Hands do base 1d12 damage' point='3' />
+<power test='Clairsentience' name='Combat Prescience' level='2' desc='+2 Insight Bonus to attack rolls' point='3' />
+<power test='Psychokinesis' name='Concussion' level='2' desc='Pummel foe for 3d6' point='3' />
+<power test='Psychokinesis' name='Control Air' level='2' desc='Increase air speed 10 + 5/lvl mph' point='3' />
+<power test='Psychokinesis' name='Control Body' level='2' desc='Take control of targets limbs' point='3' />
+<power test='Psychokinesis' name='Control Fire' level='2' desc='Control heat and movement of fire' point='3' />
+<power test='Clairsentience' name='Darkvision' level='2' desc='You gain darkvision' point='3' />
+<power test='Telepathy' name='Detect Thoughts' level='2' desc='Detect subjects surface thoughts' point='3' />
+<power test='Metacreativity' name='Ectoplasmic Cocoon' level='2' desc='Encapsulate target, they cant move' point='3' />
+<power test='Metacreativity' name='Ecto Puppet' level='2' desc='Create an astral construct you control' point='3' />
+<power test='Psychometabolism' name='Expansion' level='2' desc='Grow 10%/lvl Max 100%' point='3' />
+<power test='Psychoportation' name='Glide' level='2' desc='Subject glides at 20ft/rd' point='3' />
+<power test='Telepathy' name='Inflict Pain' level='2' desc='Telepathic strike causing 3d6 damage' point='3' />
+<power test='Telepathy' name='Intrusive Sense Link' level='2' desc='Subject senses what you sense' point='3' />
+<power test='Psychokinesis' name='Invisibility' level='2' desc='Subject is invis for 10min/lvl or until attacks' point='3' />
+<power test='Psychoportation' name='Knock' level='2' desc='Opens locked or psionically locked doors' point='3' />
+<power test='Psychoportation' name='Levitate' level='2' desc='Subject moves up or down' point='3' />
+<power test='Psychometabolism' name='Painful Touch' level='2' desc='Touch causes 1d6 subdual damage' point='3' />
+<power test='Psychoportation' name='Psionic Lock' level='2' desc='Psionically lock portal or chest' point='3' />
+<power test='Clairsentience' name='Recall Pain' level='2' desc='Cause 3d6 damage to target' point='3' />
+<power test='Clairsentience' name='See Invisibility' level='2' desc='Reveals invisible objects' point='3' />
+<power test='Psychoportation' name='Sense Psychoportation' level='2' desc='Know when others use this discipline' point='3' />
+<power test='Clairsentience' name='Sensitivity to Psychic Impressions' level='2' desc='Find out about areas past' point='3' />
+<power test='Psychokinesis' name='Sever the Tie' level='2' desc='Cause 3d8 to undead within 10ft radius' point='3' />
+<power test='Metacreativity' name='Sudden Minor Creation' level='2' desc='Quickly create wood or cloth items' point='3' />
+<power test='Telepathy' name='Suggestion' level='2' desc='Compel target to follow suggestion' point='3' />
+<power test='Psychometabolism' name='Sustenance' level='2' desc='You can go with out food or water' point='3' />
+<power test='Clairsentience' name='Vigilance' level='2' desc='See through mists, murk and darkness' point='3' />
+<power test='Metacreativity' name='Astral Construct III' level='3' desc='Create Astral Construct to fight for you' point='5' />
+<power test='Psychoportation' name='Astral Steed' level='3' desc='Astral Steed appears for 1 hour/lvl' point='5' />
+<power test='Psychometabolism' name='Bite of the Tiger' level='3' desc='Your bite deals 2d8 damage' point='5' />
+<power test='Telepathy' name='Charm Monster' level='3' desc='Make monster your ally' point='5' />
+<power test='Psychometabolism' name='Claws of the Vampire' level='3' desc='Your hands deal 1d8 damage and you heal' point='5' />
+<power test='Psychokinesis' name='Cone of Sound' level='3' desc='Sonic Energy deals 5d4 damage' point='5' />
+<power test='Psychokinesis' name='Control Sound' level='3' desc='You can create very specific sounds' point='5' />
+<power test='Metacreativity' name='Create Food and Water' level='3' desc='Feed 3 humans/lvl' point='5' />
+<power test='Telepathy' name='Crisis of Breath' level='3' desc='Disrupt targets breathing' point='5' />
+<power test='Clairsentience' name='Danger Sense' level='3' desc='You gain +4 insight bonus vs traps' point='5' />
+<power test='Psychoportation' name='Dimension Slide' level='3' desc='Move to any spot you can see' point='5' />
+<power test='Psychometabolism' name='Displacement' level='3' desc='Attacks miss you 50% of the time' point='5' />
+<power test='Psychometabolism' name='Duodimensional Hand' level='3' desc='Hands deal slashing damage' point='5' />
+<power test='Psychometabolism' name='Ectoplasmic Form' level='3' desc='Your form becomes hard to damage' point='5' />
+<power test='Telepathy' name='False Sensory Input' level='3' desc='You falsify one of subjects senses' point='5' />
+<power test='Telepathy' name='Fate Link' level='3' desc='You link the fates of 2 targets' point='5' />
+<power test='Psychoportation' name='Fly' level='3' desc='Subject flies at a speed of 90ft' point='5' />
+<power test='Psychokinesis' name='Greater Concussion' level='3' desc='Pummel foe for 5d6' point='5' />
+<power test='Psychometabolism' name='Improved Biofeedback' level='3' desc='You control your damage' point='5' />
+<power test='Clairsentience' name='Invisibility Purge' level='3' desc='Dispell Invis in 5ft/lvl radius' point='5' />
+<power test='Telepathy' name='Lesser Domination' level='3' desc='Forces subject to obey your will' point='5' />
+<power test='Metacreativity' name='Metaphysical Weapon' level='3' desc='Weapon gains +3 Bonus' point='5' />
+<power test='Telepathy' name='Mindlink' level='3' desc='You have a mental bond with others' point='5' />
+<power test='Psychokinesis' name='Negate Psionics' level='3' desc='Cancel psionic powers and effects' point='5' />
+<power test='Clairsentience' name='Nondetection' level='3' desc='Hides subject from remote viewing' point='5' />
+<power test='Clairsentience' name='Poison Sense' level='3' desc='Sense posion in 30ft radius' point='5' />
+<power test='Clairsentience' name='Prowess' level='3' desc='Gain extra attack of opportunity' point='5' />
+<power test='Psychometabolism' name='Rejuventaion' level='3' desc='Heal 1 ability point / hour' point='5' />
+<power test='Clairsentience' name='Remote Viewing' level='3' desc='You see subject from a distance' point='5' />
+<power test='Telepathy' name='Schism' level='3' desc='Split your mind into 2 parts' point='5' />
+<power test='Psychoportation' name='Time Hop' level='3' desc='Subject hops forwardin time 3d6 rounds' point='5' />
+<power test='Clairsentience' name='Ubiquitous Vision' level='3' desc='You have all-around vision' point='5' />
+<power test='Clairsentience' name='Undead Sense' level='3' desc='Detect Undead 25ft + 5ft/2lvl radius' point='5' />
+<power test='Metacreativity' name='Whitefire' level='3' desc='Deals 5d4 damage in 20ft radius' point='5' />
+<power test='Psychokinesis' name='Amplified Invisibility' level='4' desc='Invisibility that lasts 1 attack' point='7' />
+<power test='Clairsentience' name='Anchored Navigation' level='4' desc='You navigate from a fixed reference point that you mentally sense' point='7' />
+<power test='Metacreativity' name='Astral Construct IV' level='4' desc='Create Astral Construct to fight for you' point='7' />
+<power test='Clairsentience' name='Aura Sight' level='4' desc='You can read auras' point='7' />
+<power test='Clairsentience' name='Detect Remote Viewing' level='4' desc='You know when others spy on you remotely' point='7' />
+<power test='Psychoportation' name='Dimensional Anchor' level='4' desc='Bars extradimensional travel' point='7' />
+<power test='Psychoportation' name='Dimension Door' level='4' desc='Teleport short distances (400ft + 40ft/lvl)' point='7' />
+<power test='Psychoportation' name='Dismissal' level='4' desc='Forces target to return to native plane' point='7' />
+<power test='Metacreativity' name='Dismiss Ectoplasm' level='4' desc='Dissipates ectoplasmic targets' point='7' />
+<power test='Psychometabolism' name='Dissolving Touch' level='4' desc='Touch deals 7d6 acid damage' point='7' />
+<power test='Clairsentience' name='Divination' level='4' desc='Provides advice for actions' point='7' />
+<power test='Telepathy' name='Domination' level='4' desc='Subject obeys your will' point='7' />
+<power test='Metacreativity' name='Fabricate' level='4' desc='Make raw goods into finished items' point='7' />
+<power test='Telepathy' name='Fatal Attraction' level='4' desc='Implant death urge into target' point='7' />
+<power test='Clairsentience' name='Fate of One' level='4' desc='You can reroll an bad roll' point='7' />
+<power test='Telepathy' name='Forced Mindlink' level='4' desc='Create mental bond with unwilling subject' point='7' />
+<power test='Psychoportation' name='Freedom of Movement' level='4' desc='Move normally despite impediments' point='7' />
+<power test='Psychometabolism' name='Immovability' level='4' desc='You are alomst impossible to move' point='7' />
+<power test='Psychokinesis' name='Inertial Barrier' level='4' desc='Damage reduction 10/+5 up to 10/lvl (max 150)' point='7' />
+<power test='Psychokinesis' name='Mass Concussion' level='4' desc='Foes take 7d4 in 20-ft radius' point='7' />
+<power test='Telepathy' name='Mindwipe' level='4' desc='Subject has recent experiences wiped away' point='7' />
+<power test='Psychometabolism' name='Natural Armor' level='4' desc='Gain +4 Natural Armor Bonus' point='7' />
+<power test='Psychometabolism' name='Polymorph Self' level='4' desc='Assume a new form' point='7' />
+<power test='Psychometabolism' name='Psychofeedback' level='4' desc='Use power points to boost Str, Con or Dex' point='7' />
+<power test='Metacreativity' name='Quintessence' level='4' desc='Collapse a bit of time into a dollop' point='7' />
+<power test='Clairsentience' name='Steadfast Perception' level='4' desc='+4 Bonus vs illusion +2 to Spot and Search' point='7' />
+<power test='Telepathy' name='Tailor Memory' level='4' desc='Implant false memory' point='7' />
+<power test='Psychokinesis' name='Telekinesis' level='4' desc='Move up to 25lbs/lvl' point='7' />
+<power test='Metacreativity' name='Wall of Ectoplasm' level='4' desc='Create a protective barrier' point='7' />
+<power test='Psychometabolism' name='Adamant Grasp' level='5' desc='+10 Bonus to Grapple' point='9' />
+<power test='Psychometabolism' name='Adapt Body' level='5' desc='Adapt your body to hostile enviornments ' point='9' />
+<power test='Metacreativity' name='Astral Construct V' level='5' desc='Create Astral Construct to fight for you' point='9' />
+<power test='Psychoportation' name='Baleful Teleport' level='5' desc='Destructive teleport causes 9d6' point='9' />
+<power test='Psychokinesis' name='Brilliant Blast' level='5' desc='Light blast deals 9d4 in 20ft-radius' point='9' />
+<power test='Telepathy' name='Catapsi' level='5' desc='Psychic static is a drag' point='9' />
+<power test='Psychokinesis' name='Clairtangency' level='5' desc='Use far hand at any distance' point='9' />
+<power test='Metacreativity' name='Ectoplasmic Armor' level='5' desc='Gain +10 Armor Bonus' point='9' />
+<power test='Metacreativity' name='Ectoplasmic Shambler' level='5' desc='Foglike predator deals 1pt/round to creatures it surrounds' point='9' />
+<power test='Psychometabolism' name='Energy Barrier' level='5' desc='Convert energy attacks into harmless light' point='9' />
+<power test='Psychometabolism' name='Graft Weapon' level='5' desc='Cause a weapon to become part of your body' point='9' />
+<power test='Telepathy' name='Greater Domination' level='5' desc='Subject obeys your will' point='9' />
+<power test='Metacreativity' name='Incarnate' level='5' desc='Make some psionic effects permanent' point='9' />
+<power test='Metacreativity' name='Major Creation' level='5' desc='As minor creation plus stone and metal' point='9' />
+<power test='Psychokinesis' name='Matter Rearrangement' level='5' desc='Transmute one metal into another' point='9' />
+<power test='Telepathy' name='Metaconcert' level='5' desc='Join minds with others who also use this power to create an ubermind ' point='9' />
+<power test='Psychometabolism' name='Metamorphosis' level='5' desc='Take the form of creatures or objects' point='9' />
+<power test='Telepathy' name='Mind Probe' level='5' desc='Discover subjects secret thoughts' point='9' />
+<power test='Clairsentience' name='Power Resistance' level='5' desc='Gain Power Resistance 12 + Level' point='9' />
+<power test='Psychokinesis' name='Psychic Vampire' level='5' desc='Touch attack drains 2 power pts/lvl which you gain' point='9' />
+<power test='Clairsentience' name='Recall Agony' level='5' desc='Target takes 9d6 damage' point='9' />
+<power test='Psychoportation' name='Sending' level='5' desc='Send short message anywhere instantly' point='9' />
+<power test='Telepathy' name='Sense Psionics' level='5' desc='Detect Psionics over a large area' point='9' />
+<power test='Psychoportation' name='Teleport' level='5' desc='Instantly transport anywhere' point='9' />
+<power test='Psychoportation' name='Teleport Trigger' level='5' desc='Event triggers teleport' point='9' />
+<power test='Clairsentience' name='True Seeing' level='5' desc='See all things as they really are' point='9' />
+<power test='Psychokinesis' name='Ablating' level='6' desc='Subject is shielded from one negate psionic effect' point='11' />
+<power test='Metacreativity' name='Astral Construct VI' level='6' desc='Create Astral Construct to fight for you' point='11' />
+<power test='Telepathy' name='Aura Alteration' level='6' desc='Subject sees something it is not' point='11' />
+<power test='Psychoportation' name='Banishment' level='6' desc='Banish extraplanar creatures' point='11' />
+<power test='Psychometabolism' name='Breath of the Dragon' level='6' desc='Breath fire for 11d4 damage' point='11' />
+<power test='Psychoportation' name='Call Cohort' level='6' desc='Teleport your cohort to you' point='11' />
+<power test='Psychokinesis' name='Disintegrate' level='6' desc='Disintegrate 1 creature or object' point='11' />
+<power test='Psychoportation' name='Ethereal Jaunt' level='6' desc='Become ethereal for 1rd/lvl' point='11' />
+<power test='Metacreativity' name='Flaming Shroud' level='6' desc='Target takes 11d6' point='11' />
+<power test='Psychokinesis' name='Greater Biocurrent' level='6' desc='Deal 4d6 damage/rd to up to 4 creatures' point='11' />
+<power test='Metacreativity' name='Improved Fabricate' level='6' desc='As fabricate but x10' point='11' />
+<power test='Psychoportation' name='Improved Fly' level='6' desc='Fly at speed of 180ft' point='11' />
+<power test='Psychometabolism' name='Improved Vigor' level='6' desc='Gain 13 temporary hit points' point='11' />
+<power test='Telepathy' name='Mass Suggestion' level='6' desc='Many targets follow suggested action ' point='11' />
+<power test='Telepathy' name='Mind Switch' level='6' desc='You switch minds with another' point='11' />
+<power test='Psychokinesis' name='Null Psionics Field' level='6' desc='Negates psionics within 10ft' point='11' />
+<power test='Clairsentience' name='Precognition' level='6' desc='More indepth then divination' point='11' />
+<power test='Clairsentience' name='Remote View Trap' level='6' desc='Enemy remote viewers take 4d6 damage' point='11' />
+<power test='Psychoportation' name='Retrieve' level='6' desc='Teleport any item you see to your hand' point='11' />
+<power test='Clairsentience' name='Shield of Prudence' level='6' desc='Gain +6 insight bonus to AC' point='11' />
+<power test='Psychometabolism' name='Suspend Life' level='6' desc='Slow your life functions' point='11' />
+<power test='Psychoportation' name='Trace Teleport' level='6' desc='Learn orgin or goal of subjects teleport' point='11' />
+<power test='Metacreativity' name='Astral Construct VII' level='7' desc='Create Astral Construct to fight for you' point='13' />
+<power test='Metacreativity' name='Contingency' level='7' desc='Sets trigger condition for another power' point='13' />
+<power test='Psychoportation' name='Divert Teleport' level='7' desc='Choose destination for anothers teleport' point='13' />
+<power test='Clairsentience' name='Emulate Power' level='7' desc='Manifest any psionic power of 6th level or lower' point='13' />
+<power test='Psychometabolism' name='Energy Conversion' level='7' desc='Convert energy attacks to one ray energy attack of your own' point='13' />
+<power test='Psychoportation' name='Etherlealness' level='7' desc='Travel to the ethereal plane with compainions' point='13' />
+<power test='Psychometabolism' name='Fission' level='7' desc='You briefly duplicate yourself' point='13' />
+<power test='Clairsentience' name='Improved Anchored Navigation' level='7' desc='You can navigate from a fixed point even across planes' point='13' />
+<power test='Telepathy' name='Insanity' level='7' desc='Subject is permanently confused' point='13' />
+<power test='Metacreativity' name='Mass Cocoon' level='7' desc='As ectoplasmic cocoon but bigger' point='13' />
+<power test='Telepathy' name='Mass Domination' level='7' desc='Many targets subject to your will' point='13' />
+<power test='Psychometabolism' name='Oak Body' level='7' desc='Your body becomes living wood' point='13' />
+<power test='Psychoportation' name='Phase Door' level='7' desc='Invisible passage through wood or stone' point='13' />
+<power test='Psychoportation' name='Plane Shift' level='7' desc='Up to 8 subjects can travel to another plane' point='13' />
+<power test='Psychokinesis' name='Power Turning' level='7' desc='Reflect 1d4+6 power level back at manifester' point='13' />
+<power test='Psychokinesis' name='Reddopsi' level='7' desc='Reflect psionic powers' point='13' />
+<power test='Clairsentience' name='Sequester' level='7' desc='Subject is invisible to sight and remote viewing' point='13' />
+<power test='Psychoportation' name='Teleport without Error' level='7' desc='As Teleport but no off target arrivals' point='13' />
+<power test='Psychokinesis' name='True Concussion' level='7' desc='Pummel foe for 13d6 damage' point='13' />
+<power test='Telepathy' name='Ultrablast' level='7' desc='Mental scream deals 13d4 to all within 15ft' point='13' />
+<power test='Metacreativity' name='Astral Construct VIII' level='8' desc='Create Astral Construct to fight for you' point='15' />
+<power test='Psychoportation' name='Dream Travel' level='8' desc='You travel to other places through your dreams' point='15' />
+<power test='Clairsentience' name='Foresight' level='8' desc='Psionic senses warn you of impending danger' point='15' />
+<power test='Clairsentience' name='Hypercognition' level='8' desc='You can deduce almost anything' point='15' />
+<power test='Psychokinesis' name='Improved Clairtangency' level='8' desc='You use telekinesis at any distance.' point='15' />
+<power test='Psychoportation' name='Improved Etherealness' level='8' desc='As etherealness but longer (10 mins/lvl).' point='15' />
+<power test='Psychometabolism' name='Iron Body' level='8' desc='Your body becomes living iron. Damage Reduction 50/+3' point='15' />
+<power test='Psychokinesis' name='Matter Manipulation' level='8' desc='Increase or decrease an objects base hardness by 5.' point='15' />
+<power test='Telepathy' name='Mind Blank' level='8' desc='Immune to mental/emotional effects, scrying and remotve viewing.' point='15' />
+<power test='Telepathy' name='Mind Seed' level='8' desc='Subject slowly becomes you.' point='15' />
+<power test='Metacreativity' name='Mind Stone' level='8' desc='Store your personality against future need.' point='15' />
+<power test='Clairsentience' name='Recall Death' level='8' desc='Save vs Will or die, else take 3d6+15 damage.' point='15' />
+<power test='Psychometabolism' name='Shadow Body' level='8' desc='You become a living shadow (damage reduction 50/+5)' point='15' />
+<power test='Psychokinesis' name='Telekinetic Sphere' level='8' desc='Mobile force globe protects one subject' point='15' />
+<power test='Psychoportation' name='Teleportation Circle' level='8' desc='Circle teleports any creatures inside it.' point='15' />
+<power test='Psychoportation' name='Temporal Acceleration' level='8' desc='Your time frame accelerates for 2 rounds' point='15' />
+<power test='Metacreativity' name='True Creation' level='8' desc='As major creation but items are permanent.' point='15' />
+<power test='Telepathy' name='True Domination' level='8' desc='Dominated subjects less likely to defy your will.' point='15' />
+<power test='Psychometabolism' name='Affinity Field' level='9' desc='Effects that affect you also affect others.' point='17' />
+<power test='Telepathy' name='Apopsi' level='9' desc='Delete the psionic power of another.' point='17' />
+<power test='Metacreativity' name='Astral Construct IX' level='9' desc='Create Astral Construct to fight for you' point='17' />
+<power test='Psychoportation' name='Astral Projection' level='9' desc='Project yourself and others into the Astral Plane.' point='17' />
+<power test='Telepathy' name='Confidante' level='9' desc='You and antoher share a permanent mental bond.' point='17' />
+<power test='Psychokinesis' name='Detonation' level='9' desc='Pummel foe for 17d6 damage.' point='17' />
+<power test='Psychokinesis' name='Dissolution' level='9' desc='Disintegrate very large obecjts or creatures' point='17' />
+<power test='Metacreativity' name='Genesis' level='9' desc='You instigate a new demiplane in the Astral Plane.' point='17' />
+<power test='Clairsentience' name='Greater Emulation' level='9' desc='Manifest any psionic power of 8th level or lower.' point='17' />
+<power test='Clairsentience' name='Metafaculty' level='9' desc='Subject can not hide name or location from you.' point='17' />
+<power test='Telepathy' name='Microcosm' level='9' desc='Subject explores imaginary world at expense of the real one.' point='17' />
+<power test='Telepathy' name='Monster Domination' level='9' desc='Controls any creature but for shorter time.' point='17' />
+<power test='Psychoportation' name='Probability Travel' level='9' desc='You and others physically enter Astral Plane.' point='17' />
+<power test='Telepathy' name='Psychic Chirurgery' level='9' desc='Repair psychic damage or impart new psionic power' point='17' />
+<power test='Psychometabolism' name='Shapechange' level='9' desc='You become any creature, change forms 1 per/rd.' point='17' />
+<power test='Psychoportation' name='Temporal Velocity' level='9' desc='Your time frame accelerates for 3d4 rounds.' point='17' />
+<power test='Psychoportation' name='Time Regression' level='9' desc='Relive the last 1d4+1 rounds.' point='17' />
+<power test='Telepathy' name='Thrall' level='9' desc='Subject is your slave forever.' point='17' />
+<power test='Psychometabolism' name='True Metabolism' level='9' desc='Regenerate 10pts / round for 1 min.' point='17' />
+<power test='Psychokinesis' name='True Telekinesis' level='9' desc='Lift or move 500lbs/level at long range.' point='17' />
+</powers>

@@ -1,0 +1,5 @@
+
+<nodehandler class="url_loader" icon="gear" module="core" name="Remote URL" version="1.0">
+   <url url="http://" />
+</nodehandler>
+

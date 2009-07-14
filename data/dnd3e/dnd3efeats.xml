@@ -1,0 +1,558 @@
+<feats>
+     <feat name="A Thousand Furs" type="Special" desc="Touched by the Gods page 71"/>
+     <feat name="Acrobatic" type="General" desc="Song and Silence page 38"/>
+     <feat name="Acrobatic (Legends and Lairs version)" type="General" desc="Traps and Treachery page 34"/>
+     <feat name="Airy Gallop" type="Special" desc="Dragon Magazine d20 Special-Annual 6 page 65"/>
+     <feat name="Alertness" type="General" desc="Players Handbook page 80"/>
+     <feat name="Alluring" type="General" desc="Song and Silence page 38"/>
+     <feat name="Ambidexterity" type="General" desc="Players Handbook page 80"/>
+     <feat name="Ancient Lineage" type="General" desc="The Taan page 81"/>
+     <feat name="Arcane Defense" type="General" desc="Tome and Blood page 38"/>
+     <feat name="Arcane Preparation" type="General" desc="Tome and Blood page 38"/>
+     <feat name="Arcane Schooling" type="General" desc="Forgotten Realms Campaign Setting page 33"/>
+     <feat name="Armor Proficiency (Heavy)" type="General" desc="Players Handbook page80"/>
+     <feat name="Armor Proficiency (Light)" type="General" desc="Players Handbook page 80"/>
+     <feat name="Armor Proficiency (Medium)" type="General" desc="Players Handbook page 80"/>
+     <feat name="Art of Fascination" type="Ancestor" desc="Oriental Adventures page 60"/>
+     <feat name="Arterial Strike" type="General" desc="Song and Silence page 38"/>
+     <feat name="Artist" type="General" desc="Forgotten Realms Campaign Setting page 33"/>
+     <feat name="Artist" type="Ancestor" desc="Oriental Adventures page 61"/>
+     <feat name="Athletic" type="General" desc="Song and Silence page 38"/>
+     <feat name="Attention to Detail" type="Ancestor" desc="Oriental Adventures page 61"/>
+     <feat name="Attune Gem" type="Item Creation" desc="Magic of Faerun page 21"/>
+     <feat name="Augment Construct" type="Psionic" desc="Dragon Magazine 287 page 54"/>
+     <feat name="Augment Summoning" type="General" desc="Tome and Blood page 39"/>
+     <feat name="Aura of Serenity" type="Mystic Warrior" desc="Mystic Warriors page 112"/>
+     <feat name="Battle Howl" type="General" desc="Touched by the Gods page 109"/>
+     <feat name="Battle Roar" type="Kaiju" desc="Dragon Magazine 289 page 70"/>
+     <feat name="Blind Casting" type="General" desc="Dungeons page 81"/>
+     <feat name="Blind-Fight" type="General" desc="Players Handbook page 80"/>
+     <feat name="Blindsight 5-foot Radius" type="General" desc="Sword and Fist page 5"/>
+     <feat name="Blood Frenzy" type="General" desc="The Taan page 81"/>
+     <feat name="Blood Sorcerer" type="Ancestor" desc="Oriental Adventures page 61"/>
+     <feat name="Blooded" type="General" desc="Forgotten Realms Campaign Setting page 33"/>
+     <feat name="Bloodline of Fire" type="General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Body Fuel" type="Psionic" desc="Psionics Handbook page 24"/>
+     <feat name="Bootlicker" type="General" desc="Evil page 58"/>
+     <feat name="Born Duelist" type="Ancestor" desc="Oriental Adventures page 61"/>
+     <feat name="Breeze Dance" type="Fighting Stance" desc="Mystic Warriors page 112"/>
+     <feat name="Brew Poison" type="Item Creation" desc="Traps and Treachery page 45"/>
+     <feat name="Brew Potion" type="Item Creation" desc="Players Handbook page 80"/>
+     <feat name="Bribery" type="General" desc="Evil page 58"/>
+     <feat name="Bullheaded" type="General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Cabalistic Spellcasting" type="Metamagic" desc="Sovereign Stone Campaign Sourcebook page 60"/>
+     <feat name="Casing Sense" type="General" desc="Traps and Treachery page 34"/>
+     <feat name="Chain Power" type="Metapsionic" desc="Dragon Magazine 287 page 54"/>
+     <feat name="Chain Spell" type="Metamagic" desc="Tome and Blood page 39"/>
+     <feat name="Chain Spell (Scarred Lands version)" type="Metamagic" desc="Relics and Rituals page 25"/>
+     <feat name="Change Instruction" type="Special" desc="Demonology page 41"/>
+     <feat name="Chariot Archery" type="General" desc="Sword and Fist page 78"/>
+     <feat name="Chariot Charge" type="General" desc="Sword and Fist page 79"/>
+     <feat name="Chariot Combat" type="General" desc="Sword and Fist page 78"/>
+     <feat name="Chariot Sideswipe" type="General" desc="Sword and Fist page 79"/>
+     <feat name="Chariot Trample" type="General" desc="Sword and Fist page 78"/>
+     <feat name="Charlatan" type="General" desc="Song and Silence page 38"/>
+     <feat name="Chink in the Armor" type="General" desc="Song and Silence page 38"/>
+     <feat name="Choke Hold" type="General" desc="Oriental Adventures page 61"/>
+     <feat name="Circle Kick" type="General" desc="Sword and Fist page 5"/>
+     <feat name="Claws/Fangs" type="Infernal" desc="Evil page 24"/>
+     <feat name="Cleave" type="General" desc="Players Handbook page 80"/>
+     <feat name="Close-Order Fighting" type="Special" desc="Dragon Lords of Melnibone page 63"/>
+     <feat name="Close-Quarters Fighting" type="General" desc="Sword and Fist page 5"/>
+     <feat name="Cloud Running" type="Special" desc="Creature Collection page 72"/>
+     <feat name="Combat Agility" type="General" desc="Dragon Magazine 284 page 123"/>
+     <feat name="Combat Casting" type="General" desc="Players Handbook page 80"/>
+     <feat name="Combat Manifestation" type="Psionic" desc="Psionics Handbook page 24"/>
+     <feat name="Combat Reflexes" type="General" desc="Players Handbook page 80"/>
+     <feat name="Combat Sense" type="General" desc="The Taan page 81"/>
+     <feat name="Conjure Mastery" type="Eldritch" desc="The Book of Eldritch Might page 4"/>
+     <feat name="Construct Familiar" type="General" desc="Dragon Magazine 280 page 62"/>
+     <feat name="Controlled Breathing" type="General" desc="Dungeons page 81"/>
+     <feat name="Cool Head" type="General" desc="Oriental Adventures page 61"/>
+     <feat name="Cooperative Spell" type="Metamagic" desc="Tome and Blood page 39"/>
+     <feat name="Cooperative Spellcasting" type="Metamagic" desc="Sovereign Stone Campaign Sourcebook page 60"/>
+     <feat name="Cosmopolitan" type="General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Courteous Magocracy" type="General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Crab Walk" type="Fighting Stance" desc="Mystic Warriors page 112"/>
+     <feat name="Craft Anaema Tool" type="Item Creation" desc="Mythic Races page 15"/>
+     <feat name="Craft Crystal Capacitor" type="Item Creation" desc="Psionics Handbook page 24"/>
+     <feat name="Craft Crystal Weapon" type="Item Creation" desc="Oriental Adventures page 61"/>
+     <feat name="Craft Dorje" type="Item Creation" desc="Psionics Handbook page 24"/>
+     <feat name="Craft Kirpan" type="Item Creation" desc="Mystic Warriors page 112"/>
+     <feat name="Craft Magic Arms and Armor" type="Item Creation" desc="Players Handbook page 81"/>
+     <feat name="Craft Magic Trap" type="Item Creation" desc="Traps and Treachery page 34"/>
+     <feat name="Craft Mystic Talisman" type="Item Creation" desc="Mystic Warriors page 112"/>
+     <feat name="Craft Named Weapon" type="Item Creation" desc="Mystic Warriors page 112"/>
+     <feat name="Craft Psionic Arms and Armor" type="Item Creation" desc="Psionics Handbook page 24"/>
+     <feat name="Craft Rod" type="Item Creation" desc="Players Handbook page 81"/>
+     <feat name="Craft Staff" type="Item Creation" desc="Players Handbook page 81"/>
+     <feat name="Craft Talisman" type="Item Creation" desc="Oriental Adventures page 61"/>
+     <feat name="Craft Universal Item" type="Item Creation" desc="Psionics Handbook page 24"/>
+     <feat name="Craft Vitus Amulet" type="Item Creation" desc="Mystic Warriors page 113"/>
+     <feat name="Craft Wand" type="Item Creation" desc="Players Handbook page 81"/>
+     <feat name="Craft Wondrous Item" type="Item Creation" desc="Players Handbook page 81"/>
+     <feat name="Create Graft" type="Item Creation" desc="Touched by the Gods page 26"/>
+     <feat name="Create Portal" type="Item Creation" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Dance of the Dirk" type="Fighting Stance" desc="Mystic Warriors page 113"/>
+     <feat name="Darkvision" type="Infernal" desc="Evil page 24"/>
+     <feat name="Dash" type="General" desc="Song and Silence page 38"/>
+     <feat name="Daylight Adaptation" type="General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Dead Shot" type="General" desc="Sovereign Stone Campaign Sourcebook page 60"/>
+     <feat name="Death Blow" type="General" desc="Sword and Fist page 6"/>
+     <feat name="Deep Impact" type="Psionic" desc="Psionics Handbook page 25"/>
+     <feat name="Defensive Strike" type="General" desc="Oriental Adventures page 62"/>
+     <feat name="Defensive Throw" type="General" desc="Oriental Adventures page 62"/>
+     <feat name="Deflect Arrows" type="General" desc="Players Handbook page 81"/>
+     <feat name="Deflect Ranged Attack" type="General" desc="Dragon Magazine 274 page 60"/>
+     <feat name="Delay Power" type="Metapsionic" desc="Psionics Handbook page 25"/>
+     <feat name="Delay Spell" type="Metamagic" desc="Tome and Blood page 39"/>
+     <feat name="Dirty Fighting" type="General" desc="Sword and Fist page 6"/>
+     <feat name="Disarm Mind" type="Psionic" desc="Psionics Handbook page 25"/>
+     <feat name="Discipline" type="General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Discipline" type="Ancestor" desc="Oriental Adventures page 62"/>
+     <feat name="Disguise Spell" type="Metamagic" desc="Song and Silence page 38"/>
+     <feat name="Dismiss Demon" type="Special" desc="Demonlogy page 41"/>
+     <feat name="Divine Cleansing" type="Divine" desc="Defenders of the Faith page 19"/>
+     <feat name="Divine Might" type="Divine" desc="Defenders of the Faith page 19"/>
+     <feat name="Divine Perception" type="General" desc="Touched by the Gods page 34"/>
+     <feat name="Divine Resistance" type="Divine" desc="Defenders of the Faith page 19"/>
+     <feat name="Divine Shield" type="Divine" desc="Defenders of the Faith page 19"/>
+     <feat name="Divine Vengeance" type="Divine" desc="Defenders of the Faith page 20"/>
+     <feat name="Divine Vigor" type="Divine" desc="Defenders of the Faith page 20"/>
+     <feat name="Dodge" type="General" desc="Players Handbook page 81"/>
+     <feat name="Dreamspeaking" type="General" desc="The Book of Eldritch Might page 4"/>
+     <feat name="Drug Tolerance" type="General" desc="Caravan of Hope page 27"/>
+     <feat name="Dual Strike" type="General" desc="Sword and Fist page 6"/>
+     <feat name="Eagle Claw Attack" type="General" desc="Sword and Fist page 6"/>
+     <feat name="Earths Embrace" type="General" desc="Oriental Adventures page 62"/>
+     <feat name="Education" type="General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Eidetic Memory" type="General" desc="Dungeons page 81"/>
+     <feat name="Element Resistance" type="Infernal" desc="Evil page 24"/>
+     <feat name="Empathy" type="General" desc="Traps and Treachery page 35"/>
+     <feat name="Empower Spell" type="Metamagic" desc="Players Handbook page 82"/>
+     <feat name="Empower Turning" type="Special" desc="Defenders of the Faith page 20"/>
+     <feat name="Enchant Stone" type="Item Creation" desc="The Taan page 81"/>
+     <feat name="Encode Stone" type="Item Creation" desc="Psionics Handbook page 25"/>
+     <feat name="Endurance" type="General" desc="Players Handbook page 82"/>
+     <feat name="Energy Admixture" type="Metamagic" desc="Tome and Blood page 39"/>
+     <feat name="Energy of Life" type="Special" desc="Creature Collection page 72"/>
+     <feat name="Energy Substitution" type="Metamagic" desc="Tome and Blood page 40"/>
+     <feat name="Enlarge Power" type="Metapsionic" desc="Psionics Handbook page 25"/>
+     <feat name="Enlarge Spell" type="Metamagic" desc="Players Handbook page 82"/>
+     <feat name="Enspell Familiar" type="General" desc="Dragon Magazine 280 page 62"/>
+     <feat name="Eschew Materials" type="Metamagic" desc="Tome and Blood page 40"/>
+     <feat name="Etch Object Rune" type="Item Creation" desc="The Book of Eldritch Might page 4"/>
+     <feat name="Ethran" type="General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Exotic Weapon Proficiency" type="General" desc="Players Handbook page 82"/>
+     <feat name="Expert Tactician" type="General" desc="Song and Silence page 38"/>
+     <feat name="Expertise" type="General" desc="Players Handbook page 82"/>
+     <feat name="Extend Power" type="Metapsionic" desc="Psionics Handbook page 25"/>
+     <feat name="Extend Spell" type="Metamagic" desc="Players Handbook page 82"/>
+     <feat name="Extra Familiar" type="General" desc="Dragon Magazine 280 page 62"/>
+     <feat name="Extra Music" type="General" desc="Song and Silence page 39"/>
+     <feat name="Extra Power" type="Psionic" desc="Dragon Magazine 287 page 55"/>
+     <feat name="Extra Slot" type="General" desc="Tome and Blood page 40"/>
+     <feat name="Extra Smiting" type="Special" desc="Defenders of the Faith page 20"/>
+     <feat name="Extra Spell" type="General" desc="Tome and Blood page 40"/>
+     <feat name="Extra Stunning Attacks" type="General" desc="Sword and Fist page 6"/>
+     <feat name="Extra Turning" type="Special" desc="Players Handbook page 82 (rules: ppage 32 42)"/>
+     <feat name="Eye for Detail" type="General" desc="Traps and Treachery page 35"/>
+     <feat name="Eyes in the Back of Your Head" type="General" desc="Sword and Fist page 6"/>
+     <feat name="Eyes of Calaam" type="Special" desc="Touched by the Gods page 59"/>
+     <feat name="Falling Star Strike" type="General" desc="Oriental Adventures page 62"/>
+     <feat name="Far Shot" type="General" desc="Players Handbook page 82"/>
+     <feat name="Fast Armor" type="General" desc="Dragon Magazine 284 page 123"/>
+     <feat name="Fast Rider" type="General" desc="Dragon Magazine 285 page 98"/>
+     <feat name="Fast Talker" type="General" desc="Traps and Treachery page 35"/>
+     <feat name="Fearsome and Fearless" type="Ancestor" desc="Oriental Adventures page 62"/>
+     <feat name="Feign Weakness" type="General" desc="Sword and Fist page 6"/>
+     <feat name="Fell Shot" type="Psionic" desc="Psionics Handbook page 25"/>
+     <feat name="Firearms Drill" type="General" desc="Dragon Magazine d20 Special/Annual 6 page 70"/>
+     <feat name="Fists of Calaam" type="Special" desc="Touched by the Gods page 59"/>
+     <feat name="Fists of Iron" type="General" desc="Sword and Fist page 6"/>
+     <feat name="Fleet of Foot" type="General" desc="Song and Silence page 39"/>
+     <feat name="Flick of the Wrist" type="General" desc="Song and Silence page 39"/>
+     <feat name="Flight" type="Infernal" desc="Evil page 25"/>
+     <feat name="Flying Kick" type="General] -Oriental Adventures page 62" desc=""/>
+     <feat name="Foe Hunter" type="Fighter General" desc="Forgotten Realms Campaign Setting page 34"/>
+     <feat name="Forester" type="General" desc="Forgotten Realms Campaign Setting page 35"/>
+     <feat name="Forge Ring" type="Item Creation" desc="Players Handbook page 82"/>
+     <feat name="Fortify Power" type="Metapsionic" desc="Dragon Magazine 287 page 55"/>
+     <feat name="Freezing the Lifeblood" type="General" desc="Oriental Adventures page 62 "/>
+     <feat name="Gifted General" type="Ancestor" desc="Oriental Adventures page 62"/>
+     <feat name="Golden Tongue" type="General" desc="Dungeons page 81"/>
+     <feat name="Grace Under Pressure" type="General" desc="Dungeons page 81"/>
+     <feat name="Grappling Block" type="General" desc="Oriental Adventures page 63"/>
+     <feat name="Grasshopper Strike" type="General" desc="Dragon Magazine 279 page 63"/>
+     <feat name="Great Cleave" type="General" desc="Players Handbook page 82"/>
+     <feat name="Great Crafter" type="Ancestor" desc="Oriental Adventures page 63"/>
+     <feat name="Great Diplomat" type="Ancestor" desc="Oriental Adventures page 63"/>
+     <feat name="Great Fortitude" type="General" desc="Players Handbook page 82"/>
+     <feat name="Great Ki Shout" type="General" desc="Oriental Adventures page 63"/>
+     <feat name="Great Stamina" type="Ancestor" desc="Oriental Adventures page 63"/>
+     <feat name="Great Sunder" type="Psionic" desc="Psionics Handbook page 26"/>
+     <feat name="Great Teamwork" type="Ancestor" desc="Oriental Adventures page 63"/>
+     <feat name="Greater Power Penetration" type="Psionic" desc="Psionics Handbook page 26"/>
+     <feat name="Greater Psionic Focus" type="Psionic" desc="Psionics Handbook page 26"/>
+     <feat name="Greater Spell Focus" type="General" desc="Tome and Blood page 40"/>
+     <feat name="Greater Spell Penetration" type="General" desc="Tome and Blood page 40"/>
+     <feat name="Green Ear" type="General" desc="Song and Silence page 39"/>
+     <feat name="Green Viper Style" type="Fighting Stance" desc="Mystic Warriors page 113"/>
+     <feat name="Hammer Fist" type="General" desc="Dragon Magazine 279 page 63"/>
+     <feat name="Hamstring" type="General" desc="Song and Silence page 39"/>
+     <feat name="Heavy Scarring" type="General" desc="The Taan page 82"/>
+     <feat name="Heighten Power" type="Metapsionic" desc="Psionics Handbook page 26"/>
+     <feat name="Heighten Spell" type="Metamagic" desc="Players Handbook page 82"/>
+     <feat name="Heighten Turning" type="Special" desc="Defenders of the Faith page 20"/>
+     <feat name="Heroic Destiny" type="Special" desc="Touched by the Gods page 109"/>
+     <feat name="Hide Power" type="Metapsionic" desc="Psionics Handbook page 26"/>
+     <feat name="Hide Spell" type="Metamagic" desc="Relics and Rituals page 25"/>
+     <feat name="Hill Fighter" type="General" desc="Dragon Magazine 285 page 98"/>
+     <feat name="Hold the Line" type="General" desc="Sword and Fist page 7"/>
+     <feat name="Honest Merchant" type="Ancestor" desc="Oriental Adventures page 63"/>
+     <feat name="Horse Nomad" type="Fighter General" desc="Forgotten Realms Campaign Setting page 35"/>
+     <feat name="Iaijutsu Master" type="Ancestor" desc="Oriental Adventures page 63"/>
+     <feat name="Immortality" type="Infernal" desc="Evil page 25"/>
+     <feat name="Immunity" type="Infernal" desc="Evil page 25"/>
+     <feat name="Imp" type="Infernal" desc="Evil page 25"/>
+     <feat name="Improved Aid" type="Ancestor" desc="Oriental Adventures page 63"/>
+     <feat name="Improved Alertness" type="General" desc="Dungeons page 82"/>
+     <feat name="Improved Bull Rush" type="General" desc="Players Handbook page 82"/>
+     <feat name="Improved Counterspell" type="General" desc="Forgotten Realms Campaign Setting page 35"/>
+     <feat name="Improved Critical" type="General" desc="Players Handbook page 82"/>
+     <feat name="Improved Disarm" type="General" desc="Players Handbook page 83"/>
+     <feat name="Improved Endurance" type="General" desc="Dungeons page 82"/>
+     <feat name="Improved Familiar" type="General" desc="Tome and Blood page 40"/>
+     <feat name="Improved Feint" type="General" desc="Evil page 59"/>
+     <feat name="Improved Flight" type="Infernal" desc="Evil page 25"/>
+     <feat name="Improved Grab" type="General" desc="Mythic Races page 77"/>
+     <feat name="Improved Grapple" type="General" desc="Oriental Adventures page 63"/>
+     <feat name="Improved Initiative" type="General" desc="Players Handbook page 83"/>
+     <feat name="Improved Knockout Attack" type="General" desc="Traps and Treachery page 35"/>
+     <feat name="Improved Low Blow" type="General" desc="Dragon Magazine 285 page 33"/>
+     <feat name="Improved Mounted Archery" type="General" desc="Dragon Magazine 285 page 99"/>
+     <feat name="Improved Mounted Combat" type="General" desc="Sovereign Stone Campaign Sourcebook page 62"/>
+     <feat name="Improved Multiweapon Fighting" type="General" desc="Mythic Races page 137"/>
+     <feat name="Improved Overrun" type="General" desc="Sword and Fist page 7"/>
+     <feat name="Improved Psicrystal" type="Psionic" desc="Psionics Handbook page 26"/>
+     <feat name="Improved Ranged Sneak Attack" type="General" desc="Traps and Treachery page 36"/>
+     <feat name="Improved Rapid Shot" type="General" desc="Dragon Magazine 275 page 41"/>
+     <feat name="Improved Regeneration" type="Infernal" desc="Evil page 25"/>
+     <feat name="Improved Shield Bash" type="General" desc="Defenders of the Faith page 20"/>
+     <feat name="Improved Sneak Attack" type="General" desc="Traps and Treachery page 36"/>
+     <feat name="Improved Sunder" type="General" desc="Sword and Fist page 7"/>
+     <feat name="Improved Trample" type="Kaiju" desc="Dragon Magazine 289 page 70"/>
+     <feat name="Improved Trip" type="General" desc="Players Handbook page 83"/>
+     <feat name="Improved Two-Weapon Fighting" type="General" desc="Players Handbook page 83"/>
+     <feat name="Improved Unarmed Strike" type="General" desc="Players Handbook page 83"/>
+     <feat name="Improvise Thieves Tools" type="General" desc="Traps and Treachery page 37"/>
+     <feat name="Improvised Weapon" type="General" desc="Sovereign Stone Campaign Sourcebook page 62"/>
+     <feat name="Increased Carrying Capacity" type="General" desc="Dungeons page 82"/>
+     <feat name="Increased Movement" type="Infernal" desc="Evil page 26"/>
+     <feat name="Inertial Armor" type="Psionic" desc="Psionics Handbook page 26"/>
+     <feat name="Infernal Pact" type="Infernal" desc="Evil page 26"/>
+     <feat name="Infernal Soul" type="Infernal" desc="Evil page 26"/>
+     <feat name="Information Exchange" type="Special" desc="Touched by the Gods page 7"/>
+     <feat name="Innate Spell" type="General" desc="Tome and Blood page 41"/>
+     <feat name="Inner Peace" type="Mystic Warrior" desc="Mystic Warriors page 113"/>
+     <feat name="Inner Strength" type="Psionic" desc="Psionics Handbook page 26"/>
+     <feat name="Inscribe Magical Tattoo" type="Item Creation" desc="Relics and Rituals page 198"/>
+     <feat name="Inscribe Rune" type="Item Creation" desc="Forgotten Realms Campaign Setting page 36"/>
+     <feat name="Insidious Magic" type="Metamagic" desc="Forgotten Realms Campaign Setting page 36"/>
+     <feat name="Invisibility" type="Infernal" desc="Evil page 27"/>
+     <feat name="Ironbone" type="Special" desc="Creature Collection page 71"/>
+     <feat name="Ironskin" type="Special" desc="Creature Collection page 72"/>
+     <feat name="Iron Will" type="General" desc="Players Handbook page 83"/>
+     <feat name="Item Image" type="Eldritch" desc="The Book of Eldritch Might page 4"/>
+     <feat name="Jack of All Trades" type="General" desc="Song and Silence page 40"/>
+     <feat name="Kamis Intuition" type="Ancestor" desc="Oriental Adventures page 63"/>
+     <feat name="Karmic Strike" type="General" desc="Oriental Adventures page 63"/>
+     <feat name="Karmic Twin" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Keen Intellect" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Keen Vision" type="General" desc="Traps and Treachery page 37"/>
+     <feat name="Ki Projection" type="Special" desc="Creature Collection page 72"/>
+     <feat name="Ki Shout" type="General" desc="Oriental Adventures page 64"/>
+     <feat name="Knock-Down" type="General" desc="Sword and Fist page 7"/>
+     <feat name="Knockout Attack" type="General" desc="Traps and Treachery page 37"/>
+     <feat name="Knowledgeable" type="General" desc="Dungeons page 82"/>
+     <feat name="Lace Spell: Elemental Energies" type="Eldritch" desc="The Book of Eldritch Might page 5"/>
+     <feat name="Lace Spell: Enemy Bane" type="Eldritch" desc="The Book of Eldritch Might page 5"/>
+     <feat name="Lace Spell: Holy/Unholy" type="Eldritch" desc="The Book of Eldritch Might page 5"/>
+     <feat name="Lace Spell: Lawful/Chaotic" type="Eldritch" desc="The Book of Eldritch Might page 5"/>
+     <feat name="Lead Missile Fire" type="General" desc="Evil page 59"/>
+     <feat name="Leadership" type="General" desc="Players Handbook page 83 (rules: Dungeon Masters Guide page 45)"/>
+     <feat name="Lightning Fists" type="General" desc="Sword and Fist page 7"/>
+     <feat name="Lightning Reflexes" type="General" desc="Players Handbook page 83"/>
+     <feat name="Light Sleeper" type="General" desc="Dungeons page 82"/>
+     <feat name="Lingering Song" type="General" desc="Song and Silence page 40"/>
+     <feat name="Lion Spy" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Lions Rage" type="Mystic Warrior Stance" desc="Mystic Warriors page 113"/>
+     <feat name="Living Shield" type="General" desc="Evil page 58"/>
+     <feat name="Low Blow" type="General" desc="Dragon Magazine 285 page 33"/>
+     <feat name="Luck of Heroes" type="General" desc="Forgotten Realms Campaign Setting page 36"/>
+     <feat name="Luck of Heroes" type="Ancestor" desc="Oriental Adventures page 64 "/>
+     <feat name="Magekiss" type="Metamagic" desc="Traps and Treachery page 22"/>
+     <feat name="Magic in the Blood" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Magic Item" type="Infernal" desc="Evil page 27"/>
+     <feat name="Magical Artisan" type="General" desc="Forgotten Realms Campaign Setting page 36"/>
+     <feat name="Magical Artisan" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Magical Talent" type="General" desc="The Book of Eldritch Might page 6"/>
+     <feat name="Magical Training" type="General" desc="Forgotten Realms Campaign Setting page 36"/>
+     <feat name="Magistrates Mind" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Mantis Leap" type="General" desc="Sword and Fist page 7"/>
+     <feat name="Manufacture Magic Poison" type="Item Creation" desc="The Book of Eldritch Might page 6"/>
+     <feat name="Many Masks" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Martial Weapon Proficiency" type="General" desc="Players Handbook page 83"/>
+     <feat name="Master Dorje" type="Metapsionic" desc="Psionics Handbook page 26"/>
+     <feat name="Maximize Power" type="Metapsionic" desc="Psionics Handbook page 26"/>
+     <feat name="Maximize Spell" type="Metamagic" desc="Players Handbook page 83"/>
+     <feat name="Mechanical Aptitude" type="General" desc="Traps and Treachery page 37"/>
+     <feat name="Mental Adversary" type="Psionic" desc="Psionics Handbook page 27"/>
+     <feat name="Mental Leap" type="Psionic" desc="Psionics Handbook page 27"/>
+     <feat name="Mercantile Background" type="General" desc="Forgotten Realms Campaign Setting page 36"/>
+     <feat name="Metacreative" type="Psionic" desc="Psionics Handbook page 27"/>
+     <feat name="Militia" type="General" desc="Forgotten Realms Campaign Setting page 36"/>
+     <feat name="Mind Blind" type="Psionic" desc="Dragon Magazine 287 page 55"/>
+     <feat name="Mind Over Body" type="General" desc="Forgotten Realms Campaign Setting page 37"/>
+     <feat name="Mind Trap" type="Psionic" desc="Psionics Handbook page 27"/>
+     <feat name="Mirror Sight" type="Eldritch" desc="The Book of Eldritch Might page 6"/>
+     <feat name="Mobility" type="General" desc="Players Handbook page 83"/>
+     <feat name="Monkey Grip" type="General" desc="Sword and Fist page 7"/>
+     <feat name="Mounted Archery" type="General" desc="Players Handbook page 83"/>
+     <feat name="Mounted Combat" type="General" desc="Players Handbook page 83"/>
+     <feat name="Moving Meditation" type="Special" desc="Creature Collection page 72"/>
+     <feat name="Multiattack (Taan version)" type="General" desc="The Taan page 83"/>
+     <feat name="Multicultural" type="General" desc="Song and Silence page 40"/>
+     <feat name="Multiple Limbs" type="Infernal" desc="Evil page 27"/>
+     <feat name="Multiweapon Fighting (Legends and Lairs version)" type="General" desc="Mythic Races page 137"/>
+     <feat name="Natural Weaponry" type="General" desc="The Taan page 83"/>
+     <feat name="Nature Sense" type="Special" desc="Touched by the Gods page 71"/>
+     <feat name="Nerve Strikes" type="Special" desc="Creature Collection page 72"/>
+     <feat name="Nobodys Fool" type="General" desc="Dragon Magazine 285 page 33"/>
+     <feat name="Obscure Lore" type="General" desc="Song and Silence page 40"/>
+     <feat name="Off-Hand Parry" type="General" desc="Sword and Fist page 7"/>
+     <feat name="Off-Handed" type="General" desc="Evil page 59"/>
+     <feat name="Onis Bane" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Pain Touch" type="General" desc="Sword and Fist page 8"/>
+     <feat name="Pebble Underfoot" type="General" desc="Dragon Magazine 279 page 63"/>
+     <feat name="Penetrate Hardness" type="Kaiju" desc="Dragon Magazine 289 page 70"/>
+     <feat name="Perfect Memory" type="General" desc="Traps and Treachery page 37"/>
+     <feat name="Permanent Control" type="Special" desc="Demonology page 41"/>
+     <feat name="Pernicious Magic" type="Metamagic" desc="Forgotten Realms Campaign Setting page 37"/>
+     <feat name="Persistent Power" type="Metapsionic" desc="Psionics Handbook page 27"/>
+     <feat name="Persistent Spell" type="Metamagic" desc="Tome and Blood page 42"/>
+     <feat name="Persuasive" type="General" desc="Song and Silence page 40"/>
+     <feat name="Pin Shield" type="General" desc="Sword and Fist page 8"/>
+     <feat name="Pinpoint Accuracy" type="General" desc="Sovereign Stone Campaign Sourcebook page 62"/>
+     <feat name="Point Blank Shot" type="General" desc="Players Handbook page 84"/>
+     <feat name="Poison Blood" type="Infernal" desc="Evil page 28"/>
+     <feat name="Poison Immunity" type="General" desc="Traps and Treachery page 37"/>
+     <feat name="Pounce" type="General" desc="Mythic Races page 77"/>
+     <feat name="Pounce and Strike" type="General" desc="Dragon Lords of Melnibone page 50"/>
+     <feat name="Power Attack" type="General" desc="Players Handbook page 84"/>
+     <feat name="Power Attack--Iaijutsu" type="Ancestor" desc="Oriental Adventures page 64"/>
+     <feat name="Power Attack--Shadowlands" type="Ancestor" desc="Oriental Adventures page 65"/>
+     <feat name="Power Lunge" type="General" desc="Sword and Fist page 8"/>
+     <feat name="Power Penetration" type="Psionic" desc="Psionics Handbook page 27"/>
+     <feat name="Power Specialization" type="Psionic" desc="Dragon Magazine 287 page 56"/>
+     <feat name="Power Touch" type="Psionic" desc="Psionics Handbook page 27"/>
+     <feat name="Powerful Voice" type="Ancestor" desc="Oriental Adventures page 65"/>
+     <feat name="Precise Shot" type="General" desc="Players Handbook page 84"/>
+     <feat name="Primal Shout" type="General" desc="The Taan page 83"/>
+     <feat name="Prone Attack" type="General" desc="Sword and Fist page 8"/>
+     <feat name="Psionic Body" type="Psionic" desc="Psionics Handbook page 27"/>
+     <feat name="Psionic Charge" type="Psionic" desc="Psionics Handbook page 28"/>
+     <feat name="Psionic Defense" type="Psionic" desc="Dragon Magazine 287 page 54"/>
+     <feat name="Psionic Dodge" type="Psionic" desc="Psionics Handbook page 28"/>
+     <feat name="Psionic Energy Admixture" type="Metapsionic" desc="Dragon Magazine 287 page 55"/>
+     <feat name="Psionic Energy Substitution" type="Metapsionic" desc="Dragon Magazine 287 page 54"/>
+     <feat name="Psionic Fist" type="Psionic" desc="Psionics Handbook page 28"/>
+     <feat name="Psionic Focus" type="Psionic" desc="Psionics Handbook page 28"/>
+     <feat name="Psionic Metabolism" type="Psionic" desc="Psionics Handbook page 28"/>
+     <feat name="Psionic Shot" type="Psionic" desc="Psionics Handbook page 28"/>
+     <feat name="Psionic Weapon" type="Psionic" desc="Psionics Handbook page 28"/>
+     <feat name="Psychic Bastion" type="Psionic" desc="Psionics Handbook page 28"/>
+     <feat name="Psychic Inquisitor" type="Psionic" desc="Psionics Handbook page 29"/>
+     <feat name="Psychoanalyst" type="Psionic" desc="Psionics Handbook page 29"/>
+     <feat name="Purifying Light" type="General" desc="Mythic Races page 69"/>
+     <feat name="Pyro" type="General" desc="Song and Silence page 40"/>
+     <feat name="Quick Draw" type="General" desc="Players Handbook page 84"/>
+     <feat name="Quicken Power" type="Metapsionic" desc="Psionics Handbook page 29"/>
+     <feat name="Quicken Spell" type="Metamagic" desc="Players Handbook page 84"/>
+     <feat name="Quicken Summoning" type="Special" desc="Demonology page 41"/>
+     <feat name="Quicken Turning" type="Special" desc="Defenders of the Faith page 20"/>
+     <feat name="Quicker Than the Eye" type="General" desc="Song and Silence page 40"/>
+     <feat name="Quickstrike" type="General" desc="Traps and Treachery page 37"/>
+     <feat name="Rake" type="General" desc="Mythic Races page 77"/>
+     <feat name="Raking Nails" type="General" desc="Mystic Warriors page 113"/>
+     <feat name="Ranged Disarm" type="General" desc="Dragon Magazine 274 page 60"/>
+     <feat name="Ranged Pin" type="General" desc="Dragon Magazine 274 page 60"/>
+     <feat name="Ranged Sunder" type="General" desc="Dragon Magazine 274 page 60"/>
+     <feat name="Rapid Metabolism" type="Psionic" desc="Psionics Handbook page 29"/>
+     <feat name="Rapid Reload" type="General" desc="Sword and Fist page 9"/>
+     <feat name="Rapid Shot" type="General" desc="Players Handbook page 84"/>
+     <feat name="Ray Burst" type="Metamagic" desc="Dragon Magazine Annual 5 page 26"/>
+     <feat name="Ray Coning" type="Metamagic" desc="Dragon Magazine Annual 5 page 26"/>
+     <feat name="Ray Extension" type="Metamagic" desc="Dragon Magazine Annual 5 page 26"/>
+     <feat name="Ray Focus" type="General" desc="Dragon Magazine Annual 5 page 26"/>
+     <feat name="Ray Splitting" type="Metamagic" desc="Dragon Magazine Annual 5 page 26"/>
+     <feat name="Reactive Counterspell" type="General" desc="Magic of Faerun page 22"/>
+     <feat name="Reach Power" type="Metapsionic" desc="Dragon Magazine 287 page 55"/>
+     <feat name="Reach Spell" type="Metamagic" desc="Defenders of the Faith page 20"/>
+     <feat name="Reckless Offensive" type="General" desc="Enemies and Allies page 41"/>
+     <feat name="Recognize Omen" type="General" desc="Sovereign Stone Campaign Sourcebook page 62"/>
+     <feat name="Redirect Attacks" type="General" desc="Evil page 59"/>
+     <feat name="Regeneration" type="Infernal" desc="Evil page 28"/>
+     <feat name="Remain Conscious" type="General" desc="Sword and Fist page 9"/>
+     <feat name="Repeat Power" type="Metapsionic" desc="Dragon Magazine 287 page 56"/>
+     <feat name="Repeat Spell" type="Metamagic" desc="Tome and Blood page 41"/>
+     <feat name="Requiem" type="General" desc="Song and Silence page 40"/>
+     <feat name="Resculpt Mind" type="Psionic" desc="Dragon Magazine 287 page 56"/>
+     <feat name="Resist Poison" type="General" desc="Forgotten Realms Campaign Setting page 37"/>
+     <feat name="Resist Poison" type="Ancestor" desc="Oriental Adventures page 65"/>
+     <feat name="Resist Taint" type="Ancestor" desc="Oriental Adventures page 65"/>
+     <feat name="Return Shot" type="Psionic" desc="Psionics Handbook page 29"/>
+     <feat name="Ride-By-Attack" type="General" desc="Players Handbook page 84"/>
+     <feat name="Rot" type="Infernal" desc="Evil page 28"/>
+     <feat name="Roundabout Kick" type="General" desc="Oriental Adventures page 65"/>
+     <feat name="Run" type="General" desc="Players Handbook page 84 "/>
+     <feat name="Sacred Spell" type="Metamagic" desc="Defenders of the Faith page 20"/>
+     <feat name="Saddleback" type="Fighter General" desc="Forgotten Realms Campaign Setting page 37"/>
+     <feat name="Saddleback" type="Ancestor" desc="Oriental Adventures page 65"/>
+     <feat name="Sanctum Spell" type="Metamagic" desc="Tome and Blood page 41"/>
+     <feat name="Scent" type="General" desc="Dungeon Masters Guide page 81 (variant rule)"/>
+     <feat name="Scholar of Nature" type="Ancestor" desc="Oriental Adventures page 65"/>
+     <feat name="Scribe Scroll" type="Item Creation" desc="Players Handbook page 84"/>
+     <feat name="Scribe Tattoo" type="Item Creation" desc="Psionics Handbook page 29"/>
+     <feat name="Sculpt Power" type="Metapsionic" desc="Dragon Magazine 287 page 56"/>
+     <feat name="Sculpt Spell" type="Metamagic" desc="Tome and Blood page 42"/>
+     <feat name="Sea Legs" type="Ancestor" desc="Oriental Adventures page 65"/>
+     <feat name="Second Wind" type="General" desc="Sovereign Stone Campaign Sourcebook page 63"/>
+     <feat name="Set Spear" type="General" desc="Dragon Lords of Melnibone page 63"/>
+     <feat name="Shadow" type="General" desc="Song and Silence page 40"/>
+     <feat name="Shadow (Legends and Lairs version)" type="General" desc="Traps and Treachery page 37"/>
+     <feat name="Shadow Weave Magic" type="General" desc="Forgotten Realms Campaign Setting page 37"/>
+     <feat name="Shapechange" type="Infernal" desc="Evil page 27"/>
+     <feat name="Shared Spellcasting" type="Metamagic" desc="Sovereign Stone Campaign Sourcebook page 63"/>
+     <feat name="Sharp-Shooting" type="General" desc="Sword and Fist page 9"/>
+     <feat name="Shield Charge" type="General" desc="Defenders of the Faith page 20"/>
+     <feat name="Shield Expert" type="General" desc="Sword and Fist page 9"/>
+     <feat name="Shield Proficiency" type="General" desc="Players Handbook page 85"/>
+     <feat name="Shot on the Run" type="General" desc="Players Handbook page 85"/>
+     <feat name="Side Step" type="General" desc="Mystic Warriors page 113"/>
+     <feat name="Signature Skill" type="General" desc="Traps and Treachery page 38"/>
+     <feat name="Signature Spell" type="General" desc="Forgotten Realms Campaign Setting page 37"/>
+     <feat name="Silent Spell" type="Metamagic" desc="Players Handbook page 85"/>
+     <feat name="Silver Palm" type="General" desc="Forgotten Realms Campaign Setting page 37"/>
+     <feat name="Silver Tongue" type="Ancestor" desc="Oriental Adventures page 65"/>
+     <feat name="Simple Weapon Proficiency" type="General" desc="Players Handbook page 85"/>
+     <feat name="Skill Focus" type="General" desc="Players Handbook page 85"/>
+     <feat name="Smooth Talk" type="General" desc="Forgotten Realms Campaign Setting page 37"/>
+     <feat name="Smooth Talk" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Snake Blood" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Snatch Arrows" type="General" desc="Sword and Fist page 9"/>
+     <feat name="Snatch Weapon" type="General" desc="Song and Silence page 40"/>
+     <feat name="Soul of Honor" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Soul of Loyalty" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Soul of Sincerity" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Speed of Thought" type="Psionic" desc="Psionics Handbook page 29"/>
+     <feat name="Spell Focus" type="General" desc="Players Handbook page 85"/>
+     <feat name="Spell Girding" type="General" desc="Magic of Faerun page 22"/>
+     <feat name="Spell Mastery" type="Special" desc="Players Handbook page 85 (rules: page 54)"/>
+     <feat name="Spell Penetration" type="General" desc="Players Handbook page 85"/>
+     <feat name="Spell Power" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Spell Specialization" type="General" desc="Tome and Blood page 42"/>
+     <feat name="Spell Thematics" type="General" desc="Magic of Faerun page 22"/>
+     <feat name="Spellcaster Support" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Spellcasting Prodigy" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Spellfire Wielder" type="General" desc="Magic of Faerun page 23"/>
+     <feat name="Spirited Charge" type="General" desc="Players Handbook page 85"/>
+     <feat name="Split Psionic Ray" type="Metapsionic" desc="Dragon Magazine 287 page 56"/>
+     <feat name="Split Ray" type="Metamagic" desc="Tome and Blood page 42"/>
+     <feat name="Spook Animals" type="Special" desc="Dragon Magazine d20 Special/Annual 6 page 65"/>
+     <feat name="Spring Attack" type="General" desc="Players Handbook page 85"/>
+     <feat name="Staggering Blow" type="General" desc="Dragon Magazine 279 page 63"/>
+     <feat name="Stand Still" type="Psionic" desc="Psionics Handbook page 29"/>
+     <feat name="Stare-Down" type="General" desc="Scrollworks 11 page 5"/>
+     <feat name="Stealth" type="General" desc="Traps and Treachery page 39"/>
+     <feat name="Stealthy" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Still Spell" type="Metamagic" desc="Players Handbook page 85"/>
+     <feat name="Stoic Composure" type="General" desc="Dragon Magazine 284 page 123"/>
+     <feat name="Street Smart" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Strength of the Charger" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Strength of the Crab" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Strength of Personality" type="Special" desc="Demonology page 41"/>
+     <feat name="Strong Soul" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Strong Soul" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Stunning Fist" type="General" desc="Players Handbook page 85"/>
+     <feat name="Stunning Roar" type="Kaiju" desc="Dragon Magazine 289 page 70"/>
+     <feat name="Subdual Substitution" type="Metamagic" desc="Tome and Blood page 42"/>
+     <feat name="Subduing Strike" type="General" desc="Sovereign Stone Campaign Sourcebook page 63"/>
+     <feat name="Subsonics" type="General" desc="Song and Silence page 40"/>
+     <feat name="Subtle Charm" type="Special" desc="Touched by the Gods page 71"/>
+     <feat name="Sunder" type="General" desc="Players Handbook page 85"/>
+     <feat name="Superior Expertise" type="General" desc="Oriental Adventures page 66"/>
+     <feat name="Survival Instincts" type="General" desc="The Taan page 83"/>
+     <feat name="Survivor" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Swarmfighting" type="General" desc="Dragon Magazine 285 page 33"/>
+     <feat name="Swift Twist Glance" type="General" desc="Mystic Warriors page 113"/>
+     <feat name="Tail Attack" type="Special" desc="Dragon Magazine d20 Special/Annual 6 page 61"/>
+     <feat name="Talented" type="Psionic" desc="Psionics Handbook page 30"/>
+     <feat name="Tattoo Focus" type="Special" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Taut Tug" type="General" desc="Mystic Warriors page 113"/>
+     <feat name="Ten Animal Style" type="Special" desc="Creature Collection page 72"/>
+     <feat name="Tenacious Magic" type="Metamagic" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Thick Hide" type="General" desc="The Taan page 83"/>
+     <feat name="Thick Skin" type="General" desc="Dungeons page 82"/>
+     <feat name="Thrall Master" type="Special" desc="Touched by the Gods page 71"/>
+     <feat name="Throw Anything" type="General" desc="Sword and Fist page 9"/>
+     <feat name="Thug" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Thunder Twin" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Thunderous Roar" type="Kaiju" desc="Dragon Magazine 289 page 70"/>
+     <feat name="Tinker" type="General" desc="Dungeons page 82"/>
+     <feat name="Token Familiar" type="General" desc="Dragon Magazine 280 page 62"/>
+     <feat name="Toughness" type="General" desc="Players Handbook page 85"/>
+     <feat name="Track" type="General" desc="Players Handbook page 85"/>
+     <feat name="Trample" type="General" desc="Players Handbook page 86"/>
+     <feat name="Treetopper" type="General" desc="Forgotten Realms Campaign Setting page 38"/>
+     <feat name="Trigger Power" type="Psionic" desc="Psionics Handbook page 30"/>
+     <feat name="Trustworthy" type="General" desc="Song and Silence page 40"/>
+     <feat name="Turn Outsider" type="Special" desc="Evil page 60"/>
+     <feat name="Turn Resistance" type="General" desc="Mythic Races page 50"/>
+     <feat name="Twin Power" type="Psionic" desc="Psionics Handbook page 30"/>
+     <feat name="Twin Spell" type="Metamagic" desc="Tome and Blood page 42"/>
+     <feat name="Twin Sword Style" type="Fighter General" desc="Forgotten Realms Campaign Setting page 39"/>
+     <feat name="Two-Weapon Fighting" type="General" desc="Players Handbook page 86"/>
+     <feat name="Tyrant" type="General" desc="Evil page 60"/>
+     <feat name="Ultimate Feint" type="General" desc="Evil page 62"/>
+     <feat name="Unavoidable Strike" type="Psionic" desc="Psionics Handbook page 30"/>
+     <feat name="Unbalancing Strike" type="General" desc="Oriental Adventures page 66"/>
+     <feat name="Undead Familiar" type="General" desc="Dragon Magazine 280 page 62"/>
+     <feat name="Undetectable Lie" type="Infernal" desc="Evil page 28"/>
+     <feat name="Unholy Blessing" type="Infernal" desc="Evil page 28"/>
+     <feat name="Unholy Strength" type="Infernal" desc="Evil page 28"/>
+     <feat name="Unorthodox Flurry" type="Special" desc="Dragon Magazine 279 page 63"/>
+     <feat name="Unusual Background" type="General" desc="Diomin page 43"/>
+     <feat name="Unyielding Aura" type="General" desc="Mythic Races page 69"/>
+     <feat name="Up the Walls" type="Psionic" desc="Psionics Handbook page 30"/>
+     <feat name="Upgrade Power" type="Psionic" desc="Dragon Magazine 287 page 56"/>
+     <feat name="Vengeful Strike" type="General" desc="Touched by the Gods page 109"/>
+     <feat name="Vitus Kata" type="Mystic Warrior" desc="Mystic Warriors page 113"/>
+     <feat name="Wall Breaker" type="General" desc="Dragon Magazine 285 page 98"/>
+     <feat name="Warrior Instinct" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Warrior Shugenja" type="Ancestor" desc="Oriental Adventures page 66"/>
+     <feat name="Warsinger" type="Special" desc="Touched by the Gods page 109"/>
+     <feat name="Water-ken" type="General" desc="The Taan page 83"/>
+     <feat name="Wealth" type="Infernal" desc="Evil page 29"/>
+     <feat name="Weapon Expertise: Throwing Spear" type="General" desc="Ragnarok! page 10"/>
+     <feat name="Weapon Finesse" type="General" desc="Players Handbook page 86"/>
+     <feat name="Weapon Focus" type="General" desc="Players Handbook page 86"/>
+     <feat name="Weapon Specialization" type="Special" desc="Players Handbook page 86 (rules: page 37)"/>
+     <feat name="Weapon-Catching" type="General" desc="Ragnarok! page 9"/>
+     <feat name="Whirlwind Attack" type="General" desc="Players Handbook page 86"/>
+     <feat name="Widen Power" type="Metapsionic" desc="Dragon Magazine 287 page 56"/>
+     <feat name="Widen Spell" type="Metamagic" desc="Tome and Blood page 42"/>
+     <feat name="Wish" type="Infernal" desc="Evil page 29"/>
+     <feat name="Wrath of Calaam" type="Special" desc="Touched by the Gods page 59"/>
+     <feat name="Zen Archery" type="General" desc="Sword and Fist page 9"/>
+</feats>

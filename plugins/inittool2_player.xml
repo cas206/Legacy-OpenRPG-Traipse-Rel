@@ -1,0 +1,66 @@
+
+<nodehandler class="group_handler" icon="player" module="containers" name="Player's Initiative Tool" status="useful" version="1.0">
+  <group_atts border="1" cols="1"/>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="READ ME FIRST!!" version="1.0">
+    <text hide_title="0" multiline="1" raw_mode="0" send_button="0">=======================================
+
++++To GMs+++: Send a copy of the Player's Initiative Tool node to each of your players by right-clicking and pressing &quot;Send to Player&quot;. Advise them to open &quot;READ ME FIRST&quot;. Feel free to delete the node afterwards.
+
+This node should help speed things up a bit for the players, and hopefully end the nagging &quot;how do I roll my init again?&quot; questions.
+
+=======================================
+
++++To Players+++: The Player's Initiative Tool provides you a list of macros for the Initiative Tool v2, usable by anyone (not just the GM). What to do:
+
+1) Right-click and press &quot;design&quot; on each of the macro nodes.
+--- The title describes what the macro will do.
+--- The comment text (between the &quot;&lt;!---&quot; and &quot;---&gt;&quot;) describes how you should type it out in the chat or macro window. If you have trouble understanding, read the comment out loud to yourself.
+--- The last line shows an example of the macro.
+
+2) Replace the examples with your character's information.
+--- Feel free to delete any comments or macros that you definitely won't use.
+--- &quot;Show Inits&quot; and &quot;Next Turn&quot; don't need to be changed at all.
+
+3) Double-click the macro to activate it.
+--- If you need to make changes later on, just right-click and &quot;design&quot; again to change the macro.
+--- For effects in particular, sometimes it's easier just to memorize the formula rather than change it every time you want to add something.</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="die" module="chatmacro" name="Switch to D20 Dieroller" version="1.0">
+    <text>/dieroller d20</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="die" module="chatmacro" name="Switch to SR4 Dieroller" version="1.0">
+    <text>/dieroller sr4</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Next Turn" version="1.0">
+    <text>&lt;!---Advances the initiative to the next turn; use only at end of your turn and not other people's turns---&gt;
+nextinit</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Show Inits" version="1.0">
+    <text>&lt;!---Shows a public list of initiatives; can be quite spammy---&gt;
+showinits</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="d20" module="chatmacro" name="Roll Init (D20)" version="1.0">
+    <text>&lt;!---Name, space Initiative Roll in brackets, space the word &quot;init&quot;---&gt;
+Veggiesama [1d20+2] init</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="d20" module="chatmacro" name="Add Effect (D20)" version="1.0">
+    <text>&lt;!---Name, space Initiative Count of caster/user in brackets, space the word &quot;effect&quot;, space the Duration (in rounds) of the effect---&gt;
+&lt;!---Detailing the exact effects in the Name, though spammy, can be useful for yourself and the GM---&gt;
+Veggiesama's Awesome Aura (+4 STR/DEX/CON to all in 20' radius, +8 to self) [10] effect 5</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="gun2" module="chatmacro" name="Roll Init (SR4)" version="1.0">
+    <text>&lt;!---Name, space Initiative Roll in brackets, space the word &quot;init&quot;, space Initiative Passes---&gt;
+&lt;!---the Initiative Roll is [Xd6.init(Y)], where X is the number of dice you are rolling, and Y is your Initiative Score (usually both the same value)---&gt;
+Veggiesama [5d6.init(5)] init 2</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="shades" module="chatmacro" name="Roll Init (SR4 Virtual)" version="1.0">
+    <text>&lt;!---Name, space Initiative Roll in brackets, space the word &quot;init&quot;, space Initiative Passes---&gt;
+&lt;!---the Initiative Roll is [Xd6.init(Y)], where X is the number of dice you are rolling, and Y is your Initiative Score (usually both the same value)---&gt;
+Virtual Veggiesama [5d6.init(5)] init 2</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="wizard1" module="chatmacro" name="Roll Init (SR4 Astral)" version="1.0">
+    <text>&lt;!---Name, space Initiative Roll in brackets, space the word &quot;init&quot;, space Initiative Passes---&gt;
+&lt;!---the Initiative Roll is [Xd6.init(Y)], where X is the number of dice you are rolling, and Y is your Initiative Score (usually both the same value)---&gt;
+Astral Veggiesama [5d6.init(5)] init 2</text>
+  </nodehandler>
+</nodehandler>

@@ -1,0 +1,496 @@
+
+<nodehandler class="group_handler" icon="labtop" module="containers" name="GM's Initiative Tool" status="useful" version="1.0">
+  <group_atts border="1" cols="1"/>
+  <nodehandler class="macro_handler" icon="oriental" module="chatmacro" name="Start/Clear" version="1.0">
+    <text>/start</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="oriental" module="chatmacro" name="Clear" version="1.0">
+    <text>/clear</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Next Turn" version="1.0">
+    <text>/go</text>
+  </nodehandler>
+  <nodehandler class="tabber_handler" icon="questionhead" module="containers" name="Commands &amp; Help" version="1.0">
+    <nodehandler class="form_handler" icon="compass" module="forms" name="D20/RQ Cmds" version="1.0">
+      <form height="350" width="450"/>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="ADD INIT               " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/add 22 Aiur</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="ADD INIT (CHAT)  " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">Veggie-sama [1d20+1] init</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="ADD HIDDEN INIT" version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/addhidden 22 Zyhink</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="CHANGE INIT        " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/change 3 6</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="RANK UP               " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/rankup 2 1</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="RANK DOWN        " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/rankdown 1 1</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="DELETE                 " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/del 2</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="ADD EFFECT               " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/addfx 18 7 Hignar's Flaming Sphere</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="ADD EFFECT (CHAT)  " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">Tlasco's Bless [1] effect 6</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="ADD HIDDEN EFFECT" version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/addfxhidden 10 4 Vinzarino's Hold Person</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="CHANGE DURATION  " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/changedur 5 3</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="DELAY ID NOW" version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/initdelaynow 2</text>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="form_handler" icon="compass" module="forms" name="SR4 Cmds" version="1.0">
+      <form height="350" width="450"/>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="ADD INIT             " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/add 8 2 Sam</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="ADD INIT (CHAT)" version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">Alex [8d6.init(8)] init 3</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="CHANGE INIT      " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/change 2 6</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="CHANGE PASS    " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/changepass 2 4</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="DELETE               " version="1.0">
+        <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/del 1</text>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="tabber_handler" icon="compass" module="containers" name="Extra Cmds" version="1.0">
+      <nodehandler class="form_handler" icon="compass" module="forms" name="Other Commands" version="1.0">
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Toggle Init System (D20, SR4 or RQ)" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/inittoggle</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Toggle Init Recording (chat cmds)     " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/init</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="List Initiatives to Self   " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/list</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="List Initiatives to Room" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/publiclist</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Show Round# to Room" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/rnd</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Show Pass# to Room   " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/pass</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Change Round#" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/rnd 2</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Change Pass#   " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/pass 2</text>
+        </nodehandler>
+        <form height="350" width="450"/>
+      </nodehandler>
+      <nodehandler class="form_handler" icon="compass" module="forms" name="Sandglass" version="1.0">
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Start Sandglass (sec)" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/sandglass 1</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Cancel Sandglass     " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/sandglass 0</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Pause Sandglass   " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/sandglasspause</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Resume Sandglass" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/sandglassresume</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Force Skip Interval" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/sandglassforceskip 3</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Cancel Force Skip " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/sandglassforceskip 0</text>
+        </nodehandler>
+        <form height="350" width="450"/>
+      </nodehandler>
+      <nodehandler class="form_handler" icon="compass" module="forms" name="Save/Load Tool" version="1.0">
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Save List (Slot 1-5) " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/initsave 1 My Battle</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Load List (Slot 1-5) " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/initload 1</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Turn on Autosave (5 mins)" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/initautosave 300</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Cancel Autosave                " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/initautosave 0</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Load Last Autosave List     " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/initautoload</text>
+        </nodehandler>
+        <form height="350" width="450"/>
+      </nodehandler>
+      <nodehandler class="form_handler" icon="compass" module="forms" name="System Config" version="1.0">
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Toggle Message Handler Warning" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/msghandwarning</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Toggle Hide IDs                             " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/togglehideid</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Toggle Hide 'On Deck'                   " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/togglehideondeck</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="[SR4-only] Toggle Hide 'Just Movement'" version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/togglehidejustmovement</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="[SR4-only] Init Reroll?                            " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/toggleroundreroll</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="[SR4-only] Toggle IP Order                    " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/toggleiporder</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Load Default Config  " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/initdefaultconfig</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Show Config             " version="1.0">
+          <text hide_title="0" multiline="0" raw_mode="1" send_button="1">/initshowconfig</text>
+        </nodehandler>
+        <form height="350" width="450"/>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="tabber_handler" icon="help" module="containers" name="HELP!" version="1.0">
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="D20 System" version="1.0">
+        <text hide_title="0" multiline="1" raw_mode="0" send_button="0">====================================================
+STARTING A BATTLE
+- The DM double-clicks &quot;Start/Clear&quot; (/start) in the gametree under the Initiative Tool node.
+- In the chat window, the players and the DM must type their name, then their initiative dice, ending with the word &quot;init&quot;.
+
+Example of Adding an Init:
+Veggie-sama [1d20+4] init
+
+TIP: If a player needs to re-add an initiative roll (because they accidentally forgot the word &quot;init&quot; or otherwise), they can use [Xd1] and substitute their original init roll into &quot;X&quot;.
+
+====================================================
+ADVANCING THE ROUND
+- After everyone is finished rolling, double-click &quot;Next Turn&quot; (/go) to start the round.
+- When the named character is finished with his/her turn, double-click &quot;Next Turn&quot; again to advance the initiative.
+- TIP: Check Quick Commands tab in this help for a shortcut (&quot;nextinit&quot;)
+- When all characters have taken their actions, the round will end and the next round will begin.
+
+====================================================
+VIEWING THE INITIATIVE LIST
+- To see a list of current initiatives, click the plus sign by &quot;Other&quot; in the game tree, then double-click &quot;List Initiatives to Self&quot; (/list) or &quot;List Initiatives to Room&quot; (/publiclist), depending on whether you want to spam yourself or everyone else, respectively.
+- TIP: Check Quick Commands in this Help for a shortcut (&quot;showinits&quot;)
+
+====================================================
+MANIPULATING THE INITs MANUALLY (DM-Only)
+TIP: The &quot;list#&quot; is the number to the left of the init number when you press &quot;List Initiatives to Self&quot;, and the first number in red text on each character/effect notification (note: the number in the parentheses in the initiative score value; the list# is to the left of that)
+- If you don't want any future inits to be recorded, double click &quot;Toggle Init Recording&quot;. Note this will also disable Quick Commands.
+
+/add (init#) (description)
+- adds a new initiative to the list with an initiative roll of (init#)
+
+/addhidden (init#) (description)
+- same as /add, except public will be unware of this character until it will first be asked play
+
+/del (list#)
+- deletes the character with a list number of (list#)
+
+/change (list#) (init#)
+- changes the initiative score of the character whose list number is (list#) to the new initiative value of (init#)
+
+/rankup (list#) (step#)
+- move up in the initiative list by the number of step that is (step#). You can only move within the same inititive score
+
+/rankdown (list#) (step#)
+- move down in the initiative list by the number of step that is (step#). You can only move within the same inititive score
+
+/initdelaynow (list#)
+- change the initiative score of the character whose list number is (list#) at the current initiative count and call the character to play NOW, before whichevercharacter was call to play previously.
+
+/initsetslot (list#)
+- set the given list# as the current selected slot. WARNING: You shouldn't use this function unless you really know what you are doing because any durations of the effects will be ignored.
+
+====================================================
+ROUNDS
+- The initiative tools keeps track of the number of rounds passed.
+Note: Any change in rounds will *not* affect Effect durations.
+
+/rnd
+- when used alone, will tell the room what round it is
+
+/rnd (round#)
+- when used with a number afterwards, will change the current round to the value of (round#)
+
+====================================================
+EFFECTS
+- Effects are non-characters that use initiative counts, usually magic spells or extraordinary abilities, which generally dissipate at the end of a certain duration. In D&amp;D, examples can include a wizard's Fire Wall spell, a barbarian's Rage, or the duration that enemy undead flee from a cleric's Turn Undead.
+- Effects are counted down between initiatives (after the caster's count, before the next count). They will persist until the specified duration, then automatically delete themselves. To add an effect, type the effect's name, followed by the init count it will occur on(within brackets), followed by the word &quot;effect&quot;, and lastly followed by its duration in rounds.
+- NOTE: Effects are denoted by a star (*) and in italics when you press &quot;List Initiatives to Self&quot;.
+- TIP: All values must be in rounds. To convert minutes into rounds, multiply the minutes by 10. To convert hours into rounds, multiply the hours by 600. To convert days into rounds... wait, your battles better not go on that long.
+
+Example:
+Hrothgar (count 12) casts Flaming Sphere, which will last for 7 rounds. He will type:
+Hrothgar's Flaming Sphere [12] effect 7
+
+The DM can manually add, delete, and change the Effects, because they are stored just like characters on the initiative list, like so:
+
+/addfx (init#) (duration#) (description)
+- adds a new effect to the list with an initiative roll of init#, and a duration (in rounds) of duration#
+- [effect-only]
+
+/addfxhidden (init#) (duration#) (description)
+- same as /addfx, except duration of the spell will not be print to public
+
+/del (list#)
+- same as /del from above
+
+/change (list#) (init#)
+- same as /change from above (also preserves the duration of the effect)
+
+/changedur (list#) (duration#)
+- changes the duration of the effect with a list number of (list#) to (duration#) in rounds
+- NOTE: You cannot change the duration to 0 or a negative number, so use /del instead
+- [effect-only]
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Shadowrun 4e" version="1.0">
+        <text hide_title="0" multiline="1" raw_mode="0" send_button="0">To switch to the Shadowrun Init Tool (or back to D20 or RuneQuest), the DM must double-click &quot;Toggle Init System&quot; (/inittoggle) in the &quot;Other&quot; node.
+
+The SR4 commands are otherwise identical to the D20 commands, with the notable exceptions mentioned below:
+
+====================================================
+STARTING A BATTLE
+- The DM must double-click &quot;Start/Clear&quot; in the gametree under the Initiative Tool node.
+- In the chat window, the players and the DM must type their name, then their initiative dice, then the word &quot;init&quot;, finally ending with the number of passes their character receives.
+- NOTE: The initiative tool for SR4 requires the SR4 dieroller to be installed and activated for all players as well, otherwise the system won't work correctly.
+
+Examples of Adding Inits:
+Veggie-sama has an Initiative attribute of 8 with 3 passes per round, so he types:
+Veggie-sama [8d6.init(8)] init 3
+
+If Veggie-sama added Edge dice for the round (with an Edge attribute of 5), he could type either:
+Veggie-sama [13d6.edgeinit(8)] init 3
+or
+Veggie-sama [13d6.initedge(8)] init 3
+NOTE: If you want to use Edge to automatically go first in the pass, then have the DM manually use an /add command (detailed below).
+
+TIP: If a player needs to re-add an initiative roll (because they accidentally forgot the word &quot;init&quot; or otherwise), the DM must manually use an /add command (detailed below).
+- Alternatively, the player could try Xd10000, as a hit will be any value 5 or higher, so there'd be a very low chance of rolling a four or lower on a ten thousand-sided die. *shrugs*
+
+====================================================
+ADVANCING THE ROUND
+- identical to D20, except with the addition of Initiative Passes and the fact that the inits are cleared at the end of every round to be rerolled for the next round
+
+====================================================
+VIEWING THE INITIATIVE LIST
+- identical to D20 (but it does show a super froody table)
+
+====================================================MANIPULATING THE INITs MANUALLY (DM-Only)
+- identical to D20
+
+====================================================RROUNDS &amp; PASSES
+- identical to D20, except for the two additional commands:
+
+/pass
+- when used alone, will tell the room what pass it is
+
+/pass (pass#)
+- when used with a number afterwards, will change the current pass to the value of (pass#)
+- NOTE: Only the numbers 1, 2, 3, or 4 are valid.
+
+====================================================
+EFFECTS
+- Effects are disabled in the Shadowrun init tool.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="RuneQuest" version="1.0">
+        <text hide_title="0" multiline="1" raw_mode="0" send_button="0">To switch to the RuneQuest Init Tool (or back to SR4 or D20), the DM must double-click &quot;Toggle Init System&quot; (/inittoggle) in the &quot;Other&quot; node. RuneQuest initiatives lists are very similar to D20 with the following change:
+
+- The list is broken into 10 Strike Ranks (SR)
+- The character with lowest total SR goes first
+
+Most commands used with D20 are usable with RQ, check out the 'D20 System Inits' help node for more informations.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Quick Commands" version="1.0">
+        <text hide_title="0" multiline="1" raw_mode="0" send_button="0">- There are certain words you (and other players in the room) can type to utilize the initiative tool to hasten combat. For instance, if a character is done with his/her turn, s/he may type &quot;nextinit&quot; to end their turn and start the next turn.
+- These can be turned off with &quot;Toggle Init Chat Commands&quot; (/init):
+
+&quot;nextinit&quot;
+- This will perform a &quot;Next Turn&quot; command (/go)
+
+&quot;showinits&quot;
+- This will perform a &quot;Show Inits to Room&quot; command (/publiclist)</text>
+        <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Toggle Init Chat Commands" version="1.0">
+          <text>/init</text>
+        </nodehandler>
+        <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Toggle Init System" version="1.0">
+          <text>/inittoggle</text>
+        </nodehandler>
+        <nodehandler class="macro_handler" icon="ccmap" module="chatmacro" name="List Initiatives to Self" version="1.0">
+          <text>/list</text>
+        </nodehandler>
+        <nodehandler class="macro_handler" icon="ccmap" module="chatmacro" name="List Initiatives to Room" version="1.0">
+          <text>/publiclist</text>
+        </nodehandler>
+        <nodehandler class="macro_handler" icon="questionhead" module="chatmacro" name="Display Round to Room" version="1.0">
+          <text>/rnd</text>
+        </nodehandler>
+        <nodehandler class="macro_handler" icon="questionhead" module="chatmacro" name="Display Pass# to Room (SR4)" version="1.0">
+          <text>/pass</text>
+        </nodehandler>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Sandglass" version="1.0">
+        <text hide_title="0" multiline="1" raw_mode="0" send_button="0">====================================================
+SANDGLASS
+- The sandglass is started at the beginning of each character turn. After the delay, a reminder is post to the chat.
+- The sandglass option is initially turned off. The DM can activate it by setting the delay to a value greater than zero.
+
+/sandglass 0
+- cancel the sandglass globally
+
+/sandglass 90
+- set the sandglass delay to 90 seconds. Reminder will be posted every 90 seconds of each character's turn.
+
+/sandglasspause
+- pause the sandglass
+
+/sandglassresume
+- resume the sandglass
+
+/sandglassforceskip 3
+- after 3 intervals, the current character will be loose his turn
+
+/sandglassforceskip 0
+- cancel the force skip feature
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Saving/Loading" version="1.0">
+        <text hide_title="0" multiline="1" raw_mode="0" send_button="0">====================================================
+SAVING AND LOADING INITIATIVE LISTS
+
+The DM can save and load initiative lists. There is 5 saving slots and 1 autosaving slot.
+
+/initsave (slot_#) (optional description)
+- will save the current initiative list to the given slot. Default is to save on slot #1.
+
+/initload (slot_#)
+- will load the initiative list previously saved on the given slot. Default is to load slot #1.
+
+/initautosave 300
+- will auto save the current initiative list every 300 seconds on the special autosaving slot.
+
+/initautosave 0
+- cancel the autosaving
+
+/initautoload
+- load the last autosaved slot.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="System Config" version="1.0">
+        <text hide_title="0" multiline="1" raw_mode="0" send_button="0">====================================================
+SETTING SYSTEM CONFIG
+
+/initdefaultconfig
+
+- reset to the default settings
+
+/initshowconfig
+
+- show system config
+
+/inittoggle
+
+- set the initiative system : D20, SR4 or RQ
+
+/togglehideid
+
+- to hide or not to players the IDs (for /publiclist, &quot;showlist&quot; commands only)
+  if you use /addhidden often, it might be a good idea to enable this setting because your players might notice the missing IDs when displaying the initiative list.
+
+/togglehideondeck
+- hides the &quot;On Deck&quot; messages generated each turn to show who should be ready next
+
+/togglehidejustmovement
+- hides the &quot;Just Movement&quot; messages in the Shadowrun 4th system, which are shown to help you speed up movement if you choose to divide it between passes (as in the rulebook)
+- Veggiesama wrote up this awfully verbose miniature guide for SR4 which works well with the &quot;Just Movement&quot; feature enabled: http://www.myfilehut.com/userfiles/17253/movement.pdf
+- Veggiesama likes to plug his own work
+
+/msghandwarning
+- disables the warning message that pops up every 60 seconds if someone else in the room has the xxinit2 plugin loaded
+- adding inits with two people in the room can lead to an ugly infinite loop, so it's advised that one of you save your current initiative list and turn it off
+
+/toggleroundreroll
+- optional SR4 toggle
+- allows you to change the behavior of initiatives at the end of the round
+- by default, you reroll new initiatives every round (like in the normal rules).
+- if you toggle it to &quot;Keep Inits Every Round&quot;, you can choose to keep the same initiatives in subsequent rounds; this leads to faster, less random (initiative-wise) battles
+
+/toggleiporder
+- optional SR4 toggle
+- allows you to change the order of IP execution
+- ex: 3/1/4/2 lets only characters with 3 IP act on the first pass, then 1 IP on second, 4 IP on third, etc.
+- some reasons for using staggered initiative passes can be found on this thread: http://forums.dumpshock.com/index.php?showtopic=11860</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="About" version="1.0">
+        <text hide_title="0" multiline="1" raw_mode="0" send_button="0">========================================================================
+CREDITS
+
+Initiative Tool is the result of the work done by a number of people. The
+major contributors are listed here. (in no particular order)
+
+Woody
+        Wrote the original code
+
+Darloth
+        Wrote the original code
+
+mDuo13
+        Updates to version 1
+
+Veggie-sama [veggie-sama@cinci.rr.com]
+        Version 2.0, 2.1, 2.2.0, 2.2.5, 2.2.6, 2.2.7 with lots of new features and bugfixes
+
+magoo [legare@gmail.com]
+        Version 2.2.1, 2.2.2, 2.2.3, 2.2.4 (sandglass, save/load, ranking, RQ, etc.)
+
+========================================================================
+ADDITIONAL THANKS
+
+Hussar
+    Playtesting
+
+slyfax
+    Explanations for RuneQuest support and playtesting
+
+Zalarian
+    Bugfix with ending effects
+
+
+Thanks to the OpenRPG Dev Team and all the playtesters!
+
+========================================================================
+LICENSE
+
+Unless otherwise mentioned, this copyright applies to all files in
+this distribution.
+
+The license for all source code and documentation is the GNU GPL version 2:
+
+   http://www.gnu.org/licenses/gpl.txt
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version
+2 of the License, or (at your option) any later version.
+</text>
+      </nodehandler>
+    </nodehandler>
+  </nodehandler>
+</nodehandler>

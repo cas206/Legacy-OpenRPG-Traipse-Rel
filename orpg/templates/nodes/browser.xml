@@ -1,0 +1,4 @@
+
+<nodehandler class="webbrowser_handler" icon="browser" module="core" name="Browser Link">
+  <link href="http://"/>
+</nodehandler>

@@ -1,0 +1,136 @@
+
+<nodehandler class="group_handler" module="containers" name="Bastion Press" version="1.0">
+  <group_atts border="1" cols="1"/>
+  <nodehandler class="link_handler" icon="html" module="forms" name="Bastion Press Website" version="1.0">
+    <link href="http://www.bastionpress.com/"/>
+  </nodehandler>
+  <nodehandler class="group_handler" module="containers" name="Albine's Lair Adventure" version="1.0">
+    <group_atts border="1" cols="1"/>
+    <nodehandler class="link_handler" icon="html" module="forms" name="Albine's Lair Adventure (PDF)" version="1.0">
+      <link href="http://www.bastionpress.com/Downloads/albines%20lair.pdf"/>
+    </nodehandler>
+    <nodehandler class="tabber_handler" icon="tabber" module="containers" name="Encounters" version="1.0">
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Encounter Area 1- Pit Trap" version="1.0">
+        <text multiline="1" send_button="1">When theparty steps onto the pittrap, the ground aroundthem collapses, and theytumble 20 feet into a darktunnel, taking 2d6 points offalling damage. The pit itself collapses behind themand fills with rubble, making exiting the way they came in impossible. The area of the trap is 10 ft. by 10ft., which may not be large enough to encompass thewhole party. If it is necessary to keep the partytogether, this area can be enlarged. The trap will not spring until the weight of a certain number of crea-tures, chosen by the DM, is applied to it. This area canbe set in any of the pit trap areas shown on the en-counter map.
+
+Once the trap is sprung, the albine in area 3 willhear the commotion and come to devour its new meal.The encounter with the albine will either take placehere or in area 2, the tunnels, depending on whether the party stays put or moves into the tunnels.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Encounter Area 2 - Tunnels" version="1.0">
+        <text multiline="1" send_button="1">This network oftunnels was dug by the albine, and winds throughoutits domain, connecting its traps to its lair. Thesetunnels are generally 5 feet wide and 7 feet high, haveearthen walls, and are not lit. </text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Encounter Area 3 - Albine Lair" version="1.0">
+        <text multiline="1" send_button="1">This chamber isthe living space of the albine. It contains an array oflitter and debris, most of which is bones. A sizablepile of rags in one corner serves as the albines bed. </text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Encounter area 4 - Refuse Chamber" version="1.0">
+        <text multiline="1" send_button="1">This areasmells quite foul, and contains two distinct piles, oneof discarded equipment and one of the albines waste.The equipment pile has several salvageable items:400gp, a suit of ordinary human-size chain mail, apotion of invisibility, and a blessed ring (see below). </text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Encounter Area 5 - Exit" version="1.0">
+        <text multiline="1" send_button="1">This tunnel leads backto the surface. It can connect back to the originalencounter map at any point the DM chooses. A kindDM will connect this exit to a secret area or to some-where behind enemy lines. </text>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="textctrl_handler" icon="note" module="forms" name="Blessed Ring" version="1.0">
+      <text multiline="1" send_button="1">This ring subjects its wearer to effects similar to a bless spell at all times. While wearing this ring a character receives a +1 morale bonus to all his attack rolls and saving throws. </text>
+    </nodehandler>
+    <nodehandler class="tabber_handler" icon="tabber" module="containers" name="Albine" version="1.0">
+      <nodehandler class="form_handler" icon="form" module="forms" name="Details" version="1.0">
+        <form height="500" width="400"/>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Name" version="1.0">
+          <text multiline="0" send_button="0">Albine (Medium-size Monstrous Humanoid)</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="HD" version="1.0">
+          <text multiline="0" send_button="0">6d8+24 (51 hp) </text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Speed" version="1.0">
+          <text multiline="0" send_button="0">30 ft, Burrow 10 ft. </text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="AC" version="1.0">
+          <text multiline="0" send_button="0">18 (+3 Dex, +5 natural) </text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Face Reach" version="1.0">
+          <text multiline="0" send_button="0">5ft by 5ft / 5ft (10ft for tail) </text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Feats" version="1.0">
+          <text multiline="0" send_button="0">Multiattack, Iron Will </text>
+        </nodehandler>
+        <nodehandler class="listbox_handler" icon="gear" module="forms" name="Skills" version="1.0">
+          <list send_button="1" type="1">
+            <option selected="0" value="0">Climb [1d20+6]</option>
+            <option selected="0" value="0">Hide [1d20+6]</option>
+            <option selected="1" value="0">Spot [1d20+5]</option>
+            <option selected="0" value="0">Listen [1d20+10]</option>
+            <option selected="0" value="0">Move Silently [1d20+7]</option>
+          </list>
+        </nodehandler>
+        <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Abilities" version="1.0">
+          <grid autosize="1" border="1">
+            <row version="1.0">
+              <cell>Str</cell>
+              <cell>21</cell>
+            </row>
+            <row version="1.0">
+              <cell>Dex</cell>
+              <cell>16</cell>
+            </row>
+            <row version="1.0">
+              <cell>Con</cell>
+              <cell>19</cell>
+            </row>
+            <row version="1.0">
+              <cell>Int</cell>
+              <cell>6</cell>
+            </row>
+            <row version="1.0">
+              <cell>Wis</cell>
+              <cell>13</cell>
+            </row>
+            <row version="1.0">
+              <cell>Cha</cell>
+              <cell>8</cell>
+            </row>
+          </grid>
+          <macros>
+            <macro name=""/>
+          </macros>
+        </nodehandler>
+      </nodehandler>
+      <nodehandler class="form_handler" icon="form" module="forms" name="Combat Rolls" version="1.0">
+        <form height="300" width="400"/>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Current HP" version="1.0">
+          <text multiline="0" send_button="0">51</text>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="d20" module="forms" name="Initiative" version="1.0">
+          <text multiline="0" send_button="1">[1d20+3]</text>
+        </nodehandler>
+        <nodehandler class="listbox_handler" icon="gear" module="forms" name="Attacks" version="1.0">
+          <list send_button="1" type="3">
+            <option selected="1" value="0">Bite [1d20+11], Damage [2d6+5]</option>
+            <option selected="0" value="0">Claw [1d20+9], Damage [1d6+2]</option>
+            <option selected="0" value="0">Claw [1d20+9], Damage [1d6+2]</option>
+            <option selected="0" value="0">Tail [1d20+9], Damage None</option>
+          </list>
+        </nodehandler>
+        <nodehandler class="listbox_handler" icon="gear" module="forms" name="Saving Throws" version="1.0">
+          <list send_button="1" type="1">
+            <option selected="1" value="0">Will Power [1d20+5]</option>
+            <option selected="0" value="0">Relex [1d20+7]</option>
+            <option selected="0" value="0">Fortitude [1d20+11]</option>
+          </list>
+        </nodehandler>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Combat Info" version="1.0">
+        <text multiline="1" send_button="1">The albine charges readily into combat. While it fightswith its teeth and claws, it constantly whirls its tailback and forth around it, tripping its opponents. Ifreduced to ten or fewer hit points, it will retreat backinto its network of tunnels, or attempt to burrowaway.
+
+Whirl (Ex): While in combat, an albine constantlytwirls its tail around it along the ground. Once perround, roll a single melee touch attack for thecreatures tail. Everyone within 10 feet of the albinewhose AC is exceeded by this roll must immediatelymake an opposed strength check vs. the albines scoreof 5, or be tripped. Characters that succeed at thestrength check do not get an opportunity totrip the albine. This ability can be usedeven in cramped fighting quarters.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Description" version="1.0">
+        <text multiline="1" send_button="1">The ruthless albine is a rarebut dangerous subterra-nean creature. Thealbine cannot be found deepin the earth, but insteadstays quite close to thesurface at all times. It burrowsthrough the ground, building a complexnetwork of tunnel traps that connect toits lair. To make these traps, the albineburrows up underneath surface paths andcorridors, leaving just enough soil to keepthe path from collapsing unless it iswalked upon. Once ithas set a number ofthese traps, itretires to its lair atthe center of thisnetwork, andwaits and listensfor prey to comecrashing down into itsdomain.
+In appearance, the albine is onlyvaguely humanoid. It has an enlargedmouth, filled with sharp teeth poking outat wild angles, and extremely sharp claws. It has athick leathery hide with a pale, whitish hue. It is alsonoted for its long thick rat-like tail, that stretches outto ten feet in length, and which it uses to trip itsopponents in combat.
+
+The albine always carefully strips its prey offoreign objects before it devours it. These objects aregenerally disposed in a single tidy pile at the back ofits lair, making the albine a favorite amongst treasureseekers.
+</text>
+      </nodehandler>
+    </nodehandler>
+  </nodehandler>
+</nodehandler>

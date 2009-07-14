@@ -1,0 +1,299 @@
+<weapons version="01.02">
+<footnotes>
+<c txt="Shuriken don't get str bonus, 3/attack; don't mark t" ></c>
+<c txt="monkWeap unarmed base, monk att/round, and other monk attack mods" ></c>
+<c txt="fn field for a weapon stands for 'footnotes'" ></c>
+<f mark="b" txt="classified as a bow or sling, str penalty applies " ></f>
+<f mark="c" txt="set for charge weapon, 2x dam when set Vs charging opponent." ></f>
+<f mark="C" txt="2x damaged when used on charge (may need to be mounted) " ></f>
+<f mark="d" txt="Classified as a double weapon." ></f>
+<f mark="m" txt="Monks get special 'Monk Weapon'advantages. " ></f>
+<f mark="o" txt="+2 opposed attack rolls wrt disarming/being disarmed on fail." ></f>
+<f mark="r" txt="Classified as a reach weapon, can strike at 6-10, but cannot strike 0-5" ></f>
+<f mark="R" txt="Classified as a special reach weapon, can strike at 0-10" ></f>
+<f mark="s" txt="Weapon can only do subdual damage." ></f>
+<f mark="t" txt="Classified as a thrown (or throwable) weapon by PH,standard thrown characteristics will be applied" ></f>
+<f mark="T" txt="Weapon can be used for making trip attacks." ></f>
+<f mark="X" txt="Custom weapon, should have appropriate footnotes added." ></f>
+</footnotes>
+<weapon mod="0" fn="" name="Antimatter rifle" cost="-1" category="Futuristic Weapons-Ranged" size="Medium" damage="6d10" critical="x2" range="10" weight="10" type="Special" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="d" name="Axe, orc double" cost="60" category="Exotic Weapons-Melee" size="Large" damage="1d8/1d8" critical="x3" range="0" weight="25" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="t" name="Axe, throwing" cost="8" category="Martial Weapons-Melee" size="Small" damage="1d6" critical="x2" range="10" weight="4" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Battleaxe" cost="10" category="Martial Weapons-Melee" size="Medium" damage="1d8" critical="x3" range="0" weight="7" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Blowgun" cost="1" category="Asian Weapons-Ranged" size="Small" damage="1" critical="x2" range="10" weight="2" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="oT" name="Chain, spiked" cost="25" category="Exotic Weapons-Melee" size="Large" damage="2d4" critical="x2" range="0" weight="15" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="t" name="Club" cost="0" category="Simple Weapons-Melee" size="Medium" damage="1d6" critical="x2" range="10" weight="3" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Crossbow, hand" cost="100" category="Exotic Weapons-Ranged" size="Tiny" damage="1d4" critical="19-20/x2" range="30" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Crossbow, heavy" cost="50" category="Simple Weapons-Ranged" size="Medium" damage="1d10" critical="19-20/x2" range="120" weight="9" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Crossbow, light" cost="35" category="Simple Weapons-Ranged" size="Small" damage="1d8" critical="19-20/x2" range="80" weight="6" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Crossbow, repeating" cost="250" category="Exotic Weapons-Ranged" size="Medium" damage="1d8" critical="19-20/x2" range="80" weight="16" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="t" name="Dagger" cost="2" category="Simple Weapons-Melee" size="Tiny" damage="1d4" critical="19-20/x2" range="10" weight="1" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Dagger, punching" cost="2" category="Simple Weapons-Melee" size="Tiny" damage="1d4" critical="x3" range="0" weight="2" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Dart" cost="0" category="Simple Weapons-Ranged" size="Small" damage="1d4" critical="x2" range="20" weight="0" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Falchion" cost="75" category="Martial Weapons-Melee" size="Large" damage="2d4" critical="18-29/x2" range="0" weight="16" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="doT" name="Flail, dire" cost="90" category="Exotic Weapons-Melee" size="Large" damage="1d8/1d8" critical="x2" range="0" weight="20" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="oT" name="Flail, heavy" cost="15" category="Martial Weapons-Melee" size="Large" damage="1d10" critical="19-20/x2" range="0" weight="20" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="oT" name="Flail, light" cost="8" category="Martial Weapons-Melee" size="Medium" damage="1d8" critical="x2" range="0" weight="5" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Flamer" cost="-1" category="Futuristic Weapons-Ranged" size="Medium" damage="3d6*" critical="-" range="20" weight="8" type="Special" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="m" name="Flurry of Blows(Monk Med)" cost="-1" category="Exotic Weapons-Melee" size="Unarmed" damage="Monk Med" critical="x2" range="0" weight="0" type="Special" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="m" name="Flurry of Blows(Monk Small)" cost="-1" category="Exotic Weapons-Melee" size="Unarmed" damage="Monk Small" critical="x2" range="0" weight="0" type="Special" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Gauntlet" cost="2 gp" category="Simple Weapons-Melee" size="Unarmed" damage="*" critical="*" range="0" weight="2" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Gauntlet, spiked" cost="5" category="Simple Weapons-Melee" size="Tiny" damage="1d4" critical="x2" range="0" weight="2" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="r" name="Glaive" cost="8" category="Martial Weapons-Melee" size="Large" damage="1d10" critical="x3" range="0" weight="15" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Greataxe" cost="20" category="Martial Weapons-Melee" size="Large" damage="1d12" critical="x3" range="0" weight="20" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Greatclub" cost="5" category="Martial Weapons-Melee" size="Large" damage="1d10" critical="x2" range="0" weight="10" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Greatsword" cost="50" category="Martial Weapons-Melee" size="Large" damage="2d6" critical="19-20/x2" range="0" weight="15" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Grenade launcher" cost="-1" category="Modern Weapons-Ranged" size="Large" damage="*" critical="*" range="200" weight="12" type="*" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="rT" name="Guisarme" cost="9" category="Martial Weapons-Melee" size="Large" damage="2d4" critical="x3" range="0" weight="15" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="Ts" name="Halberd" cost="10" category="Martial Weapons-Melee" size="Large" damage="1d10" critical="x3" range="0" weight="15" type="P&amp;S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="tc" name="Halfspear" cost="1" category="Simple Weapons-Melee" size="Medium" damage="1d6" critical="x3" range="20" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="d" name="Hammer, gnome hooked" cost="20" category="Exotic Weapons-Melee" size="Medium" damage="1d6/1d4" critical="x3/x4" range="0" weight="6" type="B&amp;P" >
+<description >for proper treatment, read PH pg 101</description >
+</weapon>
+<weapon mod="0" fn="t" name="Hammer, light" cost="1" category="Martial Weapons-Melee" size="Small" damage="1d4" critical="x2" range="20" weight="2" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Handaxe" cost="6" category="Martial Weapons-Melee" size="Small" damage="1d6" critical="x3" range="0" weight="5" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Javelin" cost="1" category="Simple Weapons-Ranged" size="Medium" damage="1d6" critical="x2" range="30" weight="2" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="m" name="Kama" cost="2" category="Exotic Weapons-Melee" size="Small" damage="1d6" critical="x2" range="0" weight="2" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="m" name="Kama, halfling" cost="2" category="Exotic Weapons-Melee" size="Tiny" damage="1d4" critical="x2" range="0" weight="1" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Katana" cost="400" category="Exotic Weapons-Melee" size="Large" damage="1d10" critical="19-20/x2" range="0" weight="6" type="S" >
+    <description >Always masterwork</description >
+</weapon>
+<weapon mod="0" fn="" name="Katana, used 2 handed" cost="400" category="Martial Weapons-Melee" size="Large" damage="1d10" critical="19-20/x2" range="0" weight="6" type="S" >
+    <description >Always masterwork</description >
+</weapon>
+<weapon mod="0" fn="" name="Kukri" cost="8" category="Exotic Weapons-Melee" size="Tiny" damage="1d4" critical="18-29/x2" range="0" weight="3" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="oTR" name="Kusari-gama" cost="10" category="Asian Weapons-Melee" size="Medium" damage="1d6" critical="x2" range="0" weight="3" type="S" >
+    <description >like a spiked chain</description >
+</weapon>
+<weapon mod="0" fn="Cr" name="Lance, heavy" cost="10" category="Martial Weapons-Melee" size="Medium" damage="1d8" critical="x3" range="0" weight="10" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="C" name="Lance, light" cost="6" category="Martial Weapons-Melee" size="Small" damage="1d6" critical="x3" range="0" weight="5" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Laser pistol" cost="-1" category="Futuristic Weapons-Ranged" size="Small" damage="2d10" critical="x2" range="100" weight="2" type="Special" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Laser rifle" cost="-1" category="Futuristic Weapons-Ranged" size="Medium" damage="3d20" critical="x2" range="200" weight="7" type="Special" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="b" name="Longbow" cost="75" category="Martial Weapons-Ranged" size="Large" damage="1d8" critical="x3" range="100" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="b" name="Longbow, composite" cost="100" category="Martial Weapons-Ranged" size="Large" damage="1d8" critical="x3" range="110" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="rc" name="Longspear" cost="5" category="Martial Weapons-Melee" size="Large" damage="1d8" critical="x3" range="0" weight="9" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Longsword" cost="15" category="Martial Weapons-Melee" size="Medium" damage="1d8" critical="19-20/x2" range="0" weight="4" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Mace, heavy" cost="12" category="Simple Weapons-Melee" size="Medium" damage="1d8" critical="x2" range="0" weight="12" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Mace, light" cost="5" category="Simple Weapons-Melee" size="Small" damage="1d6" critical="x2" range="0" weight="6" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Morningstar" cost="8" category="Simple Weapons-Melee" size="Medium" damage="1d8" critical="x2" range="0" weight="8" type="B&amp;P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Musket" cost="500" category="Renaissance Weapons-Ranged" size="Medium" damage="1d12" critical="x3" range="150" weight="10" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Net" cost="20" category="Exotic Weapons-Ranged" size="Medium" damage="0" critical="0" range="10" weight="10" type="-" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="m" name="Nunchaku" cost="2" category="Exotic Weapons-Melee" size="Small" damage="1d6" critical="x2" range="0" weight="2" type="S" >
+<description >
+</description >
+</weapon>
+<weapon mod="0" fn="m" name="Nunchaku, halfling" cost="2" category="Exotic Weapons-Melee" size="Tiny" damage="1d4" critical="x2" range="0" weight="1" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Pick, heavy" cost="8" category="Martial Weapons-Melee" size="Medium" damage="1d6" critical="x4" range="0" weight="6" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Pick, light" cost="4" category="Martial Weapons-Melee" size="Small" damage="1d4" critical="x4" range="0" weight="4" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Pistol" cost="250" category="Renaissance Weapons-Ranged" size="Small" damage="1d10" critical="x3" range="50" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Pistol, automatic" cost="-1" category="Modern Weapons-Ranged" size="Small" damage="1d10" critical="x3" range="150" weight="5" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Pistol, revolver" cost="-1" category="Modern Weapons-Ranged" size="Small" damage="1d10" critical="x3" range="100" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="d" name="Quarterstaff" cost="0" category="Simple Weapons-Melee" size="Large" damage="1d6" critical="x2" range="0" weight="4" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="ro" name="Ranseur" cost="10" category="Martial Weapons-Melee" size="Large" damage="2d4" critical="x3" range="0" weight="15" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Rapier" cost="20" category="Martial Weapons-Melee" size="Medium" damage="1d6" critical="18-20/x2" range="0" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Rifle, automatic" cost="-1" category="Modern Weapons-Ranged" size="Medium" damage="1d12" critical="x3" range="250" weight="12" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Rifle, repeater" cost="-1" category="Modern Weapons-Ranged" size="Medium" damage="1d12" critical="x3" range="200" weight="10" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="s" name="Sap" cost="1" category="Martial Weapons-Melee" size="Small" damage="1d6s" critical="x2" range="0" weight="3" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Scattergun" cost="-1" category="Modern Weapons-Ranged" size="Medium" damage="*" critical="*" range="10" weight="10" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Scimitar" cost="15" category="Martial Weapons-Melee" size="Medium" damage="1d6" critical="18-20/x2" range="0" weight="4" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Scythe" cost="18" category="Martial Weapons-Melee" size="Large" damage="2d4" critical="x4" range="0" weight="12" type="P&amp;S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="b" name="Shortbow" cost="30" category="Martial Weapons-Ranged" size="Medium" damage="1d6" critical="x3" range="60" weight="2" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="b" name="Shortbow, composite" cost="75" category="Martial Weapons-Ranged" size="Medium" damage="1d6" critical="x3" range="70" weight="2" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="tc" name="Shortspear" cost="2" category="Simple Weapons-Melee" size="Large" damage="1d8" critical="x3" range="20" weight="5" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Shuriken" cost="1" category="Exotic Weapons-Ranged" size="Tiny" damage="1" critical="x2" range="100" weight="0" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="m" name="Siangham" cost="3" category="Exotic Weapons-Melee" size="Small" damage="1d6" critical="x2" range="0" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="m" name="Siangham, halfling" cost="2" category="Exotic Weapons-Melee" size="Tiny" damage="1d4" critical="x2" range="0" weight="1" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Sickle" cost="6" category="Simple Weapons-Melee" size="Small" damage="1d6" critical="x2" range="0" weight="3" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="b" name="Sling" cost="1d4" category="Simple Weapons-Ranged" size="Small" damage="1d4" critical="x2" range="50" weight="0" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="s" name="Strike, unarmed (med)" cost="0" category="Simple Weapons-Melee" size="Unarmed" damage="1d3" critical="x2" range="0" weight="0" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="s" name="Strike, unarmed (small)" cost="0" category="Simple Weapons-Melee" size="Unarmed" damage="1d2" critical="x2" range="0" weight="0" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Sword, bastard" cost="35" category="Exotic Weapons-Melee" size="Medium" damage="1d10" critical="19-20/x2" range="0" weight="10" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Sword, bastard used 2 handed" cost="35" category="Martial Weapons-Melee" size="Medium" damage="1d10" critical="19-20/x2" range="0" weight="10" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Sword, short" cost="10" category="Martial Weapons-Melee" size="Small" damage="1d6" critical="19-20/x2" range="0" weight="3" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="d" name="Sword, two-bladed" cost="100" category="Exotic Weapons-Melee" size="Large" damage="1d8/1d8" critical="19-20/X2" range="0" weight="30" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="ct" name="Trident" cost="15" category="Martial Weapons-Melee" size="Medium" damage="1d8" critical="x2" range="10" weight="5" type="P" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="dc" name="Urgrosh, dwarven" cost="50" category="Exotic Weapons-Melee" size="Large" damage="1d8/1d6" critical="x3" range="0" weight="15" type="S&amp;P" >
+<description >see PH pg 103 for proper treatment </description >
+</weapon>
+<weapon mod="0" fn="m" name="UnArmed(Monk Med)" cost="0" category="Exotic Weapons-Melee" size="Unarmed" damage="Monk Med" critical="x2" range="0" weight="00" type="S&amp;P" >
+<description >An unArmed strike does more dmg as a monk</description >
+</weapon>
+<weapon mod="0" fn="m" name="UnArmed(Monk Small)" cost="0" category="Exotic Weapons-Melee" size="Unarmed" damage="Monk Small" critical="x2" range="0" weight="00" type="S&amp;P" >
+<description >An unArmed strike does more dmg as a monk</description >
+</weapon>
+<weapon mod="0" fn="" name="Wakizashi" cost="300" category="Asian Weapons-Melee" size="Small" damage="1d6" critical="19-20/x2" range="0" weight="3" type="S" >
+<description >Always masterwork</description >
+</weapon>
+<weapon mod="0" fn="" name="Waraxe, dwarven" cost="30" category="Exotic Weapons-Melee" size="Medium" damage="1d10" critical="x3" range="0" weight="15" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Waraxe, dwarven used 2handed" cost="30" category="Martial Weapons-Melee" size="Medium" damage="1d10" critical="x3" range="0" weight="15" type="S" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="" name="Warhammer" cost="12" category="Martial Weapons-Melee" size="Medium" damage="1d8" critical="x3" range="0" weight="8" type="B" >
+<description ></description >
+</weapon>
+<weapon mod="0" fn="oT" name="Whip" cost="1" category="Exotic Weapons-Ranged" size="Small" damage="1d2s" critical="x2" range="15" weight="2" type="S" >
+<description >range15, maxrange15, no penalties to max range; ineffective Vs armor or +3 natural adjustment PH pg 104 </description >
+</weapon>
+</weapons>

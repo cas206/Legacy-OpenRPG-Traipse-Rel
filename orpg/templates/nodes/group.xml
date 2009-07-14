@@ -1,0 +1,4 @@
+
+<nodehandler class="group_handler" module="containers" name="Group" version="1.0">
+  <group_atts border="1" cols="1"/>
+</nodehandler>

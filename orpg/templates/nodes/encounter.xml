@@ -1,0 +1,8 @@
+
+<nodehandler class="static_handler" icon="compass" module="core" name="Encounter">
+  <nodehandler class="text_handler" icon="note" module="core" name="PC Description">None</nodehandler>
+  <nodehandler class="text_handler" icon="note" module="core" name="GM Info">None</nodehandler>
+  <nodehandler class="text_handler" icon="goblin" module="core" name="Creatures">None</nodehandler>
+  <nodehandler class="text_handler" icon="money" module="core" name="Treasure">None</nodehandler>
+  <group_atts border="1" cols="1"/>
+</nodehandler>

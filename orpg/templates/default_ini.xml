@@ -1,0 +1,73 @@
+<openrpg>
+  <autoupdate_config catagory="general" options= "0=off, 1=on" help="Turns on/off auto-configfile updating of the ini.xml file" value="1"/>
+  <player catagory="chat" help="This is your name as it appears in chat." options="Any text" value="No Name"/>
+  <gametree catagory="gametree" help="This is the path on your computer pointing to the xml file\n for your tree (normaly tree.xml in the myfiles directory)." options="URL" value="myfiles/tree.xml"/>
+  <SaveGameTreeOnExit catagory="gametree" help="Set this to 1 if you want your game tree to automaticaly be saved when you log out." options="0=no; 1=yes" value="1"/>
+  <bgcolor catagory="colors" help="This is the background color of the chat window." options="color in hex RRGGBB" value="#ffffff"/>
+  <textcolor catagory="colors" help="This is the default color used when text is printed into the chat window." options="color in hex RRGGBB" value="#000000"/>
+  <mytextcolor catagory="colors" help="This is the color of your text in the chat window." options="color in hex RRGGBB" value="#000080"/>
+  <syscolor catagory="colors" help="This is the color of system messages printed in the chat window." options="color in hex RRGGBB" value="#ff0000"/>
+  <infocolor catagory="colors" help="This is the color of informational messages printed in the chat window." options="color in hex RRGGBB" value="#ff8000"/>
+  <emotecolor catagory="colors" help="This is the color of your emotes in the chat window." options="color in hex RRGGBB" value="#008000"/>
+  <whispercolor catagory="colors" help="This is the color of whisper messages in the chat window." options="color in hex RRGGBB" value="#ff8000"/>
+  <striphtml catagory="chat" help="Set this to 1 to have HTML tags stripped from the chat window." options="0=no; 1=yes" value="0"/>
+  <tabbedwhispers catagory="tabs" help="Set this to 1 to receive whispered messages in separate chat tabs ." options="0=no; 1=yes" value="0"/>
+  <GMWhisperTab catagory="tabs" help="Creates a tab for all GM whispers, tabbedwhispers being on is required for this too work" options="0=no; 1=yes" value="1"/>
+  <GroupWhisperTab catagory="tabs" help="Creates a tab for all Group whispers, tabbedwhispers being on is required for this too work" options="0=no; 1=yes" value="1"/>
+  <defaultfont catagory="chat" help="Set this to a preferred font to use at startup." options="a font name" value="Arial"/>
+  <defaultfontsize catagory="chat" help="Set this to a preferred fontsize to use at startup." options="a font size" value="10"/>
+  <buffersize catagory="chat" help="This is the amount of backscroll allowed.  If this number is too large your computer will lag after a while.\nIt is not the same as the history buffer which is infinite unless you set the purge options." options="Any number" value="100"/>
+  <MultipleWindows help="Setting this to 1 will break apart the Map, Chat,\nGametree, and player list into their own windows." options="0=off; 1=on" value="0"/>
+  <UnixSoundPlayer help="This is the path to the executable used by unix clients to play sounds." options="path to executable" value=""/>
+  <SendSound help="Path to sound file played when you send a message." options="Path to file" value=""/>
+  <RecvSound help="Path to sound file played when you receive a message." options="Path to file" value=""/>
+  <WhisperSound help="Path to sound file played when you receive a whisper." options="Path to file" value=""/>
+  <AddSound help="Path to sound file played when a new user joins the room." options="Path to file" value=""/>
+  <DelSound help="Path to sound file played when a user exits the room." options="Path to file" value=""/>
+  <MetaServerBaseURL help="This is the URL that contains the server list." options="URL" value="http://www.openrpg.com/openrpg_servers.php"/>
+  <GameLogPrefix help="This text is the files name minus the extention of your log file.  You can use\n%d, %m, %y for the log to insert the day, month or year respectively." options="Any text" value=""/>
+  <TimeStampGameLog options="0=no; 1=yes" value="1" help="Set this to 1 to have time stamps added to the log." />
+  <ShowIDInChat catagory="chat" options="0=no; 1=yes" value="1" help="Set this to 1 to have the Player Id show up next to the player name in chat." />
+  <AlwaysShowMapScale catagory="map" options="0=no; 1=yes" value="0" help="Setting this to 1 will keep the map scale displayed in the upper left corner of the map." />
+  <SuppressChatAutoComplete catagory="chat" options="0=no; 1=yes" value="0" help="Setting this to 1 will turn off auto complete in chat." />
+  <TypingStatusAlias catagory="chat" options="Any text" value="Typing" help="This is the text displayed in the Player list under status while you are typing." />
+  <IdleStatusAlias catagory="chat" options="Any text" value="Idle" help="This is the text displayed in the Player list under status while you are not typing." />
+  <treedclick catagory="gametree" options="use, design, print, chat" value="use" help="This sets the action performed on a node when you double click it in the game tree." />
+  <dieroller catagory="chat" options="std, wod, d20, hero" value="std" help="This sets the dieroller to use." />
+  <NameSameEmoteColor catagory="chat" options="yes, no" value="No" help="Setting this will display your name in the same color as your emote." />
+  <ImageCacheSize catagory="map" options="Any number" value="32" help="This sets the number of images to cache.  A higher number will load a map\nfaster if the map contains images pointing to the same URL.  It will also take\nup more memory." />
+  <F1 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F1 macro key"/>
+  <F2 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F2 macro key"/>
+  <F3 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F3 macro key"/>
+  <F4 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F4 macro key"/>
+  <F5 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F5 macro key"/>
+  <F6 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F6 macro key"/>
+  <F7 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F7 macro key"/>
+  <F8 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F8 macro key"/>
+  <F9 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F9 macro key"/>
+  <F10 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F10 macro key"/>
+  <F11 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F11 macro key"/>
+  <F12 catagory="macros" help="What you enter here will be sent to chat when this function key is pressed." options="Any text" value="/me found the F12 macro key"/>
+  <EnableSplittersAutoExpand options="0=no; 1=yes" value="0" help="Setting this will invert the size of the splitter with its neighbors." />
+  <PackagesBaseURL options="URL" value="http://openrpg.sourceforge.net/orpg_packages.xml" help="This is a URL pointing where to get updates from." />
+  <Disableupdate options="0=no; 1=yes" value="0" help="Setting this to 1 will render the /update command unavailable and prevent automatic update checking on startup." />
+  <LoadGameTreeFeatures catagory="gametree" options="0=no; 1=yes" value="1" help="Setting this to 1 will load the gametree features next time you run OpenRPG." />
+  <Heartbeat options="0=off, 1=on" value="0" help="This sends a message to the server to keep alive your connection when idle.\nThis is usefull if your ISP automaticaly disconnects you when you are idle or if\nan OpenRPG server's ISP drops the connection when you are idle." />
+  <ColorizeRoles catagory="chat" options="on,off" value="on" help="Setting this to 1 colorizes roles in the player list.  Setting this to 0 disables the colors in the player list." />
+  <AutoPurgeAfterSave catagory="chat" help="When saving your log, this option will either automaticaly purge the buffer\n(see PurgAtBuffersizeTimesLines), ask you if you want to purge the buffer,\nor not purge at all." options="ask,yes,no" value="ask"/>
+  <PurgeAtBuffersizeTimesLines catagory="chat" help="This option tells the program when to purge old history.\nWhen the buffer exceeds this number times the buffersize\nall history is removed and you are just left with a history \nas large as the number you set your buffersize to." options="Any number" value="2"/>
+  <dcmsg catagory="chat" help="This is the message that gets sent when you disconnect from a server. It can be regular text or an emote action (started with /me)." options="max 80 chars of text" value="Disconnecting from server..."/>
+  <RoomColor_Lobby  catagory="roomlist" help="Sets the color used to display the 'Lobby' in the Room List in the Gameserver window" options="color in hex RRGGBB" value="#000080"/>
+  <RoomColor_Empty  catagory="roomlist" help="Sets the color used to display empty rooms (persistant only) in the Room List in the Gameserver window" options="color in hex RRGGBB" value="#bebebe"/>
+  <RoomColor_Locked catagory="roomlist" help="Sets the color used to display password protected rooms in the Room List in the Gameserver window" options="color in hex RRGGBB" value="#b70000"/>
+  <RoomColor_Active catagory="roomlist" help="Sets the color used to display non-passworded non-empty rooms in the Room List in the Gameserver window" options="color in hex RRGGBB" value="#000000"/>
+  <Toolbar_On catagory="toolbar" help="Turns the toolbar on or off" options="1=yes, 0=no" value="1"/>
+  <AliasTool_On catagory="toolbar" help="Show the Alias Tool in the toolbar?" options="1=yes, 0=no" value="1"/>
+  <FormattingButtons_On catagory="toolbar" help="Show the Formatting Buttons (Bold, italic, underline, color) in the toolbar?" options="1=yes, 0=no" value="1"/>
+  <DiceButtons_On catagory="toolbar" help="Show the dice buttons in the toolbar?" options="1=yes, 0=no" value="1"/>
+  <ToGMsButton_On catagory="toolbar" help="Show the 'To GM(s)' button in the toolbar?" options="1=yes, 0=no" value="0"/>
+  <dievars catagory="general" help="Replace the ? in die rolls with the value when it is sent to chat" options="1=yes, 0=no" value="1"/>
+  <gwtext catagory="chat" help="This is attached prior to your group whispers(ie /gw Hello group would send '(GW): Hello group')" options="Any Text" value="(GW): "/>
+  <Chat_Time_Indexing catagory="chat" help="Allows messages to be prepended with their arrival time using either of two preset formats or a formated timestring (see time.strftime() in python docs)" options="0=none, 1=short, 2=long, [timestring]" value="0"/>
+  <Show_Images_In_Chat catagory="chat" help="Allows Images to be displaied in the chat window. Default is off because large images can crash you client" options="0=Off(Do not display img), 1=On(Display img)" value="0"/>
+</openrpg>

@@ -1,0 +1,856 @@
+adept^DMG^107^This NPC class possesses a combination of arcane and divine skills.
+aristocrat^DMG^108^This NPC class contains people who are usually educated, wealthy individual who were born into high position.
+artificer^ECS^29^Artificers are perhaps the ultimate magical dabblers.
+barbarian^PH^24^A ferocious warrior who uses fury and instinct to bring down foes.
+bard^PH^26^A performer whose music works magic -- a wanderer, a tale-teller, and a jack-of-all trades.
+bardic sage^UA^49^A variant bard who focues his efforts on learning, research, and the power of knowledge.
+battle sorcerer^UA^56^A variant sorcerer who is a capable physical combatant.
+cleric^PH^30^A master of divine magic and a capable warrior as well.
+cloistered cleric^UA^50^A variant cleric who spends more time than other clerics in study and prayer and less in martial training.
+commoner^DCS^46^This NPC class contains the laborers of the world, such as innkeepers, servants, blacksmiths, farmers, and fisherfolk.
+commoner^DMG^108^This NPC class contains the laborers of the world, such as innkeepers, servants, blacksmiths, farmers, and fisherfolk.
+divine bard^UA^50^A variant bard who derives his special power from a divine tradition.
+domain wizard^UA^57^A variant wizard who uses the arcane domain system and selects a specific domain of spells.
+druid^PH*^33^One who draws energy from the natural world to cast divine spells and gain strange magical powers.
+druidic avenger^UA^51^A variant druid who channels her inner fury to wreak vengeance upon those who injure the natural world.
+dwarf cleric^RS^146^Racial substitution levels.
+dwarf fighter^RS^146^Racial substitution levels.
+dwarf sorcerer^RS^147^Racial substitution levels.
+eidolon^Gh^16^This variant class for ghosts emphasizes fighting abilities.
+eidoloncer^Gh^17^This variant class for ghosts emphasizes spellcasting abilities.
+elf paladin^RW^155^Racial substitution levels.
+elf ranger^RW^155^Racial substitution levels.
+elf wizard^RW^157^Racial substitution levels.
+epic barbarian^EL^8^An epic ferocious warrior who uses fury and instinct to bring down foes.
+epic bard^EL^9^An epic performer whose music works magic -- a wanderer, a tale-teller, and a jack-of-all trades.
+epic cleric^EL^10^An epic master of divine magic and a capable warrior as well.
+epic druid^EL^10^An epic druid draws energy from the natural world to cast divine spells and gain strange magical powers.
+epic fighter^EL^11^An epic warrior with exceptional combat capability and unequaled skill with weapons.
+epic monk^EL^12^An epic martial artist whose unarmed strikes hit fast and hard -- a master of exotic powers.
+epic paladin^EL^13^An epic champion of justice and destroyer of evil, protected and strengthened by an array of divine powers.
+epic psion^EL^22^An epic seeker after psionic secrets; a master of the mind and the thoughts of others.
+epic psychic warrior^EL^23^An epic warrior who combines combat skill with psionic powers.
+epic ranger^EL^14^An epic cunning, skilled warrior of the wilderness.
+epic rogue^EL^14^An epic tricky, skillful scout and spy who wins the battle by stealth rather than brute force.
+epic sorcerer^EL^15^An epic spellcaster with inborn magical ability.
+epic wizard^EL^16^An epic potent spellcaster schooled in the arcane arts.
+expert^DCS^46^This NPC class contains people such as skilled artisans, specialist laborers, and ingenious inventors.
+expert^DMG^109^This NPC class contains people such as skilled artisans, specialist laborers, and ingenious inventors.
+expert^UA^77^A generic class that can be a jack-of-all-trades or a master of a limited area of expertise.
+favored soul^CD^6^Favored souls cast divine spells by means of an innate connection rather than through laborious training and prayer, so their divine connection is natural rather than learned.
+favored soul^MH^5^The favored soul follows the path of the cleric but can channel divine power with surprising ease.
+fighter^PH*^37^A warrior with exceptional combat capability and unequaled skill with weapons.
+gnome bard^RS^147^Racial substitution levels.
+gnome illusionist^RS^148^Racial substitution levels.
+gnome ranger^RS^149^Racial substitution levels.
+goliath barbarian^RS^150^Racial substitution levels.
+goliath druid^RS^151^Racial substitution levels.
+goliath rogue^RS^152^Racial substitution levels.
+half-elf bard^RD^157^Racial substitution levels.
+half-elf fighter^RD^157^Racial substitution levels.
+half-elf ranger^RD^158^Racial substitution levels.
+half-elf barbarian^RD^158^Racial substitution levels.
+half-elf druid^RD^159^Racial substitution levels.
+half-elf paladin^RD^160^Racial substitution levels.
+halfling druid^RW^157^Racial substitution levels.
+halfling monk^RW^158^Racial substitution levels.
+halfling rogue^RW^159^Racial substitution levels.
+healer^MH^8^A healer is adept both at detecting the ailments of allies and understanding the coarse, unruly thoughts of beasts.
+hexblade^CW^5^Combining the dynamic powers of martial prowess and arcane might, the hexblade presents a deadly challenge to opponents unused to such a foe.
+marshal^MH^11^Trained in the basics of fighting, marshals possess a general knowledge of weapons and armor.
+monk^PH*^39^A martial artist whose unarmed strikes hit fast and hard -- a master of exotic powers.
+mystic^DCS^47^Mystics are spellcasters who have learned to channel divine energy without worshiping (or even acknowledging) any deity.
+ninja^CAd^5^Highly skilled spies and assassins, ninjas can master a broad range of skills and combat techniques.
+noble^DCS^50^Nobles have the ability to use their background, education, natural charm, and skills in social maneuvering to their advantage in day-to-day lives.
+paladin^PH*^42^A champion of justice and destroyer of evil, protected and strengthened by an array of divine powers.
+paladin of freedom^UA^53^A variant paladin who is dedicated to liberty and free thought.
+paladin of slaughter^UA^53^A variant paladin who is a brutal champion of chaos and evil, and who leaves only destruction trailing in his wake.
+paladin of tyranny^UA^54^A variant paladin who is a lawful evil villain bent on dominating those weaker than she.
+paladin variant^CW^13^A variant paladin class.
+planar ranger^UA^55^A variant ranger who roams the multiverse instead of the wilderness.
+psion^XPH^19^A seeker after psionic secrets; a master of the mind and the thoughts of others.
+psychic warrior^XPH^24^A warrior who combines combat skill with psionic powers.
+ranger^PH*^46^A cunning, skilled warrior of the wilderness.
+ranger variant^CW^13^A variant ranger class.
+raptoran cleric^RW^160^Racial substitution levels.
+raptoran fighter^RW^161^Racial substitution levels.
+raptoran sorcerer^RW^157^Racial substitution levels.
+rogue^PH*^49^A tricky, skillful scout and spy who wins the battle by stealth rather than brute force.
+samurai^CW^8^Wielding their signature katana and wakizashi simultaneously, samurai are as potent in melee as a fighter, although they are less versatile.
+samurai^OA^20^Samurai are professional warriors.
+savage bard^UA^50^A variant bard who is a warrior at heart and whose arcane powers strike fear into the enemies of his tribe.
+scout^CAd^10^A scout has some training in weapons and a unique combat style that favors fast movement and devastating attacks.
+shaman^OA^22^Shamans are intermediaries between the mortal world and the realm of spirits.
+shugenja^CD^10^The shugenja is a divine spellcaster who casts spells by attuning himself to the primal energies around him and focusing such energy through his body to produce magical effects.
+shugenja^OA^24^Shugenjas are divine spellcasters who cast spells by attuning themselves to the elements around them.
+sohei^OA^27^Sohei are warrior monks.
+sorcerer^PH*^51^A spellcaster with inborn magical ability.
+soulknife^XPH^26^A warrior who fights with an idealized blade of personal mental energy.
+specialized wizard variants^UA^59^Each variant specialized class gives up one of the standard specialist's class abilities in exchange for a new ability unique to the variant specialist.
+spellcaster^UA^77^A generic class that has an array of magical effects at her beck and call.
+spellthief^CAd^13^Spellthieves use skill and arcane magic to drain the abilities of their opponents and turn their foes' own powers against them.
+spirit shaman^CD^14^By bargaining with living spirits, the spirit shaman gains power over the natural world and mighty divine magic.
+swashbuckler^CW^11^The swashbuckler embodies the concepts of daring and panache.
+thug^UA^51^A variant fighter who is a street fighter and a survivor who learns to mix brute force with a bit of craftiness.
+totem barbarian^UA^48^A variant barbarian who dedicates himself to a totem creature.
+urban adept^Sh^167^A variant adept for Sharn.
+urban ranger^UA^55^A variant ranger who stalks the treacherous streets of the city.
+warlock^CAr^5^A supernatural character whose sinister powers are inborn abilities, not spells.
+warmage^CAr^10^A militant spellcaster whose training focuses on battlefield magic.
+warmage^MH^14^Warmages access their magic peculiarly, at least compared to the way wizards, sorcerers, and cleric do.
+warrior^DCS^53^This NPC class contains people such as soldiers, guards, and militia.
+warrior^DMG^109^This NPC class contains combatants such as soldiers, guards, and militia.
+warrior^UA^78^A generic class that is a basic combatant.
+wilder^XPH^29^A passionate, reckless talent who wields uncontrolled psionic power.
+wilderness rogue^UA^56^A variant rogue who prefers to put her skills to use in the great outdoors.
+wizard^PH*^55^A potent spellcaster schooled in the arcane arts.
+wu jen^OA^30^Wu jen are spellcasters with mysterious powers.
+wu jen^CAr^14^A mysterious wizard of the eastern world, whose arcane lore revolves around mastery of the elements.
+archivist^HH^82^Archivists seek out esoteric sources of divine lore, wherever those sources might be, securing those secrets for themselves and their fellow scholars.
+dread necromancer^HH^84^A practitioner of vile and forbidden arts, the dread necromancer roots about in graveyards, searching out moldering components for her obscene spells.
+psionic artificer^MoE^42^Psionic artificers are similar to artificers, but they craft psionic items instead of magic items.
+incarnate^MoI^20^Incarnum is a tool you can use to manipulate the physical manifestations of moral and ethical forces and wield them in righteous pursuit of an ideal.
+soulborn^MoI^25^As a soulborn, you use incarnum to enhance your natural combat ability.
+totemist^MoI^29^You channel the soul energy of magical beasts to make your soulmelds and claim them as your totems to acquire a share in their power.
+binder^TM^9^By drawing their seals and speaking words of power, the binder summons strange entities, bargains with them, and binds them to his service.
+shadowcaster^TM^111^The shadowcaster understands the true, primal power of darkness, attunes herself to the Plane of Shadow, and learns great shadow mysteries the equal of any mundane spell.
+truenamer^TM^198^If you want to understand the secret language of the universe, the truenamer class is for you.
+ardent^CP^5^An ardent's pursuit of various cosmic philosophies gives her access to psionic power in a unique way: through psionic mantles.
+divine mind^CP^9^A divine mind is a psionic character who channels the power of the divine through pisonic talent instead of faith.
+lurk^CP^13^A lurk is a psionic character who has honed her mental talents to a deadly focus.
+duergar racial class^CP^144^The duergar, or gray dwarves, lead lives of neverending toil in great underground foundry-cities.
+githyanki racial class^CP^146^Githyanki are an ancient race of martial humanoids residing on the Astral Plane.
+githzerai racial class^CP^147^The githzerai are attuned to the mysteries of the inner self and are considered a race of ascetics who harness the power of the mind and the spirit.
+half-giant racial class^CP^148^Human-giant hybrids, half-giants were bred by cruel sorcerer-kings who used them as warriors and laborers in a dry land.
+thri-kreen racial class^CP^149^Fierce hunters and faultless trackers, the thri-kreen are a race of insectfolk sometimes known as mantis warriors.
+erudite (variant psion)^CP^153^As an alternative to the standard psion class, the erudite is a psionic character who follows a scholarly and self-reflective road to power, instead of a merely self-conscious path like the psion follows.
+beguiler^PH2^6^If you delight in manipulating others, either to their disadvantage or for their own good, then the beguiler is the class for you.
+dragon shaman^PH2^11^If you gaze at dragons with awe and aspire to share their power and majesty, then the dragon shaman is the class for you.
+duskblade^PH2^19^If you find you can't choose between being an arcane spellcaster who zaps your enemies with powerful spells and a nimble, powerful front-line melee character who lays them low with a sword, the duskblade is the perfect class for you.
+knight^PH2^24^The knight class is a great choice if you want to play a tough, durable melee combatant whose strong personality allows you to manipulate your foes.
+crusader^ToB^8^Devoted knight, divine agent, instrument of vengeance, peerless fighting machine -- the crusader is a warrior dedicated to good, evil, law, chaos, or some other cause.
+swordsage^ToB^15^A master of martial maneuvers, the sword sage is a physical adept -- a blade wizard whose knowledge of the Sublime Way lets him unlock potent abilities, many of which are overtly supernatural or magical in nature.
+warblade^ToB^20^The warblade was born for conflict. Swift, strong, enduring, and utterly confident in his martial skills, he seeks to test himself against worthy foes.
+dragonfire adept^DM^24^Whether they are bold champions defending the weak and downtrodden, or merciless raiders seeking might and riches, dragonfire adepts are imposing figures who command the magic of dragonkind.
+abolisher {Prestige Class}^LoM^182^The abolisher is a crusader against that which taints, usurps, and replaces the ordered nature of things with alien desires and monstrous needs.
+acolyte of the skin {Prestige Class}^CAr^19^Acolytes of the skin seek to gain power by replacing their skin with that of a demon's.
+acolyte of the skin {Prestige Class}^TB^43^Acolytes of the skin seek to gain power by replacing their skin with that of a demon's.
+agent retriever {Prestige Class}^EL^24^Finding items, especially long-lost ones, is an agent retriever's specialty.
+Aglarondan griffonrider {Prestige Class}^Una^18^Soaring above the Yuirwood and the coasts of Aglarond, the famed Aglarondan griffonriders are an elite force of aerial knights who serve the Simbul and defend their homeland against attack.
+Akodo champion {Prestige Class}^OA^220^Akodo champions are the leaders of the mighty army of the Lion clan.
+alienist {Prestige Class}^CAr^21^Alienists deal with powers and entities from terrifyingly remote reaches of space and time.
+alienist {Prestige Class}^TB^45^Alienists deal with powers and entities from terrifyingly remote reaches of space and time.
+ancient master {Prestige Class}^SK^159^Those yuan-ti who grow mightier of mind and gain additional psionic powers are called ancient masters.
+animal lord {Prestige Class}^CAd^22^Each animal lord forms a bond with one group of animals.
+animal lord {Prestige Class}^MW^43^Each animal lord forms a bond with one group of animals.
+anointed knight {Prestige Class}^BE^49^The anointed knight is a holy soldier who has taken great pains to learn the intricacies of alchemy in order to become a more capable combatant.
+apostle of peace {Prestige Class}^BE^51^The apostle of peace is an advocate for nonviolent resolution of conflict.
+arachne {Prestige Class}^FP^182^Arachnes are priestesses of Lolth who have risen to the pinnacle of drow society, worshiping Lolth only for the power she grants.
+Arboreal Guardian {Prestige Class}^Gh^19^Within the Spirit Wood are the Arboreal Guardians, men and women dedicated to protecting and ministering the living repositories of elf and half-elf spirits.
+arcachnomancer {Prestige Class}^Und^28^Many creatures of the Underdark are drawn to the power of the spider and that of the master of spiders -- the arachnomancer.
+arcane archer {Prestige Class}^DMG^176^The arcane archer is a warrior skilled in using magic to supplement her combat prowess.
+arcane devotee {Prestige Class}^FRCS^40^Arcane devotees complement the divine magic of a church's clerical leaders and are among the most important and respected members of a deity's following.
+arcane devotee {Prestige Class}^PG^48^Arcane devotees complement the divine magic of a church's clerical leaders and are among the most important and respected members of a deity's following.
+arcane hierophant  {Prestige Class}^RW^108^Arcane hierophants wield a blending of arcane magic and divine magic with a heavy emphasis on nature and the elements.
+arcane trickster {Prestige Class}^DMG^177^Arcane tricksters combine their knowledge of spells with a taste for intrigue, larceny, or just plain mischief.
+arcane trickster {Prestige Class}^TB^47^Arcane tricksters combine their knowledge of spells with a taste for intrigue, larceny, or just plain mischief.
+archmage {Prestige Class}^DMG^178^The most advanced practitioners of arcane magic are frequently archmages.
+archmage {Prestige Class}^FRCS^41^The archmage gains strange powers and the ability to alter spells in remarkable ways, but must sacrifice some of her spell capability to master these arcane secrets.
+ardent dilettante  {Prestige Class}^PlH^55^A diversity of interests and a moderate level of ability in one skill can lead one to become an ardent dilettante.
+argent savant {Prestige Class}^CAr^24^The argent savant regards spells that evoke or apply magical force as the noblest and most fascinating spells at her disposal.
+ashworm dragoon  {Prestige Class}^Sa^66^Ashworm dragoons have formed a bond with a single ashworm that is so strong that it is almost an extension of their wills.
+assassin {Prestige Class}^DMG^180^The assassin is the master of dealing quick, lethal blows.
+astral dancer {Prestige Class}^PlH^63^A few skilled combatants learn to take advantage of conditions on the Astral Plane.
+atavist  {Prestige Class}^RE^133^The discipline of an atavist strengthens his bond to the ancestral spirit and to all other kalashtar that have embraced their unique heritage.
+auspician {Prestige Class}^FP^184^Auspicians, who manipulate luck as if it were the strings of a worn mandolin, give credence to their claims.
+bane of infidels {Prestige Class}^MW^46^The bane of infidels is the leader of a xenophobic tribe.
+battle maiden {Prestige Class}^OA^34^Battle maidens are the stuff of wonder and legend, an order of mounted female samurai whose swift, fearless attacks are renowned throughout the world.
+battle scion {Prestige Class}^UA^164^This prestige class is for the wielders of legendary weapons made for the hands of fighters, barbarians, rangers, monks, and the occasional paladin.
+battlerager  {Prestige Class}^Rac^178^Dwarven battleragers, or kuldjargh ('axe idiots'), are legendary berserker warriors who can enter a battle frenzy through ritualist singing.
+battlesmith  {Prestige Class}^RS^97^A battlesmith is a skilled dwarf armorer and weaponsmith who uses her experience in battle, as well as her masterful weaponsmithing and armorsmithing abilities, to create deadly items for her kinsmen to wield in defense of their homes.
+Bayushi deceiver {Prestige Class}^OA^225^The Bayushi are charged with the dirtiest work in the empire.
+bear warrior {Prestige Class}^CW^16^Bear warriors, through a special relationship with bear spirits, literally adopt a bear's strength in the rage of battle, actually transforming into bears while they fight.
+bear warrior {Prestige Class}^OA^36^Bear warriors, through a special relationship with bear spirits, literally adopt a bear's strength in the rage of battle, actually transforming into bears while they fight.
+beastmaster {Prestige Class}^CAd^26^A beastmaster feels more at home among the animals of nature than fellow sentient beings.
+beholder mage {Prestige Class}^LoM^42^Through ritual destruction of its central eye, a beholder can learn to channel and use magic much more quickly and efficiently than can almost any other race.
+beholder mage  {Prestige Class}^Mon^21^Through ritual destruction of its central eye, a beholder can learn to channel and use magic much more quickly and efficiently than can almost any other race.
+beloved of Valarian {Prestige Class}^BE^53^The beloved of Valarian are women who have foresworn the love of mortals to dedicate themselves entirely to the unicorn deity Valarian.
+berserk {Prestige Class}^DD^201^Berserks are warriors who dress themselves in bearskins, taking advantage of the fear most people have for wild animals and inviting the wild rage of the animal into the warrior's body.
+Black Blood cultist {Prestige Class}^CR^44^Black Blood cultists are savage fighters whose natural attacks become more fearsome as they increase in level.
+black blood hunter {Prestige Class}^PG^177^Malar grants exceptional power to those who supplement their bestial level of evil with truly vile acts.
+black flame zealot {Prestige Class}^CD^21^Trained in unholy rites, the black flame zealots use stealth, divine magic, and the zeal of fanaticism to destroy those who have given offense to their god.
+Black Flame zealot {Prestige Class}^Una^21^Trained in the rites of Kossuth's temple, the Black Flame zealots use stealth, divine magic, and the zeal of fanaticism to destroy those who have given offense to the Lord of Flames.
+blackguard {Prestige Class}^DMG^181^The blackguard is the quintessential black knight.
+blade bravo {Prestige Class}^RS^99^Blade bravos are gnomes who learn the ways of the rapier.
+blade dancer {Prestige Class}^OA^37^To blade dancers, the sword is more than a weapon -- it is an ally, a friend, a spirit companion.
+bladesinger {Prestige Class}^CW^17^Bladesingers are elves who have blended art, swordplay, and arcane magic into a harmonious whole.
+bladesinger {Prestige Class}^Rac^179^Bladesingers are elves who have blended art, swordplay, and arcane magic into a harmonious whole.
+bladesinger {Prestige Class}^TB^49^Bladesingers are elves who have blended art, swordplay, and arcane magic into a harmonious whole.
+blighter {Prestige Class}^CD^23^Blighters bring desolation wherever they tread.
+blighter {Prestige Class}^MW^48^Blighters bring desolation wherever they tread.
+blood magus {Prestige Class}^CAr^26^Blood magi are deceased spellcasters who gain an understanding of blood's importance when returned to life.
+blood magus {Prestige Class}^TB^50^Blood magi are deceased spellcasters who gain an understanding of blood's importance when returned to life.
+bloodhound {Prestige Class}^CAd^28^A bloodhound tracks down wrongdoers and brings them to whatever justice awaits them.
+bloodhound {Prestige Class}^MW^49^A bloodhound tracks down wrongdoers and brings them to whatever justice awaits them.
+bloodscaled fury {Prestige Class}^Dr^86^A bloodscaled fury is a dragon whose rage surpasses that of a human barbarian as the barbarian's rage surpasses a child's tantrum.
+bonded summoner  {Prestige Class}^MH^16^He who learns to leash the furies of the Elemental Planes is known as a bonded summoner.
+bone collector {Prestige Class}^Gh^21^A bone collector is a person who draws personal power from the destruction of undead.
+breachgnome {Prestige Class}^Rac^181^A breachgnome is a mighty gnome who is skilled in fighting in cramped conditions.
+cabinet trickster {Prestige Class}^RE^139^Cabinet tricksters are the changeling agents of the Cabinet of Faces.
+cancer mage  {Prestige Class}^BV^52^The cancer mage makes quick, poisonous attacks and then retreats.
+candle caster {Prestige Class}^TB^52^Also called 'spell chandlers,' these specialists fill their time fashioning candles, both for esthetics and for power.
+Cannith wand adept  {Prestige Class}^Sh^162^The Cannith wand adept is an artificer or other spellcaster who specializes in mastering wands.
+cavalier {Prestige Class}^CW^19^Representing the ultimate in mounted warfare, the cavalier is the quintessential knight in shining armor.
+cavalier  {Prestige Class}^SF^12^Representing the ultimate in mounted warfare, the cavalier is the quintessential knight in shining armor.
+cavelord {Prestige Class}^Und^30^A passion for the narrow, dim ways of the world burns in the breast of the cavelord.
+celebrant of Sharess {Prestige Class}^PG^178^Celebrants of Sharess are seducers and warriors, hedonists and pious champions of good.
+celestial mystic {Prestige Class}^BE^55^Celestial mystics seek to attain ultimate unity with the perfect good.
+cerebremancer  {Prestige Class}^XPH^141^Cerebremancers access both the arcane mysteries of spellcasting and the psionic powers of the mind.
+chameleon  {Prestige Class}^RD^111^Chameleons are dilettantes in every class and masters of none.
+champion of Corellon Larethian {Prestige Class}^RW^113^The champion of Corellon Larethian is a noble elf fighter, an elf knight or lord who can stand up to any orc or human warrior.
+champion of Gwynharwyf {Prestige Class}^BE^56^The champion of Gwynharwyf is a mortal barbarian who strives to emulate her sublime balance of fury and reserve while retaining a focus on good.
+chaotician {Prestige Class}^PlH^61^Chaoticians seek to enjoy the beauty of the unpredictable, and by seeking to emulate the philosophy of chaos in their actions, they create a fabulous journey through life in which nothing is a bore.
+church inquisitor {Prestige Class}^CD^26^The church inquisitor uncovers taint within the church and cuts it away.
+church inquisitor {Prestige Class}^DF^51^The church inquisitor uncovers taint within the church and cuts it away.
+cipher adept {Prestige Class}^PlH^58^Seamless integration brings the cipher adept bliss.
+Citadel elite {Prestige Class}^Sh^163^The elite agent of the Citadel is the best of the best, saved for the most dangerous, most important assignments or granted latitude to serve the King and Crown as he sees fit.
+cloud anchorite  {Prestige Class}^Fr^52^The cloud anchorite seeks a way to achieve immortality while maintaining life and awareness.
+cognition thief {Prestige Class}^PG^174^A cognition thief's subtle ability to worm her way into a target's very consciousness makes her the ultimate secret agent.
+coiled cabalist {Prestige Class}^SK^161^Standing apart from the priests of Sseth but careful never to draw their collective ire by openly opposing them, the members of the Coiled Cabal pursue the arcane arts largely in secrecy.
+combat medic {Prestige Class}^HB^99^The combat medic keeps her allies alive and tends to the fallen on the front lines of battle.
+consecrated harrier {Prestige Class}^CD^28^The consecrated harrier acts as a bounty hunter for her religion or organization.
+consecrated harrier {Prestige Class}^DF^52^The consecrated harrier acts as a bounty hunter for her religion or organization.
+contemplative {Prestige Class}^CD^30^Contemplatives devote their lives to cultivating a greater closeness with their deities.
+contemplative {Prestige Class}^DF^54^Contemplatives devote their lives to cultivating a greater closeness with their deities.
+cosmic descryer {Prestige Class}^EL^26^The cosmic descryer is interested in the infinite variety of the planes and fascinated by the different layers of the multiverse.
+cragtop archer {Prestige Class}^RS^101^Cragtop archers train their eyes and minds to find target at great distances, and to quickly compensate for wind, movement, and other factors that affect shots of such difficulty.
+Crinti shadow marauder  {Prestige Class}^ShS^23^Crinti shadow marauders combine the physical prowess of master rider with the stealth of the most cunning shadowdancers.
+cryokineticist {Prestige Class}^Fr^54^The cryokineticist is the master of cold psionic energy.
+cultist of the Shattered Peak  {Prestige Class}^LE^10^Cultists of the Shattered Peak possess skill at arms, stealth, and a smattering of ancient lore.
+daggerspell mage {Prestige Class}^CAd^31^Daggerspell mages work to perfect a unique fighting and spellcasting (arcane) style that relies on wielding a pair of daggers at all times.
+daggerspell shaper {Prestige Class}^CAd^36^Daggerspell shapers work to perfect a unique fighting and spellcasting (druid) style that relies on wielding a pair of daggers at all times.
+Daidoji bodyguard {Prestige Class}^OA^215^The Daidoji concentrate on defensive maneuvers and a style of fighting that induces their opponents to defeat themselves.
+dark hunter {Prestige Class}^CW^20^Dark hunters specialize in hunting down and eliminating creatures in the dark, twisting caves of the Underdark.
+Darkmask  {Prestige Class}^LD^33^Darkmasks strike a balance between their faith and their skills at stealth.
+darkrunner {Prestige Class}^LoM^186^Darkrunners devote their lives to traveling the haunted underground depths.
+darkwood stalker {Prestige Class}^CW^23^Some elves train as elite hunters of orcs; these hunters are called darkwood stalkers.
+dawncaller {Prestige Class}^RS^103^Dawncallers are goliath bards responsible for guarding their tribe throughout the night.
+death's chosen ^LM^41^If chosen by his would-be undead master, a death's chosen serves as the master's living minion.
+Deathwarden chanter {Prestige Class}^Gh^23^The Deathwarden chanters are the most prestigious, respected, and mysterious members of the dwarven Deathwarden clan.
+deep diviner {Prestige Class}^Und^32^Deep diviners are intimates of the earth and all that it hides.
+deepwarden {Prestige Class}^RS^105^Deepwardens are dwarves who serve as a living early warning system against threats from both the environment and other creatures.
+deepwood sniper {Prestige Class}^MW^52^A deepwood sniper is patient, careful, quiet , and deadly accurate.
+defender of Sealtiel {Prestige Class}^BE^58^Defenders of Sealtiel are sworn to uphold the ideals of Sealtiel, which includes fighting off forces of evil when they assault good.
+defiant {Prestige Class}^PlH^44^Defiants take the teaching of the Athar to heart in a way that grants them tremendous powers against those who claim to wield divine might.
+demonologist {Prestige Class}^BV^54^A demonologist is a mortal who has devoted his life to the study of demons.
+dervish {Prestige Class}^CW^25^The dervish epitomizes speeds, quickness, and abandon.
+devoted defender {Prestige Class}^SF^13^The devoted defender is a professional guardian.
+diabolist {Prestige Class}^BV^56^A diabolist does not serve devils -- she wants to be one.
+dirgesinger {Prestige Class}^LM^43^Dirgesingers voice melodies not of celebration and joy, but of sorrow and grief.
+disciple of Ashardalon {Prestige Class}^Dr^87^Disciples of Ashardalon bind fiendish spirits to their own hearts, eventually taking on the characteristics of demonic spawn themselves.
+disciple of Asmodeus {Prestige Class}^BV^57^A disciple of Asmodeus uses his power and influence to learn secrets, which in turn gains him more power.
+disciple of Baalzebul {Prestige Class}^BV^58^A disciple of Baalzebul uses deceit and trickery to get what she wants.
+disciple of Dispater {Prestige Class}^BV^60^A disciple of Dispater is a warlike general of evil.
+disciple of Mammon {Prestige Class}^BV^60^A disciple of Mammon takes what she wants any way she can.
+disciple of Mephistopheles {Prestige Class}^BV^62^A disciple of Mephistopheles wields hellfire as his weapon.
+disciple of Thrym {Prestige Class}^Fr^56^Aside from predictions of Ragnarok, disciples of Thrym spend a large portion of their time undermining those who serve Thor and Loki, the deities who conspired against Thrym.
+dispassionate watcher of Chronepsis {Prestige Class}^Dr^89^Taking the role of observers rather than active participants, dispassionate watchers of Chronepsis remain aloof from the events of the world.
+divine agent  {Prestige Class}^MP^24^The divine agent is a specially selected agent of her deity, and she acts in the service of that power or deity.
+divine champion {Prestige Class}^FRCS^42^Divine champions are mighty warriors who dedicate themselves to their deity's cause, defending holy ground, destroying enemies of the church, and slaying mythical beasts and clerics of opposing faiths.
+divine champion {Prestige Class}^PG^49^Divine champions are mighty warriors who dedicate themselves to their deity's cause, defending holy ground, destroying enemies of the church, and slaying mythical beasts and clerics of opposing faiths.
+divine crusader {Prestige Class}^CD^33^The divine crusader embodies devotion and dedication to a chosen deity.
+divine disciple {Prestige Class}^FRCS^43^Divine disciples interpret the divine will, act as teachers and guides to other members of the clergy, and arm lay followers of their deity with the power of their patron.
+divine disciple {Prestige Class}^PG^51^Divine disciples interpret the divine will, act as teachers and guides to other members of the clergy, and arm lay followers of their deity with the power of their patron.
+divine emissary {Prestige Class}^EL^27^Deities have need of powerful servants, many of whom are epic clerics, paladins, and other characters.
+divine oracle {Prestige Class}^CD^34^Some mortals hear the words of deities; these can be divine oracles.
+divine oracle {Prestige Class}^DF^56^Some mortals hear the words of deities; these can be divine oracles.
+divine prankster {Prestige Class}^RS^107^These gnomes embrace Garl's methods of teaching through harmless object lessons and dedicate their lives to acting as his agents in the world.
+divine seeker {Prestige Class}^FRCS^44^The divine seeker infiltrates dangerous places to rescue prisoners, reclaim stolen relics, or eliminate enemy leaders.
+divine seeker {Prestige Class}^PG^52^The divine seeker infiltrates dangerous places to rescue prisoners, reclaim stolen relics, or eliminate enemy leaders.
+doomdreamer  {Prestige Class}^RT^162^Doomdreamers are the elite among the ranks of the cult of Tharizdun.
+doomguide {Prestige Class}^FP^186^Doomguides belong to an elite order of spellcasting warriors in service to the Judge of the Damned.
+doomlord {Prestige Class}^PlH^47^The doomlord's life holds the greatest appeal for fighters and barbarians who enjoy smashing and destroying.
+dracolyte {Prestige Class}^Dr^122^The dracolyte takes up worship of the draconic gods.
+dragon ascendant {Prestige Class}^Dr^90^Dragon ascendants seek to transcend the limitations of material existence so as to become nothing less than deities.
+dragon disciple {Prestige Class}^DMG^183^Dragon disciples use their magic as a catalyst to ignite their dragon blood.
+dragon disciple {Prestige Class}^TB^55^Dragon disciples use their magic as a catalyst to ignite their dragon blood.
+dragon rider  {Prestige Class}^DCS^77^Dragon riders develop a strong bond with their mounts that allows the two to work together.
+dragon samurai {Prestige Class}^MH^18^Dragon samurai are dedicated warriors, members of a special, self-selected class who revered dragonkind and emulate dragons' ferocious martial abilities to the point of taking on some draconic traits.
+dragonkith {Prestige Class}^Dr^123^Dragonkith are creatures that serve and aid dragons.
+dragonmark heir  {Prestige Class}^ECS^73^Dragonmark heirs have the ability to improve the dragonmarks they have manifested, as well as to develop additional abilities related to their dragonmarks.
+dragonrider {Prestige Class}^Dr^124^Dragonriders soar through the clouds atop a draconic steed.
+dragonslayer {Prestige Class}^Dr^125^Dragonslayers combat dragons.
+dragonsong lyrist {Prestige Class}^Dr^127^The dragonsong lyrist taps into the power of dragonsong.
+dragonstalker {Prestige Class}^Dr^128^The dragonstalker uses stealth and guile to combat dragons.
+dread commando {Prestige Class}^HB^103^Dread commandos are the elite scouts and strike force of a well-trained mercenary band.
+dread pirate {Prestige Class}^CAd^39^A dread pirate has mastered every aspect of larceny on the high seas.
+dread pirate {Prestige Class}^SaS^5^A dread pirate has mastered every aspect of larceny on the high seas.
+dreadmaster {Prestige Class}^FP^188^Dreadmasters seek to rule absolutely, preferably through terror and domination.
+drow judicator {Prestige Class}^Und^33^A mortal imbued with fiendish cruelty, the drow judicator is a knight most foul.
+drunken master {Prestige Class}^CW^27^By weaving and staggering about as if inebriated, drunken boxers avoid many blows.
+drunken master {Prestige Class}^SF^14^By weaving and staggering about as if inebriated, drunken boxers avoid many blows.
+duelist {Prestige Class}^DMG^185^The duelist is a nimble, intelligent fighter trained in making precise attacks with light weapons.
+duelist {Prestige Class}^SF^17^The duelist is a nimble, intelligent fighter trained in making precise attacks with light weapons.
+dungeon delver {Prestige Class}^CAd^42^In many ways, the dungeon delver is the ultimate adventuring rogue.
+dungeon delver {Prestige Class}^SaS^7^In many ways, the dungeon delver is the ultimate adventuring rogue.
+durthan {Prestige Class}^Una^22^Durthans are an order of spellcasters who tap into the darker spirits of Rashemen.
+dwarven defender {Prestige Class}^DMG^186^The defender is a sponsored champion of a dwarven cause
+dweomerkeeper {Prestige Class}^FP^189^Dweomerkeepers are Mystra's shepherds, safeguarding the Weave against threats to its integrity.
+earth dreamer {Prestige Class}^RS^110^Earth dreamers move within the ancient dreams of the mountains, attuning themselves to their power and mastering strange abilities over the earth.
+effigy master {Prestige Class}^CAr^30^The effigy master is an expert in the imitation of true life.
+Eldeen ranger {Prestige Class}^ECS^74^An Eldeen ranger learns special techniques and abilities that help him to fulfill the goal of his sect.
+eldritch knight {Prestige Class}^DMG^187^Studying the martial and arcane arts to equal degree, the eldritch knight is a versatile combatant.
+elemental archon {Prestige Class}^FP^190^Elemental archons are servants of powerful, seemingly uncaring elemental forces who want to once and for all tip the balance in favor of their chosen element.
+elemental master {Prestige Class}^Dr^92^Elemental masters strive to attain the purity of perfect attunement with both the energy of their breath weapons and the elemental nature of their core.
+elemental savant {Prestige Class}^CAr^32^Elemental savants study the basic building blocks of existence -- air, earth, fire, and water -- learning to harness their powers.
+elemental savant {Prestige Class}^TB^57^Elemental savants study the basic building blocks of existence -- air, earth, fire, and water -- learning to harness their powers.
+elemental warrior {Prestige Class}^PlH^65^The elemental warrior sees that great strength comes from focusing on the most basic aspects of reality.
+elocater {Prestige Class}^XPH^142^Elocaters are renowned for their agile combat stratagems, using their knowledge of motion and space to set themselves up for quick attacks against slower opponents.
+elven high mage {Prestige Class}^Rac^182^Elven high mages are the masters of creating their own epic spells -- mythals that can grow to engulf entire cities.
+emancipated spawn  {Prestige Class}^SS^75^Those spawn of undead who find themselves free of their masters can begin to recall their former lives and a measure of redemption.
+emissary of Barachiel {Prestige Class}^BE^59^The emissaries of Barachiel are peacemakers, diplomats, and evangelists, as well as staunch opponents of evil and corruption.
+enlightened fist {Prestige Class}^CAr^34^Enlightened fists master the use of touch spells, creating new forms of combat with their fists.
+entropomancer {Prestige Class}^CD^36^Entropomancers gain attunement to the great nothingness they say lies at the center of the universe.
+ephemeral exemplar {Prestige Class}^LM^53^Ephemeral exemplars are paragons of incorporealness.
+epic arcane archer {Prestige Class}^EL^17^The epic arcane archer is a living extension of the bow, capable of achieving wonders of archery that cause lesser beings to gape in awe.
+epic assassin {Prestige Class}^EL^18^The epic assassin flits from shadow to shadow, lying in wait until his target is vulnerable, then striking like a cobra.
+epic blackguard {Prestige Class}^EL^19^The epic blackguard is a twisted reflection of the epic paladin, radiating evil power from every pore of his body.
+epic dwarven defender {Prestige Class}^EL^20^The epic dwarven defender becomes the very definition of immovable object.
+epic infiltrator {Prestige Class}^EL^28^The epic infiltrator is an agent of espionage, an undercover operative, and sometimes a saboteur.
+epic loremaster {Prestige Class}^EL^20^If the epic loremaster doesn't know something, it probably isn't worth knowing.
+epic psion {Prestige Class}^EL^22^The epic psion has evolved his inborn mental abilities, achieving mental mastery of lesser mentalities.
+epic psychic warrior {Prestige Class}^EL^23^The epic psychic warrior is a meld of mental and martial prowess.
+epic shadowdancer {Prestige Class}^EL^21^While the epic assassin udes the shadows, the epic shadowdancer becomes the shadows, indistinguishable from the darkness cloaking her.
+eunuch warlock {Prestige Class}^OA^38^Eunuch warlocks must be arcane spellcasters of significant ability, and they are often sorcerers rather than wu jen.
+evangelist {Prestige Class}^CD^39^Evangelists travel the world proclaiming their devotion to a particular deity, pantheon, or religious doctrine.
+Evereskan tomb guardian {Prestige Class}^PG^53^The Evereskan tomb guardians are on hand to ensure that the defenses of the tombs are very good indeed.
+exalted arcanist {Prestige Class}^BE^61^Exalted arcanists gain access to spells that channel celestial energy.
+exemplar {Prestige Class}^CAd^44^An exemplar focuses her energy on improving the skills she possesses until she can perform them with fluidity, grace, and art.
+exorcist of the Silver Flame {Prestige Class}^ECS^77^Exorcists of the Silver Flame lead the Church of the Silver Flame's efforts in combating extraplanar threats.
+exotic weapon master {Prestige Class}^CW^30^The only real requirement for exotic weapon master is commitment and perseverance.
+exotic weapon master {Prestige Class}^MW^53^The only real requirement for exotic weapon master is commitment and perseverance.
+extreme explorer {Prestige Class}^ECS^79^The extreme explorer is the iconic action hero of Eberron.
+eye of Gruumsh {Prestige Class}^CW^31^An orc or half-orc who heeds the call to serve Gruumsh in his image can become an eye of Gruumsh.
+eye of Gruumsh {Prestige Class}^MW^54^An orc or half-orc who heeds the call to serve Gruumsh in his image can become an eye of Gruumsh.
+eye of Horus-Re^PG^54^Eyes of Horus-Re are champions of good, sworn enemies of Set, and bane to undead.
+faith scion {Prestige Class}^UA^166^This prestige class is meant for characters who wield legendary weapons of divine power for claerics, druids, and paladins.
+fang of Lolth {Prestige Class}^SaS^8^Fangs of Lolth undergo a transformation that both provides them power and changes them in ways they may not necessarily want.
+Fang of Sseth {Prestige Class}^SK^162^The Fangs of Sseth constitute the strike force of the Vipers -- the stealthy killers who leave no trace.
+fatemaker {Prestige Class}^PlH^50^'There are two paths to take; one is easy, and that is its only reward.'
+fatespinner {Prestige Class}^CAr^37^A fatespinner has pulled back the curtain of chance, circumstance, and chaos to glimpse a deeper truth: probability.
+fatespinner {Prestige Class}^TB^58^A fatespinner has pulled back the curtain of chance, circumstance, and chaos to glimpse a deeper truth: probability.
+fiend of blasphemy  {Prestige Class}^FF^200^The fiend of blasphemy is a master of the infernal art of perverting the desire to worship and turning it toward the corrupt veneration of fiendish masters.
+fiend of corruption {Prestige Class}^FF^202^Fiends of corruption are preoccupied with corrupting mortals to ensure that their souls end up on the Lower Planes after death.
+fiend of possession {Prestige Class}^FF^204^A fiend of possession is an invasive presence that taints the very soul, corrupting from within.
+Fist of Hextor {Prestige Class}^SF^18^Fists of Hextor are templars sworn to the service of their unforgiving master.
+fist of Raziel {Prestige Class}^BE^62^The fists of Raziel represent a knightly order dedicated to the celestial patron of holy warfare against evil.
+Fist of Zuoken {Prestige Class}^XPH^144^The Fists of Zuoken ore members of an order of martial artists devoted to mastering their own physical and mental development while protecting psions and other psionic creatures.
+fleshwarper {Prestige Class}^LoM^189^The fleshwarper finds no greater canvas than flesh itself.
+Fochlucan lyrist {Prestige Class}^CAd^47^The Fochlucan lyrist is a legendary figure who serves as the herald and teacher to great kings, the champion of the common folk, and the keeper of lore long forgotten elsewhere.
+foe hunter {Prestige Class}^MW^56^The foe hunter has but one purpose in life: to kill creatures of the type she hates.
+forest master {Prestige Class}^FP^193^Guardians of the pristine wilderness and defenders of the ancient trees, forest masters are the living embodiments of sentient nature.
+forsaker {Prestige Class}^MW^57^The forsaker rebels against the magic of the fantastic world around him.
+frenzied berserker {Prestige Class}^CW^34^The frenzied berserker is constantly seeking out more conflict to feed her craving for battle.
+frenzied berserker {Prestige Class}^MW^59^The frenzied berserker is constantly seeking out more conflict to feed her craving for battle.
+frost mage {Prestige Class}^Fr^58^Frost mages usually hail from lands of cold, snow, and ice: tundra, glaciers even outer planes perpetually shrouded in winter.
+frostrager {Prestige Class}^Fr^60^The frostragers are powerful and dangerous warriors believed by some to be gifted from (and others cursed by) the frost giant deity Thrym with an unstable but powerful supernatural battle rage.
+gatecrasher {Prestige Class}^MP^26^Gatecrashers see themselves as cosmic free agents, independent forces who can influence the natives of the planes and even the dynamic forces of magic itself.
+geomancer {Prestige Class}^CD^41^To the geomancer, all magic is the same.
+geomancer {Prestige Class}^MW^60^To the geomancer, all magic is the same.
+geometer {Prestige Class}^CAr^39^The geometer is the master of written magic and spells inscribed within a perfectly rendered diagram.
+ghost slayer {Prestige Class}^Gh^26^The ghost slayer studies ghost so that they can be dispatched easily and no longer bother the living with their presence.
+ghost-faced killer^CAd^51^Ghost-faced killers act as assassins and spies for hire, a mercenary clan that hides behind a guise of open and honorable conduct.
+ghostwalker {Prestige Class}^SF^20^Ghostwalkers have abilities that point to some underlying, mysterious mysticism.
+giant-killer^SM^109^Giant-killers are great heroes so long as they are killing giants.
+gladiator {Prestige Class}^SF^21^Rich or poor, all gladiators face death whenever they step into the arena.
+glorious servitor {Prestige Class}^LE^13^Glorious servitors are exceptionally loyal and devout servants of the Mulhorandi gods.
+gnome artificer  {Prestige Class}^Mag^23^Gnome artificers dabble in technology to create fantastic devices, delving into shadow magic when their mundane equipment is insufficient for the task.
+gnome giant-slayer^CW^36^The gnome giant-slayer relies on a combination of agility, combat prowess, and pure craftiness to deal with foes.
+goldeye {Prestige Class}^FP^194^Goldeyes are agents and promulgators of commercial intercourse, seeking to increase the wealth of their communities and realms by promoting the exchange of coins in trade.
+goliath liberator {Prestige Class}^RS^112^Goliath liberators are experts at infiltrating giant dwellings, freeing the captives within, then exacting revenge on the giants while the freed goliaths escape.
+Gray Hand enforcer {Prestige Class}^CSW^77^Gray Hand enforcers are highly trained members of the Gray Hands, Waterdeep's elite, high-powered fighting force.
+Great Rift deep defender {Prestige Class}^ShS^24^The Great Rift deep defender has a keen understanding of the importance of making a stand.
+Great Rift skyguard {Prestige Class}^Rac^183^The hippogriff-mounted skyguards of the Great Rift patrol the skies, ever watchful for the enemies of the gold dwarves.
+Great Sea corsair {Prestige Class}^ShS^26^Adapt the dread pirate prestige class from Song and Silenceto create the Great Sea corsair prestige class.
+Green Star adept {Prestige Class}^CAr^41^A Green Star adept is the master of the strange and powerful magic derived from Alhazarde's glittering green starmetal.
+guardian paramount {Prestige Class}^EL^30^The guardian paramount is an extraordinary bodyguard, a protector of others who is skilled in preventing harm to his charge.
+guild thief {Prestige Class}^FRCS^45^Guild thieves are thieves who operate in urban areas as part of an organized thieves' guild.
+guild wizard of Waterdeep {Prestige Class}^Mag^26^The wizards of the order study and exchange information, create magic items to help support the guild's financial independence, and offer their services to others in the city as watch-wizards or fire guards.
+halfling outrider {Prestige Class}^CW^38^Halfling outriders are elite champions whose task is to warn their fellows of, and protect them from, danger.
+halfling outrider {Prestige Class}^SF^22^The halfling outrider is naturally skilled in the arts of riding and scouting.
+Halruaan elder {Prestige Class}^ShS^27^Halruaan elders are the epitomy of magic cast with panache, and their dazzling and unique displays of arcane force make them the most respected practitioners in the land.
+Halruaan magehound {Prestige Class}^ShS^29^Magehounds are Halruaa's inquisitors.
+hammer of Moradin {Prestige Class}^PG^56^An elite order of warrior-priests stands ready to defend the dwarven people against the onslaught of fell giants, dark elves, and goblinoids.
+hand of the Adama {Prestige Class}^ShS^31^The hand of the Adama is a benign leader, judge and jury, and protector of the common folk all rolled into one.
+Harper agent {Prestige Class}^PG^58^Harper agents are the 'field agents' of the Harper organization, acting directly to gather intelligence and eliminate threats to the greater good.
+Harper mage {Prestige Class}^Mag^28^The Harper mage has two principal responsibilities: They aid the Harpers with spells and arcane knowledge, and they study, record, and pass on ancient lore.
+Harper paragon {Prestige Class}^PG^181^A Harper paragon actively promotes the welfare of other creatures while preventing evil forces from preying on innocents.
+Harper priest {Prestige Class}^Mag^29^Some Harpers choose to pursue a closer relationship to the deities who inspired the creation of the Harpers.
+harper scout {Prestige Class}^FRCS^46^Harper scouts are members of the Harpers, a secret society dedicated to holding back evil, preserving knowledge, and maintaining the balance between civilization and the wild.
+hathran {Prestige Class}^FRCS^47^Hathrans comprise an elite sisterhood of spellcasters who lead Rashemen.
+hathran {Prestige Class}^PG^59^Hathrans comprise an elite sisterhood of spellcasters who lead Rashemen.
+havoc mage {Prestige Class}^MH^20^The havoc mage shares as much in common with a fighter as with a wizard.
+heartwarder {Prestige Class}^FP^196^Heartwarders are aesthetes and hedonists who actively seek out pleasure and beauty in all things and who nurture the creation of beautiful objects.
+heir of Siberys {Prestige Class}^ECS^80^The magic of a Siberys mark is undeniably powerful, and an heir of Siberys manifests one.
+henshin mystic {Prestige Class}^OA^39^Henshin mystics are members of a monastic order that teaches what they consider a great mystery of the universe: that humanity is capable of a transformation (henshin) into divinity.
+hexer {Prestige Class}^MW^63^The hexer uses the power of his gaze.
+Hida defender {Prestige Class}^OA^212^Hida defenders train in great armor, a unique characteristic that fits in well with the Crab philosophy of strength and endurance.
+hidecarved dragon {Prestige Class}^Dr^94^Hidecarved dragons are members of an enigmatic order of dragons and half-dragons.
+hierophant {Prestige Class}^DMG^188^A divine spellcaster who rises high in the service of his deity gains access to spells and abilities of which lesser faithful can only dream.
+hierophant {Prestige Class}^FRCS^48^A divine spellcaster who rises high in the service of his deity gains access to spells and abilities of which lesser faithful can only dream.
+high proselytizer {Prestige Class}^EL^31^The high proselytizer is the holy inspiration that begins religious movements.
+highland stalker {Prestige Class}^CAd^54^Highland stalkers are consummate trackers with an instinctive knowledge of their mountainous territories.
+hin fist {Prestige Class}^ShS^32^Adapt the sacred fist prestige class from Complete Divineto create a hin fist.
+Hoardstealer {Prestige Class}^Dr^130^The hoardstealer specializes in relieving wealthy individuals from large amounts of said wealth.
+holy liberator {Prestige Class}^CD^45^The holy liberator is a holy warrior, a distant cousin of the paladin.
+holy liberator {Prestige Class}^DF^57^The holy liberator is a holy warrior, a distant cousin of the paladin.
+hordebreaker {Prestige Class}^SM^110^The hordebreaker is a person who makes destroying the horde threat the perfect engine of orc destruction.
+horizon walker {Prestige Class}^DMG^189^The horizon walker is an unceasing traveler to the universe's most dangerous places.
+horned harbinger {Prestige Class}^FP^197^The horned harbingers are agents of the fallen Lord of Bones.
+hospitaler {Prestige Class}^CD^48^Hospitalers are a fighting force of necessity, sworn to poverty, obedience, and the defense of those in their care.
+hospitaler {Prestige Class}^DF^60^Hospitalers are a fighting force of necessity, sworn to poverty, obedience, and the defense of those in their care.
+hulking hurler {Prestige Class}^CW^40^Hulking hurlers belong to those races of generously proportioned creatures who enjoy nothing more than wrenching boulders, trees, and even buildings free of their earthly bonds and throwing them at their foes.
+hunter of the dead {Prestige Class}^CW^42^The hunter of the dead spends each restless night tracking undead to their lairs and cleansing the land of their foul presence.
+hunter of the dead {Prestige Class}^DF^62^The hunter of the dead spends each restless night tracking undead to their lairs and cleansing the land of their foul presence.
+iaijutsu master {Prestige Class}^OA^41^Iaijutsu masters harness their ki energy to strike with blinding speed and devastating power.
+iInitiate of the draconic mysteries {Prestige Class}^Dr^131^Some become students of draconic knowledge that leads to greater power.
+illithid body tamer {Prestige Class}^Und^35^Illithids who embrace the Tamer Creed believe that military might is the most important factor in their race's future mastery of the multiverse.
+illithid savant {Prestige Class}^SS^77^The illithid savant is an academic who deals in applied science, acquiring new knowledge from the brains he consumes.
+illithid slayer {Prestige Class}^XPH^146^Illithid slayers have dedicated their lives to the eradication of the mind flayer 'infection.'
+Imaskari vengeance taker {Prestige Class}^Und^37^A secret society dedicated to righting wrongs, the Imaskari vengeance takers are trained by hidden masters in the rites and rituals of revenge.
+incantatrix {Prestige Class}^Mag^31^The incantatrixes are the practitioners of metamagic in Faerun, studying spells that affect other spells and having a fondness for magic that thwarts extraplanar beings.
+incantatrix {Prestige Class}^PG^61^The incantatrixes are the definitive practitioners of metamagic in Faerun, devoting themselves to the study of spells and techniques that affect other spells.
+initiate of Pistis Sophia {Prestige Class}^BE^64^The path of these initiates requires great sacrifices (in the form of at least three sacred vows), but brings great rewards of spiritual power.
+Initiate of the Sevenfold Veil {Prestige Class}^CAr^44^A master of defensive magic, the Initiate of the Sevenfold Veil approaches the prismatic barrier by mastering one by one its constituent veils or layers.
+inquisitor {Prestige Class}^DCS^80^By definition, an inquisitor is one who inquires, someone who hunts for people, information, or answers.
+inquisitor of the Drowning Goddess {Prestige Class}^Und^39^Some kuo-toa monks go on to become inquisitors of the Drowning Goddess, who are tasked with protecting the community from inside threats.
+invisible blade {Prestige Class}^CW^44^Invisible blades are deadly fighters who prefer to use daggers and related weapons in combat.
+iron mind {Prestige Class}^RS^114^Elite warriors trained to resist mental compulsions of all kinds, members of the iron mind prestige class defend dwarf and gnome kingdoms against intrusions by mind flayers, dark elf enchanters, and the like.
+Jordain vizier {Prestige Class}^ShS^33^The Jordaini are a special servitor caste, though still upper class, in the magocracy of Halruaa.
+justice of weald and woe {Prestige Class}^CR^48^The justice of weald and woe is the go-to person when something unsavory -- usually involving the removal of humans -- needs doing.
+justiciar {Prestige Class}^CW^47^Justiciars make a living kicking the daylights out of criminals who desperately deserve it.
+justiciar of Taiia {Prestige Class}^DD^205^Justiciars of Taiia fulfill the role of carrying out Taiia's sentence against wrongdoers.
+justiciar of Tyr {Prestige Class}^PG^63^Justiciars are the very elite of Tyr's mortal servants, and they act as living embodiments of their god's portfolio.
+Keeper of the Cerulean Sign {Prestige Class}^LoM^194^The Cerulean Sign is an ancient rune of power, created untold eons ago by a race or deity long since vanished; now it has keepers.
+kensai {Prestige Class}^CW^49^The kensai masters body, mind, weapon, and will.
+king/queen of the wild^MW^65^Where nature's fury is at its height, there you'll find the kings and queens of the wild.
+kishi charger {Prestige Class}^OA^42^Kishi chargers are cavalry soldiers trained to make the greatest possible use of a horse's speed and a rider's agility.
+Knight of the Blue Moon {Prestige Class}^CSW^81^Knights of the Blue Moon are elite soldiers in the endless battle against the Mistress of the Night.
+knight of the Chalice {Prestige Class}^CW^53^The knight of the Chalice is a member of an elite knightly organization devoted to fighting demons and other evil outsiders.
+knight of the Chalice {Prestige Class}^DF^63^The knight of the Chalice is a member of an elite knightly organization devoted to fighting demons and other evil outsiders.
+Knight of the Crown {Prestige Class}^DCS^56^The Order of the Crown is the first tier of the Solamnic Knights.
+Knight of the Iron Glacier {Prestige Class}^Fr^62^The Knights of the Iron Glacier continue to honor the memory of General Aengrist in their deeds and actions.
+Knight of the Lily {Prestige Class}^DCS^63^The Knights of the Lily are the order of warriors within the Knights of Neraka.
+knight of the Middle Circle {Prestige Class}^DF^65^Knights of the Middle Circle provide security for Stargazer chapterhouses and may be called upon for similar service for allies of the Stargazers.
+Knight of the Rose {Prestige Class}^DCS^59^The Knights of the Rose are the highest tier of the Solamnic Knights.
+Knight of the Skull {Prestige Class}^DCS^65^Entering battle with strength and divine magic, Knights of the Skull are the spirit of the Dark Knights.
+Knight of the Sword {Prestige Class}^DCS^58^Knights of the Sword are warriors of the Solamnic Knights who fight with power and faith to defend justice and truth.
+Knight of the Thorn {Prestige Class}^DCS^66^The Knights of the Thorn are also known as the 'gray robes' for the ash-colored robes they wear to indicate that they do not serve the Orders of High Sorcery.
+knight protector {Prestige Class}^CW^55^Knight protectors are martial characters dedicated to restoring the ideals of knightly chivalry before they fade forever.
+Knight Protector of the Great Kingdom {Prestige Class}^SF^24^Knight protectors are martial characters dedicated to restoring the ideals of knightly chivalry before they fade forever.
+knight-errant of Silverymoon^SM^112^Charged with the safety of the city of Silverymoon and its citizens, the professional fighting force known as the Knights in Silver is often all that stands between Silverymoon and the dangers of the frontier.
+lasher {Prestige Class}^SF^25^The lasher prestige class uses the whip as an extension of herself.
+legendary dreadnought {Prestige Class}^EL^33^The legendary dreadnought is the ultimate foot soldier, an absolute force of destruction, a total warrior who excels at sheer combat prowess.
+legendary leader {Prestige Class}^HB^107^Legendary leaders are the stuff of bards' tales come to life.
+legendary tactician {Prestige Class}^DCS^81^Legendary tacticians are respected (or feared) for their ability to inspire their troops.
+lifedrinker {Prestige Class}^BV^63^Lifedrinkers are vampires who have been undead for a very long time.
+lion of Talisid {Prestige Class}^BE^65^The lions of Talisid protect nature and emulate their patron in more concrete ways.
+lord of tides {Prestige Class}^Sa^70^A lord of tides can sense the movement of magma, summon beings of elemental might, and open portals to the Elemental Planes.
+loredelver {Prestige Class}^RD^117^Loredelvers are illumian spellcasters who find and explore ruins, disable the magical protections that guard them, and sift through the ancient secrets found within.
+loremaster {Prestige Class}^DMG^191^Loremasters are spellcasters who concentrate on knowledge, valuing lore and secrets over gold.
+luckstealer {Prestige Class}^RW^118^As a luckstealer, you're part spellcaster, part professional gambler -- and 100% mischief-maker.
+Luiren marchwarden {Prestige Class}^ShS^35^The Luiren marchwarden is the defender of the frontier in the land of the halflings.
+lurking terror {Prestige Class}^LM^54^Lurking terrors are the quintessential hunting undead, displaying great prowess with their special abilities and amazing powers of stealth.
+maester {Prestige Class}^CAd^56^Maesters are the master crafters of the gnome world.
+mage of the Arcane Order {Prestige Class}^CAr^48^Also called a 'guildmage,' a member of this prestige class is a spellcaster who belongs to an academy and guild known as the Arcane Order.
+mage of the Arcane Order {Prestige Class}^TB^60^Also called a 'guildmage,' a member of this prestige class is a spellcaster who belongs to an academy and guild known as the Arcane Order.
+mage-killer^Mag^32^Mage-killers master magic designed for combat against other spellcasters.
+magelord {Prestige Class}^LE^17^Quick to anger, haughty, and proud of his Art, the magelord is an arcane spellcaster who studies an ancient magical tradition known for extremely fast and versatile spellcasting
+maho-bujin^OA^236^When Taint overcomes a character, she may find her way to the Festering Pit of Fu Leng and become a maho-bujin.
+maho-tsukai^OA^237^Maho (blood magic) wielders are called maho-tsukai.
+maiden of pain {Prestige Class}^PG^182^Loviatar's most dedicated servants, the maidens of pain, are depraved women who literally make pain their meat and drink.
+Mantis mercenary {Prestige Class}^OA^231^Mantis mercenaries make use of peasant weapons and a rolling motion.
+Maquar crusader {Prestige Class}^ShS^38^A Maquar crusader follows a strict code of conduct that not only limits what he can own or where he can live, but also limits the ways in which merchants can influence him.
+martyred champion of Ilmater {Prestige Class}^PG^184^Having already offered his life in sacrifice once, the martyred champion of Ilmater perseveres in Ilmater's faith.
+master alchemist {Prestige Class}^Mag^34^The master alchemist is a spellcaster who specializes in producing potions and elixirs that reproduce the effects of spells of 4th level or higher.
+master inquisitive {Prestige Class}^ECS^82^The master inquisitive takes the art of investigation and deduction to the ultimate level, rising to the top of the field.
+master of chains {Prestige Class}^SF^27^The master of chains is a combatant specializing in the use of chains -- specifically the spiked chain -- as a weapon.
+master of flies {Prestige Class}^SS^80^The master of flies is an intelligent swarm that can form a massive being at need, or a single creature that can dissolve into a cloud of vermin.
+master of many forms {Prestige Class}^CAd^58^A master of many forms has no shape that she calls her own.
+master of radiance {Prestige Class}^LM^44^Masters of radiance channel the pure, undiluted power of the sun.
+master of shrouds {Prestige Class}^DF^66^The master of shrouds is an evil spellcaster who magically seizes incorporeal undead and sets them to do her bidding.
+master of shrouds {Prestige Class}^LM^46^The master of shrouds is an evil spellcaster who magically seizes incorporeal undead and sets them to do her bidding.
+master of the unseen hand {Prestige Class}^CW^60^Masters of the unseen hand delight in crushing their foes with invisible force, flinging massive objects into the sky, and disarming enemies with a single thought.
+master of the Yuirwood {Prestige Class}^Una^24^The masters of the Yuirwood are an elite group of foresters who work to keep the ancient Yuirwood free of evil influence.
+master of vipers {Prestige Class}^SK^163^Outcast yuan-ti learn to hunt not only to feed themselves, but also to spread destruction far and wide for the pure pleasure of it.
+master samurai {Prestige Class}^SF^29^The master samurai is a military retainer of a feudal overlord; he practices a code of behavior that emphasizes the value of personal honor over life itself.
+master thrower {Prestige Class}^CW^58^Master throwers depend on quick reflexes, good planning, and deadly aim.
+master transmogrifist {Prestige Class}^CAr^51^The master transmogrifist is a sorcerer or wizard who has chosen to specialize in spells that change his form.
+master vampire {Prestige Class}^LM^55^Any vampire can create spawn, but it takes a very special vampire to rule over an entire gang of minions.
+menacing brute {Prestige Class}^RD^123^The menacing brute takes advantage of how must humans fear half-orcs, playing on that dread to make his living.
+metamind {Prestige Class}^XPH^147^Metaminds know that accumulating the most power in the shortest time is the key to psionic superiority.
+mindbender {Prestige Class}^CAr^54^Mindbenders seek to control the thoughts and dreams of others.
+mindbender {Prestige Class}^TB^63^Mindbenders seek to control the thoughts and dreams of others.
+mindspy {Prestige Class}^CW^62^By reading the minds of her enemies, a mindspy knows exactly what they're going to do a fraction of a second before they do it.
+Mirumoto niten master {Prestige Class}^OA^218^The Mirumoto school teaches a unique style of swordplay, rooted in this sense of duty.
+monk of the long death {Prestige Class}^PG^65^Monks of the long death are members of a macabre, secretive order of scholars seeking to understand the true nature of death.
+moonspeaker {Prestige Class}^RE^143^Bound to the magic of their lycanthrope ancestors, moonspeakers breathe the magic of the world, guided by the twelve moons of Eberron.
+Moonstar agent {Prestige Class}^CSW^84^Moonstar agents, also known as Teukiir, are members of the Tel Teukiira, a group founded by Khelben 'Blackstaff' Arunsun when he broke from the Harpers.
+morninglord of Lathander {Prestige Class}^PG^66^Morninglords are, in many ways, the epitome of the classical cleric archetype.
+mortal hunter {Prestige Class}^BV^64^Mortal hunters are fiends who specialize in killing mortals.
+Moto avenger {Prestige Class}^OA^228^The Moto avenger is dedicated to a war against the Shadowlands and its evils.
+mystic theurge {Prestige Class}^DMG^192^Blurring the line between divine and arcane, mystic theurges draw power from divine sources and musty tomes alike.
+mystic wanderer {Prestige Class}^Mag^35^Mystic wanderers are divine spellcasters who eschew normal church hierarchies and instead embrace freedom, wanderlust, and independence.
+naga overlord {Prestige Class}^SK^165^Naga overlords are evil masterminds who operate in secret, usually behind cults of devoted followers.
+Nar demonbinder {Prestige Class}^Una^25^Master of the black art of demon summoning, the Nar demonbinder keeps alive the sinister traditions of the old Empire of Narfell.
+nature's warrior^CW^63^Nature's warriors are defenders of the wild, protectors of the natural world . . . and often druids who have spent 'too much time' in wild shape form.
+Nentyar hunter {Prestige Class}^Una^28^Sworn to defend the great forests and serve the Nentyarch, druidic ruler of the Circle of Leth, the Nentyar hunters roam the wild lands of the East, uprooting foul and evil things.
+Night Mask deathbringer {Prestige Class}^CR^53^Night Mask deathbringers are highly trained members of the Westgate thieves' guild who have caught the favorable attention of the vampires in charge of the organization.
+nightcloak {Prestige Class}^FP^198^Nightcloaks are the apple of Shar's eye -- devoted to her vision, preserving her secrets, practicing her magic, as twisted and bitter as it is.
+nightsong enforcer {Prestige Class}^CAd^60^The enforcers of the Nightsong Guild focus on the stealth-centered combat training that rogues usually learn.
+nightsong infiltrator {Prestige Class}^CAd^62^The nightsong infiltrator is the perfect thief and the perfect spy.
+Ninja of the Crescent Moon {Prestige Class}^SF^30^The Ninja of the Crescent Moon is a mercenary clan whose members engage in sabotage and other covert missions for an outlandish fee.
+ninja spy {Prestige Class}^OA^43^True ninja spies are masters of exotic weapons, tools of stealth, and strange ki powers.
+occult slayer {Prestige Class}^CW^66^The occult slayer is driven to confront any arcane or divine spellcaster who crosses her path.
+ocular adept {Prestige Class}^FP^200^Ocular adepts have pledged their religious devotions to the alien entity known as the Great Mother, the deity matron of all beholders.
+Olin Gisir {Prestige Class}^LE^21^The Olin Gisiae are elite elf mages who have taken it upon themselves to guard dark secrets from the rest of the world
+ollam {Prestige Class}^CAd^66^In Dwarven, the world 'ollam' means teacher.
+oozemaster {Prestige Class}^MW^67^Oozemasters relate one-on-one with things that relate to nothing at all.
+orc scout {Prestige Class}^SM^114^Part wilderness warrior and part spy, the orc scout is a hero to his people.
+orc warlord {Prestige Class}^Rac^184^The orc warlord is a savage general of an unruly army, the leader of one of the deadly and all too common orc hordes that rampage down from the Spine of the World.
+Order of the Bow initiate {Prestige Class}^CW^68^By learning the meditative art of the Way of the Bow, the archer improves his discipline, precision, and spirituality.
+Order of the Bow Initiate {Prestige Class}^SF^32^By learning the meditative art of the Way of the Bow, the archer improves his discipline, precision, and spirituality.
+outcast champion {Prestige Class}^RD^126^Outcast champions bring hope to those who have no place in society.
+outlaw of the crimson road {Prestige Class}^SaS^10^An outlaw of the crimson road might be a revolutionary, a loyal supporter of some deposed ruler, or merely an ordinary individual who angered the wrong person at the wrong time.
+pale master {Prestige Class}^LM^47^Arcane casters can become pale masters, who draw on necromantic lore that provides a macabre power all its own.
+pale master {Prestige Class}^TB^64^Arcane casters can become pale masters, who draw on necromantic lore that provides a macabre power all its own.
+peerless archer {Prestige Class}^SM^115^The peerless archer devotes her life to perfecting her skill with the bow.
+peregrine runner {Prestige Class}^RS^116^When goliaths need to send a message to another tribe, they send an elite, fleet-of-foot warrior known as a peregrine runner.
+perfect wight {Prestige Class}^EL^34^The perfect wight is a master of skulking, the ultimate prowler and thief.
+pious templar {Prestige Class}^CD^50^Sworn to the defense of a temple site, the pious templar is a holy warrior blessed by her deity with combat prowess and great endurance.
+planar champion {Prestige Class}^MP^28^The planar champion moves between the planes, always driven to battle.
+planeshifter {Prestige Class}^MP^30^The planeshifter is a magical scholar and expert in planar travel, and through arcane research develops not only the ability to sense planar portals, but also the ability to create his own demiplane.
+platinum knight {Prestige Class}^Dr^133^The platinum knight protects good-aligned dragonkind from their natural enemies.
+prestige bard {Prestige Class}^UA^69^The prestige bard is a jack-of-all-trades, master of none.
+prestige paladin {Prestige Class}^UA^70^After training in the arts of combat and the mysteries of the divine, the prestige paladin is anointed as a holy warrior dedicated to the protection of law and goodness.
+prestige ranger {Prestige Class}^UA^71^The prestige ranger navigates the dark forests, craggy mountains, or desert wastes of her homeland with unparalleled skill.
+prime Underdark guide {Prestige Class}^Und^40^These skilled guides not only know how to overcome the physical challenges of the Underdark, but they also can help them over the social and cultural hurdles they are sure to face.
+primeval {Prestige Class}^Fr^65^The primeval is a warrior who has tapped into his racial memories to find and forge a bond with an ancient creature.
+prophet of Erathaoi {Prestige Class}^BE^66^The prophet of Erathaoi is a seer and visionary, a medium of the heavenly will, pronouncing judgment on corruption and evil in the world.
+psion uncarnate {Prestige Class}^XPH^148^Formless, fleshless, and unbound by the limits of corporeality -- this is the goal of every psion uncarnate.
+Purple Dragon knight {Prestige Class}^CW^70^Purple Dragon knights develop uncanny skills related to coordinating and leading soldiers.
+Purple Dragon knight {Prestige Class}^FRCS^49^Purple Dragon knights develop uncanny skills related to coordinating and leading soldiers.
+Purple Dragon knight {Prestige Class}^PG^68^Purple Dragon knights develop uncanny skills related to coordinating and leading soldiers.
+pyrokineticist {Prestige Class}^XPH^151^Pyrokineticists know that a little psionic power goes a long way -- for those interested in fire.
+quori nightmare {Prestige Class}^RE^148^The quori nightmare taps into the primal horrors and urges of the subconscious.
+radiant servant of Pelor {Prestige Class}^CD^52^The radiant servants of Pelor put the dogma of demonstrating strength through charity and modesty into living practice.
+rage mage {Prestige Class}^CW^72^The rage mage's approach to magic is based on the primal passion of magic more than the studious quasi-scientific approach.
+rainbow servant {Prestige Class}^CD^54^Those who have learned what the couatl temples have to offer are known as rainbow servants.
+Raumathari battlemage {Prestige Class}^Una^29^Employing sword and spell with dauntless courage and deadly force, the handful of Raumathari battlemages remaining in the world comprise a lonely and little-known order of adventurers, explorers, and mercenaries in search of battle.
+ravager {Prestige Class}^CW^73^The infamous ravager has dedicated himself to the service of Erythnul, deity of slaughter.
+ravager {Prestige Class}^SF^33^The infamous ravager has dedicated himself to the service of Erythnul, deity of slaughter.
+reachrunner {Prestige Class}^RE^153^Known for their mastery of the untamed world, some shifters rise above others in woodslore, physical ability, and stamina to claim the revered mantle of the reachrunner -- the greatest of shifter trackers and scouts.
+reaping mauler {Prestige Class}^CW^75^Reaping maulers are the back-breakers, the limb-twisters, and the neck-snappers among pit fighters.
+recaster {Prestige Class}^RE^157^To the recaster, the change her own body is capable of is a simple reflection of the mutability of the world around her.
+Red Avenger {Prestige Class}^SF^34^The Red Avenger is the master of ki,an ancient and formidable discipline that allows the user to accomplish the extraordinary.
+Red Wizard {Prestige Class}^DMG^193^The Red Wizards are the masters of Thay, the would-be magical overlords of the land of Faerun.
+Red Wizard {Prestige Class}^FRCS^50^The Red Wizards are the masters of Thay, the would-be magical overlords of the land of Faerun.
+reforged {Prestige Class}^RE^161^The reforged represents the realized ideal of the warforged's living aspects.
+righteous zealot {Prestige Class}^DCS^83^The righteous zealot is a person with a cause that directs every aspect of life.
+rimefire witch {Prestige Class}^Fr^67^A rimefire witch is one who has followed a mysterious call to the core of a rimefire iceberg and becomes infused with great power by the rimefire eidolon.
+risen martyr {Prestige Class}^BE^68^A risen martyr is an exalted character who continues in his earthly existence after his martyrdom in order to finish some unfinished task.
+ronin {Prestige Class}^CW^77^A ronin is a masterless warrior cast adrift in the world, but still clinging to the remnants of his former life.
+royal explorer {Prestige Class}^SaS^13^Some monarchs sponser crack teams of explorers.
+ruathar {Prestige Class}^RW^122^Also known as 'elf-friend' or 'star-friend,' a ruathar is a person of some other race who has earned the special friendship of the elven folk.
+runecaster {Prestige Class}^FRCS^51^Those that choose to master the ability to create runes of power are runecasters.
+runecaster {Prestige Class}^PG^69^Those that choose to master the ability to create runes of power are runecasters.
+runescarred berserker {Prestige Class}^Una^31^Deadly barbarians who bear magical runes carved into their flesh, runescarred berserkers are among the most feared of Rashemen's defenders.
+runesmith {Prestige Class}^RS^118^A runesmith has learned to harness the power of runes and can fling fireballsand other staple arcane spells even while encased in full plate armor.
+sacred exorcist {Prestige Class}^CD^56^Sacred exorcists hope to drive away the spiritual forces of evil, prevening them from causing harm to the bodies and souls of humanity.
+sacred exorcist {Prestige Class}^DF^68^Sacred exorcists hope to drive away the spiritual forces of evil, prevening them from causing harm to the bodies and souls of humanity.
+sacred fist {Prestige Class}^CD^59^Sacred fists are independent organizations found within many temples.
+sacred fist {Prestige Class}^DF^70^Sacred fists are independent organizations found within many temples.
+sacred purifier {Prestige Class}^LM^49^Sacred purifiers are priestly characters who specialize in destroying undead.
+sacred warder of Bahamut {Prestige Class}^Dr^96^Sacred warders of Bahamut protect others from the power of Tiamat's brood.
+sanctified mind {Prestige Class}^LoM^198^A sanctified mind believes that all evil-aligned psionics-using creatures must be crushed.
+sand shaper {Prestige Class}^Sa^76^Sand shapers are part prophet, part priest, part magician, and part assassin.
+savant aboleth {Prestige Class}^LoM^21^Savant aboleths are the eldest, most intelligent, wisest and most forceful of personality.
+scaled horror {Prestige Class}^SS^83^Scaled horrors are elite amphibious soldiers.
+scar enforcer {Prestige Class}^RD^130^Scar enforcers are angry, embittered half-elves who have rejected both sides of their ancestry.
+scion of Tem-Et-Nu^Sa^82^Paladins of the temple of Tem-Et-Nu are sometimes selected to become the guardians of the rivers.
+scorpion heritor {Prestige Class}^Sa^86^Scorpion heritors, through a special relationship with the scorpion spirit, gain the mystical abilities of the scorpion, and can even take its shape.
+scourge maiden {Prestige Class}^ShS^40^Scourge maidens are warrior-priestesses of Loviatar dedicated to pain and anguish.
+Sea Mother whip {Prestige Class}^Und^42^Devout worshipers of Blibdoolpoolp who seek closer communion with the Sea Mother often gain additional abilities in the Sea Mother whip prestige class.
+seeker of the Misty Isle {Prestige Class}^CD^61^Seekers search for the lost elves of Misty Isle.
+seeker of the song {Prestige Class}^CAr^56^Seekers of the song wield the power of music in ways that amaze even the most skilled bards.
+sentinel of Bharrai {Prestige Class}^BE^69^Respect for the power of nature, the desire to further the ends of good, and the resolve to destroy evil are the core beliefs of a sentinel of Bharrai.
+serpent slayer {Prestige Class}^SK^166^Some individuals devote their entire lives to thwarting the yuan-ti.
+Shaaryan hunter {Prestige Class}^PG^71^On the backs of their swift horses, Shaaryan hunters can run down even the fastest prey and either spear it with a lance or pelt it with arrows from horseback.
+shade hunter {Prestige Class}^CR^58^The shade hunter is a breed of adventurer who lives for the thrill of finding lost treasure, defeating ancient traps, and surviving deadly curses laid by the priests of dead gods.
+shadow adept {Prestige Class}^FRCS^52^Shadow adepts hurl themselves into the abyss of the Shadow Weave, immediately acquiring all the gifts available to casual students and discovering secrets unavailable to all but the most dedicated.
+shadow adept {Prestige Class}^PG^72^Shadow adepts hurl themselves into the abyss of the Shadow Weave, immediately acquiring all the gifts available to casual students and discovering secrets unavailable to all but the most dedicated.
+shadow scout {Prestige Class}^OA^44^The camouflage of a tiger, the stamina of a horse, the eyes of an eagle: these are the ingredients of the shadow scouts.
+shadow sentinel {Prestige Class}^RD^137^Shadow sentinels are elite illumian warriors who protect their people from githyanki raiders, demonic invastions, and hordes of barely imaginable monsters from the Plane of Shadow.
+shadow thief of Amn {Prestige Class}^PG^74^A shadow thief of Amn knows only her own minions, her coworkers, and her superior.
+shadowbane inquisitor {Prestige Class}^CAd^68^Shadowbane inquisitors battle incessantly against evil in whatever form it takes.
+shadowbane stalker {Prestige Class}^CAd^70^Shadowbane stalkers find evil hidden in civilized areas so that the martial arm of the order (the inquisitors) can spearhead the attack.
+shadowcraft mage {Prestige Class}^RS^120^Some gnomes have an even greater affinity for illusions than the average representative of their race, resulting in the prestige class known as the shadowcraft mage.
+shadowcrafter {Prestige Class}^Und^43^Shadowcrafters long ago mastered illusions and glamers.
+shadowdancer {Prestige Class}^DMG^194^Operating in the border between light and darkness, shadowdancers are nimble artists of deception.
+shadowmind {Prestige Class}^CAd^74^A shadowmind blends psionic powers and uncanny stealth into an effective whole.
+shapeshifter {Prestige Class}^OA^45^Shapeshifters must already have some means of changing their form before learning to master that change.
+Sharn skymage {Prestige Class}^Sh^165^By studying the properties of the manifest zone in which Sharn is situated, learning its intricacies and methods for manipulating it, a spellcaster can improve her magical or natural ability to fly.
+Shiba protector {Prestige Class}^OA^222^The warriors of the Shiba family are sworn to protect the Isawa family.
+shifter {Prestige Class}^MW^68^The shifter has no form that she calls her own.
+shining blade of Heironeous {Prestige Class}^CD^63^The shining blade of Heironeous is a member of an order of knights dedicated to prowess in melee combat.
+Shintao monk {Prestige Class}^OA^46^Shintao monks are dedicated to following the teachings of Shinsei.
+Shou disciple {Prestige Class}^Una^32^Shou disciples are martial artists who have studied or observed the monks of Kara-Tur and seek to emulate their style.
+silverstar {Prestige Class}^FP^201^Silverstars are dedicated advocates of freedom and tolerance, wanderers on the path of truth, and absolute foes of Shar.
+singh rager {Prestige Class}^OA^48^Singh ragers draw their furious strength from the noble lion.
+siren {Prestige Class}^SS^84^A harpy siren is an artist who constantly seeks to expand and improve upon her innate sonic ability.
+skullclan hunter {Prestige Class}^MH^20^The skullclan hunter is the acclaimed foe of unlife.
+skylord {Prestige Class}^BE^71^An elf crusader, the skylord uses his kinship with creatures of the sky and the power of the winds to fight evil.
+skypledged {Prestige Class}^RW^126^The skypledged represent a mystical tradition among the raptorans that hearkens back to an ancient pact with powerful lords of the Elemental Plane of Air.
+slaad brooder {Prestige Class}^SS^87^The brooder's sole purpose is to implant as many eggs pellets as he can to produce the widest possible range of progeny.
+slayer of Domiel {Prestige Class}^BE^73^Sometimes the skillset of an assassin is required for more noble pursuits.
+slime lord {Prestige Class}^PG^186^Slime lords, the most favored of Ghaunadar's servants, are not clerics; they are spies and infiltrators who can change their shapes in order to move unnoticed among members of any race.
+Soldier of Light {Prestige Class}^DD^208^The Soldiers of Light are a military order dedicated to open warfare against the minions of their church's enemies.
+soul eater {Prestige Class}^BV^66^The soul eater is a monstrous being that feeds on the very essence of life force.
+spell scion {Prestige Class}^UA^167^This prestige class is for characters who wield legendary weapons designed for use by arcane spellcasters, such as wizards, sorcerers, and sometimes bards.
+spellcarved soldier {Prestige Class}^RE^166^Spellcarved soldiers are warforged warriors who engrave magic runes into the plating of their inherently magic bodies, gaining remarkable defensive abilities.
+spelldancer {Prestige Class}^Mag^37^Spelldancers are an energetic sort of spellcaster who draw on the quasi-primal energy of song and dancing to power their magic.
+spellfire channeler {Prestige Class}^Mag^38^Those who practice their spellfire can hone their talent into a tool with fantastic abilities that most dabblers can only dream of.
+Spellguard of Silverymoon {Prestige Class}^PG^75^The Spellguard, Silverymoon's elite cadre of battle-trained arcane spellcasters, protects the city against the threat of hostile magic and aids the Knights in Silver against more mundane threats.
+spellsinger {Prestige Class}^Rac^185^Spellsingers are rare practitioners of an ancient elven bardic tradition.
+spellsword {Prestige Class}^CW^79^The dream of melding magic and weaponplay is fulfilled in the person of the spellsword.
+spellsword {Prestige Class}^TB^67^The dream of melding magic and weaponplay is fulfilled in the person of the spellsword.
+Spur Lord {Prestige Class}^LD^11^The Spur Lords are elite zealots of the church, wielding the dark power of Cyric and commanding the attention of even the most fanatical clerics.
+spymaster {Prestige Class}^CAd^76^Spymasters do their work quietly and in private, and they often have a cover identity.
+spymaster {Prestige Class}^SaS^14^Spymasters do their work quietly and in private, and they often have a cover identity.
+stalker of Kharash {Prestige Class}^BE^75^The stalkers of Kharash are a loose-knit order of rangers, rogues, and other characters devoted to fighting evil under Kharash's patronage.
+steel legionnaire {Prestige Class}^DCS^68^Steel legionnaires are members of the Legion of Steel.
+stoneblessed {Prestige Class}^RS^122^A stoneblessed bonds to the stone of the mountains, blending into a dwarf, gnome, or goliath community and making it her home.
+stonedeath assassin {Prestige Class}^RS^124^Most stonedeath assassins are hobgoblin rogues or rangers, but bugbears and even exceptional goblins have been known to undertake stonedeath training and learn the ways of infiltrating dwarf strongholds by disarming traps, weakening gates, and assassinating dwarf leaders.
+stonelord {Prestige Class}^CW^81^The earth whispers to special dwarves known as stonelords.
+stonespeaker guardian {Prestige Class}^RS^127^The stonespeaker guardian taps into the divine power of the earth itself to defend her fellow stonespeakers, as well as other goliaths and friendly races, from their enemies.
+stormlord {Prestige Class}^CD^65^Stormlords often live as brigands, indulging their personal desires for wealth, food, luxury items, and wanton behavior as they crave random, spectacular acts of violence.
+stormlord {Prestige Class}^FP^203^Stormlords are the chief agents of the Destroyer's wrath, inflicting destructive rampages wherever they wander in order to spread word of his endless fury.
+stormsinger {Prestige Class}^Fr^70^The stormsingers have learned the secret methods of harnessing the magic powers of music to influence and control the weather.
+stormtalon {Prestige Class}^RW^131^The stormtalons are consummate aerial warriors, using both their weapons and their razor-sharp foot talons to dive on their hapless foes.
+streetfighter {Prestige Class}^CAd^79^Streetfighters seek the challenges of the back alleys as a way of testing themselves and their experience in the wilder world.
+strifeleader {Prestige Class}^FP^204^Strifeleaders are the chief instruments of the Dark Sun, charged with spreading the One True Way of Cyric through force and deception.
+sublime chord {Prestige Class}^CAr^60^In return for abandoning her continuing study of bardic music, a sublime chord instead masters a number of spells more powerful than most bards can ever use.
+Suel arcanamach {Prestige Class}^CAr^63^Arcanamach formerly served as elite guards and agents for powerful wizards.
+Sun Soul monk {Prestige Class}^CSW^88^Monks of the Sun Soul Order believe that they each harbor a small fragment of the sun's divine essence.
+sunmaster {Prestige Class}^LE^25^The sunmasters are members of a sect within the church of Lathander who believe that the Morninglord is the living reincarnation of Amaunator.
+survivor {Prestige Class}^SS^89^Those who survive a program of frequent assaults and other dangers emerge a few weeks later -- tougher, faster, and less vulnerable to attacks.
+swanmay {Prestige Class}^BE^76^Swanmays are members of a secretive order sworn to protect wilderness areas from evil.
+swift scion {Prestige Class}^UA^168^This prestige class is for those who wield legendary weapons that make use of or improve the wielder's stealth, speed, or dexterity (in the general sense).
+sword dancer {Prestige Class}^FP^205^Sword dancers are expected to lead the drow migration and work to promote harmony between drow and surface-dwelling races.
+sword of righteousness {Prestige Class}^BE^77^Pursuit of a commitment to righteousness and purity that exceeds the norm is a quality of a sword of righteousness.
+sybil {Prestige Class}^SS^90^Steeped in ancient lore, or maddened by divine inspiration, the sybil is a reclusive prophet.
+tactical soldier {Prestige Class}^MH^22^The tactical soldier is the master of teamwork in melee.
+tainted sorcerer {Prestige Class}^UA^191^Tainted sorcerers find an easy path to tremendous magical power.
+tainted warrior {Prestige Class}^UA^193^When a character's taint threatens to exceed the capacity of his body and soul to contain it, he may become possessed by its evil power and transformed into a creature of taint.
+talon of Tiamat {Prestige Class}^Dr^134^The talon of Tiamat furthers the goals of evil dragonkind.
+Talontar blightlord {Prestige Class}^Una^34^Corrupt priests who revel in decay, the blightlords of Talona are feared and reviled throughout the Unapproachable East.
+tamer of beasts {Prestige Class}^MW^70^Through magic and his overwhelming concern for his charges, the tamer of beasts can make them tougher and more intelligent.
+tattooed monk {Prestige Class}^CW^82^Certain monastic orders bestow supernatural or spell-like powers on their members by inscribing magic tattoos on their skin.
+tattooed monk {Prestige Class}^OA^49^Certain monastic orders bestow supernatural or spell-like powers on their members by inscribing magic tattoos on their skin.
+techsmith {Prestige Class}^FP^206^Techsmiths are devoted to the development of new inventions and the progression of achievement in the name of the Wonderbringer.
+Telflammar shadowlord {Prestige Class}^Una^36^Above all the criminals of the Shadowmasters of Telflamm stand the Telflammar shadowlords,the secret captains of iniquity who demand unquestioned obedience from their numerous minions.
+tempest {Prestige Class}^CAd^81^A tempest is the point of calm within a whirling barrier of deadly blades.
+tempest {Prestige Class}^MW^72^A tempest is the point of calm within a whirling barrier of deadly blades.
+templar {Prestige Class}^DF^72^Sworn to the defense of a temple site, the templar is a holy warrior blessed by her deity with combat prowess and great endurance.
+temple raider of Olidammara {Prestige Class}^CD^67^The temple raiders are an elite cadre of thiees who worship the Laughing Rogue and specialize in stealing valuables and secret lore from the temples of other deities.
+temple raider of Olidammara {Prestige Class}^SaS^16^The temple raiders are an elite cadre of thiees who worship the Laughing Rogue and specialize in stealing valuables and secret lore from the temples of other deities.
+thaumaturgist {Prestige Class}^DMG^196^The thaumaturgist reaches out with divine power to other planes of existence, calling creatures there to do his bidding.
+Thayan gladiator {Prestige Class}^CR^63^Popular and skillful gladiators fill the arenas of Faerun from Calimshan to the Dragon Coast, but the brutal Thayan gladiators are the best of the best.
+Thayan knight {Prestige Class}^CW^85^Thayan knights have mastered the art of swordplay, are familiar with magic, and are loyal to none but the tattooed mages.
+Thayan knight {Prestige Class}^LD^64^Thayan knights have mastered the art of swordplay, are familiar with magic, and are loyal to none but the tattooed mages.
+Thayan slaver {Prestige Class}^Una^37^Thayan slavers are cruel marauders who use their awful abilities to abduct creatures and then break their wills.
+thief-acrobat^CAd^83^A thief-acrobat excels in getting in and getting out.
+thief-acrobat^SaS^18^A thief-acrobat excels in getting in and getting out.
+thrall of Demogorgon {Prestige Class}^BV^67^A thrall of Demogorgon thrives on the chaotic nature of mutation and deformity.
+thrall of Graz'zt^BV^68^The thrall of Graz'zt is a sinister, conniving, and thoroughly evil master of arcane lore and dark secrets.
+thrall of Juiblex {Prestige Class}^BV^70^A thrall of Juiblex oozes a horrible slime and is surrounded by a nauseating stench.
+thrall of Orcus {Prestige Class}^BV^71^A thrall of Orcus has devoted herself to the demon prince of undeath.
+thrallherd {Prestige Class}^XPH^153^Thrallherds manipulate the minds of others as if they were clay in the hands of a sculptor.
+tomb warden {Prestige Class}^LM^57^Tomb wardens serve as selfless, undying protectors of the dead.
+topaz guardian {Prestige Class}^LoM^203^Resolute crusaders, the topaz guardians are the elite initiates of the Holy Order of the Supernal Topaz Defenders.
+tribal protector {Prestige Class}^SF^35^The tribal protector is the battlefield champion of a savage humanoid race.
+troubadour of stars {Prestige Class}^BE^78^Bards who channel their celestial music through their mortal voices and instruments are troubadours of stars.
+true necromancer {Prestige Class}^LM^51^Those who seek to raise an unyielding obedience from the dead willingly tread the path of necromancy.
+true necromancer {Prestige Class}^TB^69^Those who seek to raise an unyielding obedience from the dead willingly tread the path of necromancy.
+unholy ravager of Tiamat {Prestige Class}^Dr^97^Those who devote themselves to Tiamat's cause become unholy ravagers of Tiamat.
+Union Sentinel {Prestige Class}^EL^35^A Union Sentinel is a member of an elite police force that guards the demiplane city of Union.
+urban soul {Prestige Class}^RD^141^Urban souls are the chosen champions of the deity Urbanus, charged with protecting city denzens from external dangers and from subtler threats to the city.
+ur-priest^BV^72^A small number of ur-priests have learned to tap into divine power and use it without praying to or worshiping a god.
+ur-priest^CD^70^A small number of ur-priests have learned to tap into divine power and use it without praying to or worshiping a god.
+vassal of Bahamut {Prestige Class}^BE^80^A vassal of Bahamut is a devout, nondraconic champion in the service of the Dragon King.
+vengeance knight {Prestige Class}^CR^67^Vengeance knights roam the Lands of Intrigue in search of those who have committed acts of treachery against their employers, the Knights of the Shield.
+verdant lord {Prestige Class}^MW^73^The verdant lord is the final defender of the forest.
+vermin keeper {Prestige Class}^Und^44^To a vermin keeper, insects are perfect killers.
+vermin lord {Prestige Class}^BV^73^The vermin lord offers itself as a host for all manner of parasitic organisms.
+vigilante {Prestige Class}^CAd^85^The vigilante combines magical and mundane investigative techniques to assess a crime scene.
+vigilante {Prestige Class}^SaS^20^The vigilante combines magical and mundane investigative techniques to assess a crime scene.
+virtuoso {Prestige Class}^CAd^89^The typical virtuoso is outgoing, charismatic, and gregarious.
+virtuoso {Prestige Class}^SaS^22^The typical virtuoso is outgoing, charismatic, and gregarious.
+visionary seeker {Prestige Class}^PlH^53^A visionary seeker knows how to navigate the mental plain stretching out ahead, finding landfall and truly discovering what it means to know.
+void disciple {Prestige Class}^CD^72^Void disciples understand that everything in the world contains all the basic elements, held together by the least tangible essence.
+void disciple {Prestige Class}^OA^51^Void disciples understand that everything in the world contains all the basic elements, held together by the least tangible essence.
+walker in the waste {Prestige Class}^Sa^89^A walker in the waste embodies the harsh, unforgiving nature of the desert.
+war chanter {Prestige Class}^CW^87^A war chanter's music flows across the battlefield like a raging torrent, catching friends and foes alike in its wake.
+war hulk {Prestige Class}^MH^22^The war hulk is a creature of great size and talent who is specifically trained to shock and awe opposing massed troops.
+war mind {Prestige Class}^XPH^155^War minds are expert fighters who claim to possess unequaled knowledge in the art of war.
+war weaver {Prestige Class}^HB^112^By weaving together strands of pure arcane power, the war weaver becomes a force to be reckoned with on the battlefield.
+war wizard of Cormyr {Prestige Class}^Mag^40^The Cormyrean war wizards are some of the most respected battle-mages in Faerun.
+warchief {Prestige Class}^MH^24^A warchief leads a primitive, aggressive tribe of humanoids, especially when they turn to marauding.
+warforged juggernaut {Prestige Class}^ECS^83^As a machine of war, the juggernaut is among the best at dealing damage and sustaining punishment.
+warmaster {Prestige Class}^SF^37^Warmasters are trained at the College of War and can become a formidable presence on the battlefield.
+warpriest {Prestige Class}^CD^74^Warpriests are fierce, earthy clerics who pray for peace but prepare for war.
+warpriest {Prestige Class}^DF^74^Warpriests are fierce, earthy clerics who pray for peace but prepare for war.
+warrior of darkness {Prestige Class}^BV^75^The warrior of darkness, sometimes called the dark knight, is a practitioner of black magic.
+warrior skald {Prestige Class}^Rac^186^Accompanying heroes of great renown, warrior skalds fight at their sides while composing the epics that will be told for centuries to come.
+warshaper {Prestige Class}^CW^89^The warshaper grows and evolves her own weapons and armor to suit the threat at hand.
+warsling sniper {Prestige Class}^Rac^188^The warsling sniper is an expert in the use of the weapon commonly associated with the halfling race.
+watch detective {Prestige Class}^MW^75^The watch detective specializes in solving mysteries.
+waverider {Prestige Class}^SS^93^The waverider and her companion animal defend their city with a vigor that exceeds either's individual powers.
+waveservant {Prestige Class}^FP^209^Waveservants server the Bitch Queen as both tribute gatherers and enforcers.
+wayfarer guide {Prestige Class}^CAr^65^The wayfarer guide focues on honing her skill at instantaneous magical transportation.
+wayfarer guide {Prestige Class}^TB^70^The wayfarer guide focues on honing her skill at instantaneous magical transportation.
+weapon master {Prestige Class}^SF^38^For weapon masters, the perfection of kiis found in the mastery of a single melee weapon.
+weapon master (kensei)^OA^53^For weapon masters, the perfection of kiis found in the mastery of a single melee weapon.
+wearer of purple {Prestige Class}^FP^210^Wearers of purple are members of the Cult of the Dragon who embrace the creation and veneration of the Sacred Ones, the great dracoliches of Faerun.
+weretouched master {Prestige Class}^ECS^85^Weretouched masters are shifters who learn to enhance their shifting ability to accentuate the power of their lycanthrope heritage.
+whisperknife {Prestige Class}^RW^135^The halfling whisperknife seeks to repay murder, theft, or humiliation in the same coin.
+wild mage {Prestige Class}^CAr^68^Wild mages aspire to cast spells without structure.
+wild plains outrider {Prestige Class}^CAd^92^Wild plains outriders work tirelessly to keep the plains as safe as such remote places can be.
+wild scout {Prestige Class}^SM^117^Wild scouts are the spies of the wilderness, traversing the open and wild country in search of valuable information.
+wildrunner {Prestige Class}^RW^139^Wildrunners give themselves almost wholly to nature, seeking to return to their untamed roots and eventually become fey creatures.
+windrider {Prestige Class}^MW^77^The windrider is a specialist in mounted combat, but hers is no ordinary mount.
+windwalker {Prestige Class}^FP^212^Windwalkers learn to shape the winds with their hands and ride them to lands as yet unseen.
+winterhaunt of Iborighu {Prestige Class}^Fr^72^As minions of the Frozen King, the winterhaunts of Iborighu lust for nothing less than eternal winter.
+witch hunter {Prestige Class}^OA^54^Witch hunters combine magical training with combat expertise to battle the spiritual forces of evil in the world.
+Wizard of High Sorcery {Prestige Class}^DCS^71^Once a wizard successfully completes (and survives) the Test of High Sorcery, his choices dictate his robe color and which deity of magic grants him power.
+wonderworker {Prestige Class}^BE^82^Wonderworkers sacrifice some of their spellcasting ability to grow closer to the ideal of goodness they revere.
+yakuza {Prestige Class}^OA^55^Yakuza represent the shadowy underworld and provide protection for the helpless.
+Yathchol webrider {Prestige Class}^Und^46^With their intimate understanding of webspinning and their familiarity with the Overweb, Yathchol webriders can move about the Underdark as they choose.
+yathrinshee {Prestige Class}^PG^187^Yathrinshees, the elite ranks of Kiaransalee's priests, are powerful masters of necromantic magic, both arcane and divine.
+yuan-ti cultist^SS^97^The mysteries of the evil deities of the yuan-ti are mastered by yuan-ti cultist masters.
+Zhentarim skymage {Prestige Class}^LD^102^These powerful spellcasters ride strange flying beasts and serve the Zhentarim by performing acts of espionage and causing unrest on the frontiers of civilization.
+Zhentarim spy {Prestige Class}^PG^77^The Zhentarim spy is probably the one Faerunians encounter most often -- even if they never realize it.
+knight phantom {Prestige Class}^FN^41^The knight phantom prestige class takes capable wizards and gradually turns them into capable melee fighters, without slowing their spellcasting too much.
+Dark Lantern {Prestige Class}^FN^68^The Dark Lanterns serve the crown of Breland as spies and assassins.
+Cyran avenger {Prestige Class}^FN^86^These survivors of the Day of Mourning seek to uncover the cause of the cataclysm and avenge their people against the architects of the Mournland.
+bone knight {Prestige Class}^FN^117^Bone knights are Karrn patriots, living protectors who fight alongside the undead legions of their land.
+silver pyromancer {Prestige Class}^FN^150^The silver pyromancer is an arcane champion of the Church of the Silver Flame, taking his place alongside clerics, paladins, and exorcists in the Church's cause.
+legacy champion {Prestige Class}^WL^19^You are so devoted to the history and chronicle of a particular item of legacy that you enjoy enhanced access to your item's legacy abilities.
+cataclysm mage {Prestige Class}^EH^58^Cataclysm mages seek after Eberron's most powerful mysteries, long lost to the past.
+thunder guide {Prestige Class}^EH^64^Bodyguards to nobles on safari, shepherds to spelunking university professors, and the real-life heroes of chronicle serials across Khorvaire, thunder guides provide the strong blades, keen senses, and local knowledge necessary to survive a trip across the Thunder Sea.
+windwright captain {Prestige Class}^EH^70^The self-proclaimed masters of sky and sea, the windwright captains are the finest pilots of airships and wind galleons on Eberron.
+knight of the pearl {Prestige Class}^Sto^52^The knight of the pearl is a loyal defender of the aventi people, dedicated to the service of Aventernus and his appointed kings.
+legendary captain {Prestige Class}^Sto^56^A legendary captain might be the commander of a fleet's flagship or a bloodthirsty pirate, but whatever the role, her reputation is widespread and her crew fanatically loyal.
+leviathan hunter {Prestige Class}^Sto^61^The leviathan hunter is dedicated to hunting down creatures of the perilous depths.
+scarlet corsair {Prestige Class}^Sto^65^The scarlet corsair relies on the reputation of her quick blade and terrible fighting skills to drive her prey before her.
+sea witch {Prestige Class}^Sto^68^A sea witch is a terrible chaotic mage who wields the powers of water and calls on the living horrors of the deep.
+stormcaster {Prestige Class}^Sto^72^The stormcaster is one who seeks to tap into the power of a strange and terrifying phenomenon: the raging storm.
+wavekeeper {Prestige Class}^Sto^76^Some druids feel the call of the primal deeps.
+Knight of the Flying Hunt {Prestige Class}^CoV^106^Defenders of Nimbral, protectors of the island realm's quiet, simple folk, noble soldiers answering to the powerful but mysterious Nimbral Lords -- the Knights of the Flying Hunt epitomize valor and grace in word, deed, and bearing.
+Knight of the Weave {Prestige Class}^CoV^111^Members of this mystic order of sacred defenders cherish the Weave like a fine wine.
+Moonsea skysentinel {Prestige Class}^CoV^117^Moonsea skysentinels are the eyes in the sky for the Knights of the North, scouting the landscape, looking for evidence of Zhentarim activity.
+Triadic knight {Prestige Class}^CoV^123^Triadic knights are holy warriors who worship the Triad of Tyr, Torm, and Ilmater.
+corrupt avenger {Prestige Class}^HH^88^A corrupt avenger accepts any cost to have his vengeance, even to the forfeit of his very soul.
+death delver {Prestige Class}^HH^93^The death delver is that rare individual, who, rather than fearing and avoiding death, delves as deeply into its mysteries as he can, to better understand and eventually gain some small power over it.
+dread witch {Prestige Class}^HH^98^The dread witch is a spellcaster who manipulates fear as readily and effectively as other casters manipulate magic itself.
+fiend-blooded^HH^102^With careful exploration, a spellcaster who feels a call from within can slowly bring the power of their fiendish lineage to the surface.
+purifier of the Hallowed Doctrine {Prestige Class}^HH^108^Purifiers of the Hallowed Doctrine consider themselves servants not of gods but of the spiritual well-being of the world itself.
+tainted scholar {Prestige Class}^HH^113^No secret is barred from the tainted scholar's grasp, and if such forbidden knowledge comes at the cost of his soul, he's willing to pay that price.
+alchemist savant {Prestige Class}^MoE^53^The alchemist savant excels in the capacity to break down the normal barriers that lie between alchemy and magic, between potion and alchemical fluid, between science and art.
+deadgrim {Prestige Class}^MoE^57^The deadgrim are an elite faction with in the Red Watchers, a new organization of undead hunters within Karrnath.
+dragon prophet {Prestige Class}^MoE^63^The dragon prophet is a member of one of the 'lesser races' who shares the dragons' ambitious goal of understanding the complex and convoluted draconic Prophecy.
+elemental scion of Zilargo {Prestige Class}^MoE^68^The elemental scion of Zilargo attempts to understand the true nature of the elements through bizarre methods.
+impure prince {Prestige Class}^MoE^73^Of those who make it their special mission to rid the world of aberrations and their masters, only impure princes can claim the distinction of using daelkyr-inspired corruptions and symbionts as their most effective tool in aberration cleansing.
+quori mindhunter {Prestige Class}^MoE^77^The quori mindhunter has a single mission: to hunt down and destroy the quori spirits that corrupt humanity, and the possessed Inspired that further the aims of the Dreaming Dark.
+renegade mastermaker {Prestige Class}^MoE^81^A renegade mastermaker applies the secrets of warforged creation methods to his own body, slowly replacing parts of his body with mechanical augmentations.
+vigilant sentinel of Aerenal {Prestige Class}^MoE^85^Part spy, part assassin, and completely loyal to the Sibling Kings and Aerenal's undying rulers, the sentinels roam across Eberron.
+incandescent champion {Prestige Class}^MoI^115^The incandescent champion seeks to dispense with barriers and obstacles both tangible and intangible so that she can touch the cosmic soul with her unveiled body, mind, and spirit.
+incarnum blade {Prestige Class}^MoI^121^Using a secret passed down through the generations, the incarnum blade shapes soul energy drawn from the greatest warriors of the past into a special soulmeld that is incorporated into his melee weapon of choice.
+ironsoul forgemaster {Prestige Class}^MoI^126^Only the ironsoul forgemaster can craft a weapon that combines these arts with the shaping of soul essence.
+necrocarnate {Prestige Class}^MoI^132^Dealers in death and torturers of souls, necrocarnates number among the most evil creatures in any world.
+sapphire hierarch {Prestige Class}^MoI^136^The elite members of an order of priests of law defend the temple, contemplate the mysteries of the Sapphire Eidolon, and seek to fulfill its single command by perfecting themselves and bringing order out of chaos wherever they find it.
+soulcaster {Prestige Class}^MoI^142^Soulcasters excel at incorporating soul energy into their magic.
+spinemeld warrior {Prestige Class}^MoI^147^When a spinemeld warrior trains, he is participating in a tradition that has long been venerated in skarn society.
+totem rager {Prestige Class}^MoI^153^The totem rager embodies the wrath of nature in its most bestial form.
+umbral disciple {Prestige Class}^MoI^158^The umbral disciple is a student of shadow in both a literal and a metaphysical sense.
+witchborn binder {Prestige Class}^MoI^162^Elite agents within the Vigilant Servants, a society whose members make it their business to frustrate the plans of the witchborn, witchborn binders are incarnum-wielding mage-hunters who can use the power of soul energy to create shields, traps, and shackles.
+gatekeeper mystagogue {Prestige Class}^PE^88^Heirs to a tradition over sixteen millennia old, the gatekeeper mystagogues stand among the greated foes of the daelkyr and their aberration spawn.
+high elemental binder {Prestige Class}^PE^104^As a high elemental binder, you can reach into the planes and immediately draw elemental beings into objects -- coating your armor in stone or your blade in fire.
+revenant blade {Prestige Class}^PE^108^The revenant blade is a Valenar elf who can draw on the skills of ancient heroes, the giant-slayers of Xen'drik.
+court herald {Prestige Class}^PF^108^The court herald prestige class is a modified version of the loremaster prestige class, which is described in the Dungeon Master's Guide.
+disciple of the eye {Prestige Class}^RDr^75^As a disciple of the eye, you know the messages that the eyes alone can impart.
+dracolexi {Prestige Class}^RDr^79^As a dracolexi, you try to understand that primordial vocabulary by devoting yourself to the study of ancient dialects and languages, hoping to discover how certain Draconic words were once uttered.
+dragon devotee {Prestige Class}^RDr^84^Some individuals feel the call of dragons more strongly, which may lead them into an attempt to awaken their blood and bring those traits to the fore.
+dragonheart mage {Prestige Class}^RDr^88^The dragonheart mage is perfect for the dedicated spellcaster who wishes to embrace the power of dragon blood while still advancing in magical expertise.
+Singer of Concordance {Prestige Class}^RDr^91^The Singers of Concordance are a small order of wandering draconic spiritual guides who begin as servitors of Io, the Ninefold Dragon, creator of all dragonkind.
+anima mage {Prestige Class}^TM^50^Anima mages see vestiges as mere tools, no different from spell component pouches or a wand of fireball.
+knight of the sacred seal {Prestige Class}^TM^54^A knight of the sacred seal is never alone because she has formed a true partnership with a single vestige.
+scion of Dantalion {Prestige Class}^TM^59^The scions believe that their destiny is to one day take up the crown of a long-forgotten human empire, bear the scepter of rulership, and rebuild the empire that could rival the stars.
+Tenebrous apostate {Prestige Class}^TM^63^The remnant of divinity once possessed by Orcus, Tenebrous is perhaps the only vestige still worshiped in some places as a god. Some followers, however, believe that Tenebrous is a separate deity, so these Tenebrous apostates revere him as such.
+witch slayer {Prestige Class}^TM^67^Witch slayers devote themselves to capturing and destroying those who share their souls with other entities.
+child of night {Prestige Class}^TM^117^They prefer to call themselves 'black transmogrifists,' but most know them as children of night.
+master of shadow {Prestige Class}^TM^121^Some driven or domineering souls seek nothing less than mastery of darkness itself -- the ability to turn the very shadows into their agents and allies.
+noctumancer {Prestige Class}^TM^125^Noctumancers bridge the gap between shadow and arcane magic.
+shadowblade {Prestige Class}^TM^129^Shadowblades are martial combatants with an innate link to shadow.
+shadowsmith {Prestige Class}^TM^132^Shadowcasters draw power from darkness, and masters of shadow command it, but no one truly manipulates the darkness as does the shadowsmith.
+acolyte of the ego {Prestige Class}^TM^204^By learning to speak their own truenames, acolytes of the ego strive to unlock hidden powers lost to the cosmos.
+bereft {Prestige Class}^TM^208^The bereft are a group of truenamers who devote themselves to mastering the word of unmaking, a powerful component of Truespeech purportedly able to unravel creation.
+brimstone speaker {Prestige Class}^TM^212^Brimstone speakers regard the secret language of truenames as nothing less than a gift from the gods.
+disciple of the word {Prestige Class}^TM^216^Disciples of the word are intellectual warrior monks who, through a deeper understanding of their truenames, transcend the limits of their mortal form.
+fiendbinder {Prestige Class}^TM^220^A fiendbinder seeks to unlock the truenames of demons, devils, and other vile fiends, and use that knowledge to bind them to service.
+merchant prince {Prestige Class}^PF^71^A merchant prince (known as a merchant princess if female) is a member of the merchant nobility who has acquired his position and wealth either by being born into a wealthy family or by earning every last coin himself.
+anarchic initiate {Prestige Class}^CP^17^The anarchic initiate is more than a wilder; he is an initiate to the truth that underlies the wildness in the depth of his being.
+ebon saint {Prestige Class}^CP^22^The ebon saint lives in the darkness, but seeks to exposehis enemies to the light.
+ectopic adept {Prestige Class}^CP^26^Ectoplasm is the preferred medium of creation for the ectopic adept, and his mind serves as the mold, kiln, and wheel upon which his works are turned.
+flayerspawn psychic {Prestige Class}^CP^30^Willing to sacrifice her life, appearance, and even her sanity, the flayerspawn psychic walks a dangerous road, growing in psionic power as she slowly embraces her secret mind flayer heritage.
+illumine soul {Prestige Class}^CP^33^The illumine soul is a living conduit of positive energy.
+soulbow {Prestige Class}^CP^36^In the tradition of the soulknife, a soulbow realizes the direct capacity of her own mind to give shape to weapons of psionic perfection.
+storm disciple {Prestige Class}^CP^40^A storm disciple is a character who decides that the best, most glorious way to serve his ideals is through the natural power, fury, and splendor of the storm.
+zerth cenobite {Prestige Class}^CP^43^The core of a zerth cenobite's studies involve strict meditation on the nature of time and the body's movements through it, culminating in a martial art known as zerthin.
+landforged walker {Prestige Class}^SX^123^Even as they speak for nature, landforged walkers coax the living bounty of the earth to grow on their metal hides, drawing power from the environment around them.
+primal scholar {Prestige Class}^SX^127^Primal scholars are spellcasters bent on uncovering and mastering the ancient magic that lies buried in the jungles, deserts, and mountains of Xen'drik.
+scorpion wraith {Prestige Class}^SX^130^Scorpion wraiths are the elite warriors of the drow.
+wearer of purple {Prestige Class}^DrF^67^Updated from Faiths and Pantheons.
+bloodclaw master {Prestige Class}^ToB^96^A bloodclaw master embraces the animal within to a degree that it becomes external, partially transforming him into the beast from which the discipline was inspired.
+bloodstorm blade {Prestige Class}^ToB^100^Other martial adepts rightfully look with wonder upon those who learn the bloodstorm style.
+deepstone sentinel {Prestige Class}^ToB^105^The Stone Dragon discipline traces its roots back to an ancient order of dwarves that used the power of the earth to enhance their combat style.
+eternal blade {Prestige Class}^ToB^109^An eternal blade is an elf who learns a variety of exotic fighting maneuvers with the aid and advice of the spirit of a mighty, ancient elf warrior.
+jade phoenix mage {Prestige Class}^ToB^113^Long ago, a fellowship of swordsages known as the Masters of the Jade Phoenix took up the study of arcane magic in search of a new martial discipline.
+master of nine {Prestige Class}^ToB^119^Some savants of the Nine Disciplines believe that none of the paths are complete, true disciplines in and of themselves.
+Ruby Knight vindicator {Prestige Class}^ToB^122^The Ruby Knights are a crusader order in the service of Wee Jas, goddess of death and magic.
+Shadow Sun ninja {Prestige Class}^ToB^126^A Shadow Sun ninja is a martial artist who studies the balance between good and evil, light and dark.
+diamond dragon {Prestige Class}^DM^30^The boldest of the sages study the link between gem dragons and psionics, learning to tap into what they refer to as the draconic psionic collective.
+dragon descendant {Prestige Class}^DM^34^A secret monastic order, dragon descendants tap into the power of their draconic heritage to call on their ancestors in times of need.
+dragon lord {Prestige Class}^DM^38^A dragon lord is the general at the head of an army, the emperor at the helm of an empire, or the warleader who dominates a battlefield.
+hand of the winged masters {Prestige Class}^DM^43^Dragons often need expert servants to be their eyes, ears, and hands in humanoid society.
+pact-bound adept^DM^46^Pact-bound adepts are sorcerers who have learned to transcend their beliefs about spells and magic and embrace arcane power as dragons do.
+swift wing {Prestige Class}^DM^50^Swift wings are church servants who see themselves as the fast-moving, hard-hitting crusaders of their god's cadre of worshipers.
+wyrm wizard {Prestige Class}^DM^55^Wyrm wizards are spellcasters who learn new spells not through research and experimentation but rather by tapping into the vast wealth of arcane knowledge possessed by dragons.
+sovereign speaker {Prestige Class}^FE^32^Although devotion to a single god enables some individuals to gain additional power, overriding
+escalation mage {Prestige Class}^FE^52^By giving themselves over to the Shadow and focusing on the dark side of magic, these arcane spellcasters learn how to bargain with their god to make their spells more effective -- for a price.
+argent fist {Prestige Class}^FE^70^Only a precious few possess the focus, the dedication, and the physical prowess to master the abilities of the argent fist, but few enemies can stand against those who do.
+thief of life {Prestige Class}^FE^84^When the prize is immortality, there is precious little a thief of life will not do to grasp it.
+planar shepherd {Prestige Class}^FE^105^Some druids, especially among the Greensingers or those who have dealt extensively with that sect, reject narrow interpretations of what constitutes the natural world.
+knight of the raven {Prestige Class}^Rav^200^Before evil descended on the land of Barovia, it was home to an order of virtuous champions, the Knights of the Raven.
+Lightbringer {Prestige Class}^Rav^204^The Lightbringers are an expansive guild of undead hunters that readily hands out charter memberships to anyone who wants to stamp out undead.
+aburant champion {Prestige Class}^CM^50^A warrior who dabbles in abjuration magic.
+eldritch disciple {Prestige Class}^CM^53^A multiclass warlock and divine spellcaster.
+eldritch theurge {Prestige Class}^CM^57^A multiclass warlock and arcane spellcaster.
+enlightened spirit {Prestige Class}^CM^60^A warlock who takes on celestial characteristics.
+holy scourge {Prestige Class}^CM^64^An arcane spellcaster that specializes in blasting evil.
+lyric thaumaturge {Prestige Class}^CM^67^A bard with enhanced spellcasting prowess.
+master specialist {Prestige Class}^CM^70^A wizard with greater mastery over a school of specialization.
+nightmare spinner {Prestige Class}^CM^74^An arcane spellcaster who weaves fear into illusions.
+ultimate magus {Prestige Class}^CM^77^A multiclass arcane preparation spellcaster and arcane spontaneous spellcaster.
+unseen seer {Prestige Class}^CM^81^A stealthy character who dabbles in divination magic.
+wild soul {Prestige Class}^CM^84^An arcanist who wields power from the realm of the fey.

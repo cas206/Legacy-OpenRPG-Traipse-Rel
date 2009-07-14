@@ -1,0 +1,16 @@
+
+<nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Grid" version="1.0">
+  <grid autosize="1" border="1">
+    <row version="1.0">
+      <cell/>
+      <cell/>
+    </row>
+    <row version="1.0">
+      <cell/>
+      <cell/>
+    </row>
+  </grid>
+  <macros>
+    <macro name=""/>
+  </macros>
+</nodehandler>

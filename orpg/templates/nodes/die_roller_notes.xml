@@ -1,0 +1,117 @@
+
+<nodehandler class="tabber_handler" icon="tabber" module="containers" name="Die Roller Notes" version="1.0">
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="Basics" version="1.0">
+    <text multiline="1" send_button="1">
+The new dieroller is design with expansion in mind. While there are a number of new dieroller options in the base roller, the new design facilitates the building of new rollers that can be loaded at any time.  In this test build three are 3 rollers: std, d20, and wod.  The std roller is the generic roller.  It has generic dice options and is the base for all other dierollers. The d20 and wod rollers are game specific rollers and have game specific options.  They also serve as examples for how to create your own rollers in python.
+
+** Please not that this is our initial release of the roller.  The new syntax might see odd to you.  We are considering an alternative syntax, and this is being discussed on the openrpg.com forums. In if you have strong opinions on this, you might want to hop over there and give your 2 cents. **
+
+Dierollers:
+You can see what roller you are using by using the &quot;/dieroller&quot; command in chat.  By default it should be &quot;std&quot;.  To set the die roller, use &quot;/dieroller roller_name&quot;.  So to load the d20 roller, type &quot;/dieroller d20&quot;. Its easy!
+
+Basic Syntax.
+The basic syntax is the same, 3d6+3, rolls three six side dice plus 3.  However, the new roller has other options, they look like this:
+
+3d6.option(value)
+
+If you know anything about programming, that probably looks familiar.  For average users, this might look a little confusing, but lets look at a real example.
+
+[10d6.takeLowest(2)]
+
+Now this option rolls 10d6 and takes the lowest two rolls. Basically, to use an option, you have put a . + the option name + the values for the option between ( ).  You can also chain many options together.
+
+[10d10.minroll(4).takeLowest(5)]
+
+This example rolls 10d10 with a minimum roll of 4 and takes the lowest 5.  Pretty nifty if I do say so myself.
+</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="STD rollers" version="1.0">
+    <text multiline="1" send_button="1">
+Now that you know how to roll dice, lets look at the standard options.
+
+takeHighest - take highest X rolls
+
+[10d10.takeHighest(4)] - takes highest 4
+
+takeLowest - take lowest x rolls
+
+[10d10.takeLowest(4) - take lowest 4
+
+minroll - minimum low range
+
+[10d10.minroll(4)] - no die roll lower than 4
+
+extra - roll an extra die when roll greater or equal to X
+
+[10d10.extra(9)] - roll an extra die when a die roll is 9 or higher.
+
+open - same as extra but roll extra dice until a die is not greater or equal to X (even the extra roll).
+
+[10d10.open(9)] - roll extra dice until a die roll is not 9 or higher.
+
+each - apply X value to all dice
+
+[10d10.each(2)] - add 2 to every die roll
+</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="d20 roller" version="1.0">
+    <text multiline="1" send_button="1">
+Remember, to use the d20 roller type: &quot;/dieroller d20&quot;
+
+dc(DC,mod) - make a DC check.
+
+[1d20.dc(20,5)] - make a DC check against DC value of 20 and a modifier of +5.
+
+attack(AC,mod,critical) - make an attack roll.
+
+[1d20.attack(20,5,19) - make an attack roll against AC 20 with a modifier of +5 and a critical range of 19-20.
+</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="wod roller" version="1.0">
+    <text multiline="1" send_button="1">
+Remember, to use the wod roller type: &quot;/dieroller wod&quot;
+
+vs(target) - vs roll against target
+
+[3d10.vs(5)] - vs roll against 5.</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="Hero Roller" version="1.0">
+    <text multiline="1" send_button="0">
+Skill Roller, example [3d6.sk(11,0)]--
+Make a SKill roll.  The first number of the two modifiers is the rating in the skill, 11 meaning 11 or less.  The second number is any penalty or bonus you have for the roll.  A positive number is a bonus, a negative number is a penalty.  As with many Hero system rolls, the only die choice that makes sense is 3d6
+
+To-hit roller, example  [3d6.cv(5,1)]
+Make a to-hit roll.  The first modifier is your Combat Value.  The second number is any penalty or bonus you have for the roll.  A bonus is positive, and a penalty is negative.  Again, the only roll that is sensible is 3d6.  The result of the roll is the the highest Defensive Combat Value that can be hit with that roll.
+
+Killing damage roller, example [(1d6+1d6/2).k(0)]
+Make a damage roll for Killing damage.  The only modifier is the bonus to the stun multiplier.  A 1 in that field would indicate an increased stun multiplier of +1.  The result shows body and stun totals.  Only sensible for d6 values.
+
+Normal damage roller, example [(5d6+1d6/2).n()]
+Make a damage roll for Normal damage. Results show body and stun totals.  No modifiers exist.  Only sensible for d6 values.
+
+Hit Location roller, example [3d6.hl()]
+Roll on the hit location chart. Results show the location hit (including left or right side) and multipliers to damage when hitting that location.  No modifiers exist. Contributed by Heroman
+
+Basic Killing damage roller, example [2d6.hk()]
+Make a damage roll for Killing damage.  Always uses a stun multiplier of 1 for ease of use with the Hit Location roller mentioned above.  No modifiers exist.  Contributed by Heroman
+</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="? Option" version="1.0">
+    <text multiline="1" send_button="1">
+Another new feature is the ? option.  If you place a ? in a dice string you will be prompt by a dialog for the value.  This is useful when using die rolls in character sheets. From example:
+
+[3d6+?] - will ask you for a value to replace ?.
+[3d6+?StrMod] will ask you for a value to replace ? and give you the Hint that it should be your StrMod. This Hint system can be used for as many ? as you have in your roll
+[?NumDice}d6+?StrMod+?Weapon Bonus+?Misc Bonus] - If you notice the } after NumDice, that tells the Hint system to stop looking for Alpha character, otherwise it would try to include the d in it's hint.
+
+A more game specific example might look like this:
+
+[1d20.dc(?DC,5)] - this will prompted you for the ? value, which is the DC.</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="The End" version="1.0">
+    <text multiline="1" send_button="1">Well, that's all I have to say about the new roller.  More options and game specific rollers on the way.  If you're interested in coding a roller for your favorite game, drop by the dev server and we'll try and help you out.
+
+-Chris Davis
+</text>
+  </nodehandler>
+</nodehandler>

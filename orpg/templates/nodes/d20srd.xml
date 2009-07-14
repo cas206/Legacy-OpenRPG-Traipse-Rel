@@ -1,0 +1,4 @@
+
+<nodehandler class="link_handler" icon="html" module="core" name="d20 SRD">
+  <link href="http://www.opengamingfoundation.org/srd.html" icon="note"/>
+</nodehandler>

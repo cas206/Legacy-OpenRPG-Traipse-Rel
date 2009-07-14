@@ -1,0 +1,63 @@
+<nodehandler class="group_handler" icon="gear" module="containers" name="Templates" status="useful" version="1.0">
+<group_atts border="1" cols="1"/>
+<nodehandler class="group_handler" icon="flask" module="containers" name="Nodes" status="useful" version="1.0">
+<group_atts border="1" cols="1"/>
+<nodehandler class="file_loader" icon="note" module="core" name="Create New Text Box" version="1.0">
+<file name="textctrl.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="gear" module="core" name="Create New List Box" version="1.0">
+<file name="listbox.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="grid" module="core" name="Create New Grid" version="1.0">
+<file name="grid.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="html" module="core" name="Create New Web Link" version="1.0">
+<file name="link.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="image" module="core" name="Create New Web Image" version="1.0">
+<file name="image.xml"/>
+</nodehandler>
+</nodehandler>
+<nodehandler class="group_handler" module="containers" name="Containers" status="useful" version="1.0">
+<group_atts border="1" cols="1"/>
+<nodehandler class="file_loader" module="core" name="Create New Folder" version="1.0">
+<file name="group.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="tabber" module="core" name="Create New Tabber" version="1.0">
+<file name="tabber.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="divider" module="core" name="Create New Splitter" version="1.0">
+<file name="split.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="form" module="core" name="Create New Form" version="1.0">
+<file name="form.xml"/>
+</nodehandler>
+</nodehandler>
+<nodehandler class="group_handler" icon="gear" module="containers" name="Tools" status="useful" version="1.0">
+<group_atts border="1" cols="1"/>
+<nodehandler class="file_loader" icon="gear" module="core" name="Create New Chat Macro" version="1.0">
+<file name="macro.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="player" module="core" name="Create New Alias Library Tool" version="1.0">
+<file name="alias.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="gear" module="core" name="Create New Miniature Library Tool" version="1.0">
+<file name="minlib.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="gear" module="core" name="Create remote node loader" version="1.0">
+<file name="urloader.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="d20" module="core" name="Create New d20 Character Tool" version="1.0">
+<file name="d20character.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="d20" module="core" name="Create New St*r W*rs Character Tool" version="1.0">
+<file name="StarWars_d20character.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="d20" module="core" name="3rd Edition Character Tool" version="1.0">
+<file name="dnd3e.xml"/>
+</nodehandler>
+<nodehandler class="file_loader" icon="d20" module="core" name="3.5 Tool" version="1.0">
+<file name="dnd3.5.xml"/>
+</nodehandler>
+</nodehandler>
+</nodehandler>

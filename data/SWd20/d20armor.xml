@@ -1,0 +1,46 @@
+<ac>
+<armor name="Blast helmet, vest" cost="500" type="Light" maxdex="5" bonus="2" checkpenalty="-1" weight="3" speed="10" speed6="6" >
+<description >This armour consists of a lightweight helmet and a composite vest that, when worn together, offer limited protection against shrapnel, mele weapons, slugthrowers, and blasters
+</description >
+</armor>
+<armor name="Combat jumpsuit" cost="1500" type="Light" maxdex="4" bonus="3" checkpenalty="-3" weight="8" speed="10" speed6="6" >
+<description >
+</description >
+</armor>
+<armor name="Padded flight suit" cost="800" type="Light" maxdex="4" bonus="2" checkpenalty="-2" weight="5" speed="10" speed6="6" >
+<description >
+</description >
+</armor>
+<armor name="Armoured flight suit" cost="4000" type="Medium" maxdex="3" bonus="4" checkpenalty="-4" weight="20" speed="8" speed6="4" >
+<description >
+</description >
+</armor>
+<armor name="Battle armour, padded" cost="2000" type="Medium" maxdex="3" bonus="4" checkpenalty="-4" weight="13" speed="8" speed6="4" >
+<description >
+</description >
+</armor>
+<armor name="Battle armour, medium" cost="6000" type="Medium" maxdex="2" bonus="5" checkpenalty="-5" weight="16" speed="8" speed6="4" >
+<description >
+</description >
+</armor>
+<armor name="Armoured spacesuit" cost="10000" type="Heavy" maxdex="1" bonus="6" checkpenalty="-6" weight="45" speed="6" speed6="2" >
+<description >
+</description >
+</armor>
+<armor name="Battle armor, heavy" cost="12000" type="Heavy" maxdex="0" bonus="7" checkpenalty="-7" weight="35" speed="6" speed6="2" >
+<description >
+</description >
+</armor>
+<armor name="Corellian powersuit" cost="10000" type="Powered" maxdex="0" bonus="4" checkpenalty="-4" weight="18" speed="8" speed6="4" >
+<description >
+</description >
+</armor>
+<armor name="Stormtrooper armour" cost="8000" type="Powered" maxdex="2" bonus="5" checkpenalty="-2" weight="16" speed="8" speed6="4" >
+<description >
+</description >
+</armor>
+<armor name="Battleframe" cost="12000" type="Powered" maxdex="0" bonus="3" checkpenalty="-8" weight="20" speed="6" speed6="2" >
+<description >
+</description >
+</armor>
+</ac>

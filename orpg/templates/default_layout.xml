@@ -1,0 +1,6 @@
+<orpg_gui height="768" maximized="0" posx="20" posy="20" width="1024">
+    <chat    dockable="1"    height="356"    width="824"    caption="Chat Window"   direction="Bottom"   layer="1"    pos="1" />
+    <tree    dockable="1"    height="357"    width="200"    caption="Gametree"      direction="Left"     layer="3"    pos="0" />
+    <player  dockable="1"    height="356"    width="200"    caption="Player List"   direction="Left"     layer="3"    pos="1" />
+    <map     dockable="1"    height="357"    width="824"    caption="Map Window"    direction="Center"   layer="2"    pos="0" />
+</orpg_gui>

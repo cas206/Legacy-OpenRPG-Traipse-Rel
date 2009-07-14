@@ -1,0 +1,7 @@
+<nodehandler class="min_map" icon="compass" module="core" name="miniature Map">
+<map sizex='1000' sizey='1000' action='new'>
+<grid size='60'  mode='0' line='2' snap='1' color='#000000'/>
+<bg type='3' color='#008040'/>
+<miniatures serial='0'/>
+</map>
+</nodehandler>

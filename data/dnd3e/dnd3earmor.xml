@@ -1,0 +1,87 @@
+<ac>
+<armor  name="Banded mail" cost="250" type="Heavy" maxdex="1" bonus="6" spellfailure="35" checkpenalty="-6" weight="35" speed="20" speed20="15" speed30="20" >
+<description >This armor is made of overlapping strips of metal sewn to a backing of leather and chainmail. The strips cover vulnerable areas, while the chain and leather protect the joints and provide freedom of movement. Straps and buckles distribute the weight evenly. It includes gauntlets.
+</description >
+</armor>
+<armor  name="Breastplate" cost="200" type="Medium" maxdex="3" bonus="5" spellfailure="25" checkpenalty="-4" weight="30" speed="20" speed20="15" speed30="20" >
+<description >A breastplate covers the front and back. It comes with a helmet and matching greaves (plates to cover the lower legs). A light suit or skirt of studded leather beneath the breastplate protects limbs without restricting
+movement much.
+</description >
+</armor>
+<armor  name="Buckler" cost="15" type="Shield" maxdex="100" bonus="1" spellfailure="5" checkpenalty="-1" weight="5" speed="30" speed20="20" speed30="30" >
+<description >This small metal shield is strapped to the forearm, allowing it to be worn and still use the hand. A bow or crossbow can be used without penalty. An off-hand weapon can be used, but a -1 penalty on attack rolls is imposed because of the extra weight on your arm. This penalty stacks with those for fighting with the off hand and, if appropriate, for fighting with two weapons. In any case, if a weapon is used in the off-hand, the character doesn't get the buckler's AC bonus for the rest of the round.
+</description >
+</armor>
+<armor  name="Chainmail" cost="150" type="Medium" maxdex="2" bonus="5" spellfailure="30" checkpenalty="-5" weight="40" speed="20" speed20="15" speed30="20" >
+<description >This armor is made of interlocking metal rings. It includes a layer of quilted fabric underneath it to prevent chafing and to cushion the impact of blows. Several layers of mail are hung over vital areas. Most of the armor's weight hangs from the shoulders, making chainmail uncomfortable to wear for long periods of time. It includes gauntlets.
+</description >
+</armor>
+<armor  name="Chainshirt" cost="100" type="Light" maxdex="4" bonus="4" spellfailure="20" checkpenalty="-2" weight="25" speed="30" speed20="20" speed30="30" >
+<description >A shirt of chainmail protects the torso while leaving the limbs free and mobile. A layer of quilted fabric underneath it prevents chafing and cushions the impact of blows. It comes with a steel cap.
+</description >
+</armor>
+<armor  name="Full Plate" cost="1500" type="Heavy" maxdex="1" bonus="8" spellfailure="35" checkpenalty="-6" weight="50" speed="20" speed20="15" speed30="20" >
+<description >This armor consists of shaped and fitted metal plates riveted and interlocked to cover the entire body. It includes gauntlets, heavy leather boots, and a visored helmet.
+</description >
+</armor>
+<armor  name="Half-Plate" cost="600" type="Heavy" maxdex="0" bonus="7" spellfailure="40" checkpenalty="-7" weight="50" speed="20" speed20="15" speed30="20" >
+<description >This armor is a combination of chainmail with metal plates (breastplate, epaulettes, elbow guards, gauntlets, tasses, and greaves) covering vital areas. Buckles and straps hold the whole suit together and distribute the weight, but the armor still hangs more loosely than full plate. It includes gauntlets.
+</description >
+</armor>
+<armor  name="Hide" cost="15" type="Medium" maxdex="4" bonus="3" spellfailure="20" checkpenalty="-3" weight="25" speed="20" speed20="15" speed30="20" >
+<description >This armor is prepared from multiple layers of leather and animal hides. It is stiff and hard to move in.
+</description >
+</armor>
+<armor  name="Large SteelShield" cost="20" type="Shield" maxdex="100" bonus="2" spellfailure="15" checkpenalty="-2" weight="15" speed="30" speed20="20" speed30="30" >
+<description >A large shield is too heavy to use the shield hand for anything else.
+</description >
+</armor>
+<armor  name="Large Wooden Shield" cost="7" type="Shield" maxdex="100" bonus="2" spellfailure="15" checkpenalty="-2" weight="10" speed="30" speed20="20" speed30="30" >
+<description >A large shield is too heavy to use the shield hand for anything else.
+</description >
+</armor>
+<armor  name="Leather" cost="10" type="Light" maxdex="6" bonus="2" spellfailure="10" checkpenalty="0" weight="10" speed="30" speed20="20" speed30="30" >
+<description >The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by boiling in oil. The rest of the armor is softer and more flexible leather.
+</description >
+</armor>
+<armor  name="Padded" cost="5" type="Light" maxdex="8" bonus="1" spellfailure="5" checkpenalty="0" weight="10" speed="30" speed20="20" speed30="30" >
+<description >Padded armor features quilted layers of cloth and batting.
+</description >
+</armor>
+<armor  name="Samll Steel Shield" cost="9" type="Shield" maxdex="100" bonus="1" spellfailure="5" checkpenalty="-1" weight="6" speed="30" speed20="20" speed30="30" >
+<description >A small shield's light weight lets a character carry other items in that hand (although the character cannot use weapons).
+</description >
+</armor>
+<armor  name="Scale Mail" cost="50" type="Medium" maxdex="3" bonus="4" spellfailure="25" checkpenalty="-4" weight="30" speed="20" speed20="15" speed30="20" >
+<description >This is a coat and leggings (and perhaps a separate skirt) of leather covered with overlapping pieces of metal, much like the scales of a fish. It includes gauntlets.
+</description >
+</armor>
+<armor  name="Small Wooden Shield" cost="300" type="Shield" maxdex="100" bonus="1" spellfailure="5" checkpenalty="-1" weight="5" speed="30" speed20="20" speed30="30" >
+<description >A small shield's light weight lets a character carry other items in that hand (although the character cannot use weapons).
+</description >
+</armor>
+<armor  name="Splint mail" cost="200" type="Heavy" maxdex="0" bonus="6" spellfailure="40" checkpenalty="-7" weight="45" speed="20" speed20="15" speed30="20" >
+<description >This armor is made of narrow vertical strips of metal riveted to a backing of leather that is worn over cloth padding. Flexible chainmail protects the joints. It includes gauntlets.
+</description >
+</armor>
+<armor  name="Studded Leather" cost="25" type="Light" maxdex="5" bonus="3" spellfailure="15" checkpenalty="-1" weight="20" speed="30" speed20="20" speed30="30" >
+<description >This armor is made from tough but flexible leather (not hardened leather as with normal leather armor) reinforced with close-set metal rivets.
+</description >
+</armor>
+<armor  name="Tower Shield" cost="30" type="Shield" maxdex="100" bonus="0" spellfailure="50" checkpenalty="-10" weight="45" speed="30" speed20="20" speed30="30" >
+<description >This massive wooden shield is nearly as tall as the wielder. Basically, it is a portable wall meant to provide cover. It can provide up to total cover, depending on how far a character comes out from behind it. A tower shield, however, does not provide cover against targeted spells; a spellcaster can cast a spell on a character by targeting the shield. A tower shield cannot be used for the shield bash action.
+</description >
+</armor>
+<armor  name="Ring of Protection +1" cost="xx" type="Ring" maxdex="100" bonus="1" spellfailure="0" checkpenalty="0" weight="0" speed="30" speed20="20" speed30="30" >
+<description >A ring that gives Plus 1 AC
+</description >
+</armor>
+<armor  name="Monk Wisdom Bonus" cost="xx" type="NA" maxdex="100" bonus="4" spellfailure="0" checkpenalty="0" weight="0" speed="30" speed20="20" speed30="30" >
+<description >Bonus is Based on wisdom Bonus, and can not be removed unless I am uncontius
+</description >
+</armor>
+<armor  name="Inertial Armor Feat" cost="xx" type="NA" maxdex="100" bonus="4" spellfailure="0" checkpenalty="0" weight="0" speed="30" speed20="20" speed30="30" >
+<description >Armor Bonus based on the feat
+</description >
+</armor>
+</ac>

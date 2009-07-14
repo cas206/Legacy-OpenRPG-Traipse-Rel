@@ -1,0 +1,513 @@
+
+<nodehandler class="static_handler" icon="d10" module="core" name="ADnD Character Sheet ">
+  <group_atts border="1" cols="1"/>
+  <nodehandler class="static_handler" module="core" name="&lt;b&gt;&lt;u&gt;Main&lt;/b&gt;&lt;/u&gt;">
+    <group_atts border="1" cols="2"/>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Vitals">
+      <grid border="1">
+        <row>
+          <cell>Name</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Character</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Race</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Class</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Sex</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Level</cell>
+          <cell/>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+    <nodehandler class="static_handler" module="core" name="Statistics">
+      <group_atts border="0" cols="1"/>
+      <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name=" ">
+        <grid border="1">
+          <row>
+            <cell>HP</cell>
+            <cell>0</cell>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell>XP</cell>
+            <cell>0</cell>
+            <cell>0</cell>
+          </row>
+        </grid>
+        <macros>
+          <macro name=""/>
+        </macros>
+      </nodehandler>
+      <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name=" ">
+        <grid border="1">
+          <row>
+            <cell>AC </cell>
+            <cell/>
+          </row>
+          <row>
+            <cell>Thaco (base)</cell>
+            <cell/>
+          </row>
+        </grid>
+        <macros>
+          <macro name=""/>
+        </macros>
+      </nodehandler>
+    </nodehandler>
+  </nodehandler>
+  <nodehandler class="static_handler" module="core" name="&lt;b&gt;&lt;u&gt;Stats&lt;/b&gt;&lt;/u&gt;">
+    <group_atts border="0" cols="4"/>
+    <nodehandler class="static_handler" module="core" name="&lt;b&gt;Basic stat&lt;/b&gt; ">
+      <group_atts border="1" cols="2"/>
+      <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Stats">
+        <grid border="0">
+          <row>
+            <cell>Str</cell>
+          </row>
+          <row>
+            <cell>Dex</cell>
+          </row>
+          <row>
+            <cell>Con</cell>
+          </row>
+          <row>
+            <cell>Int</cell>
+          </row>
+          <row>
+            <cell>Wis</cell>
+          </row>
+          <row>
+            <cell>Cha</cell>
+          </row>
+        </grid>
+        <macros>
+          <macro name=""/>
+        </macros>
+      </nodehandler>
+      <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Stat ##">
+        <grid border="1">
+          <row>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell>0</cell>
+          </row>
+        </grid>
+        <macros>
+          <macro name=""/>
+        </macros>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Strength">
+      <grid border="1">
+        <row>
+          <cell size="119">Hit Prob</cell>
+          <cell size="39"/>
+        </row>
+        <row>
+          <cell>Dmg Adj</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Wght Allow</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Max Press</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>opn Drs</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>bb/lg</cell>
+          <cell/>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Constitution">
+      <grid border="1">
+        <row>
+          <cell>HP Adj.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Sys Shock</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Res Surv.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Pois Save</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Regen.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>/  /  /  /  /  /  /  /  /  /</cell>
+          <cell>/  /  /  /  /  /  /  /  /  /</cell>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Intelligence">
+      <grid border="1">
+        <row>
+          <cell># of Lang</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Spell lvl.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Learn Spl</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Spells / lvl</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Immun.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>/  /  /  /  /  /  /  /  /  /</cell>
+          <cell>/  /  /  /  /  /  /  /  /  /</cell>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+  </nodehandler>
+  <nodehandler class="static_handler" module="core" name=" ">
+    <group_atts border="0" cols="3"/>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Dexterity">
+      <grid border="1">
+        <row>
+          <cell>React Adj.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Missile Adj.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Defense Adj.</cell>
+          <cell/>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Charisma">
+      <grid border="1">
+        <row>
+          <cell># of Henchmen</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Loyalty Base</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>React Adj.</cell>
+          <cell/>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Wisdom">
+      <grid border="1">
+        <row>
+          <cell>Magic Def.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Bonus Spls.</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Spl Fail</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Immune.</cell>
+          <cell/>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+  </nodehandler>
+  <nodehandler class="static_handler" module="core" name="&lt;b&gt;&lt;u&gt;Weapon Proficiencies&lt;/b&gt;&lt;/u&gt;">
+    <group_atts border="1" cols="1"/>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Weapons">
+      <grid border="1">
+        <row>
+          <cell>Weapon</cell>
+          <cell>Thaco</cell>
+          <cell>To Hit/Dmg</cell>
+          <cell>Dmg S/M</cell>
+          <cell>Dmg L</cell>
+          <cell>spd</cell>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+          <cell/>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+  </nodehandler>
+  <nodehandler class="static_handler" module="core" name="&lt;b&gt;&lt;u&gt;NonWeapon Proficiencies, Saves, etc&lt;/b&gt;&lt;/u&gt;">
+    <group_atts border="1" cols="2"/>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Non-Weapon Proficiencies">
+      <grid border="1">
+        <row>
+          <cell>Proficiency</cell>
+          <cell>modifier</cell>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+        <row>
+          <cell/>
+          <cell/>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+    <nodehandler class="static_handler" module="core" name="&lt;b&gt;Saving Throws&lt;/b&gt;">
+      <group_atts border="0" cols="2"/>
+      <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name=" ">
+        <grid border="0">
+          <row>
+            <cell>&lt;b&gt;Save&lt;/b&gt;</cell>
+          </row>
+          <row>
+            <cell>Para/Pois/Death</cell>
+          </row>
+          <row>
+            <cell>Rod/Staff/Wand</cell>
+          </row>
+          <row>
+            <cell>Petri/Poly</cell>
+          </row>
+          <row>
+            <cell>Breath Wpn</cell>
+          </row>
+          <row>
+            <cell>Spell</cell>
+          </row>
+        </grid>
+        <macros>
+          <macro name=""/>
+        </macros>
+      </nodehandler>
+      <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name=" ##">
+        <grid border="1">
+          <row>
+            <cell>Roll</cell>
+            <cell>mod</cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell/>
+            <cell>0</cell>
+          </row>
+        </grid>
+        <macros>
+          <macro name=""/>
+        </macros>
+      </nodehandler>
+    </nodehandler>
+  </nodehandler>
+  <nodehandler class="static_handler" module="core" name="&lt;b&gt;&lt;u&gt;Equipment&lt;/b&gt;&lt;/u&gt;">
+    <group_atts border="1" cols="2"/>
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Money">
+      <grid border="1">
+        <row>
+          <cell>Platinum</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Gold</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Silver</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>Copper</cell>
+          <cell/>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+    <nodehandler class="text_handler" icon="note" module="core" name="Backpack / Pouches / etc.">empty</nodehandler>
+  </nodehandler>
+  <nodehandler class="static_handler" module="core" name="&lt;b&gt;&lt;u&gt;Magic&lt;/b&gt;&lt;/u&gt;">
+    <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Spells per level">
+      <grid border="1">
+        <row>
+          <cell>1st lev</cell>
+          <cell/>
+          <cell>2nd lev</cell>
+          <cell/>
+          <cell>3rd lev</cell>
+          <cell/>
+          <cell>4th lev</cell>
+          <cell/>
+          <cell>5th lev</cell>
+          <cell/>
+        </row>
+        <row>
+          <cell>6th lev</cell>
+          <cell/>
+          <cell>7th lev</cell>
+          <cell/>
+          <cell>8th lev</cell>
+          <cell/>
+          <cell>9th lev</cell>
+          <cell/>
+          <cell>///</cell>
+          <cell>///</cell>
+        </row>
+      </grid>
+      <macros>
+        <macro name=""/>
+      </macros>
+    </nodehandler>
+    <nodehandler class="text_handler" icon="note" module="core" name="Spells">Magic Missile
+Sleep
+Bigby's Poking Finger</nodehandler>
+    <group_atts border="1" cols="2"/>
+  </nodehandler>
+</nodehandler>

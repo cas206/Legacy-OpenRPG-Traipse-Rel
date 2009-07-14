@@ -1,0 +1,121 @@
+<ini>
+    <tab name="General" type="tab">
+        <tab name="Networking" type="grid">
+            <Heartbeat options="bool" value="1" help="This sends a message to the server to keep alive your connection when idle." />
+            <MetaServerBaseURL help="This is the URL that contains the server list." options="URL" value="http://www.openrpg.com/openrpg_servers.php"/>
+            <ImageServerBaseURL help="This is the URL that contains the server list." options="URL" value="http://openrpg.digitalxero.net/imgupload/index.php"/>
+            <LocalImageBaseURL help="This is the URL that contains the server list." options="URL" value="http://127.0.0.1:6774/webfiles/"/>
+            <LocalorRemote help="Decide to load files locally or remotely. CherryPy must be running for local files." options="Local | Remote" value="Local"/>
+        </tab>
+        <tab name="Sound" type="grid">
+            <UnixSoundPlayer help="This is the path to the executable used by unix clients to play sounds." options="path to executable" value=""/>
+            <SendSound help="Path to sound file played when you send a message." options="Path to file" value=""/>
+            <RecvSound help="Path to sound file played when you receive a message." options="Path to file" value=""/>
+            <WhisperSound help="Path to sound file played when you receive a whisper." options="Path to file" value=""/>
+            <AddSound help="Path to sound file played when a new user joins the room." options="Path to file" value=""/>
+            <DelSound help="Path to sound file played when a user exits the room." options="Path to file" value=""/>
+        </tab>
+        <tab name="System" type="grid">
+          <PWMannager help="Setting this to On will make the Password Manager auto start when you start OpenRPG" options="On|Off" value="On"/>
+          <LoggingLevel help="Change this via the menu" options="DO NOT CHANGE" value="7"/>
+          <TabTheme help="This is set via menu options" options="customflat | customslant | set by menu options" value="slant&amp;colorful"/>
+          <TabTextColor help="This is the text color for Tabs" options="color in hex RRGGBB" value="#000000"/>
+          <TabBackgroundGradient help="This is the background color of tab areas." options="color in hex RRGGBB" value="#f7f3f7"/>
+          <TabGradientFrom help="This is the gradient color for BG tabs if you pick the custom setting" options="color in hex RRGGBB" value="#ffffff"/>
+          <TabGradientTo help="This is the gradient color for BG tabs if you pick the custom setting" options="color in hex RRGGBB" value="#007dff"/>
+          <ColorTree help="This option specifies whether or not your want your Gametree and Player List colored the same as your chat." options="bool" value="0"/>
+        </tab>
+        <tab name="Auto Updater" type="grid">
+            <PackagesURL help="The URL to the package_list.xml" options="URL" value="http://openrpg.digitalxero.net/updates/package_list.xml"/>
+            <PackagesType help="The type of package you want to DL, this is usualy set progmaticly" options="text" value="developer"/>
+            <PackagesName help="The name of the package you want to DL, this is usualy set progmaticly" options="text" value="OpenRPG+ 1.7.x"/>
+            <AutoUpdate help="Wether or not the updater automaticly downloads the files" options="On|Off" value="Off"/>
+            <FastStart help="Weather the Patcher will automaticly exit after it updates or if there are no updates to get" options="On|Off" value="On"/>
+        </tab>
+    </tab>
+    <tab name="Chat" type="tab">
+        <tab name="Chat Window" type="grid">
+            <player help="This is your name as it appears in chat." options="Any text" value="No Name"/>
+            <Show_Images_In_Chat help="Allows Images to be displaied in the chat window." options="bool" value="0"/>
+            <striphtml help="Set this to 1 to have HTML tags stripped from the chat window." options="bool" value="0"/>
+            <Chat_Time_Indexing help="Allows messages to be prepended with their arrival time using either of two preset formats or a formated timestring (see time.strftime() in python docs)" options="bool" value="0"/>
+            <gwtext help="This is attached prior to your group whispers(ie /gw Hello group would send '(GW): Hello group')" options="text" value="(GW): "/>
+            <dcmsg help="This is the message that gets sent when you disconnect from a server." options="text" value="Disconnecting from server..."/>
+            <buffersize help="This is the amount of backscroll allowed." options="int" value="1000"/>
+            <PurgeAtBuffersizeTimesLines help="This option tells the program when to purge old history.\nWhen the buffer exceeds this number times the buffersize\nall history is removed and you are just left with a history \nas large as the number you set your buffersize to." options="int" value="5"/>
+            <AutoPurgeAfterSave catagory="chat" help="When saving your log, this option will either automaticaly purge the buffer or not." options="bool" value="0"/>
+            <TypingStatusAlias options="Any text" value="Typing" help="This is the text displayed in the Player list under status while you are typing." />
+            <IdleStatusAlias options="Any text" value="Idle" help="This is the text displayed in the Player list under status while you are not typing." />
+            <SuppressChatAutoComplete options="bool" value="0" help="Setting this to 1 will turn off auto complete in chat." />
+            <ShowIDInChat options="bool" value="1" help="Set this to have the Player Id show up next to the player name in chat." />
+            <TimeStampGameLog options="bool" value="1" help="Set this to 1 to have time stamps added to the log." />
+            <GameLogPrefix help="This text is the files name minus the extention of your log file." options="Any text" value="logs/Log "/>
+            <dieroller options="std, wod, d20, hero" value="std" help="This sets the dieroller to use." />
+        </tab>
+        <tab name="Chat Tabs" type="grid">
+            <tabbedwhispers help="Set this to 1 to receive whispered messages in separate chat tabs ." options="bool" value="1"/>
+            <GMWhisperTab help="Creates a tab for all GM whispers, tabbedwhispers being on is required for this too work" options="bool" value="1"/>
+            <GroupWhisperTab help="Creates a tab for all Group whispers, tabbedwhispers being on is required for this too work" options="bool" value="1"/>
+        </tab>
+        <tab name="Chat Toolbars" type="grid">
+            <Toolbar_On help="Turns the toolbar on or off" options="bool" value="1"/>
+            <DiceButtons_On help="Show the dice buttons in the toolbar?" options="bool" value="1"/>
+            <FormattingButtons_On help="Show the Formatting Buttons (Bold, italic, underline, color) in the toolbar?" options="bool" value="1"/>
+            <AliasTool_On help="Show the Alias Tool in the toolbar?" options="bool" value="1"/>
+            <aliasfile help="This is the filename of your last loaded Alias Lib" options="filename" value="sample" />
+        </tab>
+        <tab name="Chat Macros" type="grid">
+            <F1 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F1 macro key"/>
+            <F2 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F2 macro key"/>
+            <F3 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F3 macro key"/>
+            <F4 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F4 macro key"/>
+            <F5 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F5 macro key"/>
+            <F6 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F6 macro key"/>
+            <F7 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F7 macro key"/>
+            <F8 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F8 macro key"/>
+            <F9 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F9 macro key"/>
+            <F10 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F10 macro key"/>
+            <F11 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F11 macro key"/>
+            <F12 help="What you enter here will be sent to chat when this function key is pressed." options="text" value="/me found the F12 macro key"/>
+        </tab>
+        <tab name="Chat Styles" type="tab">
+            <tab name="Chat Colors" type="grid">
+                <bgcolor help="This is the background color of the chat window." options="color in hex RRGGBB" value="#ffffff"/>
+                <textcolor help="This is the default color used when text is printed into the chat window." options="color in hex RRGGBB" value="#000000"/>
+                <mytextcolor help="This is the color of your text in the chat window." options="color in hex RRGGBB" value="#000080"/>
+                <syscolor help="This is the color of system messages printed in the chat window." options="color in hex RRGGBB" value="#ff0000"/>
+                <infocolor help="This is the color of informational messages printed in the chat window." options="color in hex RRGGBB" value="#ff8000"/>
+                <emotecolor help="This is the color of your emotes in the chat window." options="color in hex RRGGBB" value="#008000"/>
+                <whispercolor help="This is the color of whisper messages in the chat window." options="color in hex RRGGBB" value="#ff8000"/>
+            </tab>
+            <tab name="Fonts" type="grid">
+                <defaultfont help="Set this to a preferred font to use at startup." options="a font name" value="Arial"/>
+                <defaultfontsize help="Set this to a preferred fontsize to use at startup." options="a font size" value="10"/>
+            </tab>
+        </tab>
+    </tab>
+    <tab name="Player List" type="grid">
+        <ColorizeRoles options="bool" value="1" help="Colorizes roles in the player list." />
+        <GMRoleColor help="Set the color for the GM Role" options="color in hex RRGGBB" value="#FF0000"/>
+        <PlayerRoleColor help="Set the color for the Player Role" options="color in hex RRGGBB" value="#000000"/>
+        <LurkerRoleColor help="Set the color for the Lurker Role" options="color in hex RRGGBB" value="#c6c6c6"/>
+    </tab>
+    <tab name="Map" type="grid">
+        <ImageCacheSize options="int" value="32" help="This sets the number of images to cache." />
+        <AlwaysShowMapScale options="bool" value="0" help="Setting this to 1 will keep the map scale displayed in the upper left corner of the map." />
+    </tab>
+    <tab name="Game Tree" type="grid">
+        <LoadGameTreeFeatures options="bool" value="1" help="Setting this to 1 will load the gametree features next time you run OpenRPG." />
+        <treedclick options="use, design, print, chat" value="use" help="This sets the action performed on a node when you double click it in the game tree." />
+        <SaveGameTreeOnExit help="Set this to 1 if you want your game tree to automaticaly be saved when you log out." options="bool" value="1"/>
+        <gametree help="This is the path on your computer pointing to the xml file\n for your tree." options="URL" value="myfiles/tree.xml"/>
+    </tab>
+    <tab name="Sever Colors" type="grid">
+        <RoomColor_Lobby  help="Sets the color used to display the 'Lobby' in the Room List in the Gameserver window" options="hex" value="#000080"/>
+        <RoomColor_Empty  help="Sets the color used to display empty rooms in the Room List in the Gameserver window" options="hex" value="#bebebe"/>
+        <RoomColor_Locked help="Sets the color used to display password protected rooms in the Room List in the Gameserver window" options="hex" value="#b70000"/>
+        <RoomColor_Active help="Sets the color used to display non-passworded non-empty rooms in the Room List in the Gameserver window" options="hex" value="#000000"/>
+    </tab>
+    <tab name="Plugins" type="tab">
+    </tab>
+</ini>

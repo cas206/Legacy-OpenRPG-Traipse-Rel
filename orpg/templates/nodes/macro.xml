@@ -1,0 +1,4 @@
+
+<nodehandler class="macro_handler" icon="gear" module="chatmacro" name="Macro" version="1.0">
+  <text>/me used a blank macro</text>
+</nodehandler>

@@ -1,0 +1,92 @@
+<!--
+    Window Container Options
+    <tab>
+    <splitter  pos="?" type="v or h" >
+    <dialog width="?" height="?" posx="?" posy="?"  stayontop="1 or 0" >
+
+    OpenRPG Window Tags
+    <map enable="1" />
+    <chat enable="1" />
+    <tree enable="1" />
+    <player enable="1" />
+-->
+
+<!--
+
+STANDARD LAYOUT
+-->
+<orpg_gui width="1" height="1" posx="10" posy="10" >
+    <splitter  pos="300"  type="v" >
+        <splitter  pos="400" type="h" >
+            <tree enable="1" name="Tree" />
+            <player enable="1" name="Player"/>
+        </splitter>
+        <splitter  pos="300"  type="h" >
+            <map enable="1" name="Map" />
+            <chat enable="1" name="Chat" />
+        </splitter>
+    </splitter>
+</orpg_gui>
+
+
+
+<!--
+
+ Tree and Player list in Tab.  Chat and Map in a splitter
+
+
+
+<orpg_gui width="1" height="1" posx="1" posy="1" >
+    <splitter  pos="300"  type="v" >
+        <tab  pos="400" type="h" >
+            <tree enable="1" name="Tree" />
+            <player enable="1" name="Player"/>
+        </tab>
+        <splitter  pos="300"  type="h" >
+            <map enable="1" name="Map" />
+            <chat enable="1" name="Chat" />
+        </splitter>
+    </splitter>
+</orpg_gui>
+
+-->
+
+
+<!--
+
+ Tree Map, Chat in splitters. Player list in dialog.
+
+<orpg_gui width="1" height="1" posx="1" posy="1" >
+    <splitter  pos="300"  type="v" >
+        <tree enable="1" name="Tree" />
+        <splitter  pos="300"  type="h" >
+            <map enable="1" name="Map" />
+            <chat enable="1" name="Chat" />
+        </splitter>
+    </splitter>
+    <dialog width="200" height="200" posx="10" posy="10"  stayontop="1" >
+        <player enable="1" name="Player"/>
+    </dialog>
+</orpg_gui>
+
+-->
+
+<!--
+
+Map main window. Tree, players, and chat in dialogs.
+
+<orpg_gui width="1" height="1" posx="1" posy="1" >
+    <map enable="1" name="Map" />
+    <dialog width="250" height="400" posx="10" posy="10"  stayontop="1" >
+        <tree enable="1" name="Tree" />
+    </dialog>
+    <dialog width="250" height="200" posx="10" posy="350"  stayontop="1" >
+        <player enable="1" name="Player"/>
+    </dialog>
+    <dialog width="600" height="250" posx="200" posy="10"  stayontop="1" >
+        <chat enable="1" name="Chat" />
+    </dialog>
+</orpg_gui>
+
+-->
+

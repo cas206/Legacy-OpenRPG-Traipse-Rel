@@ -1,0 +1,102 @@
+
+<gametree version="1.0">
+  <nodehandler class="tabber_handler" icon="tabber" module="containers" name="Behir (Example Sheet)" version="1.0">
+    <nodehandler class="form_handler" icon="form" module="forms" name="Details" version="1.0">
+      <form height="500" width="400"/>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Name" version="1.0">
+        <text multiline="0" send_button="0">Behir</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="HD" version="1.0">
+        <text multiline="0" send_button="0">9d10+45 (94 hp)</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Speed" version="1.0">
+        <text multiline="0" send_button="0">40 ft., climb 15 ft</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="AC" version="1.0">
+        <text multiline="0" send_button="0">16 (-2 size, +1 Dex, +7 natural)</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Face Reach" version="1.0">
+        <text multiline="0" send_button="0">10 ft. by 30 ft./10 ft.</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Feats" version="1.0">
+        <text multiline="0" send_button="0">Cleave, Power Attack</text>
+      </nodehandler>
+      <nodehandler class="listbox_handler" icon="gear" module="forms" name="Skills" version="1.0">
+        <list send_button="1" type="1">
+          <option selected="0" value="0">Climb [1d20+18]</option>
+          <option selected="0" value="0">Hide [1d20+5]</option>
+          <option selected="1" value="0">Spot [1d20+7]</option>
+        </list>
+      </nodehandler>
+      <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Abilities" version="1.0">
+        <grid autosize="1" border="1">
+          <row version="1.0">
+            <cell>Str</cell>
+            <cell>28</cell>
+          </row>
+          <row version="1.0">
+            <cell>Dex</cell>
+            <cell>13</cell>
+          </row>
+          <row version="1.0">
+            <cell>Con</cell>
+            <cell>21</cell>
+          </row>
+          <row version="1.0">
+            <cell>Int</cell>
+            <cell>7</cell>
+          </row>
+          <row version="1.0">
+            <cell>Wis</cell>
+            <cell>14</cell>
+          </row>
+          <row version="1.0">
+            <cell>Cha</cell>
+            <cell>12</cell>
+          </row>
+        </grid>
+        <macros>
+          <macro name=""/>
+        </macros>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="form_handler" icon="form" module="forms" name="Combat Rolls" version="1.0">
+      <form height="300" width="400"/>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Current HP" version="1.0">
+        <text multiline="0" send_button="0">text</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="d20" module="forms" name="Initiative" version="1.0">
+        <text multiline="0" send_button="1">[1d20+1]</text>
+      </nodehandler>
+      <nodehandler class="listbox_handler" icon="gear" module="forms" name="Attacks" version="1.0">
+        <list send_button="1" type="3">
+          <option selected="0" value="0">Bite [1d20+15], Damage [2d4+8]</option>
+          <option selected="0" value="0">Claw [1d20+10], Damage [1d4+4]</option>
+          <option selected="0" value="0">Claw [1d20+10], Damage [1d4+4]</option>
+        </list>
+      </nodehandler>
+      <nodehandler class="listbox_handler" icon="gear" module="forms" name="Saving Throws" version="1.0">
+        <list send_button="1" type="1">
+          <option selected="1" value="0">Will Power [1d20+5]</option>
+          <option selected="0" value="0">Relex [1d20+7]</option>
+          <option selected="0" value="0">Fortitude [1d20+11]</option>
+        </list>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="textctrl_handler" icon="note" module="forms" name="Combat Info" version="1.0">
+      <text multiline="1" send_button="1">A behir usually bites and grabs its prey first, then either swallows or constricts the opponent. If beset by a large number of foes, it uses its breath weapon.
+
+Breath Weapon (Su): Line of lightning 5 feet wide, 5 feet high, and 20 feet long, once a minute; damage 7d6, Reflex half DC 19.
+
+Improved Grab (Ex): To use this ability, the behir must hit with its bite attack. If it gets a hold, it can attempt to swallow or constrict the opponent.
+
+Swallow Whole (Ex): A behir can try to swallow a grabbed Medium-size or smaller opponent by making a successful grapple check. A behir that swallows an opponent can use its Cleave feat to bite and grab another opponent. The swallowed creature takes 2d8+8 points of crushing damage and 8 points of acid damage per round from the behirs gizzard. A swallowed creature can also cut its way out by using claws or a Small or Tiny slashing weapon to deal 25 points of damage to the gizzard (AC 20). Once the creature exits, muscular action closes the hole; another swallowed opponent must again cut its own way out.
+
+The behirs gizzard can hold two Medium-size, four Small, eight Tiny, sixteen Diminutive, or thirty-two Fine or smaller opponents.
+
+Constrict (Ex): A behir deals 2d8+8 damage with a successful grapple check against Gargantuan or smaller creatures. It can use its claws against the grappled foe as well.
+
+</text>
+    </nodehandler>
+  </nodehandler>
+</gametree>

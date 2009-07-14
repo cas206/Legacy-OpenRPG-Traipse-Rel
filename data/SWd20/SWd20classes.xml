@@ -1,0 +1,47 @@
+<classes>
+  <class level="1" name="Big-Game Hunter" vd="d10"/>
+  <class level="1" name="Blockade Runner" vd="d6"/>
+  <class level="1" name="Bounty Hunter" vd="d10"/>
+  <class level="1" name="Commoner" vd="d0"/>
+  <class level="1" name="Crimelord" vd="d6"/>
+  <class level="1" name="Dark Force Witch" vd="d8"/>
+  <class level="1" name="Dark Side Devotee" vd="d8"/>
+  <class level="1" name="Dark Side Marauder" vd="d10"/>
+  <class level="1" name="Deep Space Pilot" vd="d6"/>
+  <class level="1" name="Diplomat" vd="d0"/>
+  <class level="1" name="Elite Trooper" vd="d10"/>
+  <class level="1" name="Emperor's Hand" vd="d8"/>
+  <class level="1" name="Expert" vd="d0"/>
+  <class level="1" name="First-Contact Specialist" vd="d6"/>
+  <class level="1" name="Force Adept" vd="d8"/>
+  <class level="1" name="Fringer" vd="d8"/>
+  <class level="1" name="Gand Findsman" vd="d8"/>
+  <class level="1" name="Imperial Inquisitor" vd="d10"/>
+  <class level="1" name="Jedi Ace" vd="d8"/>
+  <class level="1" name="Jedi Consular" vd="d8"/>
+  <class level="1" name="Jedi Guardian" vd="d10"/>
+  <class level="1" name="Jedi Investigator" vd="d8"/>
+  <class level="1" name="Jedi Master" vd="d8"/>
+  <class level="1" name="Jedi Weapon Master" vd="d10"/>
+  <class level="1" name="Martial Artist" vd="d10"/>
+  <class level="1" name="Master Gunner" vd="d6"/>
+  <class level="1" name="Naval Officer" vd="d6"/>
+  <class level="1" name="Noble" vd="d6"/>
+  <class level="1" name="Noghri Bodyguard" vd="d8"/>
+  <class level="1" name="Officer" vd="d8"/>
+  <class level="1" name="Privateer" vd="d10"/>
+  <class level="1" name="Scoundrel" vd="d6"/>
+  <class level="1" name="Scout" vd="d8"/>
+  <class level="1" name="Sector Ranger" vd="d8"/>
+  <class level="1" name="Sharpshooter" vd="d6"/>
+  <class level="1" name="Sith Acolyte" vd="d8"/>
+  <class level="1" name="Sith Lord" vd="d10"/>
+  <class level="1" name="Sith Warrior" vd="d10"/>
+  <class level="1" name="Slicer" vd="d6"/>
+  <class level="1" name="Soldier" vd="d10"/>
+  <class level="1" name="Starfighter Ace" vd="d8"/>
+  <class level="1" name="Starship Ace" vd="d8"/>
+  <class level="1" name="Tech Specialist" vd="d6"/>
+  <class level="1" name="Thug" vd="d0"/>
+  <class level="1" name="Vehicle Ace" vd="d8"/>
+</classes>

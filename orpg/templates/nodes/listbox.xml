@@ -1,0 +1,8 @@
+
+<nodehandler class="listbox_handler" icon="gear" module="forms" name="List Box" version="1.0">
+  <list send_button="0" type="0">
+    <option selected="1" value="">Option Text I</option>
+    <option selected="0" value="">Option Text II</option>
+    <option selected="0" value="">Option Text III</option>
+  </list>
+</nodehandler>

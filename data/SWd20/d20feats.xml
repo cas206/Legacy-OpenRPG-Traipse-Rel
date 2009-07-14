@@ -1,0 +1,217 @@
+<feats>
+    <feat name='Absorb Energy' type='General' />
+    <feat name='Acrobatic' type='General' />
+    <feat name='Advanced Martial Arts' type='General' />
+    <feat name='Alertness' type='General' />
+    <feat name='Alter' type='General' />
+    <feat name='Ambidexterity' type='General' />
+    <feat name='Animal Affinity' type='General' />
+    <feat name='Armor Proficiency (heavy)' type='General' />
+    <feat name='Armor Proficiency (light)' type='General' />
+    <feat name='Armor Proficiency (medium)' type='General' />
+    <feat name='Armor Proficiency (powered)' type='General' />
+    <feat name='Athletic' type='General' />
+    <feat name='Attuned' type='General' />
+    <feat name='Aware' type='General' />
+    <feat name='Blind-fight' type='General' />
+    <feat name='Burst of Speed' type='General' />
+    <feat name='Cautious' type='General' />
+    <feat name='Cleave' type='General' />
+    <feat name='Combat Expertise' type='General' />
+    <feat name='Combat Reflexes' type='General' />
+    <feat name='Compassion' type='General' />
+    <feat name='Control' type='General' />
+    <feat name='Defensive Martial Arts' type='General' />
+    <feat name='Dissipate Energy' type='General' />
+    <feat name='Dodge' type='General' />
+    <feat name='Drain Force' type='General' />
+    <feat name='Endurance' type='General' />
+    <feat name='Exotic Weapon Proficiency (amphistaff)' type='General' />
+    <feat name='Exotic Weapon Proficiency (atlatl)' type='General' />
+    <feat name='Exotic Weapon Proficiency (bowcaster)' type='General' />
+    <feat name='Exotic Weapon Proficiency (cesta)' type='General' />
+    <feat name='Exotic Weapon Proficiency (double lightsaber)' type='General' />
+    <feat name='Exotic Weapon Proficiency (gaderffii)' type='General' />
+    <feat name='Exotic Weapon Proficiency (lightsaber)' type='General' />
+    <feat name='Exotic Weapon Proficiency (lightwhip)' type='General' />
+    <feat name='Exotic Weapon Proficiency (massassi lanvarok)' type='General' />
+    <feat name='Exotic Weapon Proficiency (plaeryin bol)' type='General' />
+    <feat name='Exotic Weapon Proficiency (quills)' type='General' />
+    <feat name='Exotic Weapon Proficiency (riot gun)' type='General' />
+    <feat name='Exotic Weapon Proficiency (san-ni staff)' type='General' />
+    <feat name='Exotic Weapon Proficiency (short lightsaber)' type='General' />
+    <feat name='Exotic Weapon Proficiency (sith lanvarok)' type='General' />
+    <feat name='Exotic Weapon Proficiency (sith sword)' type='General' />
+    <feat name='Exotic Weapon Proficiency (snare rifle)' type='General' />
+    <feat name='Exotic Weapon Proficiency (stinger)' type='General' />
+    <feat name='Exotic Weapon Proficiency (tsaisi)' type='General' />
+    <feat name='Expert Gunner' type='General' />
+    <feat name='Fame' type='General' />
+    <feat name='Far Shot' type='General' />
+    <feat name='Focus' type='General' />
+    <feat name='Force Dodge' type='General' />
+    <feat name='Force Flight' type='General' />
+    <feat name='Force Mastery' type='General' />
+    <feat name='Force Mind' type='General' />
+    <feat name='Force Pilot' type='General' />
+    <feat name='Force Shot' type='General' />
+    <feat name='Force Speed' type='General' />
+    <feat name='Force Whirlwind' type='General' />
+    <feat name='Force-Sensitive' type='General' />
+    <feat name='Frightful Presence' type='General' />
+    <feat name='Gearhead' type='General' />
+    <feat name='Great Cleave' type='General' />
+    <feat name='Great Fortitude' type='General' />
+    <feat name='Guided Shot' type='General' />
+    <feat name='Gunner' type='General' />
+    <feat name='Hatred' type='General' />
+    <feat name='Headstrong' type='General' />
+    <feat name='Heroic Surge' type='General' />
+    <feat name='High Force Mastery' type='General' />
+    <feat name='Improved Bantha Rush' type='General' />
+    <feat name='Improved Critical' type='General' />
+    <feat name='Improved Disarm' type='General' />
+    <feat name='Improved Force Mind' type='General' />
+    <feat name='Improved Initiative' type='General' />
+    <feat name='Improved Martial Arts' type='General' />
+    <feat name='Improved Trip' type='General' />
+    <feat name='Improved Two-weapon Fighting' type='General' />
+    <feat name='Infamy' type='General' />
+    <feat name='Influence' type='General' />
+    <feat name='Iron Will' type='General' />
+    <feat name='Knight Defense' type='General' />
+    <feat name='Knight Mind' type='General' />
+    <feat name='Knight Speed' type='General' />
+    <feat name='Lightning Reflexes' type='General' />
+    <feat name='Lightsaber Defense' type='General' />
+    <feat name='Link' type='General' />
+    <feat name='Low Profile' type='General' />
+    <feat name='Malevolant' type='General' />
+    <feat name='Maneuver Expertise' type='General' />
+    <feat name='Martial Arts' type='General' />
+    <feat name='Master Defense' type='General' />
+    <feat name='Master Mind' type='General' />
+    <feat name='Master Speed' type='General' />
+    <feat name='Mettle' type='General' />
+    <feat name='Mimic' type='General' />
+    <feat name='Mind Trick' type='General' />
+    <feat name='Mobility' type='General' />
+    <feat name='Multishot' type='General' />
+    <feat name='Nimble' type='General' />
+    <feat name='Persuasive' type='General' />
+    <feat name='Pinpoint Accuracy' type='General' />
+    <feat name='Point Blank Shot' type='General' />
+    <feat name='Power Attack' type='General' />
+    <feat name='Precise Shot' type='General' />
+    <feat name='Psychometry' type='General' />
+    <feat name='Quick Draw' type='General' />
+    <feat name='Quickness' type='General' />
+    <feat name='Rage' type='General' />
+    <feat name='Rapid Gunner' type='General' />
+    <feat name='Rapid Shot' type='General' />
+    <feat name='Rugged' type='General' />
+    <feat name='Run' type='General' />
+    <feat name='Sense' type='General' />
+    <feat name='Shapeshifter' type='General' />
+    <feat name='Sharp-eyed' type='General' />
+    <feat name='Shot On The Run' type='General' />
+    <feat name='Sith Sorcery' type='General' />
+    <feat name='Sith Sword Defense' type='General' />
+    <feat name='Sith Sword Expert Defense' type='General' />
+    <feat name='Sith Sword Mastery' type='General' />
+    <feat name='Skill Emphasis (Affect Mind)' type='General' />
+    <feat name='Skill Emphasis (Alchemy)' type='General' />
+    <feat name='Skill Emphasis (Appraise)' type='General' />
+    <feat name='Skill Emphasis (Astrogate)' type='General' />
+    <feat name='Skill Emphasis (Balance)' type='General' />
+    <feat name='Skill Emphasis (Battlemind)' type='General' />
+    <feat name='Skill Emphasis (Bluff)' type='General' />
+    <feat name='Skill Emphasis (Climb)' type='General' />
+    <feat name='Skill Emphasis (Computer Use)' type='General' />
+    <feat name='Skill Emphasis (Control Mind)' type='General' />
+    <feat name='Skill Emphasis (Craft)' type='General' />
+    <feat name='Skill Emphasis (Demolitions)' type='General' />
+    <feat name='Skill Emphasis (Diplomacy)' type='General' />
+    <feat name='Skill Emphasis (Disable Device)' type='General' />
+    <feat name='Skill Emphasis (Disguise)' type='General' />
+    <feat name='Skill Emphasis (Drain Energy)' type='General' />
+    <feat name='Skill Emphasis (Drain Knowledge)' type='General' />
+    <feat name='Skill Emphasis (Empathy)' type='General' />
+    <feat name='Skill Emphasis (Enhance Ability)' type='General' />
+    <feat name='Skill Emphasis (Enhance Senses)' type='General' />
+    <feat name='Skill Emphasis (Entertain)' type='General' />
+    <feat name='Skill Emphasis (Escape Artist)' type='General' />
+    <feat name='Skill Emphasis (Farseeing)' type='General' />
+    <feat name='Skill Emphasis (Fear)' type='General' />
+    <feat name='Skill Emphasis (Force Defense)' type='General' />
+    <feat name='Skill Emphasis (Force Grip)' type='General' />
+    <feat name='Skill Emphasis (Force Lightning)' type='General' />
+    <feat name='Skill Emphasis (Force Stealth)' type='General' />
+    <feat name='Skill Emphasis (Force Strike)' type='General' />
+    <feat name='Skill Emphasis (Forgery)' type='General' />
+    <feat name='Skill Emphasis (Friendship)' type='General' />
+    <feat name='Skill Emphasis (Gamble)' type='General' />
+    <feat name='Skill Emphasis (Gather Information)' type='General' />
+    <feat name='Skill Emphasis (Handle Animal)' type='General' />
+    <feat name='Skill Emphasis (Heal Another)' type='General' />
+    <feat name='Skill Emphasis (Heal Self)' type='General' />
+    <feat name='Skill Emphasis (Hide)' type='General' />
+    <feat name='Skill Emphasis (Illusion)' type='General' />
+    <feat name='Skill Emphasis (Intimidate)' type='General' />
+    <feat name='Skill Emphasis (Jump)' type='General' />
+    <feat name='Skill Emphasis (Knowledge)' type='General' />
+    <feat name='Skill Emphasis (Listen)' type='General' />
+    <feat name='Skill Emphasis (Move Object)' type='General' />
+    <feat name='Skill Emphasis (Move Silently)' type='General' />
+    <feat name='Skill Emphasis (Pilot)' type='General' />
+    <feat name='Skill Emphasis (Profession)' type='General' />
+    <feat name='Skill Emphasis (Repair)' type='General' />
+    <feat name='Skill Emphasis (Ride)' type='General' />
+    <feat name='Skill Emphasis (Search)' type='General' />
+    <feat name='Skill Emphasis (See Force)' type='General' />
+    <feat name='Skill Emphasis (Sense Motive)' type='General' />
+    <feat name='Skill Emphasis (Sleight of Hand)' type='General' />
+    <feat name='Skill Emphasis (Spot)' type='General' />
+    <feat name='Skill Emphasis (Survival)' type='General' />
+    <feat name='Skill Emphasis (Swim)' type='General' />
+    <feat name='Skill Emphasis (Telepathy)' type='General' />
+    <feat name='Skill Emphasis (Transfer Essence)' type='General' />
+    <feat name='Skill Emphasis (Treat Injury)' type='General' />
+    <feat name='Skill Emphasis (Tumble)' type='General' />
+    <feat name='Spacer' type='General' />
+    <feat name='Spring Attack' type='General' />
+    <feat name='Stamina' type='General' />
+    <feat name='Starship Dodge (space transport)' type='General' />
+    <feat name='Starship Dodge (starfighter)' type='General' />
+    <feat name='Starship Operation (capital ship)' type='General' />
+    <feat name='Starship Operation (space transport)' type='General' />
+    <feat name='Starship Operation (starfighter)' type='General' />
+    <feat name='Starship Point Blank Shot (capital ship)' type='General' />
+    <feat name='Starship Point Blank Shot (space transport)' type='General' />
+    <feat name='Starship Point Blank Shot (starfighter)' type='General' />
+    <feat name='Steady' type='General' />
+    <feat name='Stealthy' type='General' />
+    <feat name='Summon Storm' type='General' />
+    <feat name='Sunder' type='General' />
+    <feat name='Surgery' type='General' />
+    <feat name='Toughness' type='General' />
+    <feat name='Track' type='General' />
+    <feat name='Trick' type='General' />
+    <feat name='Trustworthy' type='General' />
+    <feat name='Two-weapon Fighting' type='General' />
+    <feat name='Vehicle Dodge' type='General' />
+    <feat name='Weapon Finesse' type='General' />
+    <feat name='Weapon Focus' type='General' />
+    <feat name='Weapons Group Proficiency (blaster pistols)' type='General' />
+    <feat name='Weapons Group Proficiency (blaster rifles)' type='General' />
+    <feat name='Weapons Group Proficiency (heavy weapons)' type='General' />
+    <feat name='Weapons Group Proficiency (primitive weapons)' type='General' />
+    <feat name='Weapons Group Proficiency (simple weapons)' type='General' />
+    <feat name='Weapons Group Proficiency (slug throwers)' type='General' />
+    <feat name='Weapons Group Proficiency (starship weapons)' type='General' />
+    <feat name='Weapons Group Proficiency (vehicle weapons)' type='General' />
+    <feat name='Weapons Group Proficiency (vibro weapons)' type='General' />
+    <feat name='Whirlwind Attack' type='General' />
+    <feat name='Wookiee Brachiation' type='General' />
+    <feat name='Zero-G Training' type='General' />
+</feats>

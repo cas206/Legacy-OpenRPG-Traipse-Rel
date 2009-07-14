@@ -1,0 +1,13 @@
+
+<nodehandler class="static_handler" icon="browser" module="core" name="OpenRPG Resources">
+  <group_atts border="1" cols="1"/>
+  <nodehandler class="webbrowser_handler" icon="compass" module="core" name="Miniature Maps">
+    <link href="http://www.openrpg.com/map.php"/>
+  </nodehandler>
+  <nodehandler class="webbrowser_handler" icon="chess" module="core" name="Miniature Icons">
+    <link href="http://www.openrpg.com/mins.php"/>
+  </nodehandler>
+  <nodehandler class="webbrowser_handler" icon="html" module="core" name="Forums">
+    <link href="http://www.openrpg.com/forum.php"/>
+  </nodehandler>
+</nodehandler>

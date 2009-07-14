@@ -1,0 +1,326 @@
+<divine>
+<gift name='Resistance' memrz='0' level='0' desc='Subject gains +1 on saving throws.' />
+<gift name='Ray of Frost' memrz='0' level='0' desc='Ray deals 1d3 cold damage.' />
+<gift name='Detect Poison' memrz='0' level='0' desc='Detects poison in one creature or small object.' />
+<gift name='Daze' memrz='0' level='0' desc='Creature loses next action.' />
+<gift name='Flare' memrz='0' level='0' desc='Dazzles one creature (-1 attack).' />
+<gift name='Light' memrz='0' level='0' desc='Object shines like a torch.' />
+<gift name='Dancing Lights' memrz='0' level='0' desc='Figment torches or other lights.' />
+<gift name='Ghost Sound' memrz='0' level='0' desc='Figment sounds.' />
+<gift name='Disrupt Undead' memrz='0' level='0' desc='Deals 1d6 damage to one undead.' />
+<gift name='Mage Hand' memrz='0' level='0' desc='5-pound telekinesis.' />
+<gift name='Mending' memrz='0' level='0' desc='Makes minor repairs on an object.' />
+<gift name='Open/Close' memrz='0' level='0' desc='Opens or closes small or light things.' />
+<gift name='Arcane Mark' memrz='0' level='0' desc='Inscribes a personal rune (visible or invisible).' />
+<gift name='Detect Magic' memrz='0' level='0' desc='Detects gifts and magic items within 60 ft.' />
+<gift name='Prestidigitation' memrz='0' level='0' desc='Performs minor tricks.' />
+<gift name='Read Magic' memrz='0' level='0' desc='Read scrolls and giftbooks.' />
+<gift name='Alarm' memrz='0' level='1' desc='Wards an area for 2 hours/level.' />
+<gift name='Endure Elements' memrz='0' level='1' desc='Ignores 5 damage/round from one energy type.' />
+<gift name='Hold Portal' memrz='0' level='1' desc='Holds door shut.' />
+<gift name='Protection from Chaos/Evil/Good/Law' memrz='0' level='1' desc='+2 AC and saves, counter mind control, hedge out elementals and outsiders.' />
+<gift name='Shield' memrz='0' level='1' desc='Invisible disc gives cover and blocks magic missiles.' />
+<gift name='Grease' memrz='0' level='1' desc='Makes 10-ft. square or one object slippery.' />
+<gift name='Mage Armor' memrz='0' level='1' desc='Gives subject +4 armor bonus.' />
+<gift name='Mount' memrz='0' level='1' desc='Summons riding horse for 2 hr./level.' />
+<gift name='Obscuring Mist' memrz='0' level='1' desc='Fog surrounds you.' />
+<gift name='Summon Monster I' memrz='0' level='1' desc='Calls outsider to fight for you.' />
+<gift name='Unseen Servant' memrz='0' level='1' desc='Creates invisible force that obeys your commands.' />
+<gift name='Comprehend Languages' memrz='0' level='1' desc='Understands all spoken and written languages.' />
+<gift name='Detect Secret Doors' memrz='0' level='1' desc='Reveals hidden doors within 60 ft.' />
+<gift name='Detect Undead' memrz='0' level='1' desc='Reveals undead within 60 ft.' />
+<gift name='Identify' memrz='0' level='1' desc='Determines single feature of magic item.' />
+<gift name='True Strike' memrz='0' level='1' desc='Adds +20 bonus to your next attack roll.' />
+<gift name='Charm Person' memrz='0' level='1' desc='Makes one person your friend.' />
+<gift name='Hypnotism' memrz='0' level='1' desc='Fascinates 2d4 HD of creatures.' />
+<gift name='Sleep' memrz='0' level='1' desc='Put 2d4 HD of creatures into comatose slumber.' />
+<gift name='Magic Missile' memrz='0' level='1' desc='1d4+1 damage; +1 missile/two levels above 1st (max +5).' />
+<gift name='Tensers Floating Disk' memrz='0' level='1' desc='3-ft.-diameter horizontal disk that holds 100 lb./level.' />
+<gift name='Change Self' memrz='0' level='1' desc='Changes your appearance.' />
+<gift name='Color Spray' memrz='0' level='1' desc='Knocks unconscious, blinds, or stuns 1d6 weak creatures.' />
+<gift name='Nystuls Magical Aura' memrz='0' level='1' desc='Grants object false magic aura.' />
+<gift name='Nystuls Undetectable Aura' memrz='0' level='1' desc='Masks magic items aura.' />
+<gift name='Silent Image' memrz='0' level='1' desc='Creates minor illusion of your design.' />
+<gift name='Ventriloquism' memrz='0' level='1' desc='Throws voice for 1 min./level.' />
+<gift name='Cause Fear' memrz='0' level='1' desc='One creature flees for 1d4 rounds.' />
+<gift name='Chill Touch' memrz='0' level='1' desc='1 touch/level deals 1d6 damage and possibly 1 Str damage.' />
+<gift name='Ray of Enfeeblement' memrz='0' level='1' desc='Ray reduces Str by 1d6 points +1 point/two levels.' />
+<gift name='Animate Rope' memrz='0' level='1' desc='Makes a rope move at your command.' />
+<gift name='Burning Hands' memrz='0' level='1' desc='1d4 fire damage/level (max: 5d4).' />
+<gift name='Enlarge' memrz='0' level='1' desc='Object or creature grows +10%/level (max +50%).' />
+<gift name='Erase' memrz='0' level='1' desc='Mundane or magical writing vanishes.' />
+<gift name='Expeditious Retreat' memrz='0' level='1' desc='Doubles your speed.' />
+<gift name='Feather Fall' memrz='0' level='1' desc='Objects or creatures fall slowly.' />
+<gift name='Jump' memrz='0' level='1' desc='Subject gets +30 on Jump checks.' />
+<gift name='Magic Weapon' memrz='0' level='1' desc='Weapon gains +1 bonus.' />
+<gift name='Message' memrz='0' level='1' desc='Whispered conversation at distance.' />
+<gift name='Reduce' memrz='0' level='1' desc='Object or creature shrinks 10%/level (max 50%).' />
+<gift name='Shocking Grasp' memrz='0' level='1' desc='Touch delivers 1d8 +1/level electricity.' />
+<gift name='Spider Climb' memrz='0' level='1' desc='Grants ability to walk on walls and ceilings.' />
+<gift name='Arcane Lock' memrz='0' level='2' desc='Magically locks a portal or chest.' />
+<gift name='Obscure Object' memrz='0' level='2' desc='Masks object against divination.' />
+<gift name='Protection from Arrows' memrz='0' level='2' desc='Subject immune to most ranged attacks.' />
+<gift name='Resist Elements' memrz='0' level='2' desc='Ignores 12 damage/round from one energy type.' />
+<gift name='Fog Cloud' memrz='0' level='2' desc='Fog obscures vision.' />
+<gift name='Glitterdust' memrz='0' level='2' desc='Blinds creatures, outlines invisible creatures.' />
+<gift name='Melfs Acid Arrow' memrz='0' level='2' desc='Ranged touch attack; 2d4 damage for 1 round + 1 round/three levels.' />
+<gift name='Summon Monster II' memrz='0' level='2' desc='Calls outsider to fight for you.' />
+<gift name='Summon Swarm' memrz='0' level='2' desc='Summons swarm of small crawling or flying creatures.' />
+<gift name='Web' memrz='0' level='2' desc='Fills 10-ft. cube/level with sticky spider webs.' />
+<gift name='Detect Thoughts' memrz='0' level='2' desc='Allows listening to surface thoughts.' />
+<gift name='Locate Object' memrz='0' level='2' desc='Senses direction toward object (specific or type).' />
+<gift name='See Invisibility' memrz='0' level='2' desc='Reveals invisible creatures or objects.' />
+<gift name='Tashas Hideous Laughter' memrz='0' level='2' desc='Subject loses actions for 1d3 rounds.' />
+<gift name='Darkness' memrz='0' level='2' desc='20-ft. radius of supernatural darkness.' />
+<gift name='Daylight' memrz='0' level='2' desc='60-ft. radius of bright light.' />
+<gift name='Flaming Sphere' memrz='0' level='2' desc='Rolling ball of fire, 2d6 damage, lasts 1 round/level.' />
+<gift name='Shatter' memrz='0' level='2' desc='Sonic vibration damages objects or crystalline creatures.' />
+<gift name='Blur' memrz='0' level='2' desc='Attacks miss subject 20% of the time.' />
+<gift name='Continual Flame' memrz='0' level='2' desc='Makes a permanent, heatless torch.' />
+<gift name='Hypnotic Pattern' memrz='0' level='2' desc='Fascinates 2d4+1 HD/level of creatures.' />
+<gift name='Invisibility' memrz='0' level='2' desc='Subject is invisible for 10 min./level or until it attacks.' />
+<gift name='Leomunds Trap' memrz='0' level='2' desc='Makes item seem trapped.' />
+<gift name='Magic Mouth' memrz='0' level='2' desc='Speaks once when triggered.' />
+<gift name='Minor Image' memrz='0' level='2' desc='As silent image, plus some sound.' />
+<gift name='Mirror Image' memrz='0' level='2' desc='Creates decoy duplicates of you (1d4 +1/three levels, max 8).' />
+<gift name='Misdirection' memrz='0' level='2' desc='Misleads divinations for one creature or object.' />
+<gift name='Ghoul Touch' memrz='0' level='2' desc='Paralyzes one subject, who exudes stench (-2 penalty) nearby.' />
+<gift name='Scare' memrz='0' level='2' desc='Panics creatures up to 5 HD (15-ft. radius).' />
+<gift name='Spectral Hand' memrz='0' level='2' desc='Creates disembodied glowing hand to deliver touch attacks.' />
+<gift name='Alter Self' memrz='0' level='2' desc='As change self, plus more drastic changes.' />
+<gift name='Blindness/Deafness' memrz='0' level='2' desc='Makes subject blind or deaf.' />
+<gift name='Bulls Strength' memrz='0' level='2' desc='Subject gains 1d4+1 Str for 1 hr./level.' />
+<gift name='Cats Grace' memrz='0' level='2' desc='Subject gains 1d4+1 Dex for 1 hr./level.' />
+<gift name='Darkvision' memrz='0' level='2' desc='See 60 ft. in total darkness.' />
+<gift name='Endurance' memrz='0' level='2' desc='Gain 1d4+1 Con for 1 hr./level.' />
+<gift name='Knock' memrz='0' level='2' desc='Opens locked or magically sealed door.' />
+<gift name='Levitate' memrz='0' level='2' desc='Subject moves up and down at your direction.' />
+<gift name='Pyrotechnics' memrz='0' level='2' desc='Turns fire into blinding light or choking smoke.' />
+<gift name='Rope Trick' memrz='0' level='2' desc='Up to eight creatures hide in extradimensional space.' />
+<gift name='Whispering Wind' memrz='0' level='2' desc='Sends a short message one mile/level.' />
+<gift name='Dispel Magic' memrz='0' level='3' desc='Cancels magical gifts and effects.' />
+<gift name='Explosive Runes' memrz='0' level='3' desc='Deals 6d6 damage when read.' />
+<gift name='Magic Circle against Chaos/Evil/Good/Law' memrz='0' level='3' desc='As protection gifts, but 10-ft. radius and 10 min./level.' />
+<gift name='Nondetection' memrz='0' level='3' desc='Hides subject from divination, scrying.' />
+<gift name='Protection from Elements' memrz='0' level='3' desc='Absorb 12 damage/level from one kind of energy.' />
+<gift name='Flame Arrow' memrz='0' level='3' desc='Shoots flaming projectiles (extra damage) or fiery bolts (4d6 damage).' />
+<gift name='Phantom Steed' memrz='0' level='3' desc='Magical horse appears for 1 hour/level.' />
+<gift name='Sepia Snake Sigil' memrz='0' level='3' desc='Creates text symbol that immobilizes reader.' />
+<gift name='Sleet Storm' memrz='0' level='3' desc='Hampers vision and movement.' />
+<gift name='Stinking Cloud' memrz='0' level='3' desc='Nauseating vapors, 1 round/level.' />
+<gift name='Summon Monster III' memrz='0' level='3' desc='Calls outsider to fight for you.' />
+<gift name='Clairaudience/Clairvoyance' memrz='0' level='3' desc='Hear or see at a distance for 1 min./level.' />
+<gift name='Tongues' memrz='0' level='3' desc='Speak any language.' />
+<gift name='Hold Person' memrz='0' level='3' desc='Holds one person helpless; 1 round/level.' />
+<gift name='Suggestion' memrz='0' level='3' desc='Compels subject to follow stated course of action.' />
+<gift name='Fireball' memrz='0' level='3' desc='1d6 damage per level, 20-ft. radius.' />
+<gift name='Gust of Wind' memrz='0' level='3' desc='Blows away or knocks down smaller creatures.' />
+<gift name='Leomunds Tiny Hut' memrz='0' level='3' desc='Creates shelter for 10 creatures.' />
+<gift name='Lightning Bolt' memrz='0' level='3' desc='Electricity deals 1d6 damage/level.' />
+<gift name='Wind Wall' memrz='0' level='3' desc='Deflects arrows, smaller creatures, and gases.' />
+<gift name='Displacement' memrz='0' level='3' desc='Attacks miss subject 50%.' />
+<gift name='Illusory Script' memrz='0' level='3' desc='Only intended reader can decipher.' />
+<gift name='Invisibility Sphere' memrz='0' level='3' desc='Makes everyone within 10 ft. invisible.' />
+<gift name='Major Image' memrz='0' level='3' desc='As silent image, plus sound, smell and thermal effects.' />
+<gift name='Gentle Repose' memrz='0' level='3' desc='Preserves one corpse.' />
+<gift name='Halt Undead' memrz='0' level='3' desc='Immobilizes undead for 1 round/level.' />
+<gift name='Vampiric Touch' memrz='0' level='3' desc='Touch deals 1d6/two caster levels; caster gains damage as hp.' />
+<gift name='Blink' memrz='0' level='3' desc='You randomly vanish and reappear for 1 round/level.' />
+<gift name='Fly' memrz='0' level='3' desc='Subject flies at speed of 90.' />
+<gift name='Gaseous Form' memrz='0' level='3' desc='Subject becomes insubstantial and can fly slowly.' />
+<gift name='Greater Magic Weapon' memrz='0' level='3' desc='+1/three levels (max +5).' />
+<gift name='Haste' memrz='0' level='3' desc='Extra partial action and +4 AC.' />
+<gift name='Keen Edge' memrz='0' level='3' desc='Doubles normal weapons threat range.' />
+<gift name='Secret Page' memrz='0' level='3' desc='Changes one page to hide its real content.' />
+<gift name='Shrink Item' memrz='0' level='3' desc='Object shrinks to one-twelfth size.' />
+<gift name='Slow' memrz='0' level='3' desc='One subject/level takes only partial actions, -2 AC, -2 melee rolls.' />
+<gift name='Water Breathing' memrz='0' level='3' desc='Subjects can breathe underwater.' />
+<gift name='Dimensional Anchor' memrz='0' level='4' desc='Bars extradimensional movement.' />
+<gift name='Fire Trap' memrz='0' level='4' desc='Opened object deals 1d4 +1/level damage.' />
+<gift name='Minor Globe of Invulnerability' memrz='0' level='4' desc='Stops 1st- through 3rd-level gift effects.' />
+<gift name='Remove Curse' memrz='0' level='4' desc='Frees object or person from curse.' />
+<gift name='Stoneskin' memrz='0' level='4' desc='Stops blows, cuts, stabs, and slashes.' />
+<gift name='Evards Black Tentacles' memrz='0' level='4' desc='1d4 +1/level tentacles grapple randomly within 15 ft.' />
+<gift name='Leomunds Secure Shelter' memrz='0' level='4' desc='Creates sturdy cottage.' />
+<gift name='Minor Creation' memrz='0' level='4' desc='Creates one cloth or wood object.' />
+<gift name='Solid Fog' memrz='0' level='4' desc='Blocks vision and slows movement.' />
+<gift name='Summon Monster IV' memrz='0' level='4' desc='Calls outsider to fight for you.' />
+<gift name='Arcane Eye' memrz='0' level='4' desc='Invisible floating eye moves 30 ft./round.' />
+<gift name='Detect Scrying' memrz='0' level='4' desc='Alerts you of magical eavesdropping.' />
+<gift name='Locate Creature' memrz='0' level='4' desc='Indicates direction to familiar creature.' />
+<gift name='Scrying' memrz='0' level='4' desc='Spies on subject from a distance.' />
+<gift name='Charm Monster' memrz='0' level='4' desc='Makes monster believe it is your ally.' />
+<gift name='Confusion' memrz='0' level='4' desc='Makes subject behave oddly for 1 round/level.' />
+<gift name='Emotion' memrz='0' level='4' desc='Arouses strong emotion in subject.' />
+<gift name='Lesser Geas' memrz='0' level='4' desc='Commands subject of 7 HD or less.' />
+<gift name='Fire Shield' memrz='0' level='4' desc='Creatures attacking you take fire damage; you are protected from heat or cold.' />
+<gift name='Ice Storm' memrz='0' level='4' desc='Hail deals 5d6 damage in cylinder 40 ft. across.' />
+<gift name='Otilukes Resilient Sphere' memrz='0' level='4' desc='Force globe protects but traps one subject.' />
+<gift name='Shout' memrz='0' level='4' desc='Deafens all within cone and deals 2d6 damage.' />
+<gift name='Wall of Fire' memrz='0' level='4' desc='Deals 2d4 fire damage out to 10 ft. and 1d4 out to 20 ft.' />
+<gift name='Wall of Ice' memrz='0' level='4' desc='Ice plane creates wall with 15 hp +1/level, or hemisphere can trap creatures inside.' />
+<gift name='Hallucinatory Terrain' memrz='0' level='4' desc='Makes one type of terrain appear like another (field into forest, etc).' />
+<gift name='Illusory Wall' memrz='0' level='4' desc='Wall, floor, or ceiling looks real, but anything can pass through.' />
+<gift name='Improved Invisibility' memrz='0' level='4' desc='As invisibility, but subject can attack and stay invisible.' />
+<gift name='Phantasmal Killer' memrz='0' level='4' desc='Fearsome illusion kills subject or deals 3d6 damage.' />
+<gift name='Rainbow Pattern' memrz='0' level='4' desc='Lights prevent 24 HD of creatures from attacking or moving away.' />
+<gift name='Shadow Conjuration' memrz='0' level='4' desc='Mimics conjuring below 4th level.' />
+<gift name='Contagion' memrz='0' level='4' desc='Infects subject with chosen disease.' />
+<gift name='Enervation' memrz='0' level='4' desc='Subject gains 1d4 negative levels.' />
+<gift name='Fear' memrz='0' level='4' desc='Subjects within cone flee for 1 round/level.' />
+<gift name='Bestow Curse' memrz='0' level='4' desc='-6 to an ability; -4 on attacks, saves, and checks; or 50% chance of losing each action.' />
+<gift name='Dimension Door' memrz='0' level='4' desc='Teleports you and up to 500 lb.' />
+<gift name='Polymorph Other' memrz='0' level='4' desc='Gives one subject a new form.' />
+<gift name='Polymorph Self' memrz='0' level='4' desc='You assume a new form.' />
+<gift name='Rarys Mnemonic Enhancer' memrz='0' level='4' desc='Prepares extra gifts or retains one just cast. Wizard only.' />
+<gift name='Dismissal' memrz='0' level='5' desc='Forces a creature to return to native plane.' />
+<gift name='Cloudkill' memrz='0' level='5' desc='Kills 3 HD or less; 4-6 HD save or die.' />
+<gift name='Leomunds Secret Chest' memrz='0' level='5' desc='Hides expensive chest on Ethereal Plane; you retrieve it at will.' />
+<gift name='Lesser Planar Binding' memrz='0' level='5' desc='Traps outsider until it performs a task.' />
+<gift name='Major Creation' memrz='0' level='5' desc='As minor creation, plus stone and metal.' />
+<gift name='Mordenkainens Faithful Hound' memrz='0' level='5' desc='Phantom dog can guard, attack.' />
+<gift name='Summon Monster V' memrz='0' level='5' desc='Calls outsider to fight for you.' />
+<gift name='Wall of Iron' memrz='0' level='5' desc='30 hp/four levels; can topple onto foes.' />
+<gift name='Wall of Stone' memrz='0' level='5' desc='20 hp/four levels; can be shaped.' />
+<gift name='Contact Other Plane' memrz='0' level='5' desc='Ask question of extraplanar entity.' />
+<gift name='Prying Eyes' memrz='0' level='5' desc='1d4 floating eyes +1/level scout for you.' />
+<gift name='Rarys Telepathic Bond' memrz='0' level='5' desc='Link lets allies communicate.' />
+<gift name='Dominate Person' memrz='0' level='5' desc='Controls humanoid telepathically.' />
+<gift name='Feeblemind' memrz='0' level='5' desc='Subjects Int drops to 1.' />
+<gift name='Hold Monster' memrz='0' level='5' desc='As hold person, but any creature.' />
+<gift name='Mind Fog' memrz='0' level='5' desc='Subjects in fog get -10 Wis, Will checks.' />
+<gift name='Bigbys Interposing Hand' memrz='0' level='5' desc='Hand provides 90% cover against one opponent.' />
+<gift name='Cone of Cold' memrz='0' level='5' desc='1d6 cold damage/level.' />
+<gift name='Sending' memrz='0' level='5' desc='Delivers short message anywhere, instantly.' />
+<gift name='Wall of Force' memrz='0' level='5' desc='Wall is immune to damage.' />
+<gift name='Dream' memrz='0' level='5' desc='Sends message to anyone sleeping.' />
+<gift name='False Vision' memrz='0' level='5' desc='Fools scrying with an illusion.' />
+<gift name='Greater Shadow Conjuration' memrz='0' level='5' desc='As shadow conjuration, but up to 4th level and 40% real.' />
+<gift name='Mirage Arcana' memrz='0' level='5' desc='As hallucinatory terrain, plus structures.' />
+<gift name='Nightmare' memrz='0' level='5' desc='Sends vision dealing 1d10 damage, fatigue.' />
+<gift name='Persistent Image' memrz='0' level='5' desc='As major image, but no concentration required.' />
+<gift name='Seeming' memrz='0' level='5' desc='Changes appearance of one person/two levels.' />
+<gift name='Shadow Evocation' memrz='0' level='5' desc='Mimics evocation less than 5th level.' />
+<gift name='Animate Dead' memrz='0' level='5' desc='Creates undead skeletons and zombies.' />
+<gift name='Magic Jar' memrz='0' level='5' desc='Enables possession of another creature.' />
+<gift name='Animal Growth' memrz='0' level='5' desc='One animal/two levels doubles in size, HD.' />
+<gift name='Fabricate' memrz='0' level='5' desc='Transforms raw materials into finished items.' />
+<gift name='Passwall' memrz='0' level='5' desc='Breaches walls 1 ft. thick/level.' />
+<gift name='Stone Shape' memrz='0' level='5' desc='Sculpts stone into any form.' />
+<gift name='Telekinesis' memrz='0' level='5' desc='Lifts or moves 25 lb./level at long range.' />
+<gift name='Teleport' memrz='0' level='5' desc='Instantly transports you anywhere.' />
+<gift name='Transmute Mud to Rock' memrz='0' level='5' desc='Transforms two 10-ft. cubes/level.' />
+<gift name='Transmute Rock to Mud' memrz='0' level='5' desc='Transforms two 10-ft. cubes/level.' />
+<gift name='Permanency' memrz='0' level='5' desc='Makes certain gifts permanent; costs XP.' />
+<gift name='Antimagic Field' memrz='0' level='6' desc='Negates magic within 10 ft.' />
+<gift name='Globe of Invulnerability' memrz='0' level='6' desc='As minor globe, plus 4th level.' />
+<gift name='Greater Digifting' memrz='0' level='6' desc='As dispel magic, but +20 on check.' />
+<gift name='Guards and Wards' memrz='0' level='6' desc='Array of magic effects protect area.' />
+<gift name='Repulsion' memrz='0' level='6' desc='Creatures cant approach you.' />
+<gift name='Acid Fog' memrz='0' level='6' desc='Fog deals acid damage.' />
+<gift name='Planar Binding' memrz='0' level='6' desc='As lesser planar binding, but up to 16 HD.' />
+<gift name='Summon Monster VI' memrz='0' level='6' desc='Calls outsider to fight for you.' />
+<gift name='Analyze Dweomer' memrz='0' level='6' desc='Reveals magical aspects of subject.' />
+<gift name='Legend Lore' memrz='0' level='6' desc='Learn tales about a person, place, or thing.' />
+<gift name='True Seeing' memrz='0' level='6' desc='See all things as they really are.' />
+<gift name='Geas/Quest' memrz='0' level='6' desc='As lesser geas, plus it affects any creature.' />
+<gift name='Mass Suggestion' memrz='0' level='6' desc='As suggestion, plus one/level subjects.' />
+<gift name='Bigbys Forceful Hand' memrz='0' level='6' desc='Hand pushes creatures away.' />
+<gift name='Chain Lightning' memrz='0' level='6' desc='1d6 damage/level; secondary bolts.' />
+<gift name='Contingency' memrz='0' level='6' desc='Sets trigger condition for another gift.' />
+<gift name='Otilukes Freezing Sphere' memrz='0' level='6' desc='Freezes water or deals cold damage.' />
+<gift name='Greater Shadow Evocation' memrz='0' level='6' desc='As shadow evocation, but up to 5th level.' />
+<gift name='Mislead' memrz='0' level='6' desc='Turns you invisible and creates illusory double.' />
+<gift name='Permanent Image' memrz='0' level='6' desc='Includes sight, sound, and smell.' />
+<gift name='Programmed Image' memrz='0' level='6' desc='As major image, plus triggered by event.' />
+<gift name='Project Image' memrz='0' level='6' desc='Illusory double can talk and cast gifts.' />
+<gift name='Shades' memrz='0' level='6' desc='As shadow conjuration, but up to 5th level and 60% real.' />
+<gift name='Veil' memrz='0' level='6' desc='Changes appearance of group of creatures.' />
+<gift name='Circle of Death' memrz='0' level='6' desc='Kills 1d4 HD/level.' />
+<gift name='Control Water' memrz='0' level='6' desc='Raises, lowers, or parts bodies of water.' />
+<gift name='Control Weather' memrz='0' level='6' desc='Changes weather in local area.' />
+<gift name='Disintegrate' memrz='0' level='6' desc='Makes one creature or object vanish.' />
+<gift name='Eyebite' memrz='0' level='6' desc='Charm, fear, sicken or sleep one subject.' />
+<gift name='Flesh to Stone' memrz='0' level='6' desc='Turns subject creature into statue.' />
+<gift name='Mass Haste' memrz='0' level='6' desc='As haste, affects one/level subjects.' />
+<gift name='Mordenkainens Lucubration' memrz='0' level='6' desc='Recalls gift of 5th level or less. Wizard Only.' />
+<gift name='Move Earth' memrz='0' level='6' desc='Digs trenches and build hills.' />
+<gift name='Stone to Flesh' memrz='0' level='6' desc='Restores petrified creature.' />
+<gift name='Tensers Transformation' memrz='0' level='6' desc='You gain combat bonuses.' />
+<gift name='Banishment' memrz='0' level='7' desc='Banishes 2 HD/level extraplanar creatures.' />
+<gift name='Sequester' memrz='0' level='7' desc='Subject is invisible to sight and scrying.' />
+<gift name='gift Turning' memrz='0' level='7' desc='Reflect 1d4+6 gift levels back at caster.' />
+<gift name='Drawmijs Instant Summons' memrz='0' level='7' desc='Prepared object appears in your hand.' />
+<gift name='Mordenkainens Magnificent Mansion' memrz='0' level='7' desc='Door leads to extradimensional mansion.' />
+<gift name='Phase Door' memrz='0' level='7' desc='Invisible passage through wood or stone.' />
+<gift name='Power Word, Stun' memrz='0' level='7' desc='Stuns creature with up to 150 hp.' />
+<gift name='Summon Monster VII' memrz='0' level='7' desc='Calls outsider to fight for you.' />
+<gift name='Greater Scrying' memrz='0' level='7' desc='As scrying, but faster and longer.' />
+<gift name='Vision' memrz='0' level='7' desc='As legend lore, but quicker and strenuous.' />
+<gift name='Insanity' memrz='0' level='7' desc='Subject suffers continuous confusion.' />
+<gift name='Bigbys Grasping Hand' memrz='0' level='7' desc='Hand provides cover, pushes, or grapples.' />
+<gift name='Delayed Blast Fireball' memrz='0' level='7' desc='1d8 fire damage/level; you can delay blast for 5 rounds.' />
+<gift name='Forcecage' memrz='0' level='7' desc='Cube of force imprisons all inside.' />
+<gift name='Mordenkainens Sword' memrz='0' level='7' desc='Floating magic blade strikes opponents.' />
+<gift name='Prismatic Spray' memrz='0' level='7' desc='Rays hit subjects with variety of effects.' />
+<gift name='Mass Invisibility' memrz='0' level='7' desc='As invisibility, but affects all in range.' />
+<gift name='Shadow Walk' memrz='0' level='7' desc='Step into shadow to travel rapidly.' />
+<gift name='Simulacrum' memrz='0' level='7' desc='Creates partially real double of a creature.' />
+<gift name='Control Undead' memrz='0' level='7' desc='Undead dont attack you while under your command.' />
+<gift name='Finger of Death' memrz='0' level='7' desc='Kills one subject.' />
+<gift name='Ethereal Jaunt' memrz='0' level='7' desc='You become ethereal for 1 round/level.' />
+<gift name='Plane Shift' memrz='0' level='7' desc='Up to eight subjects travel to another plane.' />
+<gift name='Reverse Gravity' memrz='0' level='7' desc='Objects and creatures fall upward.' />
+<gift name='Statue' memrz='0' level='7' desc='Subject can become a statue at will.' />
+<gift name='Teleport without Error' memrz='0' level='7' desc='As teleport, but no off-target arrival.' />
+<gift name='Vanish' memrz='0' level='7' desc='As teleport, but affects a touched object.' />
+<gift name='Limited Wish' memrz='0' level='7' desc='Alters reality-within gift limits.' />
+<gift name='Mind Blank' memrz='0' level='8' desc='Subject is immune to mental/emotional magic and scrying.' />
+<gift name='Prismatic Wall' memrz='0' level='8' desc='Walls colors have array of effects.' />
+<gift name='Protection from gifts' memrz='0' level='8' desc='Confers +8 resistance bonus.' />
+<gift name='Greater Planar Binding' memrz='0' level='8' desc='As lesser planar binding, but up to 24 HD.' />
+<gift name='Incendiary Cloud' memrz='0' level='8' desc='Cloud deals 4d6 fire damage/round.' />
+<gift name='Maze' memrz='0' level='8' desc='Traps subject in extradimensional maze.' />
+<gift name='Power Word, Blind' memrz='0' level='8' desc='Blinds 200 hp worth of creatures.' />
+<gift name='Summon Monster VIII' memrz='0' level='8' desc='Calls outsider to fight for you.' />
+<gift name='Trap the Soul' memrz='0' level='8' desc='Imprisons subject within gem.' />
+<gift name='Discern Location' memrz='0' level='8' desc='Exact location of creature or object.' />
+<gift name='Antipathy' memrz='0' level='8' desc='Object or location affected by gift repels certain creatures.' />
+<gift name='Binding' memrz='0' level='8' desc='Array of techniques to imprison a creature.' />
+<gift name='Demand' memrz='0' level='8' desc='As sending, plus you can send suggestion.' />
+<gift name='Mass Charm' memrz='0' level='8' desc='As charm monster, but all within 30 ft.' />
+<gift name='Ottos Irresistible Dance' memrz='0' level='8' desc='Forces subject to dance.' />
+<gift name='Sympathy' memrz='0' level='8' desc='Object or location attracts certain creatures.' />
+<gift name='Bigbys Clenched Fist' memrz='0' level='8' desc='Large hand attacks your foes.' />
+<gift name='Otilukes Telekinetic Sphere' memrz='0' level='8' desc='As Otilukes resilient sphere, but you move sphere telekinetically.' />
+<gift name='Sunburst' memrz='0' level='8' desc='Blinds all within 10 ft., deals 3d6 damage.' />
+<gift name='Screen' memrz='0' level='8' desc='Illusion hides area from vision, scrying.' />
+<gift name='Clone' memrz='0' level='8' desc='Duplicate awakens when original dies.' />
+<gift name='Horrid Wilting' memrz='0' level='8' desc='Deals 1d8 damage/level within 30 ft.' />
+<gift name='Etherealness' memrz='0' level='8' desc='Travel to Ethereal Plane with companions.' />
+<gift name='Iron Body' memrz='0' level='8' desc='Your body becomes living iron.' />
+<gift name='Polymorph Any Object' memrz='0' level='8' desc='Changes any subject into anything else.' />
+<gift name='Symbol' memrz='0' level='8' desc='Triggered runes have array of effects.' />
+<gift name='Freedom' memrz='0' level='9' desc='Releases creature suffering imprisonment.' />
+<gift name='Imprisonment' memrz='0' level='9' desc='Entombs subject beneath the earth.' />
+<gift name='Mordenkainens Disjunction' memrz='0' level='9' desc='Dispels magic, disenchants magic items.' />
+<gift name='Prismatic Sphere' memrz='0' level='9' desc='As prismatic wall, but surrounds on all sides.' />
+<gift name='Gate' memrz='0' level='9' desc='Connects two planes for travel or summoning.' />
+<gift name='Power Word, Kill' memrz='0' level='9' desc='Kills one tough subject or many weak ones.' />
+<gift name='Summon Monster IX' memrz='0' level='9' desc='Calls outsider to fight for you.' />
+<gift name='Foresight' memrz='0' level='9' desc='Sixth sense warns of impending danger.' />
+<gift name='Dominate Monster' memrz='0' level='9' desc='As dominate person, but any creature.' />
+<gift name='Bigbys Crushing Hand' memrz='0' level='9' desc='As Bigbys interposing hand, but stronger.' />
+<gift name='Meteor Swarm' memrz='0' level='9' desc='Deals 24d6 fire damage, plus bursts.' />
+<gift name='Weird' memrz='0' level='9' desc='As phantasmal killer, but affects all within 30 ft.' />
+<gift name='Astral Projection' memrz='0' level='9' desc='Projects you and companions into Astral Plane.' />
+<gift name='Energy Drain' memrz='0' level='9' desc='Subject gains 2d4 negative levels.' />
+<gift name='Soul Bind' memrz='0' level='9' desc='Traps newly dead soul to prevent resurrection.' />
+<gift name='Wail of the Banshee' memrz='0' level='9' desc='Kills one creature/level.' />
+<gift name='Refuge' memrz='0' level='9' desc='Alters item to transport its possessor to you.' />
+<gift name='Shapechange' memrz='0' level='9' desc='Transforms you into any creature, and change forms once per round.' />
+<gift name='Teleportation Circle' memrz='0' level='9' desc='Circle teleports any creature inside to designated spot.' />
+<gift name='Temporal Stasis' memrz='0' level='9' desc='Puts subject into suspended animation.' />
+<gift name='Time Stop' memrz='0' level='9' desc='You act freely for 1d4+1 rounds.' />
+<gift name='Wish' memrz='0' level='9' desc='As limited wish, but with fewer limits.' />
+</divine>

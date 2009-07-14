@@ -1,0 +1,4 @@
+
+<nodehandler class="link_handler" icon="html" module="forms" name="Link" version="1.0">
+  <link href="http://www.openrpg.com"/>
+</nodehandler>

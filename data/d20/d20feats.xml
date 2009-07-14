@@ -1,0 +1,76 @@
+<feats>
+    <feat name='Blank' type='None' />
+    <feat name='Alertness' type='General' />
+    <feat name='Ambidexterity' type='General' />
+    <feat name='Armor Proficiency (heavy)' type='General' />
+    <feat name='Armor Proficiency (light)' type='General' />
+    <feat name='Armor Proficiency (medium)' type='General' />
+    <feat name='Blind-Fight' type='General' />
+    <feat name='Cleave' type='General' />
+    <feat name='Combat Reflexes' type='General' />
+    <feat name='Deflect Arrows' type='General' />
+    <feat name='Dodge' type='General' />
+    <feat name='Endurance' type='General' />
+    <feat name='Exotic Weapon Proficiency' type='General' />
+    <feat name='Expertise' type='General' />
+    <feat name='Point Blank Shot.' type='General' />
+    <feat name='Great Cleave' type='General' />
+    <feat name='Great Fortitude' type='General' />
+    <feat name='Improved Bull Rush' type='General' />
+    <feat name='Improved Critical' type='General' />
+    <feat name='Improved Disarm' type='General' />
+    <feat name='Improved Initiative' type='General' mod='4' />
+    <feat name='Improved Trip' type='General' />
+    <feat name='Improved Two-Weapon Fighting' type='General' />
+    <feat name='Improved Unarmed Strike' type='General' />
+    <feat name='Iron Will' type='General' />
+    <feat name='Leadership' type='General' />
+    <feat name='Lightning Reflexes' type='General' />
+    <feat name='Martial Weapon Proficiency' type='General' />
+    <feat name='Mobility' type='General' />
+    <feat name='Mounted Archery' type='General' />
+    <feat name='Mounted Combat' type='General' />
+    <feat name='Point Blank Shot' type='General' />
+    <feat name='Power Attack' type='General' />
+    <feat name='Precise Shot' type='General' />
+    <feat name='Quick Draw' type='General' />
+    <feat name='Rapid Shot' type='General' />
+    <feat name='Ride-By Attack' type='General' />
+    <feat name='Run' type='General' />
+    <feat name='Shield Proficiency' type='General' />
+    <feat name='Shot on the Run' type='General' />
+    <feat name='Simple Weapon Proficiency' type='General' />
+    <feat name='Skill Focus' type='General' />
+    <feat name='Spirited Charge' type='General' />
+    <feat name='Spring Attack' type='General' />
+    <feat name='Stunning Fist' type='General' />
+    <feat name='Sunder' type='General' />
+    <feat name='Toughness' type='General' />
+    <feat name='Track' type='General' />
+    <feat name='Trample' type='General' />
+    <feat name='Two-Weapon Fighting' type='General' />
+    <feat name='Weapon Finesse' type='General' />
+    <feat name='Weapon Focus' type='General' />
+    <feat name='Weapon Specialization' type='General' />
+    <feat name='Brew Potion' type='General' />
+    <feat name='Combat Casting' type='General' />
+    <feat name='Craft Magic Arms and Armor' type='General' />
+    <feat name='Craft Rod' type='General' />
+    <feat name='Craft Staff' type='General' />
+    <feat name='Craft Wand' type='General' />
+    <feat name='Craft Wondrous Item' type='General' />
+    <feat name='Empower Spell' type='General' />
+    <feat name='Enlarge Spell' type='General' />
+    <feat name='Extend Spell' type='General' />
+    <feat name='Extra Turning' type='General' />
+    <feat name='Forge Ring' type='General' />
+    <feat name='Heighten Spell' type='General' />
+    <feat name='Maximize Spell' type='General' />
+    <feat name='Quicken Spell' type='General' />
+    <feat name='Scribe Scroll' type='General' />
+    <feat name='Silent Spell' type='General' />
+    <feat name='Spell Focus' type='General' />
+    <feat name='Spell Mastery' type='General' />
+    <feat name='Spell Penetration' type='General' />
+    <feat name='Still Spell' type='General' />
+</feats>

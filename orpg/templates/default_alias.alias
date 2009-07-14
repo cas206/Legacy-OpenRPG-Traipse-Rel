@@ -1,0 +1,33 @@
+<aliaslib>
+    <alias name="Test" color="Default" />
+    <alias name="Test1" color="#FF0000" />
+    <filter name="Rogue or Pirate">
+        <rule match="ia" sub="'a" />
+        <rule match="(\W+)(?i)it is(\W+)" sub="\1t'is\2" />
+        <rule match="(\W+)(?i)h" sub="\1'" />
+        <rule match="(?i)his" sub="'is" />
+        <rule match="n[tkg](\W+)" sub="n'\1" />
+        <rule match="(\W+)(?i)to(\W+)" sub="\1t'\2" />
+        <rule match="(\w+)th(\W+)" sub="\1t'\2" />
+        <rule match="(\W+)([Yy])ou(\W+)" sub="\1\2ea\3" />
+        <rule match="(\W+)([Yy])our(\W+)" sub="\1\2er\3" />
+        <rule match="'+" sub="'" />
+        <rule match="th" sub="d'" />
+        <rule match="ass" sub="arse" />
+    </filter>
+    <filter name="Static Communicator">
+        <rule match="ce" sub="ssss(**shhhshh**)" />
+        <rule match="[IiOo]" sub="(**sss**)" />
+        <rule match="wi" sub="(*squack*) " />
+        <rule match="run" sub="@#$%DDD " />
+        <rule match="[Ss][Tt]" sub=";lkj%$# " />
+        <rule match="opy" sub="op.....he" />
+        <rule match="[Bb]" />
+        <rule match="the" sub="te" />
+        <rule match="ow" sub="ashh" />
+        <rule match="[Aa][Bb]" sub="bbb" />
+        <rule match="ll" sub="ya" />
+        <rule match="support" sub="(*rssshhhh*)'pt" />
+        <rule match="ey" sub="eeee" />
+    </filter>
+</aliaslib>

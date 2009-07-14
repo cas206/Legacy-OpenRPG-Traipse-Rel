@@ -1,0 +1,628 @@
+<classes>
+<class level="1" name="Arcane Archer" hd="d8" >
+<requirements>Race: Elf or half-elf.
+Base Attack Bonus: +6.
+Feats: Weapon Focus (any bow other than a crossbow), Point Blank Shot, Precise Shot.
+Spellcasting: Ability to cast 1st-level arcane spells.</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>An arcane archer is proficient with all simple and martial weapons, light armor, medium armor, and shields.</wa_proficiency>
+<features>Enchant Arrow: At 1st level, every nonmagical arrow an arcane archer nocks and lets fly becomes enchanted, gaining a +1 enhancement bonus. An archer's magic arrows only function for her. For every two levels of arcane archer the character advances past 1st level in the prestige class, the magic arrows she creates gain +1 greater potency.
+
+Imbue Arrow: At 2nd level, an arcane archer gains this spell-like ability, allowing her to place an area spell upon an arrow. When the arrow is fired, the spell's area is centered upon where the arrow lands, even if the spell could normally be centered only on the caster. This ability allows the archer to use the bow's range rather than the spell's range. It takes a standard action to cast the spell and fire the arrow. The arrow must be fired in the round the spell is cast, or the spell is wasted.
+
+Seeker Arrow: At 4th level, the arcane archer can launch an arrow once per day at a target known to her within range, and the arrow travels to the target, even around corners. Only an unavoidable obstacle or the end of the arrow's range prevents the arrow's flight. This ability negates cover and concealment modifiers, but otherwise the attack is rolled normally. This is a spell-like ability. (Shooting the arrow is part of the action.)
+
+Phase Arrow: At 6th level, the arcane archer can launch an arrow once per day at a target known to her within range, and the arrow travels to the target in a straight path, passing through any nonmagical barrier or wall in its way. (A wall of force, a wall of fire, or the like stops the arrow.) This ability negates cover, concealment, and even armor modifiers, but otherwise the attack is rolled normally. This is a spell-like ability. (Shooting the arrow is part of the action.)
+
+Hail of Arrows: In lieu of her regular attacks, once per day the 8th-level arcane archer can fire an arrow at each and every target within range, to a maximum of one target for every arcane archer level she has earned. Each attack uses the archer's primary attack bonus, and each enemy may only be targeted by a single arrow. This is a spell-like ability.
+
+Arrow of Death: At 10th level, the arcane archer can enchant an arrow of death that forces the target, if damaged by the arrow's attack, to make a Fortitude save (DC 20) or be slain immediately. It takes one day to create an arrow of death, and the arrow only functions for the arcane archer who created it. The enchantment lasts no longer than one year, and the archer can only have one such arrow in existence at a time.</features>
+</class>
+<class level="1" name="Assassin" hd="d6" >
+<requirements>Move Silently: 8 ranks.
+Hide: 8 ranks.
+Disguise: 4 ranks.
+Special: In addition, he must kill someone for no other reason than to join the assassins.</requirements>
+<alignment>Evil</alignment>
+<wa_proficiency>Assassins are proficient with the crossbow (hand, light, or heavy), dagger (any type), dart, rapier, sap, shortbow (normal and composite), and short sword. Assassins are proficient with light armor but not with shields.</wa_proficiency>
+<features>Sneak Attack: Any time the assassin's target would be denied her Dexterity bonus to AC (whether she actually has a Dexterity bonus or not), the assassin's attack deals +1d6 points of damage. This extra damage increases by +1d6 points every other level (+2d6 at 3rd level, +3d6 at 5th level, and so on). Should the assassin score a critical hit with a sneak attack, this extra damage is not multiplied.
+
+It takes precision and penetration to hit a vital spot, so ranged attacks can only count as sneak attacks if the target is 30 feet away or less.
+
+With a sap or an unarmed strike, the assassin can make a sneak attack that deals subdual damage instead of normal damage. He cannot use a weapon that deals normal damage to deal subdual damage in a sneak attack, not even with the usual -4 penalty, because he must make optimal use of his weapon in order to execute the sneak attack.
+
+An assassin can only sneak attack living creatures with discernible anatomies-undead, constructs, oozes, plants, and incorporeal creatures lack vital areas to attack. Additionally, any creature immune to critical hits is similarly immune to sneak attacks. Also, the assassin must also be able to see the target well enough to pick out a vital spot and must be able to reach a vital spot. The assassin cannot sneak attack while striking at a creature with concealment or by striking the limbs of a creature whose vitals are beyond reach.
+
+If an assassin gets a sneak attack bonus from another source (such as rogue levels), the bonuses to damage stack.
+
+Death Attack: If the assassin studies his victim for 3 rounds and then makes a sneak attack with a melee weapon that successfully deals damage, the sneak attack has the additional effect of possibly either paralyzing or killing the target (assassin's choice). While studying the victim, the assassin can undertake other actions so long as his attention stays focused on the target and the target does not detect the assassin or recognize the assassin as an enemy. If the victim of such an attack fails her Fortitude saving throw (DC 10 + the assassin's class level + the assassin's Intelligence modifier) against the kill effect, she dies. If the saving throw fails against the paralysis effect, the victim's mind and body become enervated, rendering her completely helpless and unable to act for 1d6 rounds plus 1 round per level of the assassin. If the victim's saving throw succeeds, the attack is just a normal sneak attack. Once the assassin has completed the 3 rounds of study, he must make the death attack within the next 3 rounds. If a death attack is attempted and fails (the victim makes her save) or if the assassin does not launch the attack within 3 rounds of completing the study, 3 new rounds of study are required before he can attempt another death attack.
+
+Poison Use: Assassins are trained in the use of poison and never risk accidentally poisoning themselves when applying poison to a blade.
+
+Spells: Beginning at 1st level, an assassin gains the ability to cast a small number of arcane spells. To cast a spell, the assassin must have an Intelligence score of at least 10 + the spell's level, so an assassin with an Intelligence of 10 or lower cannot cast these spells. Assassin bonus spells are based on Intelligence, and saving throws against these spells have a DC of 10 + spell level + the assassin's Intelligence modifier (if any). When the assassin gets 0 spells of a given level, such as 0 1st-level spells at 1st level, the assassin gets only bonus spells. An assassin without a bonus spell for that level cannot yet cast a spell of that level. The assassin's spell list appears below. An assassin prepares and casts spells just as a wizard does.
+
+Saving Throw Bonus vs. Poison: Assassins train with poisons of all types and slowly grow more and more resistant to their effects. This is reflected by a natural saving throw bonus to all poisons gained at 2nd level that increases by +1 for every two levels the assassin gains (+1 at 2nd level, +2 at 4th level, +3 at 6th level, and so on).
+
+Uncanny Dodge: Starting at 2nd level, the assassin gains the extraordinary ability to react to danger before his senses would normally allow him to even be aware of it. At 2nd level and above, he retains his Dexterity bonus to AC (if any) regardless of being caught flat-footed or struck by an invisible attacker. (He still loses his Dexterity bonus to AC if immobilized.)
+
+At 5th level, the assassin can no longer be flanked, since he can react to opponents on opposite sides of him as easily as he can react to a single attacker. This defense denies rogues the ability to use flank attacks to sneak attack the assassin. The exception to this defense is that a rogue at least four levels higher than the assassin can flank him (and thus sneak attack him).
+
+At 10th level, the assassin gains an intuitive sense that alerts him to danger from traps, giving him a +1 bonus to Reflex saves made to avoid traps.
+
+If the assassin has another class that grants the uncanny dodge ability, add together all the class levels of the classes that grant the ability and determine the character's uncanny dodge ability on that basis.
+
+Assassins choose their spells from the following list:
+
+1st level-change self, detect poison, ghost sound, obscuring mist, spider climb.
+2nd level-alter self, darkness, pass without trace, undetectable alignment.
+3rd level-deeper darkness, invisibility, misdirection, nondetection.
+4th level-dimension door, freedom of movement, improved invisibility, poison.</features>
+</class>
+<class level="1" name="Barbarian" hd="d12" >
+<requirements>None</requirements>
+<alignment>Nonlawful</alignment>
+<wa_proficiency>A barbarian is proficient with all simple and martial weapons, light armor, medium armor, and shields.</wa_proficiency>
+<features>Barbarian Rage: Barbarian temporarily gains +4 to Strength, +4 to Constitution, and a +2 morale bonus on Will saves, but suffers a -2 penalty to AC.
+
+The increase in Constitution increases the barbarian's hit points by 2 points per level, but these hit points go away at the end of the rage when the Constitution score drops back to normal. While raging, a barbarian cannot use skills or abilities that require patience and concentration. (The only class skills he can't use while raging are Craft, Handle Animal, and Intuit Direction.) He can use any feat he might have except for Expertise, item creation feats, metamagic feats, and Skill Focus (if it's tied to a skill that requires patience or concentration).
+
+A fit of rage lasts for a number of rounds equal to 3 + the character's (newly improved) Constitution modifier. The barbarian may prematurely end the rage voluntarily. At the end of the rage, the barbarian is fatigued (-2 to Strength, -2 to Dexterity, can't charge or run) for the duration of that encounter (unless the barbarian is 20th level, when this limitation no longer applies). The barbarian can only fly into a rage once per encounter, and only a certain number of times per day (determined by level). Entering a rage takes no time itself, but the barbarian can only do it during his action.
+
+Starting at 15th level, the barbarian's rage bonuses become +6 to Strength, +6 to Constitution, and a +3 morale bonus to Will saves. (The AC penalty remains at -2.)
+
+Fast Movement: The barbarian has a speed faster than the norm for his race by +10 feet when wearing no armor, light armor, or medium armor (and not carrying a heavy load).
+
+Uncanny Dodge: At 2nd level and above, the barbarian retains his Dexterity bonus to AC (if any) if caught flat-footed or struck by an invisible attacker.
+
+At 5th level, the barbarian can no longer be flanked. The exception to this defense is that a rogue at least four levels higher than the barbarian can still flank.
+
+At 10th level, the barbarian gains a +1 bonus to Reflex saves made to avoid traps and a +1 dodge bonus to AC against attacks by traps. At 13th level, these bonuses rise to +2. At 16th, they rise to +3, and at 19th they rise to +4.
+
+Damage Reduction: Starting at 11th level, the barbarian gains the extraordinary ability to shrug off some amount of injury from each blow or attack. Subtract 1 from the damage the barbarian takes each time the barbarian is dealt damage. At 14th level, this damage reduction rises to 2. At 17th, it rises to 3. At 20th, it rises to 4. Damage reduction can reduce damage to 0 but not below 0.
+
+Illiteracy: Barbarians are the only characters that do not automatically know how to read and write. A barbarian must spend 2 skill points to gain the ability to read and write any language the barbarian is able to speak.
+
+Ex-Barbarians: A barbarian who becomes lawful loses the ability to rage and cannot gain more levels as a barbarian. The barbarian retains all the other benefits of the class.</features>
+</class>
+<class level="1" name="Bard" hd="d6" >
+<requirements>None</requirements>
+<alignment>Nonlawful</alignment>
+<wa_proficiency>A bard is proficient with all simple weapons. Additionally, the bard is proficient with one of the following weapons: longbow, composite longbow, longsword, rapier, sap, short composite bow, short sword, shortbow, or whip. Bards are proficient with light armor, medium armor, and shields.</wa_proficiency>
+<features>Spells: A bard casts arcane spells. The bard casts these spells without needing to memorize them beforehand or keep a spellbook. Bards receive bonus spells for high Charisma, and to cast a spell a bard must have a Charisma score at least equal to 10 + the level of the spell. The Difficulty Class for a saving throw against a bard's spell is 10 + the spell's level + the bard's Charisma modifier.
+
+Bardic Music: Once per day per level, a bard can use song or poetics to produce magical effects on those around him or her. While these abilities fall under the category of bardic music, they can include reciting poetry, chanting, singing lyrical songs, singing melodies, whistling, playing an instrument, or playing an instrument in combination with some spoken performance. As with casting a spell with a verbal component, a deaf bard suffers a 20% chance to fail with bardic music. If the bard fails, the attempt still counts against the daily limit.
+
+The Bardic Music effects are:
+
+* Inspire Courage: A bard with 3 or more ranks in Perform can to inspire courage in his or her allies. To be affected, an ally must hear the bard sing for a full round. The effect lasts as long as the bard sings and for 5 rounds after the bard stops singing (or 5 rounds after the ally can no longer hear the bard). While singing, the bard can fight but cannot cast spells, activate magic items by spell completion (such as scrolls), or activate magic items by magic word (such as wands). Affected allies receive a +2 morale bonus to saving throws against charm and fear effects and a +1 morale bonus to attack and weapon damage rolls. Inspire courage is a supernatural, mind-affecting ability.
+
+* Countersong: A bard with 3 or more ranks in Perform can counter magical effects that depend on sound (but not spells that simply have verbal components). As with inspire courage, a bard may sing, play, or recite a countersong while taking other mundane actions, but not magical actions. Each round of the countersong, the bard makes a Perform check. Any creature within 30 feet of the bard (including the bard) who is affected by a sonic or language-dependent magical attack may use the bard's Perform check result in place of his saving throw if, after rolling the saving throw, the Perform check result proves to be better. The bard may keep up the countersong for 10 rounds. Countersong is a supernatural ability.
+
+* Fascinate: A bard with 3 or more ranks in Perform can cause a single creature to become fascinated with him. The creature to be fascinated must be able to see and hear the bard and must be within 90 feet. The bard must also see the creature. The creature must be able to pay attention to the bard. The distraction of a nearby combat or other dangers prevents the ability from working. The bard makes a Perform check, and the target can negate the effect with a Will saving throw equal to or greater than the bard's check result. If the saving throw succeeds, the bard cannot attempt to fascinate that creature again for 24 hours. If the saving throw fails, the creature sits quietly and listens to the song for up to 1 round per level of the bard. While fascinated, the target's Spot and Listen checks suffer a -4 penalty. Any potential threat (such as an ally of the bard moving behind the fascinated creature) allows the fascinated creature a second saving throw against a new Perform check result. Any obvious threat, such as casting a spell, drawing a sword, or aiming, automatically breaks the effect.
+
+While fascinating (or attempting to fascinate) a creature, the bard must concentrate, as if casting or maintaining a spell. Fascinate is a spell-like, mind- affecting charm ability.
+
+* Inspire Competence: A bard with 6 or more ranks in Perform can help an ally succeed at a task. The ally must be able to see and hear the bard and must be within 30 feet. The bard must also see the creature. The ally gets a +2 competence bonus on his skill checks with a particular skill as long as he or she continues to hear the bard's music. The DM may rule that certain uses of this ability are infeasible. The bard can maintain the effect for 2 minutes (long enough for the ally to take 20). Inspire competence is a supernatural, mind-affecting ability.
+
+* Suggestion: A bard with 9 or more ranks in Perform can make a suggestion (as the spell) to a creature that he has already fascinated (see above). The suggestion doesn't count against the bard's daily limit on bardic music performances (one per day per level), but the fascination does. A Will saving throw (DC 13 + the bard's Charisma modifier) negates the effect. Suggestion is a spell-like, mind-affecting charm ability.
+
+* Inspire Greatness: A bard with 12 or more ranks in Perform can inspire greatness in another creature. For every three levels the bard attains beyond 9th, the bard can inspire greatness in one additional creature. To inspire greatness, the bard must sing and the creature must hear the bard sing for a full round, as with inspire courage. The creature must also be within 30 feet. A creature inspired with greatness gains temporary Hit Dice, attack bonuses, and saving throw bonuses as long as he or she hears the bard continue to sing and for 5 rounds thereafter. (All these bonuses are competence bonuses.)
+
+The target gains the following boosts:
+* +2 Hit Dice (d10s that grant temporary hit points).
+* +2 competence bonus on attacks.
+* +1 competence bonus on Fortitude saves.
+
+Apply the target's Constitution modifier, if any, to each bonus Hit Die. These extra Hit Dice count as regular Hit Dice for determining effects such as the sleep spell. Inspire greatness is a supernatural, mind-affecting enchantment ability.
+
+Bardic Knowledge: A bard may make a special bardic knowledge check with a bonus equal to his level + his Intelligence modifier to see whether he knows some relevant information about local notable people, legendary items, or noteworthy places. This check will not reveal the powers of a magic item but may give a hint as to its general function. The bard may not take 10 or take 20 on this check; this sort of knowledge is essentially random. The DM will determine the Difficulty Class of the check by referring to the table below. DC      Type of Knowledge
+--      -----------------10      Common, known by at least a substantial minority of the local population.
+20      Uncommon but available, known by only a few people in the area.
+25      Obscure, known by few, hard to come by.
+30      Extremely obscure, known by very few, possibly forgotten by most who once knew it, possibly known only by those who don't understand the significance of the knowledge.
+
+Ex-Bards: A bard who becomes lawful in alignment cannot progress in levels as a bard, though he retains all his bard abilities.</features>
+</class>
+<class level="1" name="Blackguard" hd="d10" >
+<requirements>Base Attack Bonus: +6.
+Knowledge (religion): 2 ranks.
+Hide: 5 ranks.
+Feats: Cleave, Sunder.
+Special: The blackguard must have made peaceful contact with an evil outsider who was summoned by him or someone else to have contracted the taint of true evil.</requirements>
+<alignment>Any Evil</alignment>
+<wa_proficiency>Blackguards are proficient with all simple and martial weapons, with all types of armor, and with shields.</wa_proficiency>
+<features>Detect Good: At will, the blackguard can detect good as a spell-like ability. This ability duplicates the effects of the spell detect good.
+
+Poison Use: Blackguards are skilled in the use of poison and never risk accidentally poisoning themselves when applying poison to a blade.
+
+Dark Blessing: A blackguard applies his Charisma modifier (if positive) as a bonus to all saving throws.
+
+Spells: Beginning at 1st level, a blackguard gains the ability to cast a small number of divine spells. To cast a spell, the blackguard must have a Wisdom score of at least 10 + the spell's level, so a blackguard with a Wisdom of 10 or lower cannot cast these spells. Blackguard bonus spells are based on Wisdom, and saving throws against these spells have a DC of 10 + spell level + the blackguard's Wisdom modifier. When the blackguard gets 0 spells of a given level, such as 0 1st-level spells at 1st level, he gets only bonus spells. (A blackguard without a bonus spell for that level cannot yet cast a spell of that level.) The blackguard's spell list appears below. A blackguard has access to any spell on the list and can freely choose which to prepare, just like a cleric. A blackguard prepares and casts spells just as a cleric does (though the blackguard cannot spontaneously cast cure or inflict spells).
+
+Smite Good: Once a day, a blackguard of 2nd level or higher may attempt to smite good with one normal melee attack. He adds his Charisma modifier (if positive) to his attack roll and deals 1 extra point of damage per class level. For example, a 9th-level blackguard armed with a longsword would deal 1d8+9 points of damage, plus any additional bonuses from high Strength or magical effects that normally apply. If the blackguard accidentally smites a creature that is not good, the smite has no effect but it is still used up for that day. Smite good is a supernatural ability.
+
+Aura of Despair: Beginning at 3rd level, the blackguard radiates a malign aura that causes enemies within 10 feet of him to suffer a -2 morale penalty on all saving throws. Aura of despair is a supernatural ability.
+
+Command Undead: When a blackguard reaches 3rd level, he gains the supernatural ability to command and rebuke undead. He commands undead as would a cleric of two levels lower.
+
+Sneak Attack: If a blackguard can catch an opponent when she is unable to defend herself effectively from his attack, he can strike a vital spot for extra damage. Basically, any time the blackguard's target would be denied her Dexterity bonus to AC (whether she actually has a Dexterity bonus or not), the blackguard's attack deals +1d6 points of damage at 4th level and an additional +1d6 points for every three levels thereafter (+2d6 at 7th level, +3d6 at 10th level, and so on). Should the blackguard score a critical hit with a sneak attack, this extra damage is not multiplied.
+
+Ranged attacks only count as sneak attacks if the target is 30 feet away or less. A blackguard cannot make a sneak attack to deal subdual damage. The blackguard must be able to see the target well enough to pick out a vital spot and must be able to reach a vital spot. He cannot sneak attack while striking at a creature with concealment or by striking the limbs of a creature whose vitals are beyond reach.
+
+A blackguard can only sneak attack living creatures with discernible anatomies. Undead, constructs, oozes, plants, and incorporeal creatures lack vital areas to attack. Additionally, any creature immune to critical hits is not subject to sneak attacks.
+
+If a blackguard gets a sneak attack bonus from another source (such as rogue levels), the bonuses to damage stack.
+
+Blackguards choose their spells from the following list:
+
+1st level-cause fear, cure light wounds, doom, inflict light wounds, magic weapon, summon monster I*.
+2nd level-bull's strength, cure moderate wounds, darkness, death knell, inflict moderate wounds, shatter, summon monster II*.
+3rd level-contagion, cure serious wounds, deeper darkness, inflict serious wounds, protection from elements, summon monster III*.
+4th level-cure critical wounds, freedom of movement, inflict critical wounds, poison, summon monster IV*.
+
+*Evil creatures only.
+
+Fallen Paladins
+
+Blackguards who possess levels of paladin (that is to say, are now ex-paladins) gain extra abilities the more levels of paladin they possess. Those who have tasted the light of goodness and justice and turned away make the foulest villains.</features>
+</class>
+<class level="1" name="Cleric" hd="d8" >
+<requirements>None</requirements>
+<alignment>Varies by deity. A cleric's alignment must be within one step of his deity's, and it may not be neutral unless the deity's alignment is neutral.</alignment>
+<wa_proficiency>Clerics are proficient with all simple weapons. Clerics are proficient with all types of armor (light, medium, and heavy) and with shields.</wa_proficiency>
+<features>Some deities have favored weapons, and clerics consider it a point of pride to wield them. A cleric whose deity's favored weapon is a martial weapon and who chooses War as one of his domains receives the Martial Weapon Proficiency feat related to that weapon for free, as well as the Weapon Focus feat related to that weapon.
+
+Spells: A cleric casts divine spells. A cleric may prepare and cast any spell on the cleric spell list, provided he can cast spells of that level. The Difficulty Class for a saving throw against a cleric's spell is 10 + the spell's level + the cleric's Wisdom modifier.
+
+Each cleric must choose a time at which he must spend an hour each day in quiet contemplation or supplication to regain his daily allotment of spells. Time spent resting has no effect on whether a cleric can prepare spells.
+
+In addition to his standard spells, a cleric gets one domain spell of each spell level, starting at 1st. When a cleric prepares a domain spell, it must come from one of his two domains.
+
+Deity, Domains, and Domain Spells: Choose a deity for your cleric. The cleric's deity influences his alignment, what magic he can perform, his values, and how others see him.
+
+Choose two from among the deity's domains for your cleric's domains. You can only select an alignment domain (such as Good) for your cleric if his alignment matches that domain.
+
+If your cleric is not devoted to a particular deity, you still select two domains to represent his spiritual inclinations and abilities (but the restriction on alignment domains still applies).
+
+Each domain gives your cleric access to a domain spell at each spell level, from 1st on up, as well as a granted power. Your cleric gets the granted powers of all the domains selected. With access to two domain spells at a given spell level, a cleric prepares one or the other each day. If a domain spell is not on the Cleric Spells list, a cleric can only prepare it in his domain slot.
+
+Spontaneous Casting: Good clerics (and neutral clerics of good deities) can channel stored spell energy into healing spells that they haven't prepared ahead of time. The cleric can "lose" a prepared spell in order to cast any cure spell of the same level or lower (a cure spell is any spell with "cure" in its name).
+
+An evil cleric (or a neutral cleric of an evil deity), on the other hand, can't convert prepared spells to cure spells but can convert them to inflict spells (an inflict spell is one with "inflict" in the title).
+
+A cleric who is neither good nor evil and whose deity is neither good nor evil can convert spells either to cure spells or to inflict spells (player's choice), depending on whether the cleric is more proficient at wielding positive or negative energy. Once the player makes this choice, it cannot be reversed. This choice also determines whether the neutral cleric turns or commands undead (see below).
+
+A cleric can't use spontaneous casting to convert domain spells into cure or inflict spells. These spells arise from the particular powers of the cleric's deity, not divine energy in general.
+
+Chaotic, Evil, Good, and Lawful Spells: A cleric can't cast spells of an alignment opposed to his own or to his deity's.
+
+Turn or Rebuke Undead: A good cleric (or a neutral cleric who worships a good deity) has the supernatural ability to turn undead. Evil clerics (and neutral clerics who worship evil deities) can rebuke such creatures. Neutral clerics of neutral deities can do one or the other (player's choice), depending on whether the cleric is more proficient at wielding positive or negative energy. Once the player makes this choice, it cannot be reversed. This choice also determines whether the neutral cleric can cast spontaneous cure or inflict spells (see above).
+
+A cleric may attempt to turn or rebuke undead a number of times per day equal to three plus his Charisma modifier.
+
+Extra Turning: As a feat, a cleric may take Extra Turning. This feat allows the cleric to turn undead four more times per day than normal. A cleric can take this feat multiple times, gaining four extra daily turning attempts each time.
+
+Bonus Languages: A cleric's list of bonus languages includes Celestial, Abyssal, and Infernal, in addition to the bonus languages available to the character because of his race.
+
+Ex-Clerics: A cleric who grossly violates the code of conduct expected by his god (generally acting in ways opposed to the god's alignment or purposes) loses all spells and class features and cannot gain levels as a cleric of that god until he atones.</features>
+</class>
+<class level="1" name="Druid" hd="d8" >
+<requirements>None</requirements>
+<alignment>Neutral good, lawful neutral, neutral, chaotic neutral, or neutral evil.</alignment>
+<wa_proficiency>Druids are proficient with the following weapons: club, dagger, dart, halfspear, longspear, quarterstaff, scimitar, sickle, shortspear, and sling. Their spiritual oaths prohibit them from using weapons other than these. They are proficient with light and medium armors but are prohibited from wearing metal armor (thus, they may wear only padded, leather, or hide armor). They are skilled with shields but must use only wooden ones. </wa_proficiency>
+<features>A druid who wears prohibited armor or wields a prohibited weapon is unable to use any of her magical powers while doing so and for 24 hours thereafter. (Note: A druid can use wooden items that have been altered by the ironwood spell so that they function as though they were steel.)
+
+Spells: A druid casts divine spells. A druid may prepare and cast any spell on the druid spell list provided she can cast spells of that level. She prepares and casts spells the way a cleric does (though she cannot lose a prepared spell to cast a cure spell in its place). To prepare or cast a spell, a druid must have a Wisdom score of at least 10 + the spell's level. The Difficulty Class for a saving throw against a druid's spell is 10 + the spell's level + the druid's Wisdom modifier. Bonus spells for druids are based on Wisdom.
+
+Chaotic, Evil, Good, and Lawful Spells: A druid can't cast spells of an alignment opposed to her own.
+
+Bonus Languages: A druid may substitute Sylvan for one of the bonus languages available to her. In addition, a druid knows the Druidic language. This secret language is known only to druids, and druids are forbidden from teaching it to nondruids. Druidic has its own alphabet.
+
+Nature Sense: A druid can identify plants and animals (their species and special traits) with perfect accuracy. The druid can determine whether water is safe to drink or dangerous.
+
+Animal Companion: A 1st-level druid may begin play with an animal companion. This animal is one that the druid has befriended with the spell animal friendship.
+
+Woodland Stride: Starting at 2nd level, a druid may move through natural thorns, briars, overgrown areas, and similar terrain at his or her normal speed and without suffering damage or other impairment. However, thorns, briars, and overgrown areas that are enchanted or magically manipulated to impede motion still affect the druid.
+
+Trackless Step: Starting at 3rd level, a druid leaves no trail in natural surroundings and cannot be tracked.
+
+Resist Nature's Lure: Starting at 4th level, a druid gains a +4 bonus to saving throws against the spell-like abilities of feys.
+
+Wild Shape: At 5th level, a druid gains the spell-like ability to polymorph self into a Small or Medium-size animal (but not a dire animal) and back again once per day. Unlike the standard use of the spell, however, the druid may only adopt one form. As stated in the spell description, the druid regains hit points as if he or she has rested for a day. The druid does not risk the standard penalty for being disoriented while in the wild shape.
+
+The druid can use this ability more times per day at 6th, 7th, 10th, 14th, and 18th level, as noted. In addition, the druid gains the ability to take the shape of a Large animal at 8th level, a Tiny animal at 11th level, and a Huge animal at 15th level. At 12th level or higher, she can take the form of a dire animal.
+
+At 16th level or higher, the druid may use wild shape to change into a Small, Medium-size, or Large air, earth, fire, or water elemental once per day. The druid gains all the elemental's special abilities. At 18th level, the druid can do this three times per day.
+
+Venom Immunity: At 9th level, a druid gains immunity to all organic poisons, including monster poisons but not mineral poisons or poison gas.
+
+A Thousand Faces: At 13th level, a druid gains the supernatural ability to change his or her appearance at will, as if using the spell alter self.
+
+Timeless Body: After achieving 15th level, a druid no longer suffers ability penalties for aging and cannot be magically aged. Any penalties she may have already suffered, however, remain in place. Bonuses still accrue, and the druid still dies of old age when her time is up.
+
+Ex-Druids: A druid who ceases to revere nature or who changes to a prohibited alignment loses all spells and druidic abilities and cannot gain levels as a druid until she atones.</features>
+</class>
+<class level="1" name="Dwarven Defender" hd="d12" >
+<requirements>Race: Dwarf.
+Base Attack Bonus: +7.
+Feats: Dodge, Endurance, Toughness.</requirements>
+<alignment>Any Lawful</alignment>
+<wa_proficiency>The dwarven defender is proficient with all simple and martial weapons, all types of armor, and shields.</wa_proficiency>
+<features>Defensive Stance: When he needs to, the defender can become a stalwart bastion of defense. In this defensive stance, a defender gains phenomenal strength and durability, but he cannot move from the spot he is defending. He gains the following benefits:+2 Strength, +4 Constitution, +2 resistance bonus on all saves, +4 dodge bonus to AC.
+
+While defending, a defender cannot use skills or abilities that would require him to shift his position, such as Move Silently or Jump. A defensive stance lasts for 3 rounds, plus the character's (newly improved) Constitution modifier. The defender may end the defense voluntarily prior to this limit. At the end of the defense, the defender is winded and suffers a -2 penalty to Strength for the duration of that encounter. The defender can only take his defensive stance a certain number of times per day as determined by his level. Taking the stance takes no time itself, but the defender can only do so during his action.
+
+Defensive Awareness: Starting at 2nd level, the dwarven defender gains the extraordinary ability to react to danger before his senses would normally allow him to even be aware of it. At 2nd level and above, he retains his Dexterity bonus to AC (if any) regardless of being caught flat-footed or struck by an invisible attacker. (He still loses any Dexterity bonus to AC if immobilized.)
+
+At 5th level, the dwarven defender can no longer be flanked, since he can react to opponents on opposite sides of him as easily as he can react to a single attacker. This defense denies rogues the ability to use flank attacks to sneak attack the dwarven defender. The exception to this defense is that a rogue at least 4 levels higher than the dwarven defender can flank him (and thus sneak attack him).
+
+At 10th level, the dwarven defender gains an intuitive sense that alerts him to danger from traps, giving him a +1 bonus to Reflex saves made to avoid traps.
+
+Defensive awareness is cumulative with uncanny dodge. If the dwarven defender has another class that grants the uncanny dodge ability, add together all the class levels of the classes that grant these two abilities and determine the character's defensive awareness ability on that basis.
+
+Damage Reduction: At 6th level, the dwarven defender gains the extraordinary ability to shrug off some amount of injury from each blow or attack. Subtract 3 from the damage the dwarven defender takes each time he is dealt damage. At 10th level, this damage reduction rises to 6. Damage reduction can reduce damage to 0 but not below 0. (That is, the defender cannot actually gain hit points in this manner.)</features>
+</class>
+<class level="1" name="Fighter" hd="d10" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>The fighter is proficient in the use of all simple and martial weapons and all armor (heavy, medium, and light) and shields.</wa_proficiency>
+<features>Bonus Feats: At 1st level, the fighter gets a bonus feat in addition to the feat that any 1st-level character gets and the bonus feat granted to humans. The fighter gains an additional bonus feat at 2nd level and every two levels thereafter (4th, 6th, 8th, etc.). These bonus feats must be drawn from the following list: Ambidexterity, Blind-Fight, Combat Reflexes, Dodge (Mobility, Spring Attack), Exotic Weapon Proficiency*, Expertise (Improved Disarm, Improved Trip, Whirlwind Attack), Improved Critical*, Improved Initiative, Improved Unarmed Strike (Deflect Arrows, Stunning Fist), Mounted Combat (Mounted Archery, Trample, Ride-By Attack, Spirited Charge), Point Blank Shot (Far Shot, Precise Shot, Rapid Shot, Shot on the Run), Power Attack (Cleave, Improved Bull Rush, Sunder, Great Cleave), Quick Draw, Two- Weapon Fighting (Improved Two-Weapon Fighting), Weapon Finesse*, Weapon Focus*, Weapon Specialization*.
+
+Some of the bonus feats available to a fighter cannot be acquired until the fighter has gained one or more prerequisite feats; these feats are listed parenthetically after the prerequisite feat. A fighter can select feats marked with an asterisk (*) more than once, but it must be for a different weapon each time. A fighter must still meet all prerequisites for a feat, including ability score and base attack bonus minimums.
+
+Weapon Specialization: On achieving 4th level or higher, as a feat the fighter (and only the fighter) may take Weapon Specialization. Weapon Specialization adds a +2 damage bonus with a chosen weapon. The fighter must have Weapon Focus with that weapon to take Weapon Specialization. If the weapon is a ranged weapon, the damage bonus only applies if the target is within 30 feet, because only at that range can the fighter strike precisely enough to hit more effectively. The fighter may take this feat as a bonus feat or as a regular one.</features>
+</class>
+<class level="1" name="Loremasters" hd="d4" >
+<requirements>Spellcasting: Ability to cast seven different divinations, one of which must be 3rd level or higher.
+Two Knowledge Skills (Any Type): 10 ranks in each.
+Feats: Any three metamagic or item creation feats, plus Skill Focus (Knowledge [any individual Knowledge skill]).</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>Loremasters gain no proficiency in any weapon or armor.</wa_proficiency>
+<features>Spells per Day: A loremaster continues training in magic as well as her field of research. Thus, when a new loremaster level is gained, the character gains new spells per day as if she had also gained a level in a spellcasting class she belonged to before she added the prestige class. She does not, however, gain any other benefit a character of that class would have gained (improved chance of controlling or rebuking undead, metamagic or item creation feats, and so on). This essentially means that she adds the level of loremaster to the level of some other spellcasting class the character has, then determines spells per day and caster level accordingly.
+
+If a character had more than one spellcasting class before she became a loremaster, she must decide to which class she adds each level of loremaster for purposes of determining spells per day when she adds the new level.
+
+Secret: In their studies, loremasters stumble upon all sorts of applicable knowledge and secrets. At 1st level and every two levels afterward (3rd, 5th, 7th, and 9th levels), the loremaster chooses one secret from Table: Loremaster Secrets. Her level plus Intelligence modifier determines which secrets she can choose. She can't choose the same secret twice.
+
+Lore: Loremasters gather knowledge. At 2nd level, they gain the ability to know legends or information regarding various topics, just like a bard can with bardic knowledge. The loremaster adds her level and her Intelligence modifier to the Knowledge check. See page 29 in the Player's Handbook for more information on bardic knowledge.
+
+Bonus Languages: Loremasters, in their laborious studies, learn new languages in order to access more knowledge. The loremaster can choose any new language at 4th and 8th level.
+
+Greater Lore: At 6th level, a loremaster gains the ability to identify magic items, as the spell, as an extraordinary ability. She may do this once per item examined.
+
+True Lore: At 10th level, once per day a loremaster can use her knowledge to gain the effects of a legend lore spell or an analyze dweomer spell. True lore is an extraordinary ability.</features>
+</class>
+<class level="1" name="Monk" hd="d8" >
+<requirements>None</requirements>
+<alignment>Any Lawful</alignment>
+<wa_proficiency>Monks are proficient with basic peasant weapons and special weapons whose use is part of monk training. The full list includes club, crossbow (light or heavy), dagger, handaxe, javelin, kama, nunchaku, quarterstaff, shuriken, siangham, and sling.
+
+A monk using a kama, nunchaku, or siangham can strike with his or her unarmed base attack, including her more favorable number of attacks per round (see below). His or her damage, however, is standard for the weapon (1d6, crit X2), not his or her unarmed damage. The weapon must be light, so a Small monk must use Tiny versions of these weapons in order to use the more favorable base attack.
+
+A monk adds her Wisdom bonus (if any) to AC, in addition to her normal Dexterity modifier, and her AC improves as she gains levels. (Only add this extra AC bonus if the total of the monk's Wisdom modifier and the number in the "AC Bonus" column is a positive number.) The Wisdom bonus and the AC bonus represent a preternatural awareness of danger, and a monk does not lose either even in situations when he or she loses her Dexterity modifier due to being unprepared, ambushed, stunned, and so on. (Monks do lose these AC bonuses when immobilized.)
+
+When wearing armor, a monk loses her AC bonus for Wisdom, AC bonus for class and level, favorable multiple unarmed attacks per round, and heightened movement. Furthermore, her special abilities all face the arcane spell failure chance that the armor type normally imposes.</wa_proficiency>
+<features>Unarmed Strike: A monk fighting unarmed gains the benefits of the Improved Unarmed Strike feat and thus does not provoke attacks of opportunity from armed opponents that she attacks.
+
+Making an off-hand attack makes no sense for a monk striking unarmed.
+
+A monk fighting with a one-handed weapon can make an unarmed strike as an off-hand attack, but she suffers the standard penalties for two-weapon fighting. Likewise, a monk with a weapon (other than a special monk weapon) in her off hand gets an extra attack with that weapon but suffers the usual penalties for two-weapon fighting and can't strike with a flurry of blows.
+
+Flurry of Blows: The monk may make one extra attack in a round at her highest base attack, but this attack and each other attack made that round suffer a -2 penalty apiece. This penalty applies for 1 round, so it affects attacks of opportunity the monk might make before her next action. The monk must use the full attack action to strike with a flurry of blows. A monk may also use the flurry of blows if armed with a special monk weapon (kama, nunchaku, or siangham). If armed with one such weapon, the monk makes the extra attack either with that weapon or unarmed. If armed with two such weapons, she uses one for the regular attack (or attacks) and the other for the extra attack. In any case, her damage bonus on the attack with her off hand is not reduced.
+
+Usually, a monk's unarmed strikes deal normal damage rather than subdual damage. However, she can choose to deal her damage as subdual damage when grappling.
+
+Stunning Attack: The monk can use this ability once per round, but no more than once per level per day. The monk must declare she is using a stun attack before making the attack roll (thus, a missed attack roll ruins the attempt). A foe struck by the monk is forced to make a Fortitude saving throw (DC 10 + one-half the monk's level + Wisdom modifier). In addition to receiving normal damage, If the saving throw fails, the opponent is stunned for 1 round. The stunning attack is a supernatural ability.
+
+Evasion: If a monk makes a successful Reflex saving throw against an attack that normally deals half damage on a successful save, the monk instead takes no damage. Evasion can only be used if the monk is wearing light armor or no armor. It is an extraordinary ability.
+
+Deflect Arrows: At 2nd level, a monk gains the Deflect Arrows feat, even if she doesn't have the prerequisite Dexterity score.
+
+Fast Movement: At 3rd level and higher, a monk moves faster than normal. A monk in armor (even light armor) or carrying a medium or heavy load loses this extra speed. A dwarf or a Small monk moves more slowly than a Medium-size monk.
+
+From 9th level on, the monk's running ability is actually a supernatural ability.
+
+Still Mind: At 3rd level, a monk gains a +2 bonus to saving throws against spells and effects from the Enchantment school.
+
+Slow Fall: At 4th level, the monk takes damage as if a fall were 20 feet shorter than it actually is. At 18th level, the monk can use a nearby wall to slow her descent and fall any distance without harm.
+
+Purity of Body: At 5th level, a monk gains immunity to all diseases except for magical diseases.
+
+Improved Trip: At 6th level, a monk gains the Improved Trip feat. She need not have taken the Expertise feat, normally a prerequisite.
+
+Wholeness of Body: At 7th level, a monk can cure her own wounds. She can cure up to twice her current level in hit points each day, and she can spread this healing out among several uses. Wholeness of body is a supernatural ability.
+
+Leap of the Clouds: At 7th level or higher, a monk's jumping distance (vertical or horizontal) is not limited according to her height.
+
+Improved Evasion: At 9th level, a monk only takes half damage on a failed save.
+
+Ki Strike: At 10th level, a monk's unarmed attack is empowered with ki. The unarmed strike damage from such an attack can deal damage to a creature with damage reduction as if the blow were made with a weapon with a +1 enhancement bonus. Ki strike is a supernatural ability.
+
+Diamond Body: At 11th level, a monk gains immunity to poison of all kinds. Diamond body is a supernatural ability.
+
+Abundant Step: At 12th level, a monk can slip magically between spaces, as per the spell dimension door, once per day. This is a spell-like ability, and the monk's effective casting level is one-half her actual level (rounded down).
+
+Diamond Soul: At 13th level, a monk gains spell resistance. Her spell resistance equals her level + 10.
+
+Quivering Palm: Starting at 15th level, a monk can use the quivering palm.
+
+The monk can use the quivering palm attack once a week, and she must announce her intent before making her attack roll. Creatures immune to critical hits cannot be affected. The monk must be of higher level than the target (or have more levels than the target's number of Hit Dice). If the monk strikes successfully and the target takes damage from the blow, the quivering palm attack succeeds. Thereafter the monk can choose to try to slay the victim at any later time within 1 day per level of the monk. The monk merely wills the target to die (a free action), and unless the target makes a Fortitude saving throw (DC 10 + one-half the monk's level + Wisdom modifier), it dies. If the saving throw is successful, the target is no longer in danger from that particular quivering palm attack (but may be affected by another one at a later time). Quivering palm is a supernatural ability.
+
+Timeless Body: After achieving 17th level, a monk no longer suffers ability penalties for aging and cannot be magically aged. (Any penalties she may have already suffered remain in place.) Bonuses still accrue, and the monk still dies of old age when her time is up.
+
+Tongue of the Sun and Moon: A monk of 17th level or above can speak with any living creature.
+
+Empty Body: At 19th level or higher, a monk can assume an ethereal state for 1 round per level per day, as per the spell etherealness. The monk may go ethereal on a number of different occasions during any single day as long as the total number of rounds spent ethereal does not exceed her level. Empty body is a supernatural ability.
+
+Perfect Self: At 20th level, a monk is forevermore treated as an outsider rather than as a humanoid. Additionally, the monk gains damage reduction 20/+1.
+
+Ex-Monks: A monk who becomes nonlawful cannot gain new levels as a monk but retain all monk abilities.</features>
+</class>
+<class level="1" name="Paladin" hd="d10" >
+<requirements>None</requirements>
+<alignment>Lawful</alignment>
+<wa_proficiency>Paladins are proficient with all simple and martial weapons, with all types of armor (heavy, medium, and light), and with shields.</wa_proficiency>
+<features>Detect Evil: At will, the paladin can detect evil as a spell-like ability. This ability duplicates the effects of the spell detect evil.
+
+Divine Grace: A paladin applies her Charisma modifier (if positive) as a bonus to all saving throws.
+
+Lay on Hands: Each day a paladin can cure a total number of hit points equal to the paladin's Charisma bonus (if any) times the paladin's level. The paladin can cure themselves. The paladin may choose to divide her curing among multiple recipients, and he or she doesn't have to use it all at once. Lay on hands is a spell-like ability whose use is a standard action.
+
+Alternatively, the paladin can use any or all of these points to deal damage to undead creatures. Treat this attack just like a touch spell. The paladin decides how many cure points to use as damage after successfully touching the undead creature.
+
+Divine Health: A paladin is immune to all diseases, including magical diseases.
+
+Aura of Courage: Beginning at 2nd level, a paladin is immune to fear (magical or otherwise). Allies within 10 feet of the paladin gain a +4 morale bonus on saving throws against fear effects. Granting the morale bonus to allies is a supernatural ability.
+
+Smite Evil: Once per day, a paladin of 2nd level or higher may attempt to smite evil with one normal melee attack. She adds her Charisma modifier (if positive) to the paladin's attack roll and deals 1 extra point of damage per level. If the paladin accidentally smites a creature that is not evil, the smite has no effect but it is still used up for that day. Smite evil is a supernatural ability.
+
+Remove Disease: Beginning at 3rd level, a paladin can remove disease, as per the spell remove disease, once per week. Remove disease is a spell-like ability for paladins.
+
+Turn Undead: The paladin may use this ability a number of times per day equal to three plus the paladin's Charisma modifier. The paladin turns undead as a cleric of two levels lower would.
+
+Extra Turning: As a feat, a paladin may take Extra Turning. This feat allows the paladin to turn undead four more times per day than normal. A paladin can take this feat multiple times, gaining four extra daily turning attempts each time.
+
+Spells: Beginning at 4th level, a paladin gains the ability to cast a small number of divine spells. To cast a spell, the paladin must have a Wisdom score of at least 10 + the spell's level. Paladin bonus spells are based on Wisdom, and saving throws against these spells have a Difficulty Class of 10 + spell level + Wisdom modifier. When the paladin gets 0 spells of a given level, such as 0 1st-level spells at 4th level, the paladin gets only bonus spells. A paladin has access to any spell on the paladin spell list and can freely choose which to prepare, just as a cleric can.
+
+A paladin prepares and casts spells just as a cleric does (though the paladin cannot use spontaneous casting to substitute a cure spell in place of a prepared spell).
+
+Through 3rd level, a paladin has no caster level. Starting at 4th level, a paladin's caster level is one-half his or her class level.
+
+Special Mount: Upon or after reaching 5th level, a paladin can call an unusually intelligent, strong, and loyal steed to serve him or her in her crusade against evil. This mount is usually a heavy warhorse (for a Medium-size paladin) or a warpony (for a Small paladin).
+
+Should the paladin's mount die, another cannot be called for a year and a day. The new mount has all the accumulated abilities due a mount of the paladin's level.
+
+The DM will provide information about the mount that responds to the paladin's call.
+
+Code of Conduct: A paladin must be of lawful good alignment and loses all special class abilities if she ever willingly commits an act of evil. Additionally, a paladin's code requires that she respect legitimate authority, act with honor (not lying, not cheating, not using poison, etc.), help those who need help (provided they do not use the help for evil or chaotic ends), and punish those that harm or threaten innocents.
+
+Associates: While she may adventure with characters of any good or neutral alignment, a paladin will never knowingly associate with evil characters. A paladin will not continue an association with someone who consistently offends her moral code. A paladin may only hire henchmen or accept followers who are lawful good.
+
+Ex-Paladins: A paladin who ceases to be lawful good, who willfully commits an evil act, or who grossly violates the code of conduct loses all special abilities and spells, including the service of the paladin's warhorse. She also may not progress in levels as a paladin. She regains her abilities if she atones for her violations, as appropriate.</features>
+</class>
+<class level="1" name="Ranger" hd="d10" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>A ranger is proficient with all simple and martial weapons, light armor, medium armor, and shields. </wa_proficiency>
+<features>When wearing light armor or no armor, a ranger can fight with two weapons as if he or she had the feats Ambidexterity and Two-Weapon Fighting. The ranger loses this special bonus when fighting in medium or heavy armor, or when using a double-headed weapon (such as a double sword).
+
+Spells: Beginning at 4th level, a ranger gains the ability to cast a small number of divine spells. To cast a spell, the ranger must have a Wisdom score of at least 10 + the spell's level. Ranger bonus spells are based on Wisdom, and saving throws against these spells have a Difficulty Class of 10 + spell level + Wisdom modifier. When the ranger gets 0 spells of a given level, such as 0 1st-level spells at 4th level, the ranger gets only bonus spells. A ranger without a bonus spell for that level cannot yet cast a spell of that level. A ranger has access to any spell on the ranger spell list and can freely choose which to prepare. A ranger prepares and casts spells just as a cleric does (though the ranger cannot use spontaneous casting to lose a spell and cast a cure or inflict spell in its place).
+
+Through 3rd level, a ranger has no caster level. Starting at 4th level, a ranger's caster level is one-half his class level.
+
+Track: A ranger gains Track as a bonus feat.
+
+Favored Enemy: At 1st level, a ranger may select a type of creature as a favored enemy. (A ranger can only select his own race as a favored enemy if he is evil.) Due to his extensive study of his foes and training in the proper techniques for combating them, the ranger gains a +1 bonus to Bluff, Listen, Sense Motive, Spot, and Wilderness Lore checks when using these skills against this type of creature. Likewise, he gets the same bonus to weapon damage rolls against creatures of this type. A ranger also gets the damage bonus with ranged weapons, but only against targets within 30 feet (the ranger cannot strike with deadly accuracy beyond that range). The bonus doesn't apply to damage against creatures that are immune to critical hits.
+
+At 5th level and at every five levels thereafter (10th, 15th, and 20th level), the ranger may select a new favored enemy, and the bonus associated with every previously selected favored enemy goes up by +1.
+
+* Rangers may not select "humanoid" or "outsider" as a favored enemy, but they may select a more narrowly defined type of humanoid or outsider. A ranger can only select his own race as a favored enemy if he is evil.
+
+Improved Two-Weapon Fighting: A ranger with a base attack bonus of at least +9 can choose to gain the Improved Two-Weapon Fighting feat even if he does not have the other prerequisites for the feat. The ranger must be wearing light armor or no armor in order to use this benefit. </features>
+</class>
+<class level="1" name="Rogue" hd="d6" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>A rogue's weapon training focuses on weapons suitable for stealth and sneak attacks. Thus, all rogues are proficient with the crossbow (hand or light), dagger (any type), dart, light mace, sap, shortbow (normal and composite), and short sword. Medium-size rogues are also proficient with certain weapons that are too big for Small rogues to use and conceal easily: club, heavy crossbow, heavy mace, morningstar, quarterstaff, and rapier. Rogues are proficient with light armor but not with shields. </wa_proficiency>
+<features>Sneak Attack: Any time the rogue's target would be denied a Dexterity bonus to AC (whether the target actually has a Dexterity bonus or not), or when the rogue flanks the target, the rogue's attack deals extra damage. The extra damage is +1d6 at 1st level and an additional 1d6 every two levels thereafter. Should the rogue score a critical hit with a sneak attack, this extra damage is not multiplied.
+
+Ranged attacks can only count as sneak attacks if the target is within 30 feet. The rogue can't strike with deadly accuracy from beyond that range.
+
+With a sap (blackjack) or an unarmed strike, the rogue can make a sneak attack that deals subdual damage instead of normal damage. The rogue cannot use a weapon that deals normal damage to deal subdual damage in a sneak attack, not even with the usual -4 penalty.
+
+A rogue can only sneak attack a living creature with a discernible anatomy. Any creature that is immune to critical hits is also not vulnerable to sneak attacks. The rogue must be able to see the target well enough to pick out a vital spot and must be able to reach a vital spot. The rogue cannot sneak attack while striking a creature with concealment or striking the limbs of a creature whose vitals are beyond reach.
+
+Traps: Rogues (and only rogues) can use the Search skill to locate traps when the task has a Difficulty Class higher than 20. Finding a nonmagical trap has a DC of at least 20, higher if it is well hidden. Finding a magic trap has a DC of 25 + the level of the spell used to create it.
+
+Rogues (and only rogues) can use the Disable Device skill to disarm magic traps. A magic trap generally has a DC of 25 + the level of the spell used to create it.
+
+A rogue who beats a trap's DC by 10 or more with a Disable Device check can generally study a trap, figure out how it works, and bypass it (with his party) without disarming it.
+
+Evasion: At 2nd level, a rogue gains evasion. If exposed to any effect that normally allows a character to attempt a Reflex saving throw for half damage, the rogue takes no damage with a successful saving throw. Evasion can only be used if the rogue is wearing light armor or no armor. It is an extraordinary ability.
+
+Uncanny Dodge: At 3rd level and above, she retains her Dexterity bonus to AC (if any) if caught flat-footed or struck by an invisible attacker.
+
+At 6th level , the rogue can no longer be flanked. Another rogue at least four levels higher can still flank.
+
+At 11th level, the rogue gains a +1 bonus to Reflex saves made to avoid traps and a +1 dodge bonus to AC against attacks by traps. At 14th level, these bonuses rise to +2. At 17th, they rise to +3, and at 20th they rise to +4.
+
+Special Abilities: On achieving 10th level and every three levels thereafter (13th, 16th, and 19th), a rogue chooses a special ability from among the following:
+
+Crippling Strike: When the rogue damages an opponent with a sneak attack, the target also takes 1 point of Strength damage.
+
+Defensive Roll: Once per day, when a rogue would be reduced to 0 hit points or less by damage in combat (from a weapon or other blow, not a spell or special ability), the rogue can attempt to roll with the damage. She makes a Reflex saving throw (DC = damage dealt) and, if successful, takes only half damage from the blow. The rogue must be aware of the attack and able to react to it in order to execute the defensive roll - if the Dexterity bonus to AC is denied, the rogue can't roll. Since this effect would not normally allow a character to make a Reflex save for half damage, the rogue's evasion ability does not apply to the defensive roll.
+
+Improved Evasion: The rogue takes only half damage on a failed save.
+
+Opportunist: Once per round, the rogue can make an attack of opportunity against an opponent who has just been struck for damage in melee by another character. This attack counts as the rogue's attacks of opportunity for that round. Even a rogue with the Combat Reflexes feat can't use the opportunist ability more than once per round.
+
+Skill Mastery: The rogue selects a number of skills equal to 3 + Intelligence modifier. When making a skill check with one of these skills, the rogue may take 10 even if stress and distractions would normally prevent the rogue from doing so. The rogue may gain this special ability multiple times, selecting additional skills for it to apply to each time.
+
+Slippery Mind: If a rogue with a slippery mind is affected by an enchantment and fails the saving throw, 1 round later the rogue can attempt the saving throw again. The rogue only gets this one extra chance to succeed. This is an extraordinary ability.
+
+Feat: A rogue may gain a feat in place of a special ability. </features>
+</class>
+<class level="1" name="Shadowdancer" hd="d8" >
+<requirements>Move Silently: 8 ranks.
+Hide: 10 ranks.
+Perform: 5 ranks.
+Feats: Dodge, Mobility, Combat Reflexes</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>Shadowdancers are proficient with the club, crossbow (hand, light, or heavy), dagger (any type), dart, mace, morningstar, quarterstaff, rapier, sap, shortbow (normal and composite), and short sword. Shadowdancers are proficient with light armor but not with shields.</wa_proficiency>
+<features>Hide in Plain Sight: Shadowdancers can use the Hide skill even while being observed. As long as they are within 10 feet of some sort of shadow, shadowdancers can hide themselves from view in the open without anything to actually hide behind. They cannot, however, hide in their own shadows. Hide in plain sight is a supernatural ability.
+
+Evasion: At 2nd level, a shadowdancer gains evasion. If exposed to any effect that normally allows her to attempt a Reflex saving throw for half damage (such as a fireball), she takes no damage with a successful saving throw. The evasion ability can only be used if the shadowdancer is wearing light armor or no armor.
+
+Darkvision: At 2nd level, a shadowdancer can see in the dark as though she were permanently under the affect of a darkvision spell. This is a supernatural ability.
+
+Uncanny Dodge: Starting at 2nd level, the shadowdancer gains the extraordinary ability to react to danger before her senses would normally allow her to even be aware of it. At 2nd level and above, she retains her Dexterity bonus to AC (if any) regardless of being caught flat-footed or struck by an invisible attacker. (She still loses any Dexterity bonus to AC if immobilized.)
+
+At 5th level, the shadowdancer can no longer be flanked, since she can react to opponents on opposite sides of her as easily as she can react to a single attacker. This defense denies rogues the ability to use flank attacks to sneak attack the shadowdancer. The exception to this defense is that a rogue at least 4 levels higher than the shadowdancer can flank her (and thus sneak attack her).
+
+At 10th level, the shadowdancer gains an intuitive sense that alerts her to danger from traps, giving her a +1 bonus to Reflex saves made to avoid traps.
+
+If the shadowdancer has another class that grants the uncanny dodge ability, add together all the class levels of the classes that grant the ability and determine the character's uncanny dodge ability on that basis.
+
+Shadow Illusion: When a shadowdancer reaches 3rd level, she can create visual illusions from surrounding shadows. This spell-like ability is identical to the arcane spell silent image and may be employed once per day.
+
+Summon Shadow: At 3rd level, a shadowdancer can summon a shadow, an undead shade. Unlike a normal shadow, this shadow's alignment matches that of the shadowdancer. The summoned shadow cannot be turned, rebuked, or commanded by any third party. This shadow serves as a companion to the shadowdancer and can communicate intelligibly with the shadowdancer. Every third level gained by the shadowdancer allows her to summon an additional shadow and adds +2 HD (and the requisite base attack and base save bonus increases) to all her shadow companions.
+
+If a shadow companion is destroyed, or the shadowdancer chooses to dismiss it, the shadowdancer must attempt a Fortitude saving throw (DC 15). If the saving throw fails, the shadowdancer loses 200 experience points per shadowdancer level. A successful saving throw reduces the loss by half, to 100 XP per prestige class level. The shadowdancer's experience can never go below 0 as the result of a shadow's dismissal or destruction. A destroyed or dismissed shadow companion cannot be replaced for a year and a day.
+
+Shadow Jump: At 4th level, the shadowdancer gains the ability to travel between shadows as if by means of a dimension door spell. The limitation is that the magical transport must begin and end in an area with at least some shadow. The shadowdancer can jump up to a total of 20 feet each day in this way, although this may be a single jump of 20 feet or two jumps of 10 feet each. Every two levels thereafter, the distance a shadowdancer can jump each day doubles (40 feet at 6th level, 80 feet at 8th level, and 160 feet at 10th level). This amount can be split among many jumps, but each one, no matter how small, counts as a 10-foot increment. (A 6th-level shadowdancer who jumps 32 feet cannot jump again until the next day.)
+
+Defensive Roll: Starting at 5th level, the shadowdancer can roll with a potentially lethal blow to take less damage from it. Once per day, when a shadowdancer would be reduced to 0 hit points or less by damage in combat (from a weapon or other blow, not a spell or special ability), the shadowdancer can attempt to roll with the damage. She makes a Reflex saving throw (DC = damage dealt) and, if successful, takes only half damage from the blow. She must be aware of the attack and able to react to it in order to execute her defensive roll. If she is in a situation that would deny her any Dexterity bonus to AC, she can't attempt the defensive roll.
+
+Slippery Mind: This extraordinary ability, gained at 7th level, represents the shadowdancer's ability to wriggle free from magical effects that would otherwise control or compel her. If the shadowdancer is affected by an enchantment and fails her saving throw, 1 round later she can attempt her saving throw again. She only gets this one extra chance to succeed at her saving throw. If it fails as well, the spell's effects proceed normally.
+
+Improved Evasion: This extraordinary ability, gained at 10th level, works like evasion (see above). The shadowdancer takes no damage at all on successful saving throws against attacks that allow a Reflex saving throw for half damage (breath weapon, fireball, and so on). What's more, she takes only half damage even if she fails her saving throw, since the shadowdancer's reflexes allow her to get out of harm's way with incredible speed.</features>
+</class>
+<class level="1" name="Sorcerer" hd="d4" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>Sorcerers are proficient with all simple weapons. They are not proficient with any type of armor, nor with shields. </wa_proficiency>
+<features>Spells: A sorcerer casts arcane spells. The number of spells a sorcerer knows is not affected by his Charisma bonus. The spells a sorcerer knows can be common spells chosen from the sorcerer and wizard spell list, or they can be unusual spells that the sorcerer has gained some understanding of by study.
+
+A sorcerer is limited to casting a certain number of spells of each level per day, but he need not prepare his spells in advance. The number of spells he can cast per day is improved by his bonus spells, if any.
+
+A sorcerer may use a higher-level slot to cast a lower-level spell if he so chooses. The spell is still treated as its actual level, not the level of the slot used to cast it.
+
+To learn or cast a spell, a sorcerer must have a Charisma score of at least 10 + the spell's level. The Difficulty Class for saving throws against sorcerer spells is 10 + the spell's level + the sorcerer's Charisma modifier.</features>
+</class>
+<class level="1" name="Wizard" hd="d4" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>Wizards are skilled with the club, dagger, heavy crossbow, light crossbow, and quarterstaff. Wizards are not proficient with any type of armor nor with shields. </wa_proficiency>
+<features>Spells: A wizard casts arcane spells. She is limited to a certain number of spells of each spell level per day, according to her class level. A wizard must prepare spells ahead of time by getting a good night's sleep and spending 1 hour studying her spellbook. While studying, the wizard decides which spells to prepare. To learn, prepare, or cast a spell, a wizard must have an Intelligence score of at least 10 + the spell's level. A wizard's bonus spells are based on Intelligence. The Difficulty Class for saving throws against wizard spells is 10 + the spell's level + the wizard's Intelligence modifier.
+
+Bonus Languages: A wizard may substitute Draconic for one of the bonus languages available to the character.
+
+Familiar: A wizard can summon a familiar in exactly the same manner as a sorcerer. See the sorcerer description.
+
+Scribe Scroll: A wizard has the bonus item creation feat Scribe Scroll, enabling her to create magic scrolls.
+
+Bonus Feats: Every five levels, a wizard gains a bonus feat. This feat must be a metamagic feat, an item creation feat, or Spell Mastery.
+
+Spellbooks: Wizards must study their spellbooks each day to prepare their spells. A wizard cannot prepare any spell not recorded in her spellbook (except for read magic, which all wizards can prepare from memory).
+
+Spell Mastery: A wizard (and only a wizard) can take the special feat Spell Mastery. Each time the wizard takes this feat, choose a number of spells equal to the wizard's Intelligence modifier (they must be spells that the wizard already knows). From that point on, the wizard can prepare these spells without referring to a spellbook.
+
+School Specialization
+
+A school is one of eight groupings of spells, each defined by a common theme, such as illusion or necromancy. A wizard may specialize in one school of magic.
+
+Specialization allows a wizard to cast extra spells from the chosen school, but the wizard then never learns to cast spells from one or more other schools. Spells of the school or schools that the specialist gives up are not available to her, and she can't even cast such spells from scrolls or wands.
+
+The wizard must choose whether to specialize and how at 1st level. She may not change her specialization later.
+
+The specialist can prepare one additional spell (of the school selected as a specialty) per spell level each day.
+
+The specialist gains a +2 bonus to Spellcraft checks to learn the spells of her chosen school.
+
+The eight schools of arcane magic are Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, and Transmutation. Spells that do not fall into any of these schools are called universal spells.
+
+Abjuration: To become an abjurer, a wizard must select a prohibited school or schools from the following choices: (1) either Conjuration, Enchantment, Evocation, Illusion, or Transmutation; or (2) both Divination and Necromancy.
+
+Conjuration: To become a conjurer, a wizard must select a prohibited school or schools from one of the following choices: (1) Evocation; (2) any two of the following three schools: Abjuration, Enchantment, and Illusion; (3) Transmutation, or (4) any three schools.
+
+Divination: To become a diviner, a wizard must select any other single school as a prohibited school.
+
+Enchantment: To become an enchanter, a wizard must select a prohibited school or schools from the following choices: (1) either Abjuration, Conjuration, Evocation, Illusion, or Transmutation; or (2) both Divination and Necromancy.
+
+Evocation: To become an evoker, a wizard must select a prohibited school or schools from one of the following choices: (1) Conjuration; (2) any two of the following three schools: Abjuration, Enchantment, and Illusion; (3) Transmutation; or (4) any three schools.
+
+Illusion: To become an illusionist, a wizard must select a prohibited school or schools from the following choices: (1) either Abjuration, Conjuration, Enchantment, Evocation, or Transmutation; or (2) both Divination and Necromancy.
+
+Necromancy: To become a necromancer, a wizard must select any other single school as a prohibited school.
+
+Transmutation: To become a transmuter, a wizard must select a prohibited school or schools from one of the following choices: (1) Conjuration; (2) Evocation; (2) any two of the following three schools: Abjuration, Enchantment, and Illusion; or (4) any three schools.
+
+Universal: Not a school, but a category for spells all wizards can learn. A wizard cannot select universal as a specialty school or as a school to which she does not have access.</features>
+</class>
+<class level="1" name="Adept" hd="d6" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>Adepts are skilled with all simple weapons. Adepts are not proficient with any type of armor nor with shields</wa_proficiency>
+<features>Spells: An adept casts divine spells. She is limited to a certain number of spells of each spell level per day, according to her class level. Like a cleric, an adept may prepare and cast any spell on the adept list, provided she can cast spells of that level. Like a cleric, she prepares her spells ahead of time each day. The DC for a saving throw against an adept's spell is 10 + spell level + the adept's Wisdom modifier.
+
+Adepts, unlike wizards, do not acquire their spells from books or scrolls, nor prepare them through study. Instead, they meditate or pray for their spells, receiving them as divine inspiration or through their own strength of faith. Each adept must choose a time each day at which she must spend an hour in quiet contemplation or supplication to regain her daily allotment of spells. Time spent resting has no effect on whether an adept can prepare spells.
+
+When the adept gets 0 spells of a given level, she gets only bonus spells for that spell slot. An adept without a bonus spell for that level cannot yet cast a spell of that level. Bonus spells are based on Wisdom.
+
+Each adept has a particular holy symbol (as a divine focus) depending on the adept's magical tradition.
+
+Familiar: At 2nd level, an adept can call a familiar, just like a sorcerer or wizard can.
+
+Adept Spell List
+0 level-create water, cure minor wounds, detect magic, ghost sound, guidance, light, mending, purify food and drink, read magic.
+1st level-bless, burning hands, cause fear, command, comprehend languages, cure light wounds, detect chaos, detect evil, detect good, detect law, endure elements, obscuring mist, protection from chaos, protection from evil, protection from good, protection from law, sleep.
+2nd level-aid, animal trance, bull's strength, cat's grace, cure moderate wounds, darkness, delay poison, endurance, invisibility, mirror image, resist elements, see invisibility, web.
+3rd level-animate dead, bestow curse, contagion, continual flame, cure serious wounds, daylight, deeper darkness, lightning bolt, neutralize poison, remove curse, remove disease, tongues.
+4th level-cure critical wounds, minor creation, polymorph other, polymorph self, restoration, stoneskin, wall of fire.
+5th level-break enchantment, commune, heal, major creation, raise dead, true seeing, wall of stone.</features>
+</class>
+<class level="1" name="Aristocrat" hd="d8" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>The aristocrat is proficient in the use of all simple and martial weapons and with all types of armor and shields.</wa_proficiency>
+<features>None</features>
+</class>
+<class level="1" name="Commoner" hd="d4" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>The commoner is proficient with one simple weapon. He is not proficient with weapons, armor, or shields.</wa_proficiency>
+<features>None</features>
+</class>
+<class level="1" name="Expert" hd="d6" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>The expert is proficient in the use of all simple weapons and with light armor but not shields. </wa_proficiency>
+<features>None</features>
+</class>
+<class level="1" name="Warrior" hd="d8" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>The warrior is proficient in the use of all simple and martial weapons and all armor and shields.</wa_proficiency>
+<features>None</features>
+</class>
+<class level="1" name="Psion" hd="d4" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>Psions are proficient with all simple weapons. They are not proficient with any type of armor, nor with shields. </wa_proficiency>
+<features>Psionics: A Psion manifests psionic powers. The number of pisonic powers know by a psion is a fixed number, by level. Psions must select a specific Discipline to belong to. The psion is required to take a minimum number of powers from his disipline. The psion does not gain extra powers for high stats.
+
+A psion manifest power through the use of power points. The psion does not need to prepare his power before hand as a wizard does. The psion is more like a sorceror in this regard. The psion gains bonus power points for having a high stat in their displine stat.
+
+To learn or manifest a psionic power, a psion must have a stat score of at least 10 + the powers's level in the stat coresponding to it discipline. The Difficulty Class for saving throws against sorcerer spells is 1d20 + the powers's level + the psions's stat modifier.</features>
+</class>
+<class level="1" name="Psychic Warrior" hd="d8" >
+<requirements>None</requirements>
+<alignment>Any</alignment>
+<wa_proficiency>Psychic Warriors are proficient with all simple and martial weapons, and all armour and shields. </wa_proficiency>
+<features>Psionics: A Psychic manifests psionic powers. The number of pisonic powers know by a psion is a fixed number, by level. The psychic warrior does not gain extra powers for high stats. The psychic warriors psionic abilities are inferior to that of the psions.
+
+A psychic warrior manifest power through the use of power points. The psychic warrior does not need to prepare his power before hand as a wizard does. The psychic warrior is more like a sorceror in this regard. The psychic warrior does not gain bonus power points for having a high stat in their displine stat.
+
+To learn or manifest a psionic power, a psychic warrior must have a stat score of at least 10 + the powers's level in the stat coresponding to it discipline. The Difficulty Class for saving throws against sorcerer spells is 1d20 + the powers's level + the psychic warrior's stat modifier.</features>
+</class>
+</classes>

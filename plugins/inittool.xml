@@ -1,0 +1,123 @@
+
+<nodehandler class="group_handler" module="containers" name="Initiative Tool Goodies" version="1.0">
+  <group_atts border="1" cols="1"/>
+  <nodehandler class="macro_handler" icon="oriental" module="chatmacro" name="Start/Clear tool" version="1.0">
+    <text>/init start</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Sort: High to Low" version="1.0">
+    <text>/init sorthigh</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="rome" module="chatmacro" name="Sort: Low to High" version="1.0">
+    <text>/init sortlow</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="help" module="chatmacro" name="List Initiatives" version="1.0">
+    <text>/init list</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="note" module="forms" name="Initiative Tool Instructions" version="1.0">
+    <text multiline="1" send_button="0">Welcome to the new Initiative tool.
+
+Some might be a little disheartened to learn that the new initiative tool no longer has the nifty GUI that was seen briefly with version 0.9.8.  While we don't have that this initiative tools is still holds it's old functionality, as well as becoming more powerful and able to handle a more broad range of dicerolls.  So, without further adeu, let us get cracking.
+
+
+In this instruction set, you should have a set of nodes labeled &quot;Start/Clear tool&quot;, &quot;Sort: High to low&quot;, &quot;Sort: Low to High&quot;, and &quot;List Initiatives&quot;.  just by doubleclicking on each of these (and assuming you have imported the initiative tool plugin) the init tool command (as talked about below) are automatically run.  If you haven't, you'll get the &quot;** Sorry, don't understand what a / is...&quot; msg.
+
+Here's the basic method for using the tool:
+
+First, choose the type of roller to use depending on your gamesystem.  either doubleclick on the types in the gametree, or type in &quot;/type ___&quot;.  replacing &quot;___&quot; with std (standard), 3e (for d20 type games), and wod (for World of Darkness games).  You can also just type in &quot;/type&quot; to find out which type you are currently using.  &quot;/type std&quot; is the default
+
+the DM then starts the initiative tool with the button in the tree or the command &quot;/start&quot; or &quot;/clear&quot;.  all the players then type in a description of what they are doing (and it helps for them to put their name in it) along with their initiative dice and the word &quot;init&quot;
+
+example:
+Running across the roof, Woody dodges the dragon [1d10+6] init
+
+The reason for this is that the new tool will not record your name, only your msg.  it will also ignore anything after the diceroll so it is important to have the description first.  You can also use initiative nodes in almost any character sheet (as long as it has the word &quot;init&quot; or &quot;initiative&quot; in it). In addition to it all, the players can whisper their action to the DM instead.
+
+once all the inits have been inserted, the DM can then sort the list with these commands:
+low to high:
+/sort
+/sortlow
+/low
+
+high to low:
+/reverse
+/sorthigh
+/high
+
+to see the current initiative list at any time, you can type in &quot;/list&quot; or press the appropriate node in the gametree.
+
+now that the DM has the list sorted, he can then send the name on the top of the list to the chat with the command /run or /go.
+
+as soon as the all the players on the list have been sorted through it will display the msg &quot;End of Initiative Round&quot; when prompted again with /run.
+
+That's it.  Feel free to play around with it until you have a feel for it.  It will work BEST if you DISABLE IDs in chat.  Also, it will take a look at any message that it sees the four letters &quot;init&quot; in though it will only grab those that have both that word and a set of round brackets () in it.  In addition to those commands listed above, there are some additional extras that let the DM alter and manipulate the list as well.  they are:
+
+
+/del list_number
+-this allows you to delete whatever number list_number is.
+
+/change list_number new_init_value
+-this will change whatever number list_number's inititive value is to new_init_value
+
+/add new_init_value description
+-this will add a new specific initiative to the list with an inititive roll of new_init_value
+
+
+
+Here is the complete list of commands
+
+/init list
+
+/init start  /init clear
+
+description [diceroll] init
+
+/init sortlow
+
+/init sorthigh
+
+/init run /init go
+
+/init del
+
+/init change
+
+/init add
+
+/init ----this command is special, and will toggle on or off whether the init tool is looking for initiative rolls.  while not necessary to disable during normal play, it is suggested
+Note that you can use almost any node, but the List Box Checkbox node version doesn't work correctly and will only do the first selected item on the list.  other List Box versions do work though</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="grid" module="forms" name="-------------------------------------------------------" version="1.0">
+    <text multiline="0" send_button="0">just a standard divider</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="flask" module="chatmacro" name="Set Diceroller type: Standard" version="1.0">
+    <text>/init type std
+
+/# This is the standard basic rolling fashion.  It will erase each entry after they have been displayed and the players will roll initiative at the beginning of each new round.</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="flask" module="chatmacro" name="Set Diceroller type: World of Darkness" version="1.0">
+    <text>/type wod
+
+/# This diceroller type stores the initiatives and displays them in the traditional World of Darkness fashion.  That being that you will first sort them from low to high and display them in that order to let everyone declare what they are doing.  once everyone has done so, the init tool will reset itself and it will then go through the initiatives from high to low before ending the round.</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="flask" module="chatmacro" name="Set Diceroller type: 3e (and single init rolls only)" version="1.0">
+    <text>/type 3e
+
+This sets the tool to save the same list over and over again so that players and the DM will only roll once with their initiatives for combat.  At the end of each round the initiative tool will reset it's list to the original version.  This can be overrided and everyone can reroll if the DM just types &quot;/init clear&quot; (which clears the list)</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="flask" module="chatmacro" name="Set Diceroller type: ShadowRun" version="1.0">
+    <text>/type srun</text>
+  </nodehandler>
+  <nodehandler class="textctrl_handler" icon="grid" module="forms" name="-------------------------------------------------------" version="1.0">
+    <text multiline="0" send_button="0">just a standard divider</text>
+  </nodehandler>
+  <nodehandler class="macro_handler" icon="gear" module="chatmacro" name="Initiative macro node" version="1.0">
+    <text>Ted jumps up and down [1d10+6] init</text>
+  </nodehandler>
+  <nodehandler class="listbox_handler" icon="gear" module="forms" name="NPC" version="1.0">
+    <list send_button="1" type="1">
+      <option selected="0" value="">The Dragon swoops down on the peasants [1d10-6] init</option>
+      <option selected="0" value="">The peasant captain flees in terror [1d10+4] init</option>
+      <option selected="1" value="">The dragonhunter fires an arrow [1d10+3] init</option>
+    </list>
+  </nodehandler>
+</nodehandler>

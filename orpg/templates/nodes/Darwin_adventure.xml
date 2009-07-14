@@ -1,0 +1,493 @@
+
+<nodehandler class="group_handler" module="containers" name="Darwin's World" version="1.0">
+  <group_atts border="1" cols="1"/>
+  <nodehandler class="link_handler" icon="html" module="forms" name="Website" version="1.0">
+    <link href="http://www.darwinrpg.com/"/>
+  </nodehandler>
+  <nodehandler class="group_handler" module="containers" name="Cave of Life" version="1.0">
+    <group_atts border="1" cols="1"/>
+    <nodehandler class="link_handler" icon="html" module="forms" name="Cave of Life Adventure (PDF)" version="1.0">
+      <link href="http://www.rpgobjects.com/dlm/download.php?id=4"/>
+    </nodehandler>
+    <nodehandler class="tabber_handler" icon="tabber" module="containers" name="Descriptions" version="1.0">
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Introduction" version="1.0">
+        <text multiline="1" send_button="1">
+The deserts of the post-holocaust world are a dangerous place, where fresh water is scarce and men brave enough to defend it even scarcer.  Storms of radiated wind, blights lasting years, and the savage bands of mutated raiders - often well equipped - are just some of the hazards that threaten to squelch good men and communities from rising from the ashes to find a new future.
+You and your fellows are a group of youths who have been raised in a small desert community in the wasteland.  You have seen the efforts and toil of your forefathers to build this small community into a hopeful future, and you have lived well among the others behind the adobe walls of your desert home.  Yet the time comes when you and your friends, nearing adulthood, will be required to pass the rite of manhood that all warriors and heroes of your tribe have taken since ages past.
+You must travel to the infamous Cave of Life, and retrieve water from the endless supply said to be hidden deep within the complex's many twisting caves.  You must brave the dangers of the cave, its rumored denizens, and bring back at least four full waterskins to your community so that you can take your place among the worthy.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="A. Cave Entrance." version="1.0">
+        <text multiline="1" send_button="1">
+Following the words of your elders, half concealed in deep spiritual poetry and deceptive metaphors, you have at last found what must be the entrance to the legendary Cave of Life.  Here, the flat level expanse of nothingness suddenly gives way to isolated bumps and rises, as if the sands themselves were acting to hide some secret just beneath their surface.  A few hundred paces up ahead, silhouetted by the rays of the dying sun, can be seen distant metal &quot;pillars&quot;, perhaps fifteen feet high or so, jutting from the sand in the distance.
+
+Nearby, amid the circle of rubble where the wind cannot groom the sand completely flat, the observant among you spot something of quieting wonder - a section of cracked stone, cleared of sand, at the center of which lies a huge &quot;hatch&quot; of thick metal, almost as large as a man.  Jammed open by thick flakes of age-old rust on its heavy iron hinges, it seems to beckon your approach with an almost &quot;malevolent&quot; impatience.
+
+This surely must be the Cave of Life.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="B. Entranceway." version="1.0">
+        <text multiline="1" send_button="1">
+A narrow shaft, made of some remarkably smooth stone - no doubt worked by some unknown hand - descends into the cold darkness below.  One by one you descend on old iron rungs set straight into the stone, aware of the growing blackness and increasing chill.
+
+Finally, at the bottom, you find what appears to be a series of small empty chambers, each filled with dust and accumulated debris - bits of stone, rotted trash, and bundles of wiring, piping, and twisted iron bars fused in some great catastrophe long, long ago.
+
+Your footsteps echo eerily into the darkness, but there is a slight comfort - a comfort in knowing that past heroes of your people once passed this way as well in search of the cave's eternal source of water.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="C. Elevator Shaft." version="1.0">
+        <text multiline="1" send_button="1">
+The cold and unfeeling silence of concrete has given way to an even colder and more menacing nothingness.  A metal platform sits here, ringed by a slender, weakened railing of rusted iron, over the edge of which you can only see plummeting darkness with seemingly no end - up or down.  A small set of rusted stairs appears to descend into pitch blackness as well, running along the insides of the inner wall - from this height, with your meager lights (torch or lantern), your eyes can barely see the level below where the stairs level off, but you cannot make out any distinct features.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="D. Blast Doors" version="1.0">
+        <text multiline="1" send_button="1">
+Your long descent into darkness, though precarious and terrifying, has finally come to an end at the great central shaft's end.  But the area at the bottom of the rickety iron stairs is no less cold and lifeless as the chambers above.  What few lights you have illuminate the open metal elevator shaft that continues on down past this area as well into more darkness below. A careful look over the edge shows a calm, black water has filled up the shaft nearly to this level, and there is no telling what lies further down the flooded shaft underwater.  The stairs, too, continue on under the murky water, slipping out of sight due to the weakness of your lights.
+
+Along the surface of the walls of this area, you find a small alcove; here stands a pair of truly gigantic metal doors, each several feet larger than the tallest man, with powerful hand wheels on the outer surface on each door.  The metal surface of the doors is marked by old graffiti from unknown visitors to the caves, no doubt many of which are decades old.
+
+Luckily, the massive metal doors stand permanently ajar; beyond, only darkness can be seen.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="E. Entrance Tunnel." version="1.0">
+        <text multiline="1" send_button="1">
+Beyond the massive portals of steel lies a strange tunnel, itself leading off into more unrelenting darkness.  Each person present gets a strange sense here, as if you have entered a place long...forgotten.  Indeed, the very nature of the tunnel seems strange to your unaccustomed eyes - not at all like the naturally occurring caves you have seen or heard of in the desert.
+
+This tunnel is oval in its bizarre shape, and seems to actually be made of a corrugated metal - heavily rusted, but easily differentiated from the stone you expected to see.
+
+Trash, bits of fallen stone, and lengths of discarded pipe lie everywhere.  Your first careless footsteps echo through the eerie emptiness, answered only by the gloomy sound of dripping water in the distance.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="F. Water Tanks." version="1.0">
+        <text multiline="1" send_button="1">
+Much to your collective surprise, a large alcove lies here off from the main tunnel.  Peering within, holding up lamps and torches, you see a series of old rusted pipes leading from the roof to a pair of gigantic, black, cylindrical tanks set straight into the metallic wall.
+
+Murky water and runny mud pools on the ground at the base of these giant metal tanks, while a trickle of ice-cold water can be seen dripping from various points on the old wall pipes.
+This must be the legendary wellspring of your people!
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="G. Communications Tunnel." version="1.0">
+        <text multiline="1" send_button="1">
+This tunnel stretches off into darkness.  The walls appear to be made of the same corrugated metal as elsewhere in the &quot;caves&quot;.  Long sections of rusted pipe line at least one whole section of the tunnel, also stretching off into darkness.  You can hear the sound of dripping water far in the distance.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="H. Junction." version="1.0">
+        <text multiline="1" send_button="1">
+Your long and careful progress down the narrow tunnel seems to have panned out somewhat - you stand at the junction of two tunnels, a small stone room reinforced by a jumble of old rusted pipes and cables, the purpose of which is long forgotten.  The room here seems to have flooded long ago, as a deep level of calm black water fills the entire room; metal steps lead from your elevated tunnel entrance and into the water below.  A narrow &quot;ledge&quot; of stacked pipes leads off along one wall to the right tunnel; the other tunnel has no such ledge.
+
+You hear water dripping from both directions.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="I. Antenna Silo A." version="1.0">
+        <text multiline="1" send_button="1">
+The flooded tunnel you have been following leads to what appears to be a dead end.  Lifting a light reveals, with murky dimness, a large iron portal at the corridor's far end, standing only slightly open - just wide enough for a slender person, perhaps, to slip through.
+
+Entering with great caution, abandoning your bulkier gear outside, you see the chamber here to also be flooded like the rest of this section of the caves; the water appears deeper here, however, and much darker.
+
+This cavern is smoothly cylindrical in nature, extending far up and into impenetrable darkness, the concrete walls ringed with rusted metal pipes, a maze of cables, etc.
+A short metal platform (with a submerged stair leading from beneath the water to the platform's level) sits in the center of the room almost like an island.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="J. Antenna Silo B." version="1.0">
+        <text multiline="1" send_button="1">
+At the end of the long waterlogged tunnel, a circular portal - now missing - leads into a darkened abyss.  Entering, you see that this chamber, too, is entirely flooded.  An old metal platform sits in the center of the cylindrical tunnel, but the roof above - if there is one - cannot be seen.
+
+The sound of dripping water and loud squeaks echoes throughout.  As you raise your torch for a better view, the darkness around the platform comes alive with nearly a dozen sets of glowing red eyes!
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="K. Environment Control Room." version="1.0">
+        <text multiline="1" send_button="1">
+This huge chamber appears to be a sphere in fact, and is completely open; your lights cast eerie shadows across old rusted equipment and heavy machines leading up to the domed ceiling high overhead.  Pipes and air ducts form a virtual &quot;web&quot; of metal and plastic everywhere, creating unnerving illusions of shadow and dim light wherever one looks.
+
+A set of narrow rusted stairs lead from the entrance tunnel down to the dusty machine floor below, while a metal catwalk runs from where you stand around the perimeter of the chamber, about ten feet or so above the floor (i.e. cutting the chamber in two).  From where you stand, you can see various tunnels on the catwalk level leading off into darkness.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="M(A). Crew Living Area." version="1.0">
+        <text multiline="1" send_button="1">
+As you enter this area you smell dampness and rot prevalent in the smothering, musty air.
+The chamber is strangely-shaped, as if it were the top part of a giant, cross-sectioned sphere - the floor, extensively damaged and littered with broken stone, discarded pipes, and rusted metal paneling, changes from bare concrete near the entrance tunnel to a black and white checkerboard towards the rear - as if a wall once separated this area into two distinct rooms.  The wall, however, is long gone.
+
+The south part of the room is sectioned off by a cracked stonewall, and an open doorway sits empty in its face.  A narrow set of stairs, and a fallen-away elevator can be seen near the entrance tunnel, and strange graffiti covers nearly every stretch of wall.
+The sound of dripping water can be heard echoing throughout.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Log Entry" version="1.0">
+        <text multiline="1" send_button="1">June 10, 2011.  I can't believe it; it's finally come to this.  I must have been in shock the day the order came because I can't remember us locking up.  All I could think of was dear Judy, my dear, sweet Judy.  New York City gone.  Completely gone.  But we have a job to do, and I must forget ... forget everything, forget it all.  It's all gone now anyway, isn't it?
+
+June 11, 2012.  We were hit last night.  Radar tracked the SS coming in.  We stand tall, despite the collapse of sections A and B.  It doesn't matter, we've already launched.  Kiev, Canterbury, and Munich stand in ruins.  And it was my order.  My goddamn order...
+
+June 16, 2012.  No contact.  Some of the men are showing signs of strain.  Nelson is keeping to himself, too quiet.  I wonder about him.  McCartney is keeping his hold well, and is taking stock of the supplies with his usual orderliness.  If this ends - if it ever ends - I want that man commended.
+
+June 17, 2012.  No contact.  Sent MacIntyre out today in a suit to check the surface radiation level.  He came back with a poor little dog that was dying from the radiation.  I could tell the man's sanity was slipping, but he needed to save something, anything.  We've kept the poor thing - I think he's nicknamed it &quot;Survivor&quot;.  Even made a nametag for it...
+
+June 18, 2012.  Still no contact.  Survivor is gone.  Nelson said he's somewhere in the tunnels, but our calls go unanswered.  Someone is stealing supplies - if this persists we're not going to last.  Who cares?  There's nothing left anyway.  Nothing but a desolate world of radiation and poison.  Dear God what have we done?
+
+June 19, 2012.  No contact.  What's the use?  There's no one out there, no one left.  We're all alone.
+
+July 20, 2012.  Strange noises tonight, echoing in the complex.  MacIntyre is losing his cool.  Thinks there's something in the complex with us.  McCartney thinks it's the structure in Silos A and B, just creaking.  That must be the cause.  Lasted for a few hours, then died out completely.
+
+July 21, 2012.  Nelson has failed to report to duty.  A search has turned up nothing.  He's gone mad, fled to the surface.  None of the suits are missing - he won't last three hours out there.  Poor devil.
+
+July 22, 2012.  MacIntyre has cracked.  Says he saw Survivor in the tunnels, but ... I fear MacIntyre is suffering from post-traumatic stress disorder and will be detained until he shows some sign of improvement.
+
+July 23, 2012.  Strange noises again last night.  I think the complex is weakening.  I fear we may not have much time left, though we cannot go to the surface yet - Rads registering at 2000.  MacIntyre was screaming nearly until dawn about Survivor being &quot;changed&quot;, a &quot;horror&quot;.  McCartney is keeping him under.  Note to self - are the supplies of morphine running extraordinarily low, or am I imagining it?  Did Nelson steal the stock before fleeing?  McCartney claims the stock is as it should be.
+
+July 25, 2012.  MacIntyre has had an overdose and is comatose.  I think McCartney has been dipping into the morphine - he is totally withdrawn.
+
+July 26, 2012.  Dear Lord watch over us.  Only you can save us now.  Confronted McCartney about the morphine.  He has confessed to stealing not only morphine, but also water and food.  Claims we are going to die no matter what.  He's right.  There really is no hope for us - the world outside is gone.  May we all burn in Hell for what we have done.
+
+July 28, 2012.  Strange noises again last night.  I can't help but wonder what keeps making that awful roar.  Sent McCartney into the tunnels to examine the structural damage.  He hasn't returned.  Will take gear and find him tomorrow.
+
+July 29, 2012.  Put raving MacIntyre out of his misery.  Taking pistol into the tunnels.  Will find McCartney.  Will return and take another surface reading.
+
+Here the journal ends.  No further entries are evident.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="M(B). Crew Living Area (Lower Level)." version="1.0">
+        <text multiline="1" send_button="1">Descending into this dismal and noxious place causes each of you to swoon in turn.  The stench of decay, heavy rust, and spoiled water is almost overpowering - as is the subtle smell of rotten flesh.  Columns of machinery and burnt-out computers rise from ceiling to floor here, creating an almost maze-like labyrinth; coils of heavy wiring dangle precariously from above like spider webs.  The sound of dripping water echoes mournfully through the darkness, interrupted suddenly by a momentary &quot;slithering&quot; noise.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="N. Launch Tunnel." version="1.0">
+        <text multiline="1" send_button="1">
+The sound of dripping water echoes here as elsewhere in the haunting subterranean complex; the passage is low, dark, and musty, and the sound of your footsteps echoes in the distance; it is obvious this passage goes on for quite awhile.
+
+A narrow channel of water, no doubt a result of subterranean flooding, leads off into the darkness.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="O. Fuel Room." version="1.0">
+        <text multiline="1" send_button="1">
+This small room is dominated by many pipes, several empty and overturned fuel cans, and a large black metal tank sunk into the concrete of the wall itself; the smell of kerosene is pervasive...
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="P. Junction." version="1.0">
+        <text multiline="1" send_button="1">
+This twisted &quot;cavern&quot;, filled with inches of black, smelly water, reeks strongly of rot and decay, with pipes hanging with rust &quot;curtains&quot; from the high ceiling overhead.  Tunnels lead off in every direction.
+
+A huge pile of trash and garbage rots underneath an open rusted hatch in the ceiling, and weak beams of sunlight can be seen piercing through the darkness above!
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="Q. Collapsed Tunnels." version="1.0">
+        <text multiline="1" send_button="1">
+The tunnel here is abruptly cut off by twisted, corrugated sheeting and huge blocks of smooth, shaped stone; soil and twisted metal clog the passage.  Some great cataclysm apparently caused this area to cave in.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="R. Ventilation System Access Points." version="1.0">
+        <text multiline="1" send_button="1">
+At this point in the corridor a set of metal rungs, driven into the corrugated iron wall, leads up to an open shaft above.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="S. Silo Junction." version="1.0">
+        <text multiline="1" send_button="1">
+The tunnels lead to this wide barren chamber, the floor of which has fallen away in the center.  Looking down the hole (which runs the length of the place), you see all manner of trash, fallen debris, and rubble below.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="T. Fuel Silo." version="1.0">
+        <text multiline="1" send_button="1">
+From the broken doorway, looking in, you can see that this part of the complex has flooded considerably, almost up to the point where your party now stands; the dark black water is only a few feet or so below the level of the entrance tunnel.  Across the dark forbidding water can be seen an old concrete platform; a &quot;doorway&quot; beyond seems to be collapsed, and earth pours out onto the platform itself.
+
+The sound of dripping water fills the entire place, echoing loudly.
+As you approach, you see several eerie glows just beneath the surface of the water, which quickly sink deep into the darkness of the murky water as you enter...
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="U. Silo 3 Entry." version="1.0">
+        <text multiline="1" send_button="1">
+A large metal door, rusted and jammed in an open position, leads to a small barren room beyond; rusted pipes and creaking overhead ventilation shafts hang precariously from the dripping wet ceiling.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="V. Rocket Silo." version="1.0">
+        <text multiline="1" send_button="1">
+Your footsteps echo as you come to the edge of a small platform overlooking a massive cylindrical chamber that stretches up into darkness and down into dark murky water.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="W(A). Control Silo." version="1.0">
+        <text multiline="1" send_button="1">
+The corrugated tunnel you have been following leads into a dark circular chamber, the walls of which are hard, smooth stone.  A great deal of trash and debris litters the entire place; the smell is absolutely horrible.  A metal ladder, rusted in places, leads up to an open trapdoor above; another open trapdoor leads into darkness below.  A doorway, the door torn from its hinges long ago, sits across the chamber.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="W(B). Control Computers." version="1.0">
+        <text multiline="1" send_button="1">
+This dome-shaped chamber is filled with massive computer consoles and heavy electronic equipment along every stretch of wall, rising nearly from floor to ceiling.  All of these ancient machines are extensively damaged, rusted, or simply burned-out from time and abandonment, but a strange sense of dire purpose seems evident here - as if this place had once been the heart of the entire cavern complex.
+
+Now, however, it is just a grimy, moist, and rancid ruin.
+</text>
+      </nodehandler>
+      <nodehandler class="textctrl_handler" icon="note" module="forms" name="W(C). The Pit." version="1.0">
+        <text multiline="1" send_button="1">
+Creaking metal stairs lead down into a musty, awful chamber below.  The cluttered cavernous place is filled with old bashed and battered pieces of heavy electronic machinery, each covered in a thick layer of flaky rust or blackish-green verdigris.  Old dials and meters, once brimming with lights, have shattered or rusted completely over, turning the place dark and quiet.
+
+The pitch blackness here is only weakly illuminated by the glow of your torches and lamps, revealing motes of dust suspended in the air, kicked up by something waiting just on the edge of the light...
+</text>
+      </nodehandler>
+    </nodehandler>
+    <nodehandler class="group_handler" module="containers" name="Creatures" version="1.0">
+      <group_atts border="1" cols="1"/>
+      <nodehandler class="tabber_handler" icon="tabber" module="containers" name="Life Lamprey" version="1.0">
+        <nodehandler class="form_handler" icon="form" module="forms" name="Details" version="1.0">
+          <form height="500" width="400"/>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Name" version="1.0">
+            <text multiline="0" send_button="0">Life Lamprey</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="HD" version="1.0">
+            <text multiline="0" send_button="0">2d8 (9 hp)</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Speed" version="1.0">
+            <text multiline="0" send_button="0">swin 40 ft</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="AC" version="1.0">
+            <text multiline="0" send_button="0">15 (+3 Dex, +1 size, +1 natural)</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Face Reach" version="1.0">
+            <text multiline="0" send_button="0">5 ft. by 5 ft./5 ft.</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Feats" version="1.0">
+            <text multiline="0" send_button="0">Blindsight, Improved grab, Radioactive venom</text>
+          </nodehandler>
+          <nodehandler class="listbox_handler" icon="gear" module="forms" name="Skills" version="1.0">
+            <list send_button="1" type="1">
+              <option selected="1" value="0">Spot [1d20+2]</option>
+              <option selected="0" value="0">Listen [1d20+2]</option>
+            </list>
+          </nodehandler>
+          <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Abilities" version="1.0">
+            <grid autosize="1" border="1">
+              <row version="1.0">
+                <cell>Str</cell>
+                <cell>10</cell>
+              </row>
+              <row version="1.0">
+                <cell>Dex</cell>
+                <cell>17</cell>
+              </row>
+              <row version="1.0">
+                <cell>Con</cell>
+                <cell>11</cell>
+              </row>
+              <row version="1.0">
+                <cell>Int</cell>
+                <cell>2</cell>
+              </row>
+              <row version="1.0">
+                <cell>Wis</cell>
+                <cell>2</cell>
+              </row>
+              <row version="1.0">
+                <cell>Cha</cell>
+                <cell>2</cell>
+              </row>
+            </grid>
+            <macros>
+              <macro name=""/>
+            </macros>
+          </nodehandler>
+        </nodehandler>
+        <nodehandler class="form_handler" icon="form" module="forms" name="Combat Rolls" version="1.0">
+          <form height="300" width="400"/>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Current HP" version="1.0">
+            <text multiline="0" send_button="0">9</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="d20" module="forms" name="Initiative" version="1.0">
+            <text multiline="0" send_button="1">[1d20+3]</text>
+          </nodehandler>
+          <nodehandler class="listbox_handler" icon="gear" module="forms" name="Attacks" version="1.0">
+            <list send_button="1" type="3">
+              <option selected="0" value="0">Bite [1d20+3], Damage [2d4]</option>
+            </list>
+          </nodehandler>
+          <nodehandler class="listbox_handler" icon="gear" module="forms" name="Saving Throws" version="1.0">
+            <list send_button="1" type="1">
+              <option selected="1" value="0">Will Power [1d20-4]</option>
+              <option selected="0" value="0">Relex [1d20+5]</option>
+              <option selected="0" value="0">Fortitude [1d20+2]</option>
+            </list>
+          </nodehandler>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Combat Info" version="1.0">
+          <text multiline="1" send_button="1">
+A life lamprey will attack its prey with its voracious bite and needle-sharp teeth.  Prey resistant to one or two bites will likely be injected with its radioactive venom.
+
+Attach (Ex):  A life lamprey that hits with its bite attack latches onto the opponent's body with its powerful jaws.  An attached life lamprey loses its Dex bonus to AC while attached.  A life lamprey must be attached to use its radioactive venom.
+
+Radioactive Venom (Sp):  Once it has a hold, a life lamprey can inject its prey with a lethal dosage of radiation.  Each round that it attempts this, the life lamprey afflicts such a victim with 1d20x10 Rads.
+</text>
+        </nodehandler>
+      </nodehandler>
+      <nodehandler class="tabber_handler" icon="tabber" module="containers" name="Pit Creature" version="1.0">
+        <nodehandler class="form_handler" icon="form" module="forms" name="Details" version="1.0">
+          <form height="500" width="400"/>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Name" version="1.0">
+            <text multiline="0" send_button="0">Pit Creature</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="HD" version="1.0">
+            <text multiline="0" send_button="0">7d8+35 (67 hp)</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Speed" version="1.0">
+            <text multiline="0" send_button="0">20 ft</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="AC" version="1.0">
+            <text multiline="0" send_button="0">13 (+1 Dex, -2 size, +4 natural)</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Face Reach" version="1.0">
+            <text multiline="0" send_button="0">10 ft by 5 ft / 15 ft</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Feats" version="1.0">
+            <text multiline="0" send_button="0">Blind-Fight, Cleave, Improved Initiative, Multiattack, Power Attack, Dark Vision</text>
+          </nodehandler>
+          <nodehandler class="listbox_handler" icon="gear" module="forms" name="Skills" version="1.0">
+            <list send_button="1" type="1">
+              <option selected="0" value="0">Hide [1d20+10]</option>
+              <option selected="1" value="0">Spot [1d20+7]</option>
+              <option selected="0" value="0">Listen [1d20+7]</option>
+            </list>
+          </nodehandler>
+          <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Abilities" version="1.0">
+            <grid autosize="1" border="1">
+              <row version="1.0">
+                <cell>Str</cell>
+                <cell>25</cell>
+              </row>
+              <row version="1.0">
+                <cell>Dex</cell>
+                <cell>12</cell>
+              </row>
+              <row version="1.0">
+                <cell>Con</cell>
+                <cell>21</cell>
+              </row>
+              <row version="1.0">
+                <cell>Int</cell>
+                <cell>9</cell>
+              </row>
+              <row version="1.0">
+                <cell>Wis</cell>
+                <cell>9</cell>
+              </row>
+              <row version="1.0">
+                <cell>Cha</cell>
+                <cell>5</cell>
+              </row>
+            </grid>
+            <macros>
+              <macro name=""/>
+            </macros>
+          </nodehandler>
+        </nodehandler>
+        <nodehandler class="form_handler" icon="form" module="forms" name="Combat Rolls" version="1.0">
+          <form height="300" width="400"/>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Current HP" version="1.0">
+            <text multiline="0" send_button="0">67</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="d20" module="forms" name="Initiative" version="1.0">
+            <text multiline="0" send_button="1">[1d20+5]</text>
+          </nodehandler>
+          <nodehandler class="listbox_handler" icon="gear" module="forms" name="Attacks" version="1.0">
+            <list send_button="1" type="3">
+              <option selected="1" value="0">Bite [1d20+10], Damage [2d8+8]</option>
+              <option selected="0" value="0">Claw [1d20+7], Damage [2d4+7]</option>
+              <option selected="0" value="0">Claw [1d20+7], Damage [2d4+7]</option>
+            </list>
+          </nodehandler>
+          <nodehandler class="listbox_handler" icon="gear" module="forms" name="Saving Throws" version="1.0">
+            <list send_button="1" type="1">
+              <option selected="1" value="0">Will Power [1d20+1]</option>
+              <option selected="0" value="0">Relex [1d20+3]</option>
+              <option selected="0" value="0">Fortitude [1d20+10]</option>
+            </list>
+          </nodehandler>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Combat Info" version="1.0">
+          <text multiline="1" send_button="1">
+A life lamprey will attack its prey with its voracious bite and needle-sharp teeth.  Prey resistant to one or two bites will likely be injected with its radioactive venom.
+
+Attach (Ex):  A life lamprey that hits with its bite attack latches onto the opponent's body with its powerful jaws.  An attached life lamprey loses its Dex bonus to AC while attached.  A life lamprey must be attached to use its radioactive venom.
+
+Radioactive Venom (Sp):  Once it has a hold, a life lamprey can inject its prey with a lethal dosage of radiation.  Each round that it attempts this, the life lamprey afflicts such a victim with 1d20x10 Rads.
+</text>
+        </nodehandler>
+      </nodehandler>
+      <nodehandler class="tabber_handler" icon="tabber" module="containers" name="Gray Ooze" version="1.0">
+        <nodehandler class="form_handler" icon="form" module="forms" name="Details" version="1.0">
+          <form height="500" width="400"/>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Name" version="1.0">
+            <text multiline="0" send_button="0">Gray Ooze</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="HD" version="1.0">
+            <text multiline="0" send_button="0">3d10+10 (26 hp)</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Speed" version="1.0">
+            <text multiline="0" send_button="0">10 ft</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="AC" version="1.0">
+            <text multiline="0" send_button="0">5 (-5 Dex)</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Face Reach" version="1.0">
+            <text multiline="0" send_button="0">5 ft by 5 ft / 15 ft</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Feats" version="1.0">
+            <text multiline="0" send_button="0">Blindsight, cold and fire, immunity, ooze, camouflage</text>
+          </nodehandler>
+          <nodehandler class="rpg_grid_handler" icon="grid" module="rpg_grid" name="Abilities" version="1.0">
+            <grid autosize="1" border="1">
+              <row version="1.0">
+                <cell>Str</cell>
+                <cell>25</cell>
+              </row>
+              <row version="1.0">
+                <cell>Dex</cell>
+                <cell>12</cell>
+              </row>
+              <row version="1.0">
+                <cell>Con</cell>
+                <cell>21</cell>
+              </row>
+              <row version="1.0">
+                <cell>Int</cell>
+                <cell>9</cell>
+              </row>
+              <row version="1.0">
+                <cell>Wis</cell>
+                <cell>9</cell>
+              </row>
+              <row version="1.0">
+                <cell>Cha</cell>
+                <cell>5</cell>
+              </row>
+            </grid>
+            <macros>
+              <macro name=""/>
+            </macros>
+          </nodehandler>
+        </nodehandler>
+        <nodehandler class="form_handler" icon="form" module="forms" name="Combat Rolls" version="1.0">
+          <form height="300" width="400"/>
+          <nodehandler class="textctrl_handler" icon="note" module="forms" name="Current HP" version="1.0">
+            <text multiline="0" send_button="0">26</text>
+          </nodehandler>
+          <nodehandler class="textctrl_handler" icon="d20" module="forms" name="Initiative" version="1.0">
+            <text multiline="0" send_button="1">[1d20-5]</text>
+          </nodehandler>
+          <nodehandler class="listbox_handler" icon="gear" module="forms" name="Attacks" version="1.0">
+            <list send_button="1" type="3">
+              <option selected="1" value="0">Slam [1d20+3], Damage [1d6+1], Acid [1d6]</option>
+            </list>
+          </nodehandler>
+          <nodehandler class="listbox_handler" icon="gear" module="forms" name="Saving Throws" version="1.0">
+            <list send_button="1" type="1">
+              <option selected="1" value="0">Will Power [1d20-4]</option>
+              <option selected="0" value="0">Relex [1d20-4]</option>
+              <option selected="0" value="0">Fortitude [1d20+1]</option>
+            </list>
+          </nodehandler>
+        </nodehandler>
+        <nodehandler class="textctrl_handler" icon="note" module="forms" name="Combat Info" version="1.0">
+          <text multiline="1" send_button="1">Improved Grab (Ex): To use this ability, the gray ooze must hit with its slam attack. If it gets a hold, it can constrict.
+
+Acid (Ex): A gray ooze secretes a digestive acid that quickly dissolves organic material and metal. Any melee hit deals acid damage. The oozes acidic touch deals 40 points of damage per round to wood or metal objects. Armor or clothing dissolves and becomes useless immediately unless it succeeds at a Reflex save (DC 19). The acid cannot harm stone. A metal or wooden weapon that strikes a gray ooze also dissolves immediately unless it succeeds at a Reflex save (DC 19).
+
+Constrict (Ex): A gray ooze deals automatic slam and acid damage with a successful grapple check. The opponents clothing and armor suffer a -4 penalty to Reflex saves against the acid.
+
+Camouflage (Ex): It takes a successful Spot check (DC 15) to recognize a motionless gray ooze for what it really is.</text>
+        </nodehandler>
+      </nodehandler>
+    </nodehandler>
+  </nodehandler>
+</nodehandler>

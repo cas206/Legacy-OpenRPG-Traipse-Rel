@@ -1,0 +1,4 @@
+
+<nodehandler class="form_handler" icon="form" module="forms" name="Form" version="1.0">
+  <form height="400" width="400"/>
+</nodehandler>

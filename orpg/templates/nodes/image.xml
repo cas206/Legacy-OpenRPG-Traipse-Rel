@@ -1,0 +1,4 @@
+
+<nodehandler class="webimg_handler" icon="image" module="forms" name="Image" version="1.0">
+  <link href="http://openrpg.wrathof.com/splash1.jpg"/>
+</nodehandler>

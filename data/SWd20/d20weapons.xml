@@ -1,0 +1,125 @@
+<weapons>
+    <weapon mod="0" name="Amphistaff" cost="5000" category="Exotic Weapon Proficiency (amphistaff)" size="Large" damage="1d6" critical="20" range="0" weight="2" type="Piercing/Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Atlatl" cost="50" category="Exotic Weapon Proficiency (atlatl)" size="Medium" damage="2d4" critical="20" range="0" weight="2" type="Bludgeoning" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Cannon)" cost="3000" category="Weapons Group Proficiency (heavy weapons)" size="Large" damage="4d8" critical="19" range="40" weight="18" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Carbine)" cost="900" category="Weapons Group Proficiency (blaster rifles)" size="Medium" damage="3d8" critical="19" range="20" weight="2" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (E-Web Repeating)" cost="8000" category="Weapons Group Proficiency (heavy weapons)" size="Large" damage="6d8" critical="19" range="80" weight="38" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Heavy Pistol)" cost="750" category="Weapons Group Proficiency (blaster pistols)" size="Medium" damage="3d8" critical="20" range="8" weight="1" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Heavy Repeating)" cost="4000" category="Weapons Group Proficiency (heavy weapons)" size="Large" damage="4d8" critical="19" range="30" weight="12" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Hold-out)" cost="300" category="Weapons Group Proficiency (blaster pistols)" size="Small" damage="3d4" critical="20" range="4" weight="0" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Light Repeating)" cost="2000" category="Weapons Group Proficiency (blaster rifles)" size="Large" damage="3d8" critical="19" range="40" weight="6" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Pistol)" cost="500" category="Weapons Group Proficiency (blaster pistols)" size="Small" damage="3d6" critical="20" range="10" weight="1" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Rifle, Sporting)" cost="800" category="Weapons Group Proficiency (blaster rifles)" size="Medium" damage="3d6" critical="19" range="40" weight="2" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Rifle)" cost="1000" category="Weapons Group Proficiency (blaster rifles)" size="Medium" damage="3d8" critical="19" range="40" weight="4" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Blaster (Sporting)" cost="300" category="Weapons Group Proficiency (blaster pistols)" size="Small" damage="3d4" critical="20" range="8" weight="1" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Bow" cost="300" category="Weapons Group Proficiency (primitive weapons)" size="Medium" damage="1d8" critical="20" range="12" weight="1" type="Piercing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Bowcaster" cost="1500" category="Exotic Weapon Proficiency (bowcaster)" size="Large" damage="3d10" critical="19" range="10" weight="8" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Cesta" cost="100" category="Exotic Weapon Proficiency (cesta)" size="Large" damage="2d4" critical="20" range="0" weight="2" type="Bludgeoning" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Club/Baton" cost="15" category="Weapons Group Proficiency (simple weapons)" size="Medium" damage="1d6" critical="20" range="0" weight="2" type="Bludgeoning" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Combat Gloves" cost="200" category="Weapons Group Proficiency (simple weapons)" size="Medium" damage="+2" critical="0" range="0" weight="1" type="Bludgeoning" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Force Pike" cost="500" category="Weapons Group Proficiency (vibro weapons)" size="Large" damage="2d8" critical="20" range="0" weight="2" type="Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Gaderffii" cost="50" category="Exotic Weapon Proficiency (gaderffii)" size="Large" damage="1d8" damage2= "1d6" critical="20" range="0" weight="2" type="Piercing/Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Grenade (Frag)" cost="200" category="Weapons Group Proficiency (simple weapons)" size="Tiny" damage="4d6+1" critical="0" range="4" weight="0" type="Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Grenade (Stun)" cost="250" category="Weapons Group Proficiency (simple weapons)" size="Tiny" damage="-" critical="0" range="4" weight="0" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Ion Gun (Pistol)" cost="250" category="Weapons Group Proficiency (blaster pistols)" size="Small" damage="3d6" critical="20" range="8" weight="1" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Ion Gun (Rifle)" cost="800" category="Weapons Group Proficiency (blaster rifles)" size="Medium" damage="3d8" critical="19" range="30" weight="2" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Knife" cost="25" category="Weapons Group Proficiency (simple weapons)" size="Small" damage="1d4" critical="20" range="0" weight="1" type="Piercing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Lightsaber" cost="3000" category="Exotic Weapon Proficiency (lightsaber)" size="Medium" damage="2d8" critical="19" range="0" weight="1" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Lightsaber (Double-bladed)" cost="7000" category="Exotic Weapon Proficiency (double lightsaber)" size="Medium" damage="2d8" damage2="2d8" critical="19" range="0" weight="2" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Net" cost="25" category="Weapons Group Proficiency (primitive weapons)" size="Medium" damage="-" critical="0" range="2" weight="4" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Quarterstaff" cost="65" category="Weapons Group Proficiency (simple weapons)" size="Large" damage="1d6" damage2 = "1d6" critical="20" range="0" weight="1" type="Bludgeoning" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Razorbug" cost="0" category="Weapons Group Proficiency (simple weapons)" size="Small" damage="2d6+2" critical="20" range="20" weight="1" type="Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Sling" cost="35" category="Weapons Group Proficiency (primitive weapons)" size="Small" damage="1d4" critical="20" range="6" weight="0" type="Bludgeoning" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Slugthrower (Pistol)" cost="275" category="Weapons Group Proficiency (slug throwers)" size="Small" damage="2d6" critical="20" range="10" weight="1" type="Piercing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Slugthrower (Rifle)" cost="300" category="Weapons Group Proficiency (slug throwers)" size="Medium" damage="2d8" critical="20" range="20" weight="4" type="Piercing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Spear" cost="60" category="Weapons Group Proficiency (primitive weapons)" size="Large" damage="1d8" critical="20" range="0" weight="1" type="Piercing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Stun Baton" cost="500" category="Weapons Group Proficiency (simple weapons)" size="Medium" damage="-" critical="20" range="0" weight="1" type="Bludgeoning" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Thermal Detonator" cost="200" category="Weapons Group Proficiency (simple weapons)" size="Tiny" damage="8d6+6" critical="20" range="4" weight="0" type="Energy" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Thud Bug" cost="0" category="Weapons Group Proficiency (simple weapons)" size="Small" damage="2d6" critical="20" range="20" weight="1" type="Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Tsaisi" cost="7500" category="Exotic Weapon Proficiency (tsaisi)" size="Medium" damage="1d6" critical="20" range="0" weight="1" type="Piercing/Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Vibro-Ax" cost="500" category="Weapons Group Proficiency (vibro weapons)" size="Large" damage="2d10" critical="20" range="0" weight="11" type="Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Vibroblade" cost="250" category="Weapons Group Proficiency (vibro weapons)" size="Medium" damage="2d6" critical="20" range="0" weight="2" type="Slashing" >
+    <description ></description >
+    </weapon>
+    <weapon mod="0" name="Vibrodagger" cost="200" category="Weapons Group Proficiency (vibro weapons)" size="Small" damage="2d4" critical="20" range="0" weight="1" type="Slashing" >
+    <description ></description >
+    </weapon>
+</weapons>

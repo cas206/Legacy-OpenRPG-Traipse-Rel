@@ -1,0 +1,326 @@
+<spells>
+<spell name='Resistance' memrz='0' level='0' desc='Subject gains +1 on saving throws.' />
+<spell name='Ray of Frost' memrz='0' level='0' desc='Ray deals 1d3 cold damage.' />
+<spell name='Detect Poison' memrz='0' level='0' desc='Detects poison in one creature or small object.' />
+<spell name='Daze' memrz='0' level='0' desc='Creature loses next action.' />
+<spell name='Flare' memrz='0' level='0' desc='Dazzles one creature (-1 attack).' />
+<spell name='Light' memrz='0' level='0' desc='Object shines like a torch.' />
+<spell name='Dancing Lights' memrz='0' level='0' desc='Figment torches or other lights.' />
+<spell name='Ghost Sound' memrz='0' level='0' desc='Figment sounds.' />
+<spell name='Disrupt Undead' memrz='0' level='0' desc='Deals 1d6 damage to one undead.' />
+<spell name='Mage Hand' memrz='0' level='0' desc='5-pound telekinesis.' />
+<spell name='Mending' memrz='0' level='0' desc='Makes minor repairs on an object.' />
+<spell name='Open/Close' memrz='0' level='0' desc='Opens or closes small or light things.' />
+<spell name='Arcane Mark' memrz='0' level='0' desc='Inscribes a personal rune (visible or invisible).' />
+<spell name='Detect Magic' memrz='0' level='0' desc='Detects spells and magic items within 60 ft.' />
+<spell name='Prestidigitation' memrz='0' level='0' desc='Performs minor tricks.' />
+<spell name='Read Magic' memrz='0' level='0' desc='Read scrolls and spellbooks.' />
+<spell name='Alarm' memrz='0' level='1' desc='Wards an area for 2 hours/level.' />
+<spell name='Endure Elements' memrz='0' level='1' desc='Ignores 5 damage/round from one energy type.' />
+<spell name='Hold Portal' memrz='0' level='1' desc='Holds door shut.' />
+<spell name='Protection from Chaos/Evil/Good/Law' memrz='0' level='1' desc='+2 AC and saves, counter mind control, hedge out elementals and outsiders.' />
+<spell name='Shield' memrz='0' level='1' desc='Invisible disc gives cover and blocks magic missiles.' />
+<spell name='Grease' memrz='0' level='1' desc='Makes 10-ft. square or one object slippery.' />
+<spell name='Mage Armor' memrz='0' level='1' desc='Gives subject +4 armor bonus.' />
+<spell name='Mount' memrz='0' level='1' desc='Summons riding horse for 2 hr./level.' />
+<spell name='Obscuring Mist' memrz='0' level='1' desc='Fog surrounds you.' />
+<spell name='Summon Monster I' memrz='0' level='1' desc='Calls outsider to fight for you.' />
+<spell name='Unseen Servant' memrz='0' level='1' desc='Creates invisible force that obeys your commands.' />
+<spell name='Comprehend Languages' memrz='0' level='1' desc='Understands all spoken and written languages.' />
+<spell name='Detect Secret Doors' memrz='0' level='1' desc='Reveals hidden doors within 60 ft.' />
+<spell name='Detect Undead' memrz='0' level='1' desc='Reveals undead within 60 ft.' />
+<spell name='Identify' memrz='0' level='1' desc='Determines single feature of magic item.' />
+<spell name='True Strike' memrz='0' level='1' desc='Adds +20 bonus to your next attack roll.' />
+<spell name='Charm Person' memrz='0' level='1' desc='Makes one person your friend.' />
+<spell name='Hypnotism' memrz='0' level='1' desc='Fascinates 2d4 HD of creatures.' />
+<spell name='Sleep' memrz='0' level='1' desc='Put 2d4 HD of creatures into comatose slumber.' />
+<spell name='Magic Missile' memrz='0' level='1' desc='1d4+1 damage; +1 missile/two levels above 1st (max +5).' />
+<spell name='Tensers Floating Disk' memrz='0' level='1' desc='3-ft.-diameter horizontal disk that holds 100 lb./level.' />
+<spell name='Change Self' memrz='0' level='1' desc='Changes your appearance.' />
+<spell name='Color Spray' memrz='0' level='1' desc='Knocks unconscious, blinds, or stuns 1d6 weak creatures.' />
+<spell name='Nystuls Magical Aura' memrz='0' level='1' desc='Grants object false magic aura.' />
+<spell name='Nystuls Undetectable Aura' memrz='0' level='1' desc='Masks magic items aura.' />
+<spell name='Silent Image' memrz='0' level='1' desc='Creates minor illusion of your design.' />
+<spell name='Ventriloquism' memrz='0' level='1' desc='Throws voice for 1 min./level.' />
+<spell name='Cause Fear' memrz='0' level='1' desc='One creature flees for 1d4 rounds.' />
+<spell name='Chill Touch' memrz='0' level='1' desc='1 touch/level deals 1d6 damage and possibly 1 Str damage.' />
+<spell name='Ray of Enfeeblement' memrz='0' level='1' desc='Ray reduces Str by 1d6 points +1 point/two levels.' />
+<spell name='Animate Rope' memrz='0' level='1' desc='Makes a rope move at your command.' />
+<spell name='Burning Hands' memrz='0' level='1' desc='1d4 fire damage/level (max: 5d4).' />
+<spell name='Enlarge' memrz='0' level='1' desc='Object or creature grows +10%/level (max +50%).' />
+<spell name='Erase' memrz='0' level='1' desc='Mundane or magical writing vanishes.' />
+<spell name='Expeditious Retreat' memrz='0' level='1' desc='Doubles your speed.' />
+<spell name='Feather Fall' memrz='0' level='1' desc='Objects or creatures fall slowly.' />
+<spell name='Jump' memrz='0' level='1' desc='Subject gets +30 on Jump checks.' />
+<spell name='Magic Weapon' memrz='0' level='1' desc='Weapon gains +1 bonus.' />
+<spell name='Message' memrz='0' level='1' desc='Whispered conversation at distance.' />
+<spell name='Reduce' memrz='0' level='1' desc='Object or creature shrinks 10%/level (max 50%).' />
+<spell name='Shocking Grasp' memrz='0' level='1' desc='Touch delivers 1d8 +1/level electricity.' />
+<spell name='Spider Climb' memrz='0' level='1' desc='Grants ability to walk on walls and ceilings.' />
+<spell name='Arcane Lock' memrz='0' level='2' desc='Magically locks a portal or chest.' />
+<spell name='Obscure Object' memrz='0' level='2' desc='Masks object against divination.' />
+<spell name='Protection from Arrows' memrz='0' level='2' desc='Subject immune to most ranged attacks.' />
+<spell name='Resist Elements' memrz='0' level='2' desc='Ignores 12 damage/round from one energy type.' />
+<spell name='Fog Cloud' memrz='0' level='2' desc='Fog obscures vision.' />
+<spell name='Glitterdust' memrz='0' level='2' desc='Blinds creatures, outlines invisible creatures.' />
+<spell name='Melfs Acid Arrow' memrz='0' level='2' desc='Ranged touch attack; 2d4 damage for 1 round + 1 round/three levels.' />
+<spell name='Summon Monster II' memrz='0' level='2' desc='Calls outsider to fight for you.' />
+<spell name='Summon Swarm' memrz='0' level='2' desc='Summons swarm of small crawling or flying creatures.' />
+<spell name='Web' memrz='0' level='2' desc='Fills 10-ft. cube/level with sticky spider webs.' />
+<spell name='Detect Thoughts' memrz='0' level='2' desc='Allows listening to surface thoughts.' />
+<spell name='Locate Object' memrz='0' level='2' desc='Senses direction toward object (specific or type).' />
+<spell name='See Invisibility' memrz='0' level='2' desc='Reveals invisible creatures or objects.' />
+<spell name='Tashas Hideous Laughter' memrz='0' level='2' desc='Subject loses actions for 1d3 rounds.' />
+<spell name='Darkness' memrz='0' level='2' desc='20-ft. radius of supernatural darkness.' />
+<spell name='Daylight' memrz='0' level='2' desc='60-ft. radius of bright light.' />
+<spell name='Flaming Sphere' memrz='0' level='2' desc='Rolling ball of fire, 2d6 damage, lasts 1 round/level.' />
+<spell name='Shatter' memrz='0' level='2' desc='Sonic vibration damages objects or crystalline creatures.' />
+<spell name='Blur' memrz='0' level='2' desc='Attacks miss subject 20% of the time.' />
+<spell name='Continual Flame' memrz='0' level='2' desc='Makes a permanent, heatless torch.' />
+<spell name='Hypnotic Pattern' memrz='0' level='2' desc='Fascinates 2d4+1 HD/level of creatures.' />
+<spell name='Invisibility' memrz='0' level='2' desc='Subject is invisible for 10 min./level or until it attacks.' />
+<spell name='Leomunds Trap' memrz='0' level='2' desc='Makes item seem trapped.' />
+<spell name='Magic Mouth' memrz='0' level='2' desc='Speaks once when triggered.' />
+<spell name='Minor Image' memrz='0' level='2' desc='As silent image, plus some sound.' />
+<spell name='Mirror Image' memrz='0' level='2' desc='Creates decoy duplicates of you (1d4 +1/three levels, max 8).' />
+<spell name='Misdirection' memrz='0' level='2' desc='Misleads divinations for one creature or object.' />
+<spell name='Ghoul Touch' memrz='0' level='2' desc='Paralyzes one subject, who exudes stench (-2 penalty) nearby.' />
+<spell name='Scare' memrz='0' level='2' desc='Panics creatures up to 5 HD (15-ft. radius).' />
+<spell name='Spectral Hand' memrz='0' level='2' desc='Creates disembodied glowing hand to deliver touch attacks.' />
+<spell name='Alter Self' memrz='0' level='2' desc='As change self, plus more drastic changes.' />
+<spell name='Blindness/Deafness' memrz='0' level='2' desc='Makes subject blind or deaf.' />
+<spell name='Bulls Strength' memrz='0' level='2' desc='Subject gains 1d4+1 Str for 1 hr./level.' />
+<spell name='Cats Grace' memrz='0' level='2' desc='Subject gains 1d4+1 Dex for 1 hr./level.' />
+<spell name='Darkvision' memrz='0' level='2' desc='See 60 ft. in total darkness.' />
+<spell name='Endurance' memrz='0' level='2' desc='Gain 1d4+1 Con for 1 hr./level.' />
+<spell name='Knock' memrz='0' level='2' desc='Opens locked or magically sealed door.' />
+<spell name='Levitate' memrz='0' level='2' desc='Subject moves up and down at your direction.' />
+<spell name='Pyrotechnics' memrz='0' level='2' desc='Turns fire into blinding light or choking smoke.' />
+<spell name='Rope Trick' memrz='0' level='2' desc='Up to eight creatures hide in extradimensional space.' />
+<spell name='Whispering Wind' memrz='0' level='2' desc='Sends a short message one mile/level.' />
+<spell name='Dispel Magic' memrz='0' level='3' desc='Cancels magical spells and effects.' />
+<spell name='Explosive Runes' memrz='0' level='3' desc='Deals 6d6 damage when read.' />
+<spell name='Magic Circle against Chaos/Evil/Good/Law' memrz='0' level='3' desc='As protection spells, but 10-ft. radius and 10 min./level.' />
+<spell name='Nondetection' memrz='0' level='3' desc='Hides subject from divination, scrying.' />
+<spell name='Protection from Elements' memrz='0' level='3' desc='Absorb 12 damage/level from one kind of energy.' />
+<spell name='Flame Arrow' memrz='0' level='3' desc='Shoots flaming projectiles (extra damage) or fiery bolts (4d6 damage).' />
+<spell name='Phantom Steed' memrz='0' level='3' desc='Magical horse appears for 1 hour/level.' />
+<spell name='Sepia Snake Sigil' memrz='0' level='3' desc='Creates text symbol that immobilizes reader.' />
+<spell name='Sleet Storm' memrz='0' level='3' desc='Hampers vision and movement.' />
+<spell name='Stinking Cloud' memrz='0' level='3' desc='Nauseating vapors, 1 round/level.' />
+<spell name='Summon Monster III' memrz='0' level='3' desc='Calls outsider to fight for you.' />
+<spell name='Clairaudience/Clairvoyance' memrz='0' level='3' desc='Hear or see at a distance for 1 min./level.' />
+<spell name='Tongues' memrz='0' level='3' desc='Speak any language.' />
+<spell name='Hold Person' memrz='0' level='3' desc='Holds one person helpless; 1 round/level.' />
+<spell name='Suggestion' memrz='0' level='3' desc='Compels subject to follow stated course of action.' />
+<spell name='Fireball' memrz='0' level='3' desc='1d6 damage per level, 20-ft. radius.' />
+<spell name='Gust of Wind' memrz='0' level='3' desc='Blows away or knocks down smaller creatures.' />
+<spell name='Leomunds Tiny Hut' memrz='0' level='3' desc='Creates shelter for 10 creatures.' />
+<spell name='Lightning Bolt' memrz='0' level='3' desc='Electricity deals 1d6 damage/level.' />
+<spell name='Wind Wall' memrz='0' level='3' desc='Deflects arrows, smaller creatures, and gases.' />
+<spell name='Displacement' memrz='0' level='3' desc='Attacks miss subject 50%.' />
+<spell name='Illusory Script' memrz='0' level='3' desc='Only intended reader can decipher.' />
+<spell name='Invisibility Sphere' memrz='0' level='3' desc='Makes everyone within 10 ft. invisible.' />
+<spell name='Major Image' memrz='0' level='3' desc='As silent image, plus sound, smell and thermal effects.' />
+<spell name='Gentle Repose' memrz='0' level='3' desc='Preserves one corpse.' />
+<spell name='Halt Undead' memrz='0' level='3' desc='Immobilizes undead for 1 round/level.' />
+<spell name='Vampiric Touch' memrz='0' level='3' desc='Touch deals 1d6/two caster levels; caster gains damage as hp.' />
+<spell name='Blink' memrz='0' level='3' desc='You randomly vanish and reappear for 1 round/level.' />
+<spell name='Fly' memrz='0' level='3' desc='Subject flies at speed of 90.' />
+<spell name='Gaseous Form' memrz='0' level='3' desc='Subject becomes insubstantial and can fly slowly.' />
+<spell name='Greater Magic Weapon' memrz='0' level='3' desc='+1/three levels (max +5).' />
+<spell name='Haste' memrz='0' level='3' desc='Extra partial action and +4 AC.' />
+<spell name='Keen Edge' memrz='0' level='3' desc='Doubles normal weapons threat range.' />
+<spell name='Secret Page' memrz='0' level='3' desc='Changes one page to hide its real content.' />
+<spell name='Shrink Item' memrz='0' level='3' desc='Object shrinks to one-twelfth size.' />
+<spell name='Slow' memrz='0' level='3' desc='One subject/level takes only partial actions, -2 AC, -2 melee rolls.' />
+<spell name='Water Breathing' memrz='0' level='3' desc='Subjects can breathe underwater.' />
+<spell name='Dimensional Anchor' memrz='0' level='4' desc='Bars extradimensional movement.' />
+<spell name='Fire Trap' memrz='0' level='4' desc='Opened object deals 1d4 +1/level damage.' />
+<spell name='Minor Globe of Invulnerability' memrz='0' level='4' desc='Stops 1st- through 3rd-level spell effects.' />
+<spell name='Remove Curse' memrz='0' level='4' desc='Frees object or person from curse.' />
+<spell name='Stoneskin' memrz='0' level='4' desc='Stops blows, cuts, stabs, and slashes.' />
+<spell name='Evards Black Tentacles' memrz='0' level='4' desc='1d4 +1/level tentacles grapple randomly within 15 ft.' />
+<spell name='Leomunds Secure Shelter' memrz='0' level='4' desc='Creates sturdy cottage.' />
+<spell name='Minor Creation' memrz='0' level='4' desc='Creates one cloth or wood object.' />
+<spell name='Solid Fog' memrz='0' level='4' desc='Blocks vision and slows movement.' />
+<spell name='Summon Monster IV' memrz='0' level='4' desc='Calls outsider to fight for you.' />
+<spell name='Arcane Eye' memrz='0' level='4' desc='Invisible floating eye moves 30 ft./round.' />
+<spell name='Detect Scrying' memrz='0' level='4' desc='Alerts you of magical eavesdropping.' />
+<spell name='Locate Creature' memrz='0' level='4' desc='Indicates direction to familiar creature.' />
+<spell name='Scrying' memrz='0' level='4' desc='Spies on subject from a distance.' />
+<spell name='Charm Monster' memrz='0' level='4' desc='Makes monster believe it is your ally.' />
+<spell name='Confusion' memrz='0' level='4' desc='Makes subject behave oddly for 1 round/level.' />
+<spell name='Emotion' memrz='0' level='4' desc='Arouses strong emotion in subject.' />
+<spell name='Lesser Geas' memrz='0' level='4' desc='Commands subject of 7 HD or less.' />
+<spell name='Fire Shield' memrz='0' level='4' desc='Creatures attacking you take fire damage; you are protected from heat or cold.' />
+<spell name='Ice Storm' memrz='0' level='4' desc='Hail deals 5d6 damage in cylinder 40 ft. across.' />
+<spell name='Otilukes Resilient Sphere' memrz='0' level='4' desc='Force globe protects but traps one subject.' />
+<spell name='Shout' memrz='0' level='4' desc='Deafens all within cone and deals 2d6 damage.' />
+<spell name='Wall of Fire' memrz='0' level='4' desc='Deals 2d4 fire damage out to 10 ft. and 1d4 out to 20 ft.' />
+<spell name='Wall of Ice' memrz='0' level='4' desc='Ice plane creates wall with 15 hp +1/level, or hemisphere can trap creatures inside.' />
+<spell name='Hallucinatory Terrain' memrz='0' level='4' desc='Makes one type of terrain appear like another (field into forest, etc).' />
+<spell name='Illusory Wall' memrz='0' level='4' desc='Wall, floor, or ceiling looks real, but anything can pass through.' />
+<spell name='Improved Invisibility' memrz='0' level='4' desc='As invisibility, but subject can attack and stay invisible.' />
+<spell name='Phantasmal Killer' memrz='0' level='4' desc='Fearsome illusion kills subject or deals 3d6 damage.' />
+<spell name='Rainbow Pattern' memrz='0' level='4' desc='Lights prevent 24 HD of creatures from attacking or moving away.' />
+<spell name='Shadow Conjuration' memrz='0' level='4' desc='Mimics conjuring below 4th level.' />
+<spell name='Contagion' memrz='0' level='4' desc='Infects subject with chosen disease.' />
+<spell name='Enervation' memrz='0' level='4' desc='Subject gains 1d4 negative levels.' />
+<spell name='Fear' memrz='0' level='4' desc='Subjects within cone flee for 1 round/level.' />
+<spell name='Bestow Curse' memrz='0' level='4' desc='-6 to an ability; -4 on attacks, saves, and checks; or 50% chance of losing each action.' />
+<spell name='Dimension Door' memrz='0' level='4' desc='Teleports you and up to 500 lb.' />
+<spell name='Polymorph Other' memrz='0' level='4' desc='Gives one subject a new form.' />
+<spell name='Polymorph Self' memrz='0' level='4' desc='You assume a new form.' />
+<spell name='Rarys Mnemonic Enhancer' memrz='0' level='4' desc='Prepares extra spells or retains one just cast. Wizard only.' />
+<spell name='Dismissal' memrz='0' level='5' desc='Forces a creature to return to native plane.' />
+<spell name='Cloudkill' memrz='0' level='5' desc='Kills 3 HD or less; 4-6 HD save or die.' />
+<spell name='Leomunds Secret Chest' memrz='0' level='5' desc='Hides expensive chest on Ethereal Plane; you retrieve it at will.' />
+<spell name='Lesser Planar Binding' memrz='0' level='5' desc='Traps outsider until it performs a task.' />
+<spell name='Major Creation' memrz='0' level='5' desc='As minor creation, plus stone and metal.' />
+<spell name='Mordenkainens Faithful Hound' memrz='0' level='5' desc='Phantom dog can guard, attack.' />
+<spell name='Summon Monster V' memrz='0' level='5' desc='Calls outsider to fight for you.' />
+<spell name='Wall of Iron' memrz='0' level='5' desc='30 hp/four levels; can topple onto foes.' />
+<spell name='Wall of Stone' memrz='0' level='5' desc='20 hp/four levels; can be shaped.' />
+<spell name='Contact Other Plane' memrz='0' level='5' desc='Ask question of extraplanar entity.' />
+<spell name='Prying Eyes' memrz='0' level='5' desc='1d4 floating eyes +1/level scout for you.' />
+<spell name='Rarys Telepathic Bond' memrz='0' level='5' desc='Link lets allies communicate.' />
+<spell name='Dominate Person' memrz='0' level='5' desc='Controls humanoid telepathically.' />
+<spell name='Feeblemind' memrz='0' level='5' desc='Subjects Int drops to 1.' />
+<spell name='Hold Monster' memrz='0' level='5' desc='As hold person, but any creature.' />
+<spell name='Mind Fog' memrz='0' level='5' desc='Subjects in fog get -10 Wis, Will checks.' />
+<spell name='Bigbys Interposing Hand' memrz='0' level='5' desc='Hand provides 90% cover against one opponent.' />
+<spell name='Cone of Cold' memrz='0' level='5' desc='1d6 cold damage/level.' />
+<spell name='Sending' memrz='0' level='5' desc='Delivers short message anywhere, instantly.' />
+<spell name='Wall of Force' memrz='0' level='5' desc='Wall is immune to damage.' />
+<spell name='Dream' memrz='0' level='5' desc='Sends message to anyone sleeping.' />
+<spell name='False Vision' memrz='0' level='5' desc='Fools scrying with an illusion.' />
+<spell name='Greater Shadow Conjuration' memrz='0' level='5' desc='As shadow conjuration, but up to 4th level and 40% real.' />
+<spell name='Mirage Arcana' memrz='0' level='5' desc='As hallucinatory terrain, plus structures.' />
+<spell name='Nightmare' memrz='0' level='5' desc='Sends vision dealing 1d10 damage, fatigue.' />
+<spell name='Persistent Image' memrz='0' level='5' desc='As major image, but no concentration required.' />
+<spell name='Seeming' memrz='0' level='5' desc='Changes appearance of one person/two levels.' />
+<spell name='Shadow Evocation' memrz='0' level='5' desc='Mimics evocation less than 5th level.' />
+<spell name='Animate Dead' memrz='0' level='5' desc='Creates undead skeletons and zombies.' />
+<spell name='Magic Jar' memrz='0' level='5' desc='Enables possession of another creature.' />
+<spell name='Animal Growth' memrz='0' level='5' desc='One animal/two levels doubles in size, HD.' />
+<spell name='Fabricate' memrz='0' level='5' desc='Transforms raw materials into finished items.' />
+<spell name='Passwall' memrz='0' level='5' desc='Breaches walls 1 ft. thick/level.' />
+<spell name='Stone Shape' memrz='0' level='5' desc='Sculpts stone into any form.' />
+<spell name='Telekinesis' memrz='0' level='5' desc='Lifts or moves 25 lb./level at long range.' />
+<spell name='Teleport' memrz='0' level='5' desc='Instantly transports you anywhere.' />
+<spell name='Transmute Mud to Rock' memrz='0' level='5' desc='Transforms two 10-ft. cubes/level.' />
+<spell name='Transmute Rock to Mud' memrz='0' level='5' desc='Transforms two 10-ft. cubes/level.' />
+<spell name='Permanency' memrz='0' level='5' desc='Makes certain spells permanent; costs XP.' />
+<spell name='Antimagic Field' memrz='0' level='6' desc='Negates magic within 10 ft.' />
+<spell name='Globe of Invulnerability' memrz='0' level='6' desc='As minor globe, plus 4th level.' />
+<spell name='Greater Dispelling' memrz='0' level='6' desc='As dispel magic, but +20 on check.' />
+<spell name='Guards and Wards' memrz='0' level='6' desc='Array of magic effects protect area.' />
+<spell name='Repulsion' memrz='0' level='6' desc='Creatures cant approach you.' />
+<spell name='Acid Fog' memrz='0' level='6' desc='Fog deals acid damage.' />
+<spell name='Planar Binding' memrz='0' level='6' desc='As lesser planar binding, but up to 16 HD.' />
+<spell name='Summon Monster VI' memrz='0' level='6' desc='Calls outsider to fight for you.' />
+<spell name='Analyze Dweomer' memrz='0' level='6' desc='Reveals magical aspects of subject.' />
+<spell name='Legend Lore' memrz='0' level='6' desc='Learn tales about a person, place, or thing.' />
+<spell name='True Seeing' memrz='0' level='6' desc='See all things as they really are.' />
+<spell name='Geas/Quest' memrz='0' level='6' desc='As lesser geas, plus it affects any creature.' />
+<spell name='Mass Suggestion' memrz='0' level='6' desc='As suggestion, plus one/level subjects.' />
+<spell name='Bigbys Forceful Hand' memrz='0' level='6' desc='Hand pushes creatures away.' />
+<spell name='Chain Lightning' memrz='0' level='6' desc='1d6 damage/level; secondary bolts.' />
+<spell name='Contingency' memrz='0' level='6' desc='Sets trigger condition for another spell.' />
+<spell name='Otilukes Freezing Sphere' memrz='0' level='6' desc='Freezes water or deals cold damage.' />
+<spell name='Greater Shadow Evocation' memrz='0' level='6' desc='As shadow evocation, but up to 5th level.' />
+<spell name='Mislead' memrz='0' level='6' desc='Turns you invisible and creates illusory double.' />
+<spell name='Permanent Image' memrz='0' level='6' desc='Includes sight, sound, and smell.' />
+<spell name='Programmed Image' memrz='0' level='6' desc='As major image, plus triggered by event.' />
+<spell name='Project Image' memrz='0' level='6' desc='Illusory double can talk and cast spells.' />
+<spell name='Shades' memrz='0' level='6' desc='As shadow conjuration, but up to 5th level and 60% real.' />
+<spell name='Veil' memrz='0' level='6' desc='Changes appearance of group of creatures.' />
+<spell name='Circle of Death' memrz='0' level='6' desc='Kills 1d4 HD/level.' />
+<spell name='Control Water' memrz='0' level='6' desc='Raises, lowers, or parts bodies of water.' />
+<spell name='Control Weather' memrz='0' level='6' desc='Changes weather in local area.' />
+<spell name='Disintegrate' memrz='0' level='6' desc='Makes one creature or object vanish.' />
+<spell name='Eyebite' memrz='0' level='6' desc='Charm, fear, sicken or sleep one subject.' />
+<spell name='Flesh to Stone' memrz='0' level='6' desc='Turns subject creature into statue.' />
+<spell name='Mass Haste' memrz='0' level='6' desc='As haste, affects one/level subjects.' />
+<spell name='Mordenkainens Lucubration' memrz='0' level='6' desc='Recalls spell of 5th level or less. Wizard Only.' />
+<spell name='Move Earth' memrz='0' level='6' desc='Digs trenches and build hills.' />
+<spell name='Stone to Flesh' memrz='0' level='6' desc='Restores petrified creature.' />
+<spell name='Tensers Transformation' memrz='0' level='6' desc='You gain combat bonuses.' />
+<spell name='Banishment' memrz='0' level='7' desc='Banishes 2 HD/level extraplanar creatures.' />
+<spell name='Sequester' memrz='0' level='7' desc='Subject is invisible to sight and scrying.' />
+<spell name='Spell Turning' memrz='0' level='7' desc='Reflect 1d4+6 spell levels back at caster.' />
+<spell name='Drawmijs Instant Summons' memrz='0' level='7' desc='Prepared object appears in your hand.' />
+<spell name='Mordenkainens Magnificent Mansion' memrz='0' level='7' desc='Door leads to extradimensional mansion.' />
+<spell name='Phase Door' memrz='0' level='7' desc='Invisible passage through wood or stone.' />
+<spell name='Power Word, Stun' memrz='0' level='7' desc='Stuns creature with up to 150 hp.' />
+<spell name='Summon Monster VII' memrz='0' level='7' desc='Calls outsider to fight for you.' />
+<spell name='Greater Scrying' memrz='0' level='7' desc='As scrying, but faster and longer.' />
+<spell name='Vision' memrz='0' level='7' desc='As legend lore, but quicker and strenuous.' />
+<spell name='Insanity' memrz='0' level='7' desc='Subject suffers continuous confusion.' />
+<spell name='Bigbys Grasping Hand' memrz='0' level='7' desc='Hand provides cover, pushes, or grapples.' />
+<spell name='Delayed Blast Fireball' memrz='0' level='7' desc='1d8 fire damage/level; you can delay blast for 5 rounds.' />
+<spell name='Forcecage' memrz='0' level='7' desc='Cube of force imprisons all inside.' />
+<spell name='Mordenkainens Sword' memrz='0' level='7' desc='Floating magic blade strikes opponents.' />
+<spell name='Prismatic Spray' memrz='0' level='7' desc='Rays hit subjects with variety of effects.' />
+<spell name='Mass Invisibility' memrz='0' level='7' desc='As invisibility, but affects all in range.' />
+<spell name='Shadow Walk' memrz='0' level='7' desc='Step into shadow to travel rapidly.' />
+<spell name='Simulacrum' memrz='0' level='7' desc='Creates partially real double of a creature.' />
+<spell name='Control Undead' memrz='0' level='7' desc='Undead dont attack you while under your command.' />
+<spell name='Finger of Death' memrz='0' level='7' desc='Kills one subject.' />
+<spell name='Ethereal Jaunt' memrz='0' level='7' desc='You become ethereal for 1 round/level.' />
+<spell name='Plane Shift' memrz='0' level='7' desc='Up to eight subjects travel to another plane.' />
+<spell name='Reverse Gravity' memrz='0' level='7' desc='Objects and creatures fall upward.' />
+<spell name='Statue' memrz='0' level='7' desc='Subject can become a statue at will.' />
+<spell name='Teleport without Error' memrz='0' level='7' desc='As teleport, but no off-target arrival.' />
+<spell name='Vanish' memrz='0' level='7' desc='As teleport, but affects a touched object.' />
+<spell name='Limited Wish' memrz='0' level='7' desc='Alters reality-within spell limits.' />
+<spell name='Mind Blank' memrz='0' level='8' desc='Subject is immune to mental/emotional magic and scrying.' />
+<spell name='Prismatic Wall' memrz='0' level='8' desc='Walls colors have array of effects.' />
+<spell name='Protection from Spells' memrz='0' level='8' desc='Confers +8 resistance bonus.' />
+<spell name='Greater Planar Binding' memrz='0' level='8' desc='As lesser planar binding, but up to 24 HD.' />
+<spell name='Incendiary Cloud' memrz='0' level='8' desc='Cloud deals 4d6 fire damage/round.' />
+<spell name='Maze' memrz='0' level='8' desc='Traps subject in extradimensional maze.' />
+<spell name='Power Word, Blind' memrz='0' level='8' desc='Blinds 200 hp worth of creatures.' />
+<spell name='Summon Monster VIII' memrz='0' level='8' desc='Calls outsider to fight for you.' />
+<spell name='Trap the Soul' memrz='0' level='8' desc='Imprisons subject within gem.' />
+<spell name='Discern Location' memrz='0' level='8' desc='Exact location of creature or object.' />
+<spell name='Antipathy' memrz='0' level='8' desc='Object or location affected by spell repels certain creatures.' />
+<spell name='Binding' memrz='0' level='8' desc='Array of techniques to imprison a creature.' />
+<spell name='Demand' memrz='0' level='8' desc='As sending, plus you can send suggestion.' />
+<spell name='Mass Charm' memrz='0' level='8' desc='As charm monster, but all within 30 ft.' />
+<spell name='Ottos Irresistible Dance' memrz='0' level='8' desc='Forces subject to dance.' />
+<spell name='Sympathy' memrz='0' level='8' desc='Object or location attracts certain creatures.' />
+<spell name='Bigbys Clenched Fist' memrz='0' level='8' desc='Large hand attacks your foes.' />
+<spell name='Otilukes Telekinetic Sphere' memrz='0' level='8' desc='As Otilukes resilient sphere, but you move sphere telekinetically.' />
+<spell name='Sunburst' memrz='0' level='8' desc='Blinds all within 10 ft., deals 3d6 damage.' />
+<spell name='Screen' memrz='0' level='8' desc='Illusion hides area from vision, scrying.' />
+<spell name='Clone' memrz='0' level='8' desc='Duplicate awakens when original dies.' />
+<spell name='Horrid Wilting' memrz='0' level='8' desc='Deals 1d8 damage/level within 30 ft.' />
+<spell name='Etherealness' memrz='0' level='8' desc='Travel to Ethereal Plane with companions.' />
+<spell name='Iron Body' memrz='0' level='8' desc='Your body becomes living iron.' />
+<spell name='Polymorph Any Object' memrz='0' level='8' desc='Changes any subject into anything else.' />
+<spell name='Symbol' memrz='0' level='8' desc='Triggered runes have array of effects.' />
+<spell name='Freedom' memrz='0' level='9' desc='Releases creature suffering imprisonment.' />
+<spell name='Imprisonment' memrz='0' level='9' desc='Entombs subject beneath the earth.' />
+<spell name='Mordenkainens Disjunction' memrz='0' level='9' desc='Dispels magic, disenchants magic items.' />
+<spell name='Prismatic Sphere' memrz='0' level='9' desc='As prismatic wall, but surrounds on all sides.' />
+<spell name='Gate' memrz='0' level='9' desc='Connects two planes for travel or summoning.' />
+<spell name='Power Word, Kill' memrz='0' level='9' desc='Kills one tough subject or many weak ones.' />
+<spell name='Summon Monster IX' memrz='0' level='9' desc='Calls outsider to fight for you.' />
+<spell name='Foresight' memrz='0' level='9' desc='Sixth sense warns of impending danger.' />
+<spell name='Dominate Monster' memrz='0' level='9' desc='As dominate person, but any creature.' />
+<spell name='Bigbys Crushing Hand' memrz='0' level='9' desc='As Bigbys interposing hand, but stronger.' />
+<spell name='Meteor Swarm' memrz='0' level='9' desc='Deals 24d6 fire damage, plus bursts.' />
+<spell name='Weird' memrz='0' level='9' desc='As phantasmal killer, but affects all within 30 ft.' />
+<spell name='Astral Projection' memrz='0' level='9' desc='Projects you and companions into Astral Plane.' />
+<spell name='Energy Drain' memrz='0' level='9' desc='Subject gains 2d4 negative levels.' />
+<spell name='Soul Bind' memrz='0' level='9' desc='Traps newly dead soul to prevent resurrection.' />
+<spell name='Wail of the Banshee' memrz='0' level='9' desc='Kills one creature/level.' />
+<spell name='Refuge' memrz='0' level='9' desc='Alters item to transport its possessor to you.' />
+<spell name='Shapechange' memrz='0' level='9' desc='Transforms you into any creature, and change forms once per round.' />
+<spell name='Teleportation Circle' memrz='0' level='9' desc='Circle teleports any creature inside to designated spot.' />
+<spell name='Temporal Stasis' memrz='0' level='9' desc='Puts subject into suspended animation.' />
+<spell name='Time Stop' memrz='0' level='9' desc='You act freely for 1d4+1 rounds.' />
+<spell name='Wish' memrz='0' level='9' desc='As limited wish, but with fewer limits.' />
+</spells>
