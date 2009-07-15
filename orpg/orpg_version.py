@@ -4,7 +4,7 @@ SERVER_MIN_CLIENT_VERSION = "1.7.1"
 #BUILD NUMBER FORMAT: "YYMMDD-##" where ## is the incremental daily build index (if needed)
 DISTRO = "Traipse"
 DIS_VER = "Grumpy Goblin"
-BUILD = "090713-02"
+BUILD = "090714-01"
 
 # This version is for network capability.
 PROTOCOL_VERSION = "1.2"

@@ -75,10 +75,10 @@ class ImageHandlerClass(object):
                 self.__cache[path] = (path, d[0], d[1].gettype(), None)
                 return wx.ImageFromMime(self.__cache[path][1], self.__cache[path][2]).ConvertToBitmap()
             else:
-                self.bad_url(path)
+                open_rpg.get_component('log').log("Image refused to load or URI did not reference a valid image: " + path, ORPG_GENERAL, True)
                 return None
         except IOError:
-            self.bad_url(path)
+            open_rpg.get_component('log').log("Unable to resolve/open the specified URI; image was NOT loaded: " + path, ORPG_GENERAL, True)
             return None
 
     def cleanCache(self):
@@ -117,11 +117,11 @@ class ImageHandlerClass(object):
                 if self.__fetching.has_key(path):
                     del self.__fetching[path]
             else:
+                open_rpg.get_component('log').log("Image refused to load or URI did not reference a valid image: " + path, ORPG_GENERAL, True)
                 self.__fetching[path] = False
-                self.bad_url(path)
         except IOError:
             self.__fetching[path] = False
-            self.bad_url(path)
+            open_rpg.get_component('log').log("Unable to resolve/open the specified URI; image was NOT laoded: " + path, ORPG_GENERAL, True)
         finally:
             self.__lock.release()
 
@@ -135,7 +135,7 @@ class ImageHandlerClass(object):
                     break
         except:
             self.__fetching[path] = False
-            self.bad_url(path)
+            open_rpg.get_component('log').log("Unable to resolve/open the specified URI; image was NOT loaded: " + path, ORPG_GENERAL, True)
             return 
         self.__lock.acquire()
         try:
@@ -150,13 +150,6 @@ class ImageHandlerClass(object):
 
     def _getQueue(self):
         return self.__queue
-
-#Error Messages
-    def bad_url(self, path):
-        open_rpg.get_component('log').log("Image refused to load or URL did not reference a valid image: " + path, ORPG_GENERAL, True)
-        wx.MessageBox("Image refused to load or URL did not reference a valid image: " + path)
-        return
-
 
 #Properties
     Cache = property(_getCache)
