@@ -516,23 +516,18 @@ class player_list(wx.ListCtrl):
         session = open_rpg.get_component("session")
         settings = open_rpg.get_component('settings')
         mode = settings.get_setting("ColorizeRoles")
-        if mode.lower() == "off":
+        if mode.lower() == "0":
             return
-        gmColor = settings.get_setting("GMRoleColor")
-        plColor = settings.get_setting("PlayerRoleColor")
-        lkColor = settings.get_setting("LurkerRoleColor")
         players = session.players
         for m in players.keys():
             item_list_location = self.FindItemData(-1,int(m))
             if item_list_location == -1: continue
             player_info = session.get_player_by_player_id(m)
             item = self.GetItem(item_list_location)
-            role = player_info[7].lower()
+            role = player_info[7]
             color = wx.GREEN
             if self.session.group_id != "0":
-		recycle_bin = {'lurker': lkColor, 'player': plColor, 'gm': gmColor }
-		item.SetTextColour(recycle_bin[role])
-		recycle_bin = {}
+                item.SetTextColour(settings.get_setting(role + "RoleColor"))
             self.SetItem(item)
 
     def reset(self):

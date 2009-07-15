@@ -118,8 +118,8 @@ class client_base:
         self.name = ""
         self.role = "GM"
         self.ROLE_GM = "GM"
-        self.ROLE_PLAYER = "PLAYER"
-        self.ROLE_LURKER = "LURKER"
+        self.ROLE_PLAYER = "Player"
+        self.ROLE_LURKER = "Lurker"
         self.ip = socket.gethostbyname(socket.gethostname())
         self.remote_ip = None
         self.version = VERSION
@@ -134,8 +134,8 @@ class client_base:
         self.statLock = Lock()
         self.useroles = 0
         self.ROLE_GM = "GM"
-        self.ROLE_PLAYER = "PLAYER"
-        self.ROLE_LURKER = "LURKER"
+        self.ROLE_PLAYER = "Player"
+        self.ROLE_LURKER = "Lurker"
         self.lastmessagetime = time.time()
         self.connecttime = time.time()
 
@@ -631,7 +631,7 @@ class mplay_client(client_base):
 
     def send_join_group(self,group_id,pwd):
         if (group_id != 0):
-            self.update_role("LURKER")
+            self.update_role("Lurker")
         self.outbox.put("<join_group from=\""+self.id+"\" pwd=\""+pwd+"\" group_id=\""+str(group_id)+"\" />")
 
     def poll(self, evt=None):
