@@ -32,7 +32,7 @@ from threading import Lock
 from background import *
 from base_handler import *
 import mimetypes
-
+import os
 from base import *
 
 class background_handler(base_layer_handler):
@@ -79,17 +79,16 @@ class background_handler(base_layer_handler):
             if self.settings.get_setting('LocalorRemote') == 'Remote':
                 thread.start_new_thread(self.canvas.layers['bg'].upload, (postdata, dlg.GetPath(), self.bg_type.GetStringSelection()))
             else:
-                url = self.settings.get_setting('LocalImageBaseURL')
-                print dlg.GetDirectory()
-                print orpg.dirpath.dir_struct["user"]
-                if dlg.GetDirectory() == orpg.dirpath.dir_struct["user"]+'webfiles/Textures' or dlg.GetDirectory() == orpg.dirpath.dir_struct["user"]+'webfiles\Textures': url = self.settings.get_setting('LocalImageBaseURL') + 'Textures/'
-                if dlg.GetDirectory() == orpg.dirpath.dir_struct["user"]+'webfiles/Maps' or dlg.GetDirectory() == orpg.dirpath.dir_struct["user"]+'webfiles\Maps': url = self.settings.get_setting('LocalImageBaseURL') + 'Maps/'
-                if dlg.GetDirectory() == orpg.dirpath.dir_struct["user"]+'webfiles/Miniatures' or dlg.GetDirectory() == orpg.dirpath.dir_struct["user"]+'webfiles\Miniatures': url = self.settings.get_setting('LocalImageBaseURL') + 'Miniatures/'
-                path = url + filename
+                try:
+                    min_url = open_rpg.get_component("cherrypy") + filename
+                except:
+                    return
+                min_url = dlg.GetDirectory().replace(orpg.dirpath.dir_struct["user"]+'webfiles' + os.sep, open_rpg.get_component("cherrypy")) + '/' + filename
+
                 if self.bg_type.GetStringSelection() == 'Texture':
-                    self.canvas.layers['bg'].set_texture(path)
+                    self.canvas.layers['bg'].set_texture(min_url)
                 elif self.bg_type.GetStringSelection() == 'Image':
-                    self.size = self.canvas.layers['bg'].set_image(path,1)
+                    self.size = self.canvas.layers['bg'].set_image(min_url,1)
                 self.update_info()
                 self.canvas.send_map_data()
                 self.canvas.Refresh(False)
