@@ -48,11 +48,9 @@ class fog_handler(base_layer_handler):
         self.f_type_radio = {}
         self.fogshow = wx.RadioButton(self, wx.ID_ANY, "Show", style=wx.RB_GROUP)
         self.foghide = wx.RadioButton(self, wx.ID_ANY, "Hide")
-
-        self.sizer.Add(self.foghide)
-        self.sizer.Add(self.fogshow)
+        self.sizer.Add(self.foghide, 0, wx.ALIGN_CENTER)
+        self.sizer.Add(self.fogshow, 0, wx.ALIGN_CENTER)
         self.sizer.Add(wx.Size(20,25),1)
-
 
     def build_menu(self,label = "fog"):
         base_layer_handler.build_menu(self,label)
@@ -73,9 +71,6 @@ class fog_handler(base_layer_handler):
         item = wx.MenuItem(self.main_menu, wx.ID_ANY, "&Pen Color", "Pen Color")
         self.canvas.Bind(wx.EVT_MENU, self.on_pen_color, item)
         self.main_menu.AppendItem(item)
-
-
-
 
     def on_remove(self,evt):
         session=self.canvas.frame.session
