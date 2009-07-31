@@ -69,7 +69,9 @@ class background_handler(base_layer_handler):
 
     def on_browse(self, evt):
         if self.bg_type.GetStringSelection() == 'Texture' or self.bg_type.GetStringSelection() == 'Image':
-            dlg = wx.FileDialog(None, "Select a Miniature to load", orpg.dirpath.dir_struct["user"]+'webfiles/', wildcard="Image files (*.bmp, *.gif, *.jpg, *.png)|*.bmp;*.gif;*.jpg;*.png", style=wx.OPEN)
+            dlg = wx.FileDialog(None, "Select a Miniature to load", 
+                orpg.dirpath.dir_struct["user"]+'webfiles/', 
+                wildcard="Image files (*.bmp, *.gif, *.jpg, *.png)|*.bmp;*.gif;*.jpg;*.png", style=wx.OPEN)
             if not dlg.ShowModal() == wx.ID_OK:
                 dlg.Destroy()
                 return
@@ -81,18 +83,16 @@ class background_handler(base_layer_handler):
             postdata = urllib.urlencode({'filename':filename, 'imgdata':imgdata, 'imgtype':imgtype})
 
             if self.settings.get_setting('LocalorRemote') == 'Remote':
-                thread.start_new_thread(self.canvas.layers['bg'].upload, (postdata, dlg.GetPath(), self.bg_type.GetStringSelection()))
+                thread.start_new_thread(self.canvas.layers['bg'].upload, 
+                    (postdata, dlg.GetPath(), self.bg_type.GetStringSelection()))
             else:
-                try:
-                    min_url = open_rpg.get_component("cherrypy") + filename
-                except:
-                    return
-                min_url = dlg.GetDirectory().replace(orpg.dirpath.dir_struct["user"]+'webfiles' + os.sep, open_rpg.get_component("cherrypy")) + '/' + filename
+                try: min_url = open_rpg.get_component("cherrypy") + filename
+                except: return
+                min_url = dlg.GetDirectory().replace(orpg.dirpath.dir_struct["user"]+'webfiles' + os.sep, 
+                    open_rpg.get_component("cherrypy")) + '/' + filename
 
-                if self.bg_type.GetStringSelection() == 'Texture':
-                    self.canvas.layers['bg'].set_texture(min_url)
-                elif self.bg_type.GetStringSelection() == 'Image':
-                    self.size = self.canvas.layers['bg'].set_image(min_url,1)
+                if self.bg_type.GetStringSelection() == 'Texture': self.canvas.layers['bg'].set_texture(min_url)
+                elif self.bg_type.GetStringSelection() == 'Image': self.size = self.canvas.layers['bg'].set_image(min_url,1)
                 self.update_info()
                 self.canvas.send_map_data()
                 self.canvas.Refresh(False)
@@ -100,8 +100,7 @@ class background_handler(base_layer_handler):
     def update_info(self):
         bg_type = self.canvas.layers['bg'].get_type()
         session=self.canvas.frame.session
-        if (session.my_role() != session.ROLE_GM):
-            self.url_path.Hide()
+        if (session.my_role() != session.ROLE_GM): self.url_path.Hide()
         else:
             self.url_path.Show()
             self.url_path.Enable(BG_COLOR!=bg_type)
@@ -143,9 +142,8 @@ class background_handler(base_layer_handler):
             return
         self.canvas.layers['bg'].set_color(self.color_button.GetBackgroundColour())
 
-        if self.bg_type.GetStringSelection() == 'Texture':
-            self.canvas.layers['bg'].set_texture(self.url_path.GetValue())
-        elif self.bg_type.GetStringSelection() == 'Image':
+        if self.bg_type.GetStringSelection() == 'Texture': self.canvas.layers['bg'].set_texture(self.url_path.GetValue())
+        elif self.bg_type.GetStringSelection() == 'Image': 
             self.size = self.canvas.layers['bg'].set_image(self.url_path.GetValue(),1)
 
         self.update_info()

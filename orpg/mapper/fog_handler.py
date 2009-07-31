@@ -55,19 +55,15 @@ class fog_handler(base_layer_handler):
     def build_menu(self,label = "fog"):
         base_layer_handler.build_menu(self,label)
         self.main_menu.AppendSeparator()
-
         item = wx.MenuItem(self.main_menu, wx.ID_ANY, "&Hide All", "Hide All")
         self.canvas.Bind(wx.EVT_MENU, self.on_hideall, item)
         self.main_menu.AppendItem(item)
-
         item = wx.MenuItem(self.main_menu, wx.ID_ANY, "&Fog Mask", "Fog Mask")
         self.canvas.Bind(wx.EVT_MENU, self.on_color, item)
         self.main_menu.AppendItem(item)
-
         item = wx.MenuItem(self.main_menu, wx.ID_ANY, "&Remove Fog Layer", "Remove Fog Layer")
         self.canvas.Bind(wx.EVT_MENU, self.on_remove, item)
         self.main_menu.AppendItem(item)
-
         item = wx.MenuItem(self.main_menu, wx.ID_ANY, "&Pen Color", "Pen Color")
         self.canvas.Bind(wx.EVT_MENU, self.on_pen_color, item)
         self.main_menu.AppendItem(item)
@@ -121,8 +117,7 @@ class fog_handler(base_layer_handler):
         if dlg.ShowModal() == wx.ID_OK:
             data = dlg.GetColourData()
             color = data.GetColour()
-            if "__WXGTK__" not in wx.PlatformInfo:
-                color = wx.Color(color.Red(), color.Green(), color.Blue(), 128)
+            if "__WXGTK__" not in wx.PlatformInfo: color = wx.Color(color.Red(), color.Green(), color.Blue(), 128)
             self.canvas.layers['fog'].color = color
         dlg.Destroy()
         self.canvas.layers['fog'].fill_fog()
@@ -131,7 +126,6 @@ class fog_handler(base_layer_handler):
     def update_info(self):
         foglayer = self.canvas.layers['fog']
         pass
-
 
     def on_motion(self, evt):
         scale = self.canvas.layers['grid'].mapscale
@@ -166,7 +160,8 @@ class fog_handler(base_layer_handler):
             if (session.my_role() != session.ROLE_GM):
                 open_rpg.get_component("chat").InfoPost("You must be a GM to use this feature")
             else:
-                # This code sets the mode to either new or del depending on the action to function with the updated createregen code.
+                # This code sets the mode to either new or del 
+                # depending on the action to function with the updated createregen code.
                 if (self.fogshow.GetValue() == 1):
                     showmode = 'new'
                 else:
@@ -178,15 +173,14 @@ class fog_handler(base_layer_handler):
                 pen= wx.Pen(self.pencolor)
                 pen.SetWidth(COURSE/2+1)
                 dc.SetPen(pen)
-                dc.DrawLine(self.last.x*scale*COURSE,self.last.y*scale*COURSE,self.line[0].X*scale*COURSE,self.line[0].Y*scale*COURSE)
+                dc.DrawLine(self.last.x*scale*COURSE,self.last.y*scale*COURSE,
+                    self.line[0].X*scale*COURSE,self.line[0].Y*scale*COURSE)
                 dc.SetPen(wx.NullPen)
                 wx.BeginBusyCursor()
-                # This prevents the divide by zero error by not even sending the line to be proccessed if it contains less then 3 points
-                if (len(self.line)>1):
-                    self.canvas.layers['fog'].createregn(self.line, showmode)
-                else:
-                    #print "Error Divide by zero, ignoring this section"
-                    pass
+                # This prevents the divide by zero error by not even 
+                # sending the line to be proccessed if it contains less then 3 points
+                if (len(self.line)>1): self.canvas.layers['fog'].createregn(self.line, showmode)
+                else: pass
                 wx.EndBusyCursor()
                 del dc
             self.canvas.Refresh(False)
