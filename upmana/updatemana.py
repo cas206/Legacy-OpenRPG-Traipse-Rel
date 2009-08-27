@@ -508,6 +508,7 @@ class Control(wx.Panel):
         i = event.GetIndex()
         self.revlist.Select(i, True)
         self.revlist.Focus(i)
+        self.BranchInfo(self.current)
         if self.currev != self.revlist.GetItemText( self.revlist.GetFirstSelected() ):
             self.RevInfo(self.currev)
 
