@@ -27,29 +27,33 @@
 #
 
 from orpg.orpg_windows import *
-import orpg.dirpath
+from orpg.orpgCore import component
+from orpg.dirpath import dir_struct
 from rgbhex import *
 import sys
 import os
+from orpg.orpg_xml import xml
 
 class orpgSettings:
     def __init__(self):
-        self.validate = open_rpg.get_component("validate")
-        self.xml = open_rpg.get_component("xml")
-        self.log = open_rpg.get_component("log")
+        self.validate = component.get("validate")
+        component.add('xml', xml)
+        self.xml = component.get("xml")
+        self.orpgLog = component.get("log")
         self.changes = []
         self.validate.config_file("settings.xml","default_settings.xml")
-        self.filename = orpg.dirpath.dir_struct["user"] + "settings.xml"
+        self.filename = dir_struct["user"] + "settings.xml"
         temp_file = open(self.filename)
         txt = temp_file.read()
         temp_file.close()
+
         self.xml_dom = self.xml.parseXml(txt)
 
         if self.xml_dom is None: self.rebuildSettings()
         self.xml_dom = self.xml_dom._get_documentElement()
 
     def rebuildSettings(self):
-        self.log.log("Settings file has be corrupted, rebuilding settings.", ORPG_INFO, True)
+        self.orpgLog.log("Settings file has be corrupted, rebuilding settings.", ORPG_INFO, True)
         try: os.remove(self.filename)
         except: pass
 
@@ -78,7 +82,8 @@ class orpgSettings:
     def add_setting(self, tab, setting, value, options, help):
         if len(self.xml_dom.getElementsByTagName(setting)) > 0: return False
         tabs = self.xml_dom.getElementsByTagName("tab")
-        newsetting = self.xml.parseXml('<' + setting + ' value="' + value + '" options="' + options + '" help="' + help + '" />')._get_documentElement()
+        newsetting = self.xml.parseXml('<' + setting + ' value="' + value + '" options="' + 
+                                        options + '" help="' + help + '" />')._get_documentElement()
         for i in xrange(0, len(tabs)):
             if tabs[i].getAttribute("name") == tab and tabs[i].getAttribute("type") == 'grid':
                 tabs[i].appendChild(newsetting)
@@ -125,7 +130,9 @@ class orpgSettings:
             if child._get_tagName() == 'tab' and child.hasChildNodes():
                 self.proccessChildren(child, dom.getAttribute("name"))
             else:
-                self.add_setting(dom.getAttribute("name"), child._get_tagName(), child.getAttribute("value"), child.getAttribute("options"), child.getAttribute("help"))
+                self.add_setting(dom.getAttribute("name"), child._get_tagName(), 
+                                child.getAttribute("value"), child.getAttribute("options"), 
+                                child.getAttribute("help"))
 
     def save(self):
         temp_file = open(self.filename, "w")
@@ -134,11 +141,13 @@ class orpgSettings:
 
 class orpgSettingsWnd(wx.Dialog):
     def __init__(self, parent):
-        wx.Dialog.__init__(self,parent,-1,"OpenRPG Preferences",wx.DefaultPosition,size = wx.Size(-1,-1), style=wx.RESIZE_BORDER | wx.SYSTEM_MENU | wx.CAPTION)
+        wx.Dialog.__init__(self,parent,-1,"OpenRPG Preferences", 
+                            wx.DefaultPosition,size = wx.Size(-1,-1), 
+                            style=wx.RESIZE_BORDER | wx.SYSTEM_MENU | wx.CAPTION)
         self.Freeze()
-        self.validate = open_rpg.get_component("validate")
-        self.settings = open_rpg.get_component("settings")
-        self.chat = open_rpg.get_component("chat")
+        self.validate = component.get("validate")
+        self.settings = component.get("settings")
+        self.chat = component.get("chat")
         self.changes = []
         self.SetMinSize((545,500))
         self.tabber = orpgTabberWnd(self, style=FNB.FNB_NO_X_BUTTON)
@@ -164,7 +173,7 @@ class orpgSettingsWnd(wx.Dialog):
 
     def build_gui(self):
         self.validate.config_file("settings.xml","default_settings.xml")
-        filename = open_rpg.get_component("dir_struct")["user"] + "settings.xml"
+        filename = dir_struct["user"] + "settings.xml"
         temp_file = open(filename)
         temp_file.close()
         children = self.settings.xml_dom._get_childNodes()
@@ -210,8 +219,8 @@ class orpgSettingsWnd(wx.Dialog):
 
     def onOk(self, evt):
         #This will write the settings back to the XML
-        self.session = open_rpg.get_component("session")
-        tabbedwindows = open_rpg.get_component("tabbedWindows")
+        self.session = component.get("session")
+        tabbedwindows = component.get("tabbedWindows")
         new = []
         for wnd in tabbedwindows:
             try:
@@ -219,12 +228,20 @@ class orpgSettingsWnd(wx.Dialog):
                 new.append(wnd)
             except: pass
         tabbedwindows = new
-        open_rpg.add_component("tabbedWindows", tabbedwindows)
+        component.add("tabbedWindows", tabbedwindows)
         rgbconvert = RGBHex()
 
         for i in xrange(0,len(self.changes)):
             self.settings.set_setting(self.changes[i][0], self.changes[i][1])
-            top_frame = open_rpg.get_component('frame')
+            top_frame = component.get('frame')
+
+            if self.changes[i][0] == 'defaultfontsize' or self.changes[i][0] == 'defaultfont':
+                self.chat.chatwnd.SetDefaultFontAndSize(self.settings.get_setting('defaultfont'), 
+                                                        self.settings.get_setting('defaultfontsize'))
+                self.chat.InfoPost("Font is now " + 
+                                    self.settings.get_setting('defaultfont') + " point size " + 
+                                    self.settings.get_setting('defaultfontsize'))
+                self.chat.chatwnd.scroll_down()
 
             if self.changes[i][0] == 'bgcolor' or self.changes[i][0] == 'textcolor':
                 self.chat.chatwnd.SetPage(self.chat.ResetPage())
@@ -372,3 +389,6 @@ class settings_grid(wx.grid.Grid):
         col_w = w/(cols)
         for i in range(0,cols): self.SetColSize(i,col_w)
         self.Refresh()
+
+settings = orpgSettings()
+component.add('settings', settings)

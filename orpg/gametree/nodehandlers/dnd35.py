@@ -1,9 +1,10 @@
-import orpg.tools.orpg_settings
-import orpg.minidom
+#from orpg.tools.orpg_settings import settings #Settings used?
+#import orpg.minidom
 from core import *
 from containers import *
 from string import *  #a 1.6003
 from inspect import *  #a 1.9001
+from orpg.dirpath import dir_struct
 dnd35_EXPORT = wx.NewId()
 
 ############Global Stuff##############
@@ -45,7 +46,7 @@ class dnd35char_handler(container_handler):
 
         self.hparent = None #a 1.5002 allow ability to run up tree, this is the
 
-        self.frame = open_rpg.get_component('frame')
+        self.frame = component.get('frame')
         self.child_handlers = {}
         self.new_child_handler('general','GeneralInformation',dnd35general,'gear')
         self.new_child_handler('inventory','MoneyAndInventory',dnd35inventory,'money')
@@ -90,7 +91,7 @@ class dnd35char_handler(container_handler):
         return html_str
 
     def about(self):
-        html_str = "<img src='" + orpg.dirpath.dir_struct["icon"]
+        html_str = "<img src='" + dir_struct["icon"]
         html_str += "dnd3e_logo.gif' ><br /><b>dnd35 Character Tool "
         html_str += self.Version+"</b>" #m 1.6000 was hard coded.
         html_str += "<br />by Dj Gilcrease<br />digitalxero@gmail.com"
@@ -120,7 +121,7 @@ class dnd35_char_child(node_handler):
         node_handler.__init__(self,xml_dom,tree_node)
         self.char_hander = parent
         self.drag = False
-        self.frame = open_rpg.get_component('frame')
+        self.frame = component.get('frame')
         self.myeditor = None
 
 
@@ -169,7 +170,7 @@ class dnd35general(dnd35_char_child):
         n_list = self.master_dom._get_childNodes()
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>General Information</th></tr><tr><td>"
         for n in n_list:
-            t_node = safe_get_text_node(n)
+            t_node = component.get('xml').safe_get_text_node(n)
             html_str += "<B>"+n._get_tagName().capitalize() +":</B> "
             html_str += t_node._get_nodeValue() + ", "
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
@@ -183,7 +184,7 @@ class dnd35general(dnd35_char_child):
 
     def get_char_name( self ):
         node = self.master_dom.getElementsByTagName( 'name' )[0]
-        t_node = safe_get_text_node( node )
+        t_node = component.get('xml').safe_get_text_node( node )
         return t_node._get_nodeValue()
 
 class gen_grid(wx.grid.Grid):
@@ -218,7 +219,7 @@ class gen_grid(wx.grid.Grid):
         #self.AutoSizeColumn(1)
 
     def refresh_row(self,rowi):
-        t_node = safe_get_text_node(self.n_list[rowi])
+        t_node = component.get('xml').safe_get_text_node(self.n_list[rowi])
 
         self.SetCellValue(rowi,0,self.n_list[rowi]._get_tagName())
         self.SetReadOnly(rowi,0)
@@ -244,7 +245,7 @@ class dnd35inventory(dnd35_char_child):
         n_list = self.master_dom._get_childNodes()
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>Inventory</th></tr><tr><td>"
         for n in n_list:
-            t_node = safe_get_text_node(n)
+            t_node = component.get('xml').safe_get_text_node(n)
             html_str += "<B>"+n._get_tagName().capitalize() +":</B> "
             html_str += t_node._get_nodeValue() + "<br />"
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
@@ -316,12 +317,12 @@ class inventory_pane(wx.Panel):
 
         for node in self.n_list:
             if node._get_tagName() == nodeName:
-                t_node = safe_get_text_node(node)
+                t_node = component.get('xml').safe_get_text_node(node)
                 t_node._set_nodeValue(value)
 
     def saveMoney(self, row, col):
         value = self.grid.GetCellValue(row, col)
-        t_node = safe_get_text_node(self.n_list[row])
+        t_node = component.get('xml').safe_get_text_node(self.n_list[row])
         t_node._set_nodeValue(value)
 
     def on_cell_change(self, evt):
@@ -333,7 +334,7 @@ class inventory_pane(wx.Panel):
 
 
     def refresh_row(self, row):
-        t_node = safe_get_text_node(self.n_list[row])
+        t_node = component.get('xml').safe_get_text_node(self.n_list[row])
         tagname = self.n_list[row]._get_tagName()
         value = t_node._get_nodeValue()
         if tagname == 'Gear':
@@ -357,7 +358,7 @@ class dnd35classnstats(dnd35_char_child):
         node_handler.__init__(self,xml_dom,tree_node)
         self.hparent = parent #a 1.5002 allow ability to run up tree.
         dnd35_char_child.__init__(self,xml_dom,tree_node,parent)
-        self.frame = open_rpg.get_component('frame')
+        self.frame = component.get('frame')
         self.child_handlers = {}
         self.new_child_handler('abilities','Abilities Scores',dnd35ability,'gear')
         self.new_child_handler('classes','Classes',dnd35classes,'knight')
@@ -389,7 +390,7 @@ class class_char_child(node_handler):
         node_handler.__init__(self,xml_dom,tree_node)
         self.char_hander = parent
         self.drag = False
-        self.frame = open_rpg.get_component('frame')
+        self.frame = component.get('frame')
         self.myeditor = None
 
     def on_drop(self,evt):
@@ -680,7 +681,7 @@ class class_panel(wx.Panel):
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["dnd35"]+"dnd35classes.xml","r")
+            tmp = open(dir_struct["dnd35"]+"dnd35classes.xml","r")
             xml_dom = parseXml_with_dlg(self,tmp.read())
             xml_dom = xml_dom._get_firstChild()
             tmp.close()
@@ -907,7 +908,7 @@ class dnd35skillsnfeats(dnd35_char_child):
 
         node_handler.__init__(self,xml_dom,tree_node)
         dnd35_char_child.__init__(self,xml_dom,tree_node,parent)
-        self.frame = open_rpg.get_component('frame')
+        self.frame = component.get('frame')
         self.child_handlers = {}
         self.new_child_handler('skills','Skills',dnd35skill,'book')
         self.new_child_handler('feats','Feats',dnd35feats,'book')
@@ -938,7 +939,7 @@ class skills_char_child(node_handler):
         node_handler.__init__(self,xml_dom,tree_node)
         self.char_hander = parent
         self.drag = False
-        self.frame = open_rpg.get_component('frame')
+        self.frame = component.get('frame')
         self.myeditor = None
 
 
@@ -1314,7 +1315,7 @@ class feat_panel(wx.Panel):
     def on_add(self,evt):
 
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["dnd35"]+"dnd35feats.xml","r")
+            tmp = open(dir_struct["dnd35"]+"dnd35feats.xml","r")
             xml_dom = parseXml_with_dlg(self,tmp.read())
             xml_dom = xml_dom._get_firstChild()
             tmp.close()
@@ -1330,6 +1331,7 @@ class feat_panel(wx.Panel):
             new_node = self.master_dom.appendChild(f_list[i].cloneNode(False))
             self.grid.AppendRows(1)
             self.refresh_row(self.grid.GetNumberRows()-1)
+        f_list=0; opts=0
         dlg.Destroy()
 
 
@@ -1358,7 +1360,7 @@ class dnd35combat(dnd35_char_child):
 
         #mark3
         dnd35_char_child.__init__(self,xml_dom,tree_node,parent)
-        self.frame = open_rpg.get_component('frame')
+        self.frame = component.get('frame')
         self.child_handlers = {}
         self.new_child_handler('hp','Hit Points',dnd35hp,'gear')
         self.new_child_handler('attacks','Attacks',dnd35attacks,'spears')
@@ -1392,7 +1394,7 @@ class combat_char_child(node_handler):
         node_handler.__init__(self,xml_dom,tree_node)
         self.char_hander = parent
         self.drag = False
-        self.frame = open_rpg.get_component('frame')
+        self.frame = component.get('frame')
         self.myeditor = None
 
 
@@ -1579,7 +1581,7 @@ class dnd35attacks(combat_char_child):
 
     def updateFootN(self,n):#a 1.5012 this whole function
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["dnd35"]+"dnd35weapons.xml","r")
+            tmp = open(dir_struct["dnd35"]+"dnd35weapons.xml","r")
             #tmp = open("c:\clh\codeSamples\sample1.xml","r") #a (debug) 1.5012
             self.temp_dom = xml.dom.minidom.parse(tmp)
 
@@ -2048,7 +2050,7 @@ class weapon_panel(wx.Panel):
             fnFrame = wx.Frame(masterFrame, -1, title)
             fnFrame.panel = wx.html.HtmlWindow(fnFrame,-1)
             if not self.temp_dom:
-                tmp = open(orpg.dirpath.dir_struct["dnd35"]+
+                tmp = open(dir_struct["dnd35"]+
                             "dnd35weapons.xml","r")
                 #tmp = open("c:\clh\codeSamples\sample1.xml","r")
                 xml_dom = parseXml_with_dlg(self,tmp.read())
@@ -2141,11 +2143,11 @@ class weapon_panel(wx.Panel):
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["dnd35"]+"dnd35weapons.xml","r")
+            tmp = open(dir_struct["dnd35"]+"dnd35weapons.xml","r")
             #tmp = open("c:\clh\codeSamples\sample1.xml","r") #a (debug) 1.5012
             xml_dom = parseXml_with_dlg(self,tmp.read())
             xml_dom = xml_dom._get_firstChild()
-            tmp.close()
+            tmp.close(); print
             self.temp_dom = xml_dom
         f_list = self.temp_dom.getElementsByTagName('weapon')
         opts = []
@@ -2368,7 +2370,7 @@ class ac_panel(wx.Panel):
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["dnd35"]+"dnd35armor.xml","r")
+            tmp = open(dir_struct["dnd35"]+"dnd35armor.xml","r")
             xml_dom = parseXml_with_dlg(self,tmp.read())
             xml_dom = xml_dom._get_firstChild()
             tmp.close()

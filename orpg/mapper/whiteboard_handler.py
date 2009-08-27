@@ -68,8 +68,8 @@ class whiteboard_handler(base_layer_handler):
         self.live_refresh = wx.CheckBox(self, wx.ID_ANY, " Live Refresh")
         self.live_refresh.SetValue(True)
         self.widthList= wx.Choice(self, wx.ID_ANY, size= wx.Size(40, 20), 
-            choices=['1','2','3','4','5','6','7','8','9','10'])
-        self.widthList.SetSelection(0) #always start showing "1"
+                                        choices=['1','2','3','4','5','6','7','8','9','10'])
+        self.widthList.SetSelection(0)
         self.sizer.Add(wx.StaticText(self, wx.ID_ANY, "Line Width: "),0,wx.ALIGN_CENTER)
         self.sizer.Add(self.widthList, 0, wx.EXPAND)
         self.sizer.Add(wx.Size(10,25))
@@ -104,8 +104,10 @@ class whiteboard_handler(base_layer_handler):
         self.txt_boxer.Add(self.text_control,1,wx.EXPAND)
         self.point_boxer = wx.BoxSizer(wx.HORIZONTAL)
         self.point_static = wx.StaticText(self.text_properties_dialog, -1, "Text Size: ")
-        self.point_control = wx.SpinCtrl(self.text_properties_dialog, wx.ID_ANY, value = "12",
-            min = 1, initial = 12, name = "Font Size: ")
+        self.point_control = wx.SpinCtrl(self.text_properties_dialog, 
+                                        wx.ID_ANY, value = "12",
+                                        min = 1, initial = 12, 
+                                        name = "Font Size: ")
         self.point_boxer.Add(self.point_static,1,wx.EXPAND)
         self.point_boxer.Add(wx.Size(10,10))
         self.point_boxer.Add(self.point_control,0,wx.EXPAND)
@@ -261,7 +263,7 @@ class whiteboard_handler(base_layer_handler):
     def undo_line(self,evt):
         session = self.canvas.frame.session
         if (session.my_role() != session.ROLE_GM) and (session.use_roles()):
-            self.top_frame.openrpg.get_component("chat").InfoPost("You must be a GM to use this feature")
+            self.top_frame.openrpg.get("chat").InfoPost("You must be a GM to use this feature")
             return
         self.canvas.layers['whiteboard'].undo_line()
         dc = self.create_dc()
@@ -272,9 +274,11 @@ class whiteboard_handler(base_layer_handler):
     def delete_all_lines(self,evt):
         session = self.canvas.frame.session
         if (session.my_role() != session.ROLE_GM) and (session.use_roles()):
-            open_rpg.get_component("chat").InfoPost("You must be a GM to use this feature")
+            component.get("chat").InfoPost("You must be a GM to use this feature")
             return
-        dlg = wx.MessageDialog(self, "Are you sure you want to delete all lines?","Delete All Lines",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+        dlg = wx.MessageDialog(self, 
+                                "Are you sure you want to delete all lines?","Delete All Lines", 
+                                wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
         if dlg.ShowModal() != wx.ID_YES: return
         self.canvas.layers['whiteboard'].del_all_lines()
         dc = self.create_dc()
@@ -436,7 +440,7 @@ class whiteboard_handler(base_layer_handler):
                 #check to role to make sure user can draw at all....
                 session = self.canvas.frame.session
                 if (session.my_role() != session.ROLE_GM) and (session.my_role()!=session.ROLE_PLAYER) and (session.use_roles()):
-                    open_rpg.get_component("chat").InfoPost("You must be either a player or GM to use this feature")
+                    component.get("chat").InfoPost("You must be either a player or GM to use this feature")
                     self.canvas.Refresh(False)
                 else: line = self.canvas.layers['whiteboard'].add_line(self.line_string,self.upperleft,self.lowerright)
             #resetting variables for next line
@@ -472,7 +476,7 @@ class whiteboard_handler(base_layer_handler):
             #check to role to make sure user can draw at all....
             session = self.canvas.frame.session
             if (session.my_role() != session.ROLE_GM) and (session.my_role()!=session.ROLE_PLAYER) and (session.use_roles()):
-                open_rpg.get_component("chat").InfoPost("You must be either a player or GM to use this feature")
+                component.get("chat").InfoPost("You must be either a player or GM to use this feature")
                 self.canvas.Refresh(False)
             else: line = self.canvas.layers['whiteboard'].add_line(self.line_string,self.upperleft,self.lowerright)
         #resetting variables for next line
@@ -534,8 +538,8 @@ class whiteboard_handler(base_layer_handler):
     # to allow alternate drawing method to be used
     # 05-09-2003  Snowdog
     def freeform_motion(self, evt):
-#        if not self.drawing:
-#            return
+        #if not self.drawing:
+        #    return
         scale = self.canvas.layers['grid'].mapscale
         dc = wx.ClientDC( self.canvas )
         self.canvas.PrepareDC( dc )
@@ -566,7 +570,7 @@ class whiteboard_handler(base_layer_handler):
             self.drawing = False
             session = self.canvas.frame.session
             if (session.my_role() != session.ROLE_GM) and (session.my_role()!=session.ROLE_PLAYER) and (session.use_roles()):
-                open_rpg.get_component("chat").InfoPost("You must be either a player or GM to use this feature")
+                component.get("chat").InfoPost("You must be either a player or GM to use this feature")
                 self.canvas.Refresh(False)
                 return
         #self.id +=1
@@ -584,7 +588,7 @@ class whiteboard_handler(base_layer_handler):
     def on_text_left_down(self, evt):
         session = self.canvas.frame.session
         if (session.my_role() != session.ROLE_GM) and (session.my_role()!=session.ROLE_PLAYER) and (session.use_roles()):
-            open_rpg.get_component("chat").InfoPost("You must be either a player or GM to use this feature")
+            component.get("chat").InfoPost("You must be either a player or GM to use this feature")
             self.canvas.Refresh(False)
             return
         scale = self.canvas.layers['grid'].mapscale
@@ -618,7 +622,7 @@ class whiteboard_handler(base_layer_handler):
     def on_text_right_down(self, evt, dc):
         session = self.canvas.frame.session
         if (session.my_role() != session.ROLE_GM) and (session.my_role()!=session.ROLE_PLAYER) and (session.use_roles()):
-            open_rpg.get_component("chat").InfoPost("You must be either a player or GM to use this feature")
+            component.get("chat").InfoPost("You must be either a player or GM to use this feature")
             self.canvas.Refresh(False)
             return
         pos = evt.GetLogicalPosition(dc)
@@ -632,7 +636,7 @@ class whiteboard_handler(base_layer_handler):
     def on_start_cone(self, evt):
         session = self.canvas.frame.session
         if (session.my_role() != session.ROLE_GM) and (session.my_role()!=session.ROLE_PLAYER) and (session.use_roles()):
-            open_rpg.get_component("chat").InfoPost("You must be either a player or GM to use this feature")
+            component.get("chat").InfoPost("You must be either a player or GM to use this feature")
             self.canvas.Refresh(False)
             return
         self.cone_start = self.get_snapped_to_logical_pos(evt)
@@ -748,7 +752,7 @@ class whiteboard_handler(base_layer_handler):
     def draw_temporary_circle(self, evt):
         session = self.canvas.frame.session
         if (session.my_role() != session.ROLE_GM) and (session.my_role()!=session.ROLE_PLAYER) and (session.use_roles()):
-            open_rpg.get_component("chat").InfoPost("You must be either a player or GM to use this feature")
+            component.get("chat").InfoPost("You must be either a player or GM to use this feature")
             self.canvas.Refresh(False)
             return
         pos = self.get_snapped_to_logical_pos(evt)

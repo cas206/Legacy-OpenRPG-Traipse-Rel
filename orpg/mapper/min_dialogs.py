@@ -151,7 +151,7 @@ class min_list_panel(wx.Dialog):
                 else: node_begin += "Unnamed Miniature'"
 
                 node_begin += ">"
-                gametree = open_rpg.get_component('tree')
+                gametree = component.get('tree')
                 node_xml = node_begin + min_xml + '</nodehandler>'
                 print "Sending this XML to insert_xml:" + node_xml
                 gametree.insert_xml(node_xml)
@@ -417,10 +417,14 @@ class min_edit_panel(wx.Panel):
         sizer.Add(self.label, 0, wx.EXPAND)
         sizer.Add(wx.Size(10,10))
         self.heading = wx.RadioBox(self, MIN_HEADING, "Heading", 
-            choices=["None","N","NE","E","SE","S","SW","W","NW"],majorDimension=5,style=wx.RA_SPECIFY_COLS)
+            choices=["None","N","NE",
+                     "E","SE","S",
+                     "SW","W","NW"],majorDimension=5,style=wx.RA_SPECIFY_COLS)
         self.heading.SetSelection(min.heading)
         self.face = wx.RadioBox(self, MIN_FACE, "Facing", 
-            choices=["None","N","NE","E","SE","S","SW","W","NW"],majorDimension=5,style=wx.RA_SPECIFY_COLS)
+            choices=["None","N","NE",
+                     "E","SE","S",
+                     "SW","W","NW"],majorDimension=5,style=wx.RA_SPECIFY_COLS)
         self.face.SetSelection(min.face)
         self.locked = wx.CheckBox(self, MIN_LOCK, " Lock")
         self.locked.SetValue(min.locked)

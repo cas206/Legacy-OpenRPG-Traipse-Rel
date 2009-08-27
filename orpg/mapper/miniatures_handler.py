@@ -40,6 +40,8 @@ from grid import GRID_HEXAGON
 from grid import GRID_ISOMETRIC
 import os
 
+from orpg.tools.orpg_settings import settings
+
 LABEL_TOOL = wx.NewId()
 LAYER_TOOL = wx.NewId()
 MIN_LIST_TOOL = wx.NewId()
@@ -103,7 +105,7 @@ class miniatures_handler(base_layer_handler):
         self.use_serial = 1
         self.auto_label_cb = None
         self.canvas = canvas
-        self.settings = self.canvas.settings
+        self.settings = settings
         self.mini_rclick_menu_extra_items = {}
         self.background_rclick_menu_extra_items = {}
         base_layer_handler.__init__(self, parent, id, canvas)
@@ -117,7 +119,7 @@ class miniatures_handler(base_layer_handler):
         self.tooltip_timer.Stop()
         dt = myFileDropTarget(self)
         self.canvas.SetDropTarget(dt)
-   #     wxInitAllImageHandlers()
+        #wxInitAllImageHandlers()
 
     def build_ctrls(self):
         base_layer_handler.build_ctrls(self)
@@ -126,7 +128,7 @@ class miniatures_handler(base_layer_handler):
         self.auto_label_cb.SetValue(self.auto_label)
         self.min_url = wx.ComboBox(self, wx.ID_ANY, "http://", style=wx.CB_DROPDOWN | wx.CB_SORT)
         self.localBrowse = wx.Button(self, wx.ID_ANY, 'Browse', style=wx.BU_EXACTFIT)
-        minilist = createMaskedButton( self, orpg.dirpath.dir_struct["icon"]+'questionhead.gif', 'Edit miniature properties', wx.ID_ANY)
+        minilist = createMaskedButton( self, dir_struct["icon"]+'questionhead.gif', 'Edit miniature properties', wx.ID_ANY)
         miniadd = wx.Button(self, wx.ID_OK, "Add Miniature", style=wx.BU_EXACTFIT)
         self.sizer.Add(self.auto_label_cb,0,wx.ALIGN_CENTER)
         self.sizer.Add((6, 0))
@@ -144,7 +146,7 @@ class miniatures_handler(base_layer_handler):
 
     def on_browse(self, evt):
         if not self.role_is_gm_or_player(): return
-        dlg = wx.FileDialog(None, "Select a Miniature to load", orpg.dirpath.dir_struct["user"]+'webfiles/', 
+        dlg = wx.FileDialog(None, "Select a Miniature to load", dir_struct["user"]+'webfiles/', 
             wildcard="Image files (*.bmp, *.gif, *.jpg, *.png)|*.bmp;*.gif;*.jpg;*.png", style=wx.OPEN)
         if not dlg.ShowModal() == wx.ID_OK:
             dlg.Destroy()
@@ -162,12 +164,13 @@ class miniatures_handler(base_layer_handler):
             dc.SetUserScale(self.canvas.layers['grid'].mapscale,self.canvas.layers['grid'].mapscale)
             x = dc.DeviceToLogicalX(0)
             y = dc.DeviceToLogicalY(0)
-            thread.start_new_thread(self.canvas.layers['miniatures'].upload, (postdata, dlg.GetPath()), {'pos':cmpPoint(x,y)})
+            thread.start_new_thread(self.canvas.layers['miniatures'].upload, 
+                                    (postdata, dlg.GetPath()), {'pos':cmpPoint(x,y)})
         else:
-            try: min_url = open_rpg.get_component("cherrypy") + filename
-            except: return
-            min_url = dlg.GetDirectory().replace(orpg.dirpath.dir_struct["user"]+'webfiles' + os.sep, 
-                open_rpg.get_component("cherrypy")) + '/' + filename
+            try: min_url = component.get("cherrypy") + filename
+            except: return #chat.InfoPost('CherryPy is not started!')
+            min_url = dlg.GetDirectory().replace(dir_struct["user"]+'webfiles' + os.sep, 
+                component.get("cherrypy")) + '/' + filename
             # build url
             if min_url == "" or min_url == "http://": return
             if min_url[:7] != "http://": min_url = "http://" + min_url
@@ -190,7 +193,6 @@ class miniatures_handler(base_layer_handler):
             except:
                 # When there is an exception here, we should be decrementing the serial_number for reuse!!
                 unablemsg= "Unable to load/resolve URL: " + min_url + " on resource \"" + min_label + "\"!!!\n\n"
-                #print unablemsg
                 dlg = wx.MessageDialog(self,unablemsg, 'Url not found',wx.ICON_EXCLAMATION)
                 dlg.ShowModal()
                 dlg.Destroy()
@@ -355,7 +357,7 @@ class miniatures_handler(base_layer_handler):
             if self.sel_rmin.label: node_begin += self.sel_rmin.label + "'"
             else:  node_begin += "Unnamed Miniature'"
             node_begin += ">"
-	    gametree = open_rpg.get_component('tree')
+	    gametree = component.get('tree')
             node_xml = node_begin + min_xml + '</nodehandler>'
             #print "Sending this XML to insert_xml:" + node_xml
             gametree.insert_xml(str(node_xml))
@@ -746,7 +748,7 @@ class miniatures_handler(base_layer_handler):
     ## helper functions
 
     def infoPost(self, message):
-        open_rpg.get_component("chat").InfoPost(message)
+        component.get("chat").InfoPost(message)
 
     def role_is_gm_or_player(self):
         session = self.canvas.frame.session

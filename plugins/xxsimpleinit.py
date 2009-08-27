@@ -10,12 +10,12 @@ class Plugin(orpg.pluginhandler.PluginHandler):
     # !openrpg : instance of the the base openrpg control
     def __init__(self, plugindb, parent):
         orpg.pluginhandler.PluginHandler.__init__(self, plugindb, parent)
-        self.orpgframe = open_rpg.get_component('frame')
+        self.orpgframe = component.get('frame')
 
         # The Following code should be edited to contain the proper information
         self.name = 'Simple Init'
-        self.author = 'Dj Gilcrease'
-        self.help = 'This is a simplistic Init tool that does not relie on Chat message parsing'
+        self.author = 'Dj Gilcrease + Tyler Starke'
+        self.help = 'This is a simplistic Init tool that does not rely on Chat message parsing'
 
         #You can set variables below here. Always set them to a blank value in this section. Use plugin_enabled
         #to set their proper values.
@@ -45,7 +45,6 @@ class Plugin(orpg.pluginhandler.PluginHandler):
         self.frame.Bind(wx.EVT_TIMER, self.buttonCheck, self.buttonTimer)
         self.buttonTimer.Start(250)
         self.autoAdvancePaused = False
-        #self.PluginMenu()
 
     def plugin_disabled(self):
         self.plugin_removecmd('/inittoggle')
@@ -61,10 +60,8 @@ class Plugin(orpg.pluginhandler.PluginHandler):
         self.buttonTimer.Stop()
         del self.buttonTimer
 
-        try:
-            self.frame.Destroy()
-        except:
-            pass
+        try: self.frame.Destroy()
+        except: pass
 
     def on_init(self, cmdargs):
         if self.frame.IsShown():
@@ -73,7 +70,6 @@ class Plugin(orpg.pluginhandler.PluginHandler):
         else:
             self.toggle.Check(True)
             self.frame.Show()
-        print self.toggle.IsChecked()
 
     def startInit(self, evt=None):
         if self.frame.initList.GetItemCount() == 0:
@@ -103,7 +99,7 @@ class Plugin(orpg.pluginhandler.PluginHandler):
         self.frame.currentInit = -1
         self.round = 0
 
-        self.chat.Post('<font color="#00ff00" size="4"><b>============ START COMBAT ============</b></font>', True, True)
+        self.chat.Post('<center><font color="#00ff00"><b>== START COMBAT ==</b></font></center>', True, True, c='simpleinit-combat')
         self.advanceInit()
         self.frame.Thaw()
 
@@ -152,7 +148,7 @@ class Plugin(orpg.pluginhandler.PluginHandler):
         self.frame.Thaw()
 
         self.advanceTimer.Stop()
-        self.chat.Post('<font color="#ff0000" size="4"><b>============ END COMBAT ============</b></font>', True, True)
+        self.chat.Post('<center><font color="#ff0000" ><b>== END COMBAT ==</b></font></center>', True, True, c='simpleinit-combat')
 
     def advanceInit(self, evt=None):
         if not self.frame.nextButton.IsEnabled():
@@ -163,16 +159,16 @@ class Plugin(orpg.pluginhandler.PluginHandler):
         if self.frame.currentInit.type == 'Effect':
             newDur = str(int(self.frame.currentInit.duration)-1)
             self.frame.initList.SetStringItem(self.frame.initIdx, 2, newDur)
-            msg = '<br><table width="100%" border="1"><tr><td align="center"><center><u><b><font color="#ff0000" size="4">EFFECT NOTICE</font></b></u></center></td></tr>'
-            msg += '<tr><td align="center"><font color="#000000">' + self.frame.currentInit.name + ' has ' + newDur + ' rounds remaining</font></td></tr></table>'
-            self.chat.Post(msg, True, True)
+            msg = '<br><table width="100%" border="1"><tr><td align="center"><center><u><b><font color="#ff0000" >EFFECT NOTICE</font></b></u></center></td></tr>'
+            msg += '<tr><td align="center"><font color="#000000">' + self.frame.currentInit.name + ' has ' + newDur + ' rounds remaining</font></td></tr></table><br />'
+            self.chat.Post(msg, True, True, c='simpleinit-effect')
             wx.CallAfter(self.advanceInit)
         else:
-            msg = '<br><table width="100%" border="1"><tr><td align="center"><center><u><font color="#ff0000" size="4"><b>' + self.frame.nextMessage.GetValue() + '</b></font></u></center></td></tr>'
-            msg += '<tr><td align="center"><b><font size="3"><font color="#ff0000">' + str(self.frame.initIdx+1) + ':</font> '
+            msg = '<table width="100%" border="1"><tr><td align="center"><u><font color="#ff0000" ><b>' + self.frame.nextMessage.GetValue() + '</b></font></u></td></tr>'
+            msg += '<tr><td align="center"><b><font color="#ff0000">' + str(self.frame.initIdx+1) + ':</font> '
             msg += '<font color="#0000ff">(' + self.frame.currentInit.init + ')</font> '
-            msg += '<font color="#000000">' + self.frame.currentInit.name + '</b></font></font></td></tr></table>'
-            self.chat.Post(msg, True, True)
+            msg += '<font color="#000000">' + self.frame.currentInit.name + '</b></font></td></tr></table><br />'
+            self.chat.Post(msg, True, True, c='simpleinit-pc')
 
         if self.frame.currentInit.type == 'Effect' and int(self.frame.currentInit.duration) <= 0:
             self.frame.Freeze()
@@ -205,7 +201,7 @@ class Plugin(orpg.pluginhandler.PluginHandler):
 
     def newRound(self):
         self.round += 1
-        msg = '<br><hr><font color="#ff0000" size="4"><b>End of Round #' + str(self.round-1) + ', Starting Round #' + str(self.round) + '</b></font><hr>'
+        msg = '<br><hr><font color="#ff0000" ><b>End of Round #' + str(self.round-1) + ', Starting Round #' + str(self.round) + '</b></font><hr>'
         self.chat.Post(msg, True, True)
 
     def rollD20Init(self):
@@ -214,7 +210,7 @@ class Plugin(orpg.pluginhandler.PluginHandler):
             return
         self.orpgframe.Freeze()
         self.frame.Freeze()
-        msg = '<br><font color="#0000ff" size="4"><b>============ START INIT LIST ============</b></font><br>'
+        msg = '<br><center><font color="#0000ff" ><b>== START INIT LIST ==</b></font></center><br>'
         msg += '<font color="#000000"><b>'
         for i in xrange(0, self.frame.initList.GetItemCount()):
             self.frame.currentInit = i
@@ -234,8 +230,8 @@ class Plugin(orpg.pluginhandler.PluginHandler):
         msg += '</b></font><br>'
 
         self.frame.initList.SortItems(self.frame.initSort)
-        msg += '<font color="#0000ff" size="4"><b>============ END INIT LIST ============</b></font>'
-        self.chat.Post(msg, True, True)
+        msg += '<center><font color="#0000ff" ><b>== END INIT LIST ==</b></center></font>'
+        self.chat.Post(msg, True, True, c='simpleinit-lst')
 
         self.frame.Thaw()
         if self.frame.IsShown():
@@ -248,8 +244,6 @@ class Plugin(orpg.pluginhandler.PluginHandler):
             self.rollD20Init()
 
     def buttonCheck(self, evt):
-        if self.autoAdvancePaused:
-            return
         if self.frame.initList.GetItemCount() == 0:
             self.frame.Freeze()
             self.advanceTimer.Stop()
@@ -269,6 +263,8 @@ class Plugin(orpg.pluginhandler.PluginHandler):
                 self.frame.deleteButton.Enable()
                 self.frame.saveButton.Enable()
                 self.frame.clearButton.Enable()
+        if self.autoAdvancePaused:
+            return
 
         if not self.frame.autoAdvanceCheck.IsChecked():
             self.frame.autoAdvanceToggle.Disable()
@@ -280,16 +276,16 @@ class InitFrame(wx.Frame):
     def __init__(self, plugin):
         self.plugin = plugin
 	self.toggle = plugin.toggle
-        self.log = open_rpg.get_component('log')
+        self.log = component.get('log')
         self.log.log("Enter InitFrame", ORPG_DEBUG)
 
         wx.Frame.__init__(self, None, wx.ID_ANY, title="Simple Init", style=wx.DEFAULT_FRAME_STYLE)
         self.SetOwnBackgroundColour('#EFEFEF')
 
-        self.dir_struct = open_rpg.get_component('dir_struct')
-        self.settings = open_rpg.get_component('settings')
-        self.xml = open_rpg.get_component('xml')
-        self.validate = open_rpg.get_component('validate')
+        self.dir_struct = component.get('dir_struct')
+        self.settings = component.get('settings')
+        self.xml = component.get('xml')
+        self.validate = component.get('validate')
 
         self.Freeze()
         self.buildMenu()
@@ -302,10 +298,10 @@ class InitFrame(wx.Frame):
         self.log.log("Exit InitFrame", ORPG_DEBUG)
 
     def InitSetup(self):
-        self.chat = open_rpg.get_component('chat')
-        self.gametree = open_rpg.get_component('tree')
-        self.map = open_rpg.get_component('map')
-        self.session = open_rpg.get_component('session')
+        self.chat = component.get('chat')
+        self.gametree = component.get('tree')
+        self.map = component.get('map')
+        self.session = component.get('session')
 
         self.initIdx = -1
         self.Thaw()

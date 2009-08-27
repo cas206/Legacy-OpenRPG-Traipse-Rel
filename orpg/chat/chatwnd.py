@@ -45,11 +45,11 @@ __version__ = "$Id: chatwnd.py,v 1.177 2007/12/07 20:39:48 digitalxero Exp $"
 ##
 from orpg.orpg_windows import *
 from orpg.player_list import WG_LIST
-import orpg.dirpath
+from orpg.dirpath import dir_struct
 import orpg.tools.rgbhex
 import orpg.tools.inputValidator
-from orpg.tools.metamenus import MenuEx
-from orpg.orpgCore import open_rpg
+#from orpg.tools.metamenus import MenuEx #Needed?
+
 import webbrowser
 from string import *
 from orpg.orpg_version import VERSION
@@ -66,6 +66,13 @@ import cStringIO # for reading inline imagedata as a stream
 from HTMLParser import HTMLParser
 import chat_util
 import traceback
+from wx.lib.expando import EVT_ETC_LAYOUT_NEEDED 
+
+from orpg.tools.validate import validate
+from orpg.tools.orpg_settings import settings
+from orpg.orpgCore import component
+from orpg.tools.orpg_log import logger
+from orpg.tools.decorators import debugging
 NEWCHAT = False
 try:
     import wx.webview
@@ -77,23 +84,29 @@ NEWCHAT = False
 # The 'tag stripping' is implicit, because this parser echoes every
 # type of html data *except* the tags.
 class HTMLStripper(HTMLParser):
+    @debugging
     def __init__(self):
         self.accum = ""
         self.special_tags = ['hr', 'br', 'img']
+    @debugging
     def handle_data(self, data):  # quote cdata literally
         self.accum += data
+    @debugging
     def handle_entityref(self, name): # entities must be preserved exactly
         self.accum += "&" + name + ";"
+    @debugging
     def handle_starttag(self, tag, attrs):
         if tag in self.special_tags:
             self.accum += '<' + tag
             for attrib in attrs: self.accum += ' ' + attrib[0] + '="' + attrib[1] + '"'
             self.accum += '>'
+    @debugging
     def handle_charref(self, name):  # charrefs too
         self.accum += "&#" + name + ";"
 htmlstripper = HTMLStripper()
 
 # utility function;  see Post().
+@debugging
 def strip_html(string):
     "Return string tripped of html tags."
     htmlstripper.reset()
@@ -102,7 +115,8 @@ def strip_html(string):
     htmlstripper.close()
     return htmlstripper.accum
 
-def log( settings, text ):
+@debugging
+def log( settings, c, text ):
     filename = settings.get_setting('GameLogPrefix')
     if filename > '' and filename[0] != commands.ANTI_LOG_CHAR:
         filename = filename + time.strftime( '-%Y-%m-%d.html', time.localtime( time.time() ) )
@@ -111,11 +125,11 @@ def log( settings, text ):
         header = '[%s] : ' % ( timestamp );
         if settings.get_setting('TimeStampGameLog') != '1': header = ''
         try:
-            f = open( orpg.dirpath.dir_struct["user"] + filename, 'a' )
-            f.write( '%s%s<br />\n' % ( header, text ) )
+            f = open( dir_struct["user"] + filename, 'a' )
+            f.write( '<div class="'+c+'">%s%s</div>\n' % ( header, text ) )
             f.close()
         except:
-            print "could not open " + orpg.dirpath.dir_struct["user"] + filename + ", ignoring..."
+            print "could not open " + dir_struct["user"] + filename + ", ignoring..."
             pass
 
 # This class displayes the chat information in html?
@@ -133,8 +147,10 @@ class chat_html_window(wx.html.HtmlWindow):
     # !self : instance of self
     # !parent :
     # !id :
+    @debugging
     def __init__(self, parent, id):
-        wx.html.HtmlWindow.__init__(self, parent, id, style=wx.SUNKEN_BORDER | wx.html.HW_SCROLLBAR_AUTO|wx.NO_FULL_REPAINT_ON_RESIZE)
+        wx.html.HtmlWindow.__init__(self, parent, id, 
+                                    style=wx.SUNKEN_BORDER|wx.html.HW_SCROLLBAR_AUTO|wx.NO_FULL_REPAINT_ON_RESIZE)
         self.parent = parent
         self.build_menu()
         self.Bind(wx.EVT_LEFT_UP, self.LeftUp)
@@ -142,41 +158,50 @@ class chat_html_window(wx.html.HtmlWindow):
         if "gtk2" in wx.PlatformInfo: self.SetStandardFonts()
         # def __init__ - end
 
+    @debugging
     def onPopup(self, evt):
         self.PopupMenu(self.menu)
 
+    @debugging
     def LeftUp(self, event):
         event.Skip()
         wx.CallAfter(self.parent.set_chat_text_focus, None)
 
+    @debugging
     def build_menu(self):
         self.menu = wx.Menu()
         item = wx.MenuItem(self.menu, wx.ID_ANY, "Copy", "Copy")
         self.Bind(wx.EVT_MENU, self.OnM_EditCopy, item)
         self.menu.AppendItem(item)
 
+    @debugging
     def OnM_EditCopy(self, evt):
         wx.TheClipboard.Open()
         wx.TheClipboard.Clear()
         wx.TheClipboard.SetData(wx.TextDataObject(self.SelectionToText()))
         wx.TheClipboard.Close()
 
+    @debugging
     def scroll_down(self):
         maxrange = self.GetScrollRange(wx.VERTICAL)
         pagesize = self.GetScrollPageSize(wx.VERTICAL)
         self.Scroll(-1, maxrange-pagesize)
 
+    @debugging
     def mouse_wheel(self, event):
         amt = event.GetWheelRotation()
         units = amt/(-(event.GetWheelDelta()))
         self.ScrollLines(units*3)
 
+    @debugging
     def Header(self):
         return '<html><body bgcolor="' + self.parent.bgcolor + '" text="' + self.parent.textcolor + '">'
 
+    @debugging
     def StripHeader(self):
         return self.GetPageSource().replace(self.Header(), '')
 
+    @debugging
     def GetPageSource(self):
         return self.GetParser().GetSource()
 
@@ -184,12 +209,14 @@ class chat_html_window(wx.html.HtmlWindow):
     #
     # !self : instance of self
     # !linkinfo : instance of a class that contains the link information
+    @debugging
     def OnLinkClicked(self, linkinfo):
         href = linkinfo.GetHref()
         wb = webbrowser.get()
         wb.open(href)
     # def OnLinkClicked - end
 
+    @debugging
     def CalculateAllFonts(self, defaultsize):
         return [int(defaultsize * 0.4),
                 int(defaultsize * 0.7),
@@ -199,6 +226,7 @@ class chat_html_window(wx.html.HtmlWindow):
                 int(defaultsize * 2),
                 int(defaultsize * 2.5)]
 
+    @debugging
     def SetDefaultFontAndSize(self, fontname, fontsize):
         """Set 'fontname' to the default chat font.
            Returns current font settings in a (fontname, fontsize) tuple."""
@@ -208,72 +236,87 @@ class chat_html_window(wx.html.HtmlWindow):
 # class chat_html_window - end
 if NEWCHAT:
     class ChatHtmlWindow(wx.webview.WebView):
+        @debugging
         def __init__(self, parent, id):
             wx.webview.WebView.__init__(self, parent, id)
-
             self.parent = parent
             self.__font = wx.Font(10, wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, faceName='Ariel')
-
             self.build_menu()
             self.Bind(wx.EVT_LEFT_UP, self.LeftUp)
             self.Bind(wx.EVT_RIGHT_DOWN, self.onPopup)
             self.Bind(wx.webview.EVT_WEBVIEW_BEFORE_LOAD, self.OnLinkClicked)
 
         #Wrapers so I dont have to add special Code
+        @debugging
         def SetPage(self, htmlstring):
             self.SetPageSource(htmlstring)
 
+        @debugging
         def AppendToPage(self, htmlstring):
             self.SetPageSource(self.GetPageSource() + htmlstring)
 
+        @debugging
         def GetFont(self):
             return self.__font
 
+        @debugging
         def CalculateAllFonts(self, defaultsize):
             return
 
+        @debugging
         def SetDefaultFontAndSize(self, fontname, fontsize):
-            self.__font = wx.Font(int(fontsize), wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, faceName=fontname)
+            self.__font = wx.Font(int(fontsize), 
+                            wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, 
+                            wx.FONTWEIGHT_NORMAL, faceName=fontname)
             try: self.SetPageSource(self.Header() + self.StripHeader())
             except Exception, e: print e
             return (self.GetFont().GetFaceName(), self.GetFont().GetPointSize())
 
         #Events
+        @debugging
         def OnLinkClicked(self, linkinfo):
             href = linkinfo.GetHref()
             wb = webbrowser.get()
             wb.open(href)
 
+        @debugging
         def onPopup(self, evt):
             self.PopupMenu(self.menu)
 
+        @debugging
         def LeftUp(self, event):
             event.Skip()
             wx.CallAfter(self.parent.set_chat_text_focus, None)
 
+        @debugging
         def OnM_EditCopy(self, evt):
             self.Copy()
 
         #Cutom Methods
+        @debugging
         def Header(self):
             return "<html><head><style>body {font-size: " + str(self.GetFont().GetPointSize()) + "px;font-family: " + self.GetFont().GetFaceName() + ";color: " + self.parent.textcolor + ";background-color: " + self.parent.bgcolor + ";margin: 0;padding: 0 0;height: 100%;}</style></head><body>"
 
+        @debugging
         def StripHeader(self):
             tmp = self.GetPageSource().split('<BODY>')
             if tmp[-1].find('<body>') > -1: tmp = tmp[-1].split('<body>')
             return tmp[-1]
 
+        @debugging
         def build_menu(self):
             self.menu = wx.Menu()
             item = wx.MenuItem(self.menu, wx.ID_ANY, "Copy", "Copy")
             self.Bind(wx.EVT_MENU, self.OnM_EditCopy, item)
             self.menu.AppendItem(item)
 
+        @debugging
         def scroll_down(self):
             maxrange = self.GetScrollRange(wx.VERTICAL)
             pagesize = self.GetScrollPageSize(wx.VERTICAL)
             self.Scroll(-1, maxrange-pagesize)
 
+        @debugging
         def mouse_wheel(self, event):
             amt = event.GetWheelRotation()
             units = amt/(-(event.GetWheelDelta()))
@@ -307,18 +350,18 @@ NULL_TAB = wx.NewId()
 #   set_default_font(self, font, fontsize)
 
 class chat_notebook(orpgTabberWnd):
+    @debugging
     def __init__(self, parent, size):
-        self.log = open_rpg.get_component("log")
-        self.log.log("Enter chat_notebook", ORPG_DEBUG)
-        orpgTabberWnd.__init__(self, parent, True, size=size, style=FNB.FNB_DROPDOWN_TABS_LIST|FNB.FNB_NO_NAV_BUTTONS|FNB.FNB_MOUSE_MIDDLE_CLOSES_TABS)
-        self.settings = open_rpg.get_component("settings")
+        orpgTabberWnd.__init__(self, parent, True, size=size, 
+                style=FNB.FNB_DROPDOWN_TABS_LIST|FNB.FNB_NO_NAV_BUTTONS|FNB.FNB_MOUSE_MIDDLE_CLOSES_TABS)
+        self.settings = component.get("settings")
         self.whisper_tabs = []
         self.group_tabs = []
         self.null_tabs = []
         self.il = wx.ImageList(16, 16)
-        bmp = wx.Bitmap(orpg.dirpath.dir_struct["icon"]+'player.gif')
+        bmp = wx.Bitmap(dir_struct["icon"]+'player.gif')
         self.il.Add(bmp)
-        bmp = wx.Bitmap(orpg.dirpath.dir_struct["icon"]+'clear.gif')
+        bmp = wx.Bitmap(dir_struct["icon"]+'clear.gif')
         self.il.Add(bmp)
         self.SetImageList(self.il)
         # Create "main" chatpanel tab, undeletable, connected to 'public' room.
@@ -338,68 +381,62 @@ class chat_notebook(orpgTabberWnd):
         if self.settings.get_setting("GMWhisperTab") == '1':
             self.create_gm_tab()
         self.SetSelection(0)
-        self.log.log("Exit chat_notebook", ORPG_DEBUG)
 
+    @debugging
     def get_tab_index(self, chatpanel):
         "Return the index of a chatpanel in the wxNotebook."
-        self.log.log("Enter chat_notebook->get_tab_index(self, chatpanel)", ORPG_DEBUG)
 
         for i in xrange(self.GetPageCount()):
             if (self.GetPage(i) == chatpanel):
-                self.log.log("Exit chat_notebook->get_tab_index(self, chatpanel)", ORPG_DEBUG)
                 return i
 
+    @debugging
     def create_gm_tab(self):
-        self.log.log("Enter chat_notebook->create_gm_tab(self)", ORPG_DEBUG)
         if self.GMChatPanel == None:
             self.GMChatPanel = chat_panel(self, -1, MAIN_TAB, 'gm')
             self.AddPage(self.GMChatPanel, "GM", False)
             self.SetPageImage(self.GetPageCount()-1, 1)
             self.GMChatPanel.chatwnd.SetDefaultFontAndSize(self.font, self.fontsize)
-        self.log.log("Exit chat_notebook->create_gm_tab(self)", ORPG_DEBUG)
 
+    @debugging
     def create_whisper_tab(self, playerid):
         "Add a new chatpanel directly connected to integer 'playerid' via whispering."
-        self.log.log("Enter chat_notebook->create_whisper_tab(self," + str(playerid) +")", ORPG_DEBUG)
         private_tab = chat_panel(self, -1, WHISPER_TAB, playerid)
         playername = strip_html(self.MainChatPanel.session.get_player_by_player_id(playerid)[0])
         self.AddPage(private_tab, playername, False)
         private_tab.chatwnd.SetDefaultFontAndSize(self.font, self.fontsize)
         self.whisper_tabs.append(private_tab)
         self.newMsg(self.GetPageCount()-1)
-        self.AliasLib = open_rpg.get_component('alias')
+        self.AliasLib = component.get('alias')
         wx.CallAfter(self.AliasLib.RefreshAliases)
-        self.log.log("Exit chat_notebook->create_whisper_tab(self, playerid)", ORPG_DEBUG)
         return private_tab
 
+    @debugging
     def create_group_tab(self, group_name):
         "Add a new chatpanel directly connected to integer 'playerid' via whispering."
-        self.log.log("Enter chat_notebook->create_group_tab(self, group_name)", ORPG_DEBUG)
         private_tab = chat_panel(self, -1, GROUP_TAB, group_name)
         self.AddPage(private_tab, group_name, False)
         private_tab.chatwnd.SetDefaultFontAndSize(self.font, self.fontsize)
         self.group_tabs.append(private_tab)
         self.newMsg(self.GetPageCount()-1)
-        self.AliasLib = open_rpg.get_component('alias')
+        self.AliasLib = component.get('alias')
         wx.CallAfter(self.AliasLib.RefreshAliases)
-        self.log.log("Exit chat_notebook->create_group_tab(self, group_name)", ORPG_DEBUG)
         return private_tab
 
+    @debugging
     def create_null_tab(self, tab_name):
         "Add a new chatpanel directly connected to integer 'playerid' via whispering."
-        self.log.log("Enter chat_notebook->create_null_tab(self, tab_name)", ORPG_DEBUG)
         private_tab = chat_panel(self, -1, NULL_TAB, tab_name)
         self.AddPage(private_tab, tab_name, False)
         private_tab.chatwnd.SetDefaultFontAndSize(self.font, self.fontsize)
         self.null_tabs.append(private_tab)
         self.newMsg(self.GetPageCount()-1)
-        self.AliasLib = open_rpg.get_component('alias')
+        self.AliasLib = component.get('alias')
         wx.CallAfter(self.AliasLib.RefreshAliases)
-        self.log.log("Exit chat_notebook->create_null_tab(self, tab_name)", ORPG_DEBUG)
         return private_tab
 
+    @debugging
     def onCloseTab(self, evt):
-        self.log.log("Enter chat_notebook->onCloseTab(self, evt)", ORPG_DEBUG)
         try: tabid = evt.GetSelection()
         except: tabid = self.GetSelection()
 
@@ -426,28 +463,24 @@ class chat_notebook(orpgTabberWnd):
         if panel in self.whisper_tabs: self.whisper_tabs.remove(panel)
         elif panel in self.group_tabs: self.group_tabs.remove(panel)
         elif panel in self.null_tabs: self.null_tabs.remove(panel)
-        self.log.log("Exit chat_notebook->onCloseTab(self, evt)", ORPG_DEBUG)
 
+    @debugging
     def newMsg(self, tabid):
-        self.log.log("Enter chat_notebook->newMsg(self, tabid)", ORPG_DEBUG)
         if tabid != self.GetSelection(): self.SetPageImage(tabid, 0)
-        self.log.log("Exit chat_notebook->newMsg(self, tabid)", ORPG_DEBUG)
 
+    @debugging
     def onPageChanging(self, event):
         """When private chattabs are selected, set the bitmap back to 'normal'."""
-        self.log.log("Enter chat_notebook->onPageChanging(self, event)", ORPG_DEBUG)
         event.Skip()
-        self.log.log("Exit chat_notebook->onPageChanging(self, event)", ORPG_DEBUG)
 
+    @debugging
     def onPageChanged(self, event):
         """When private chattabs are selected, set the bitmap back to 'normal'."""
-        self.log.log("Enter chat_notebook->onPageChanged(self, event)", ORPG_DEBUG)
         selected_idx = event.GetSelection()
         self.SetPageImage(selected_idx, 1)
         page = self.GetPage(selected_idx)
         #wx.CallAfter(page.set_chat_text_focus, 0)
         event.Skip()
-        self.log.log("Exit chat_notebook->onPageChanged(self, event)", ORPG_DEBUG)
 
 """
  This class defines and builds the Chat Frame for OpenRPG
@@ -490,20 +523,20 @@ class chat_panel(wx.Panel):
     !sendtarget:  who gets outbound messages: either 'all' or a playerid
     """
 
+    @debugging
     def __init__(self, parent, id, tab_type, sendtarget):
-        self.log = open_rpg.get_component("log")
-        self.log.log("Enter chat_panel", ORPG_DEBUG)
         wx.Panel.__init__(self, parent, id)
-        self.session = open_rpg.get_component('session')
-        self.settings = open_rpg.get_component('settings')
-        self.activeplugins = open_rpg.get_component('plugins')
+        logger._set_log_to_console(False)
+        self.session = component.get('session')
+        self.settings = component.get('settings')
+        self.activeplugins = component.get('plugins')
         self.parent = parent
         # who receives outbound messages, either "all" or "playerid" string
         self.sendtarget = sendtarget
         self.type = tab_type
-        self.sound_player = open_rpg.get_component('sound')
+        #self.sound_player = component.get('sound') #Removing!
         # create die roller manager
-        self.DiceManager = open_rpg.get_component('DiceManager')
+        #self.DiceManager = component.get('DiceManager') #Removing!
         # create rpghex tool
         self.r_h = orpg.tools.rgbhex.RGBHex()
         self.h = 0
@@ -526,10 +559,8 @@ class chat_panel(wx.Panel):
         self.lastSend = 0         #  this is used to help implement the player typing indicator
         self.lastPress = 0        #  this is used to help implement the player typing indicator
         self.Bind(wx.EVT_SIZE, self.OnSize)
+        self.Bind(EVT_ETC_LAYOUT_NEEDED, self.OnSize) #require to keep text at bottom of chat when text entry expands --SD
         self.build_ctrls()
-        #openrpg dir
-        self.root_dir = orpg.dirpath.dir_struct["home"]
-        # html font/fontsize is global to all the notebook tabs.
         StartupFont = self.settings.get_setting("defaultfont")
         StartupFontSize = self.settings.get_setting("defaultfontsize")
         if(StartupFont != "") and (StartupFontSize != ""):
@@ -538,11 +569,11 @@ class chat_panel(wx.Panel):
         self.font = self.chatwnd.GetFont().GetFaceName()
         self.fontsize = self.chatwnd.GetFont().GetPointSize()
         self.scroll_down()
-        self.log.log("Exit chat_panel", ORPG_DEBUG)
 
+    @debugging
     def set_default_font(self, fontname=None, fontsize=None):
-        """Set all chatpanels to new default fontname/fontsize. Returns current font settings in a (fontname, fontsize) tuple."""
-        self.log.log("Enter chat_panel->set_default_font(self, fontname=None, fontsize=None)", ORPG_DEBUG)
+        """Set all chatpanels to new default fontname/fontsize. 
+        Returns current font settings in a (fontname, fontsize) tuple."""
         if (fontname is not None): newfont = fontname
         else: newfont = self.font
         if (fontsize is not None): newfontsize = int(fontsize)
@@ -551,12 +582,11 @@ class chat_panel(wx.Panel):
         self.InfoPost("Font is now " + newfont + " point size " + `newfontsize`)
         self.font = newfont
         self.fontsize = newfontsize
-        self.log.log("Exit chat_panel->set_default_font(self, fontname=None, fontsize=None)", ORPG_DEBUG)
         return (self.font, self.fontsize)
 
+    @debugging
     def build_menu(self):
-        self.log.log("Enter chat_panel->build_menu(self)", ORPG_DEBUG)
-        top_frame = open_rpg.get_component('frame')
+        top_frame = component.get('frame')
         menu = wx.Menu()
         item = wx.MenuItem(menu, wx.ID_ANY, "&Background color", "Background color")
         top_frame.Bind(wx.EVT_MENU, self.OnMB_BackgroundColor, item)
@@ -592,6 +622,7 @@ class chat_panel(wx.Panel):
         toolmenu = wx.Menu()
         item = wx.MenuItem(wndmenu, wx.ID_ANY, "Show Images", "Show Images", wx.ITEM_CHECK)
         top_frame.Bind(wx.EVT_MENU, self.OnMB_ShowImages, item)
+
         wndmenu.AppendItem(item)
         if self.settings.get_setting("Show_Images_In_Chat") == '1': item.Check(True)
         item = wx.MenuItem(wndmenu, wx.ID_ANY, "Strip HTML", "Strip HTML", wx.ITEM_CHECK)
@@ -643,68 +674,57 @@ class chat_panel(wx.Panel):
         settingmenu.AppendMenu(wx.ID_ANY, 'Chat Tool Bars', toolmenu)
         menu.AppendMenu(wx.ID_ANY, 'Chat Settings', settingmenu)
         top_frame.mainmenu.Insert(2, menu, '&Chat')
-        self.log.log("Exit chat_panel->build_menu(self)", ORPG_DEBUG)
 
     ## Settings Menu Events
+    @debugging
     def OnMB_ShowImages(self, event):
-        self.log.log("Enter chat_panel->OnMB_ShowImages(self, event)", ORPG_DEBUG)
         if event.IsChecked(): self.settings.set_setting("Show_Images_In_Chat", '1')
         else: self.settings.set_setting("Show_Images_In_Chat", '0')
-        self.log.log("Exit chat_panel->OnMB_ShowImages(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_StripHTML(self, event):
-        self.log.log("Enter chat_panel->OnMB_StripHTML(self, event)", ORPG_DEBUG)
         if event.IsChecked(): self.settings.set_setting("Sstriphtml", '1')
         else: self.settings.set_setting("striphtml", '0')
-        self.log.log("Exit chat_panel->OnMB_StripHTML(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_ChatTimeIndex(self, event):
-        self.log.log("Enter chat_panel->OnMB_ChatTimeIndex(self, event)", ORPG_DEBUG)
         if event.IsChecked(): self.settings.set_setting("Chat_Time_Indexing", '1')
         else: self.settings.set_setting("Chat_Time_Indexing", '0')
-        self.log.log("Exit chat_panel->OnMB_ChatTimeIndex(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_ChatAutoComplete(self, event):
-        self.log.log("Enter chat_panel->OnMB_ChatAutoComplete(self, event)", ORPG_DEBUG)
         if event.IsChecked(): self.settings.set_setting("SuppressChatAutoComplete", '0')
         else: self.settings.set_setting("SuppressChatAutoComplete", '1')
-        self.log.log("Exit chat_panel->OnMB_ChatAutoComplete(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_ShowIDinChat(self, event):
-        self.log.log("Enter chat_panel->OnMB_ShowIDinChat(self, event)", ORPG_DEBUG)
         if event.IsChecked(): self.settings.set_setting("ShowIDInChat", '1')
         else: self.settings.set_setting("ShowIDInChat", '0')
-        self.log.log("Exit chat_panel->OnMB_ShowIDinChat(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_LogTimeIndex(self, event):
-        self.log.log("Enter chat_panel->OnMB_LogTimeIndex(self, event)", ORPG_DEBUG)
         if event.IsChecked(): self.settings.set_setting("TimeStampGameLog", '1')
         else: self.settings.set_setting("TimeStampGameLog", '0')
-        self.log.log("Exit chat_panel->OnMB_LogTimeIndex(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_TabbedWhispers(self, event):
-        self.log.log("Enter chat_panel->OnMB_TabbedWhispers(self, event)", ORPG_DEBUG)
         if event.IsChecked(): self.settings.set_setting("tabbedwhispers", '1')
         else: self.settings.set_setting("tabbedwhispers", '0')
-        self.log.log("Exit chat_panel->OnMB_TabbedWhispers(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_GMTab(self, event):
-        self.log.log("Enter chat_panel->OnMB_GMTab(self, event)", ORPG_DEBUG)
         if event.IsChecked():
             self.settings.set_setting("GMWhisperTab", '1')
             self.parent.create_gm_tab()
         else: self.settings.set_setting("GMWhisperTab", '0')
-        self.log.log("Exit chat_panel->OnMB_GMTab(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_GroupWhisperTabs(self, event):
-        self.log.log("Enter chat_panel->OnMB_GroupWhisperTabs(self, event)", ORPG_DEBUG)
         if event.IsChecked(): self.settings.set_setting("GroupWhisperTab", '1')
         else: self.settings.set_setting("GroupWhisperTab", '0')
-        self.log.log("Exit chat_panel->OnMB_GroupWhisperTabs(self, event)", ORPG_DEBUG)
 
-
+    @debugging
     def OnMB_DiceBar(self, event):
-        self.log.log("Enter chat_panel->OnMB_DiceBar(self, event)", ORPG_DEBUG)
         act = '0'
         if event.IsChecked():
             self.settings.set_setting("DiceButtons_On", '1')
@@ -716,10 +736,9 @@ class chat_panel(wx.Panel):
         for panel in self.parent.whisper_tabs: panel.toggle_dice(act)
         for panel in self.parent.group_tabs: panel.toggle_dice(act)
         for panel in self.parent.null_tabs: panel.toggle_dice(act)
-        self.log.log("Exit chat_panel->OnMB_DiceBar(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_FormatButtons(self, event):
-        self.log.log("Enter chat_panel->OnMB_FormatButtons(self, event)", ORPG_DEBUG)
         act = '0'
         if event.IsChecked():
             self.settings.set_setting("FormattingButtons_On", '1')
@@ -732,10 +751,9 @@ class chat_panel(wx.Panel):
         for panel in self.parent.whisper_tabs: panel.toggle_formating(act)
         for panel in self.parent.group_tabs: panel.toggle_formating(act)
         for panel in self.parent.null_tabs: panel.toggle_formating(act)
-        self.log.log("Exit chat_panel->OnMB_FormatButtons(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_AliasTool(self, event):
-        self.log.log("Enter chat_panel->OnMB_AliasTool(self, event)", ORPG_DEBUG)
         act = '0'
         if event.IsChecked():
             self.settings.set_setting("AliasTool_On", '1')
@@ -747,11 +765,10 @@ class chat_panel(wx.Panel):
         for panel in self.parent.whisper_tabs: panel.toggle_alias(act)
         for panel in self.parent.group_tabs: panel.toggle_alias(act)
         for panel in self.parent.null_tabs:panel.toggle_alias(act)
-        self.log.log("Exit chat_panel->OnMB_AliasTool(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_BackgroundColor(self, event):
-        self.log.log("Enter chat_panel->OnMB_BackgroundColor(self, event)", ORPG_DEBUG)
-        top_frame = open_rpg.get_component('frame')
+        top_frame = component.get('frame')
         hexcolor = self.get_color()
         if hexcolor != None:
             self.bgcolor = hexcolor
@@ -770,11 +787,10 @@ class chat_panel(wx.Panel):
                 top_frame.players.SetForegroundColour('black')
                 top_frame.players.Refresh()
             self.chatwnd.scroll_down()
-        self.log.log("Exit chat_panel->OnMB_BackgroundColor(self, event)", ORPG_DEBUG)
 
+    @debugging
     def OnMB_TextColor(self, event):
-        self.log.log("Enter chat_panel->OnMB_TextColor(self, event)", ORPG_DEBUG)
-        top_frame = open_rpg.get_component('frame')
+        top_frame = component.get('frame')
         hexcolor = self.get_color()
         if hexcolor != None:
             self.textcolor = hexcolor
@@ -793,41 +809,38 @@ class chat_panel(wx.Panel):
                 top_frame.players.SetForegroundColour('black')
                 top_frame.players.Refresh()
             self.chatwnd.scroll_down()
-        self.log.log("Exit chat_panel->OnMB_TextColor(self, event)", ORPG_DEBUG)
 
-
+    @debugging
     def get_hot_keys(self):
-        self.log.log("Enter chat_panel->get_hot_keys(self)", ORPG_DEBUG)
         # dummy menus for hotkeys
         self.build_menu()
         entries = []
         entries.append((wx.ACCEL_CTRL, ord('H'), self.setChatFocusMenu.GetId()))
         #entries.append((wx.ACCEL_CTRL, wx.WXK_TAB, SWAP_TABS))
-        self.log.log("Enter chat_panel->get_hot_keys(self)", ORPG_DEBUG)
         return entries
 
+    @debugging
     def forward_tabs(self, evt):
-        self.log.log("Enter chat_panel->swap_tabs(self, evt)", ORPG_DEBUG)
         self.parent.AdvanceSelection()
-        self.log.log("Exit chat_panel->swap_tabs(self, evt)", ORPG_DEBUG)
 
     def back_tabs(self, evt):
-        self.log.log("Enter chat_panel->swap_tabs(self, evt)", ORPG_DEBUG)
         self.parent.AdvanceSelection(False)
-        self.log.log("Exit chat_panel->swap_tabs(self, evt)", ORPG_DEBUG)
 
     # This subroutine builds the controls for the chat frame
     #
     # !self : instance of self
+    @debugging
     def build_ctrls(self):
-        self.log.log("Enter chat_panel->build_ctrls(self)", ORPG_DEBUG)
         self.chatwnd = chat_html_window(self,-1)
         self.set_colors()
         wx.CallAfter(self.chatwnd.SetPage, self.chatwnd.Header())
         if (self.sendtarget == "all"):
-            wx.CallAfter(self.Post, self.colorize(self.syscolor, "<b>Welcome to <a href='http://www.openrpg.com'>OpenRPG</a> version " + self.version + "...  </b>"))
+            wx.CallAfter(self.Post, self.colorize(self.syscolor, 
+                "<b>Welcome to <a href='http://www.openrpg.com'>OpenRPG</a> version " + self.version + "...  </b>"))
             #self.chat_cmds.on_help()
-        self.chattxt = orpg.tools.predTextCtrl.predTextCtrl(self, -1, "", style=wx.TE_PROCESS_ENTER |wx.TE_PROCESS_TAB|wx.TE_LINEWRAP, keyHook = self.myKeyHook, validator=None )
+        self.chattxt = orpg.tools.predTextCtrl.predTextCtrl(self, -1, "", 
+                        style=wx.TE_PROCESS_ENTER |wx.TE_PROCESS_TAB|wx.TE_LINEWRAP, 
+                        keyHook = self.myKeyHook, validator=None )
         self.build_bar()
         self.basesizer = wx.BoxSizer(wx.VERTICAL)
         self.basesizer.Add( self.chatwnd, 1, wx.EXPAND )
@@ -862,15 +875,15 @@ class chat_panel(wx.Panel):
         self.chattxt.Bind(wx.EVT_MOUSEWHEEL, self.chatwnd.mouse_wheel)
         self.chattxt.Bind(wx.EVT_CHAR, self.chattxt.OnChar)
         self.chattxt.Bind(wx.EVT_TEXT_COPY, self.textCopy)
-        self.log.log("Exit chat_panel->build_ctrls(self)", ORPG_DEBUG)
     # def build_ctrls - end
 
+    @debugging
     def textCopy(self, event):
         if self.chattxt.GetStringSelection() == '': self.chatwnd.OnM_EditCopy(None)
         else: self.chatwnd.Copy()
 
+    @debugging
     def build_bar(self):
-        self.log.log("Enter chat_panel->build_bar(self)", ORPG_DEBUG)
         self.toolbar_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.scroll_lock = None
         self.numDieText = None
@@ -884,20 +897,20 @@ class chat_panel(wx.Panel):
             self.toolbar_sizer.Add(self.scroll_lock,0,wx.EXPAND)
             self.build_formating()
             self.build_colorbutton()
-        self.log.log("Exit chat_panel->build_bar(self)", ORPG_DEBUG)
 
+    @debugging
     def build_scroll(self):
-        self.log.log("Enter chat_panel->build_scroll(self)", ORPG_DEBUG)
         self.scroll_lock = wx.Button( self, wx.ID_ANY, "Scroll ON",size= wx.Size(80,25))
-        self.log.log("Exit chat_panel->build_scroll(self)", ORPG_DEBUG)
 
+    @debugging
     def build_alias(self):
-        self.log.log("Enter chat_panel->build_alias(self)", ORPG_DEBUG)
         self.aliasList = wx.Choice(self, wx.ID_ANY, size=(100, 25), choices=[self.defaultAliasName])
-        self.aliasButton = createMaskedButton( self, orpg.dirpath.dir_struct["icon"] + 'player.gif', 'Refresh list of aliases from Game Tree', wx.ID_ANY, '#bdbdbd' )
+        self.aliasButton = createMaskedButton( self, dir_struct["icon"] + 'player.gif', 
+                                            'Refresh list of aliases from Game Tree', wx.ID_ANY, '#bdbdbd' )
         self.aliasList.SetSelection(0)
         self.filterList = wx.Choice(self, wx.ID_ANY, size=(100, 25), choices=[self.defaultFilterName])
-        self.filterButton = createMaskedButton( self, orpg.dirpath.dir_struct["icon"] + 'add_filter.gif', 'Refresh list of filters from Game Tree', wx.ID_ANY, '#bdbdbd' )
+        self.filterButton = createMaskedButton( self, dir_struct["icon"] + 'add_filter.gif', 
+                                             'Refresh list of filters from Game Tree', wx.ID_ANY, '#bdbdbd' )
         self.filterList.SetSelection(0)
         self.toolbar_sizer.Add( self.aliasButton, 0, wx.EXPAND )
         self.toolbar_sizer.Add( self.aliasList,0,wx.EXPAND)
@@ -905,10 +918,9 @@ class chat_panel(wx.Panel):
         self.toolbar_sizer.Add( self.filterList,0,wx.EXPAND)
         if self.settings.get_setting('AliasTool_On') == '0': self.toggle_alias('0')
         else: self.toggle_alias('1')
-        self.log.log("Exit chat_panel->build_alias(self)", ORPG_DEBUG)
 
+    @debugging
     def toggle_alias(self, act):
-        self.log.log("Enter chat_panel->toggle_alias(self, " + str(act) + ")", ORPG_DEBUG)
         if act == '0':
             self.toolbar_sizer.Show(self.aliasList, False)
             self.toolbar_sizer.Show(self.filterList, False)
@@ -921,24 +933,22 @@ class chat_panel(wx.Panel):
             self.toolbar_sizer.Show(self.aliasButton, True)
             self.toolbar_sizer.Show(self.filterButton, True)
             self.toolbar_sizer.Layout()
-        self.log.log("Exit chat_panel->toggle_alias(self, act)", ORPG_DEBUG)
 
+    @debugging
     def build_text(self):
-        self.log.log("Enter chat_panel->build_text(self)", ORPG_DEBUG)
-        self.textpop_lock = createMaskedButton(self, orpg.dirpath.dir_struct["icon"]+'note.gif', 'Open Text View Of Chat Session', wx.ID_ANY, '#bdbdbd')
-        self.log.log("Exit chat_panel->build_text(self)", ORPG_DEBUG)
+        self.textpop_lock = createMaskedButton(self, dir_struct["icon"]+'note.gif', 'Open Text View Of Chat Session', wx.ID_ANY, '#bdbdbd')
 
+    @debugging
     def build_dice(self):
-        self.log.log("Enter chat_panel->build_dice(self)", ORPG_DEBUG)
         self.numDieText = wx.TextCtrl( self, wx.ID_ANY, "1", size= wx.Size(25, 25), validator=orpg.tools.inputValidator.MathOnlyValidator() )
         self.dieModText = wx.TextCtrl( self, wx.ID_ANY, "", size= wx.Size(50, 25), validator=orpg.tools.inputValidator.MathOnlyValidator() )
-        self.d4Button = createMaskedButton(self, orpg.dirpath.dir_struct["icon"]+'b_d4.gif', 'Roll d4', wx.ID_ANY, '#bdbdbd')
-        self.d6Button = createMaskedButton(self, orpg.dirpath.dir_struct["icon"]+'b_d6.gif', 'Roll d6', wx.ID_ANY, '#bdbdbd')
-        self.d8Button = createMaskedButton(self, orpg.dirpath.dir_struct["icon"]+'b_d8.gif', 'Roll d8', wx.ID_ANY, '#bdbdbd')
-        self.d10Button = createMaskedButton(self, orpg.dirpath.dir_struct["icon"]+'b_d10.gif', 'Roll d10', wx.ID_ANY, '#bdbdbd')
-        self.d12Button = createMaskedButton(self, orpg.dirpath.dir_struct["icon"]+'b_d12.gif', 'Roll d12', wx.ID_ANY, '#bdbdbd')
-        self.d20Button = createMaskedButton(self, orpg.dirpath.dir_struct["icon"]+'b_d20.gif', 'Roll d20', wx.ID_ANY, '#bdbdbd')
-        self.d100Button = createMaskedButton(self, orpg.dirpath.dir_struct["icon"]+'b_d100.gif', 'Roll d100', wx.ID_ANY, '#bdbdbd')
+        self.d4Button = createMaskedButton(self, dir_struct["icon"]+'b_d4.gif', 'Roll d4', wx.ID_ANY)
+        self.d6Button = createMaskedButton(self, dir_struct["icon"]+'b_d6.gif', 'Roll d6', wx.ID_ANY)
+        self.d8Button = createMaskedButton(self, dir_struct["icon"]+'b_d8.gif', 'Roll d8', wx.ID_ANY)
+        self.d10Button = createMaskedButton(self, dir_struct["icon"]+'b_d10.gif', 'Roll d10', wx.ID_ANY)
+        self.d12Button = createMaskedButton(self, dir_struct["icon"]+'b_d12.gif', 'Roll d12', wx.ID_ANY)
+        self.d20Button = createMaskedButton(self, dir_struct["icon"]+'b_d20.gif', 'Roll d20', wx.ID_ANY)
+        self.d100Button = createMaskedButton(self, dir_struct["icon"]+'b_d100.gif', 'Roll d100', wx.ID_ANY)
         self.toolbar_sizer.Add( self.numDieText, 0, wx.ALIGN_CENTER | wx.EXPAND)
         self.toolbar_sizer.Add( self.d4Button, 0 ,wx.EXPAND)
         self.toolbar_sizer.Add( self.d6Button, 0 ,wx.EXPAND)
@@ -950,10 +960,9 @@ class chat_panel(wx.Panel):
         self.toolbar_sizer.Add( self.dieModText, 0, wx.ALIGN_CENTER, 5 )
         if self.settings.get_setting('DiceButtons_On') == '0': self.toggle_dice('0')
         else: self.toggle_dice('1')
-        self.log.log("Exit chat_panel->build_dice(self)", ORPG_DEBUG)
 
+    @debugging
     def toggle_dice(self, act):
-        self.log.log("Enter chat_panel->toggle_dice(self, "+ str(act) + ")", ORPG_DEBUG)
         if act == '0':
             self.toolbar_sizer.Show(self.numDieText, False)
             self.toolbar_sizer.Show(self.d4Button, False)
@@ -976,22 +985,23 @@ class chat_panel(wx.Panel):
             self.toolbar_sizer.Show(self.d100Button, True)
             self.toolbar_sizer.Show(self.dieModText, True)
             self.toolbar_sizer.Layout()
-        self.log.log("Exit chat_panel->toggle_dice(self, "+ str(act) + ")", ORPG_DEBUG)
 
+    @debugging
     def build_formating(self):
-        self.log.log("Enter chat_panel->build_formating(self)", ORPG_DEBUG)
-        self.boldButton = createMaskedButton( self, orpg.dirpath.dir_struct["icon"]+'bold.gif', 'Make the selected text Bold', wx.ID_ANY, '#bdbdbd')
-        self.italicButton = createMaskedButton( self, orpg.dirpath.dir_struct["icon"]+'italic.gif', 'Italicize the selected text', wx.ID_ANY, '#bdbdbd' )
-        self.underlineButton = createMaskedButton( self, orpg.dirpath.dir_struct["icon"]+'underlined.gif', 'Underline the selected text', wx.ID_ANY, '#bdbdbd' )
+        self.boldButton = createMaskedButton( self, dir_struct["icon"]+'bold.gif', 
+                                                            'Make the selected text Bold', wx.ID_ANY, '#bdbdbd')
+        self.italicButton = createMaskedButton( self, dir_struct["icon"]+'italic.gif', 
+                                                            'Italicize the selected text', wx.ID_ANY, '#bdbdbd' )
+        self.underlineButton = createMaskedButton( self, dir_struct["icon"]+'underlined.gif', 
+                                                            'Underline the selected text', wx.ID_ANY, '#bdbdbd' )
         self.toolbar_sizer.Add( self.boldButton, 0, wx.EXPAND )
         self.toolbar_sizer.Add( self.italicButton, 0, wx.EXPAND )
         self.toolbar_sizer.Add( self.underlineButton, 0, wx.EXPAND )
         if self.settings.get_setting('FormattingButtons_On') == '0': self.toggle_formating('0')
         else: self.toggle_formating('1')
-        self.log.log("Exit chat_panel->build_formating(self)", ORPG_DEBUG)
 
+    @debugging
     def toggle_formating(self, act):
-        self.log.log("Enter chat_panel->toggle_formating(self, " + str(act) + ")", ORPG_DEBUG)
         if act == '0':
             self.toolbar_sizer.Show(self.boldButton, False)
             self.toolbar_sizer.Show(self.italicButton, False)
@@ -1002,21 +1012,23 @@ class chat_panel(wx.Panel):
             self.toolbar_sizer.Show(self.italicButton, True)
             self.toolbar_sizer.Show(self.underlineButton, True)
             self.toolbar_sizer.Layout()
-        self.log.log("Exit chat_panel->toggle_formating(self, " + str(act) + ")", ORPG_DEBUG)
 
     # Heroman - Ideally, we would use static labels...
+    @debugging
     def build_colorbutton(self):
-        self.log.log("Enter chat_panel->build_colorbutton(self)", ORPG_DEBUG)
-        self.color_button = wx.Button(self, wx.ID_ANY, "C",wx.Point(0,0), wx.Size(22,0))
-        self.saveButton = createMaskedButton( self, orpg.dirpath.dir_struct["icon"]+'save.bmp', 'Save the chatbuffer', wx.ID_ANY, '#c0c0c0', wx.BITMAP_TYPE_BMP )
-        self.color_button.SetBackgroundColour(wx.BLACK)
-        self.color_button.SetForegroundColour(wx.WHITE)
-        self.toolbar_sizer.Add(self.color_button, 0, wx.EXPAND)
-        self.toolbar_sizer.Add( self.saveButton, 0, wx.EXPAND )
-        self.log.log("Exit chat_panel->build_colorbutton(self)", ORPG_DEBUG)
+        self.color_button = createMaskedButton(self, dir_struct["icon"]+'textcolor.gif', 
+                                                    'Text Color', wx.ID_ANY, '#bdbdbd', 
+                                                    wx.BITMAP_TYPE_GIF)
 
+        self.saveButton = createMaskedButton(self, dir_struct["icon"]+'save.bmp', 
+                                                    'Save the chatbuffer', wx.ID_ANY, 
+                                                    '#c0c0c0', wx.BITMAP_TYPE_BMP )
+        self.color_button.SetBackgroundColour(self.settings.get_setting('mytextcolor'))
+        self.toolbar_sizer.Add(self.color_button, 0, wx.EXPAND)
+        self.toolbar_sizer.Add(self.saveButton, 0, wx.EXPAND)
+
+    @debugging
     def OnMotion(self, evt):
-        self.log.log("Enter chat_panel->OnMotion(self, evt)", ORPG_DEBUG)
         contain = self.chatwnd.GetInternalRepresentation()
         if contain:
             sx = sy = 0
@@ -1032,9 +1044,8 @@ class chat_panel(wx.Panel):
                     link = lnk.GetHref()
                     self.session.set_status_url(link)
                 except: pass
-        else: self.log.log("Error, self.chatwnd.GetInternalRepresentation() return None", ORPG_GENERAL)
+        else: logger.general("Error, self.chatwnd.GetInternalRepresentation() return None")
         evt.Skip()
-        self.log.log("Exit chat_panel->OnMotion(self, evt)", ORPG_DEBUG)
 
     #  This subroutine is registered with predTextCtrl to be run for every OnChar event
     #  It checks if we need to send a typing message
@@ -1042,8 +1053,8 @@ class chat_panel(wx.Panel):
     #
     #  self:  duh
     #  event:  raw KeyEvent from OnChar()
+    @debugging
     def myKeyHook(self, event):
-        self.log.log("Enter chat_panel->myKeyHook(self, event)", ORPG_DEBUG)
         if self.session.get_status() == MPLAY_CONNECTED:   #  only do if we're connected
             thisPress = time.time()                #  thisPress is local temp variable
             if (thisPress - self.lastSend) > 4:    #  Check to see if it's been 5 seconds since our last notice
@@ -1052,16 +1063,17 @@ class chat_panel(wx.Panel):
             self.lastPress = thisPress             #  either way, record the time of this keystroke for use in
                                                    #  self.typingTimerFunc()
         if self.settings.get_setting('SuppressChatAutoComplete') == '1':
-            self.log.log("Exit chat_panel->myKeyHook(self, event) return 1", ORPG_DEBUG)
+            logger.debug("Exit chat_panel->myKeyHook(self, event) return 1")
             return 1
         else:
-            self.log.log("Exit chat_panel->myKeyHook(self, event) return 0", ORPG_DEBUG)
+            logger.debug("Exit chat_panel->myKeyHook(self, event) return 0")
             return 0
 
     #  This subroutine gets called once a second by the typing Timer
     #  It checks if we need to send a not_typing message
     #
     #  self:  duh
+    @debugging
     def typingTimerFunc(self, event):
         #following added by mDuo13
         ##############refresh_counter()##############
@@ -1070,8 +1082,8 @@ class chat_panel(wx.Panel):
             try: plugin.refresh_counter()
             except Exception, e:
                 if str(e) != "'module' object has no attribute 'refresh_counter'":
-                    self.log.log(traceback.format_exc(), ORPG_GENERAL)
-                    self.log.log("EXCEPTION: " + str(e), ORPG_GENERAL)
+                    logger.general(traceback.format_exc())
+                    logger.general("EXCEPTION: " + str(e))
         #end mDuo13 added code
         if self.lastSend:                          #  This will be zero when not typing, so equiv to if is_typing
             thisTime = time.time()                 #  thisTime is a local temp variable
@@ -1083,8 +1095,9 @@ class chat_panel(wx.Panel):
     #
     #  self:  duh
     #  typing:  boolean
+
+    @debugging
     def sendTyping(self, typing):
-        self.log.log("Enter chat_panel->sendTyping(self, typing)", ORPG_DEBUG)
         if typing:
             self.lastSend = time.time()  #  remember our send time for use in myKeyHook()
             #I think this is cleaner
@@ -1097,14 +1110,13 @@ class chat_panel(wx.Panel):
             status_text = self.settings.get_setting('IdleStatusAlias')
             if status_text == "" or status_text == None: status_text = "Idle"
             self.session.set_text_status(status_text)
-        self.log.log("Exit chat_panel->sendTyping(self, typing)", ORPG_DEBUG)
 
     # This subroutine sets the colors of the chat based on the settings in the
     # self instance.
     #
     # !self : instance of self
+    @debugging
     def set_colors(self):
-        self.log.log("Enter chat_panel->set_colors(self)", ORPG_DEBUG)
         # chat window backround color
         self.bgcolor = self.settings.get_setting('bgcolor')
         # chat window normal text color
@@ -1119,31 +1131,27 @@ class chat_panel(wx.Panel):
         self.emotecolor = self.settings.get_setting('emotecolor')
         # color of whispers
         self.whispercolor = self.settings.get_setting('whispercolor')
-        self.log.log("Exit chat_panel->set_colors(self)", ORPG_DEBUG)
     # def set_colors - end
 
     # This subroutine will insert text into the chat window
     #
     # !self : instance of self
     # !txt : text to be inserted into the chat window
+    @debugging
     def set_chat_text(self, txt):
-        self.log.log("Enter chat_panel->set_chat_text(self, txt)", ORPG_DEBUG)
         self.chattxt.SetValue(txt)
         self.chattxt.SetFocus()
         self.chattxt.SetInsertionPointEnd()
-        self.log.log("Exit chat_panel->set_chat_text(self, txt)", ORPG_DEBUG)
     # def set_chat_text - end
 
+    @debugging
     def get_chat_text(self):
-        self.log.log("Enter chat_panel->get_chat_text(self)", ORPG_DEBUG)
-        self.log.log("Enter chat_panel->get_chat_text(self)", ORPG_DEBUG)
         return self.chattxt.GetValue()
 
     # This subroutine sets the focus to the chat window
+    @debugging
     def set_chat_text_focus(self, event):
-        self.log.log("Enter chat_panel->set_chat_text_focus(self, event)", ORPG_DEBUG)
         wx.CallAfter(self.chattxt.SetFocus)
-        self.log.log("Exit chat_panel->set_chat_text_focus(self, event)", ORPG_DEBUG)
     # def set_chat_text_focus - end
 
     # This subrtouine grabs the user input and make the special keys and
@@ -1154,26 +1162,29 @@ class chat_panel(wx.Panel):
     #
     # Note:  self.chattxt now handles it's own Key events.  It does, however still
     #        call it's parent's (self) OnChar to handle "default" behavior.
+    @debugging
     def OnChar(self, event):
-        self.log.log("Enter chat_panel->OnChar(self, event)", ORPG_DEBUG)
         s = self.chattxt.GetValue()
         #self.histlen = len(self.history) - 1
 
         ## RETURN KEY (no matter if there is text in chattxt)
         #  This section is run even if there is nothing in the chattxt (as opposed to the next wx.WXK_RETURN handler
         if event.GetKeyCode() == wx.WXK_RETURN:
-            self.log.log("event.GetKeyCode() == wx.WXK_RETURN", ORPG_DEBUG)
+            logger.debug("event.GetKeyCode() == wx.WXK_RETURN")
             self.set_colors()
             if self.session.get_status() == MPLAY_CONNECTED:          #  only do if we're connected
                 self.sendTyping(0)                                    #  Send a "not_typing" event on enter key press
         macroText=""
+        recycle_bin = {wx.WXK_F1: 'event.GetKeyCode() == wx.WXK_F1', wx.WXK_F2: 'event.GetKeyCode() == wx.WXK_F2', 
+                    wx.WXK_F3: 'event.GetKeyCode() == wx.WXK_F3', wx.WXK_F4: 'event.GetKeyCode() == wx.WXK_F4', 
+                    wx.WXK_F5: 'event.GetKeyCode() == wx.WXK_F5', wx.WXK_F6: 'event.GetKeyCode() == wx.WXK_F6', 
+                    wx.WXK_F7: 'event.GetKeyCode() == wx.WXK_F7', wx.WXK_F8: 'event.GetKeyCode() == wx.WXK_F8', 
+                    wx.WXK_F9: 'event.GetKeyCode() == wx.WXK_F9', wx.WXK_F10: 'event.GetKeyCode() == wx.WXK_F10', 
+                    wx.WXK_F11: 'event.GetKeyCode() == wx.WXK_F11', wx.WXK_F12: 'event.GetKeyCode() == wx.WXK_F12'}
 
-	
-        recycle_bin = {wx.WXK_F1: 'event.GetKeyCode() == wx.WXK_F1', wx.WXK_F2: 'event.GetKeyCode() == wx.WXK_F2', wx.WXK_F3: 'event.GetKeyCode() == wx.WXK_F3', wx.WXK_F4: 'event.GetKeyCode() == wx.WXK_F4', wx.WXK_F5: 'event.GetKeyCode() == wx.WXK_F5', wx.WXK_F6: 'event.GetKeyCode() == wx.WXK_F6', wx.WXK_F7: 'event.GetKeyCode() == wx.WXK_F7', wx.WXK_F8: 'event.GetKeyCode() == wx.WXK_F8', wx.WXK_F9: 'event.GetKeyCode() == wx.WXK_F9', wx.WXK_F10: 'event.GetKeyCode() == wx.WXK_F10', wx.WXK_F11: 'event.GetKeyCode() == wx.WXK_F11', wx.WXK_F12: 'event.GetKeyCode() == wx.WXK_F12'}
-# Recycle Bin and Lambda should reduce this whole IF ELIF statement block.
         bin_event = event.GetKeyCode()
 	if recycle_bin.has_key(bin_event):
-	    self.log.log(lambda bin_event: recycle_bin[bin_event], ORPG_DEBUG)
+	    logger.debug(lambda bin_event: recycle_bin[bin_event])
 	    macroText = self.settings.get_setting(recycle_bin[bin_event][29:])
 	    recycle_bin = {}; del bin_event
 
@@ -1184,21 +1195,21 @@ class chat_panel(wx.Panel):
 
         ## RETURN KEY (and not text in control)
         if (event.GetKeyCode() == wx.WXK_RETURN and len(s)) or len(macroText):
-            self.log.log("(event.GetKeyCode() == wx.WXK_RETURN and len(s)) or len(macroText)", ORPG_DEBUG)
+            logger.debug("(event.GetKeyCode() == wx.WXK_RETURN and len(s)) or len(macroText)")
             self.histidx = -1
             self.temptext = ""
             self.history = [s] + self.history#prepended instead of appended now, so higher index = greater age
             if not len(macroText): self.chattxt.SetValue("")
             # play sound
             sound_file = self.settings.get_setting("SendSound")
-            if sound_file != '': self.sound_player.play(sound_file)
+            if sound_file != '': component.get('sound').play(sound_file)
             if s[0] != "/": ## it's not a slash command
                 s = self.ParsePost( s, True, True )
             else: self.chat_cmds.docmd(s) # emote is in chatutils.py
 
         ## UP KEY
         elif event.GetKeyCode() == wx.WXK_UP:
-            self.log.log("event.GetKeyCode() == wx.WXK_UP", ORPG_DEBUG)
+            logger.debug("event.GetKeyCode() == wx.WXK_UP")
             if self.histidx < len(self.history)-1:
                 #text that's not in history but also hasn't been sent to chat gets stored in self.temptext
                 #this way if someone presses the up key, they don't lose their current message permanently
@@ -1214,7 +1225,7 @@ class chat_panel(wx.Panel):
 
         ## DOWN KEY
         elif event.GetKeyCode() == wx.WXK_DOWN:
-            self.log.log("event.GetKeyCode() == wx.WXK_DOWN", ORPG_DEBUG)
+            logger.debug("event.GetKeyCode() == wx.WXK_DOWN")
             #histidx of -1 indicates currently viewing text that's not in self.history
             if self.histidx > -1:
                 self.histidx -= 1
@@ -1228,7 +1239,7 @@ class chat_panel(wx.Panel):
 
         ## TAB KEY
         elif  event.GetKeyCode() == wx.WXK_TAB:
-            self.log.log("event.GetKeyCode() == wx.WXK_TAB", ORPG_DEBUG)
+            logger.debug("event.GetKeyCode() == wx.WXK_TAB")
             if s !="":
                 found = 0
                 nicks = []
@@ -1267,13 +1278,13 @@ class chat_panel(wx.Panel):
 
         ## PAGE UP
         elif event.GetKeyCode() in (wx.WXK_PRIOR, wx.WXK_PAGEUP):
-            self.log.log("event.GetKeyCode() in (wx.WXK_PRIOR, wx.WXK_PAGEUP)", ORPG_DEBUG)
+            logger.debug("event.GetKeyCode() in (wx.WXK_PRIOR, wx.WXK_PAGEUP)")
             self.chatwnd.ScrollPages(-1)
             if not self.lockscroll: self.lock_scroll(0)
 
         ## PAGE DOWN
         elif event.GetKeyCode() in (wx.WXK_NEXT, wx.WXK_PAGEDOWN):
-            self.log.log("event.GetKeyCode() in (wx.WXK_NEXT, wx.WXK_PAGEDOWN)", ORPG_DEBUG)
+            logger.debug("event.GetKeyCode() in (wx.WXK_NEXT, wx.WXK_PAGEDOWN)")
             if not self.lockscroll: self.lock_scroll(0)
             if ((self.chatwnd.GetScrollRange(1)-self.chatwnd.GetScrollPos(1)-self.chatwnd.GetScrollThumb(1) < 30) and self.lockscroll):
                 self.lock_scroll(0)
@@ -1281,7 +1292,7 @@ class chat_panel(wx.Panel):
 
         ## END
         elif event.GetKeyCode() == wx.WXK_END:
-            self.log.log("event.GetKeyCode() == wx.WXK_END", ORPG_DEBUG)
+            logger.debug("event.GetKeyCode() == wx.WXK_END")
             if self.lockscroll:
                 self.lock_scroll(0)
                 self.Post()
@@ -1289,12 +1300,12 @@ class chat_panel(wx.Panel):
 
         ## NOTHING
         else: event.Skip()
-        self.log.log("Exit chat_panel->OnChar(self, event)", ORPG_DEBUG)
+        logger.debug("Exit chat_panel->OnChar(self, event)")
     # def OnChar - end
 
+    @debugging
     def onDieRoll(self, evt):
         """Roll the dice based on the button pressed and the die modifiers entered, if any."""
-        self.log.log("Enter chat_panel->onDieRoll(self, evt)", ORPG_DEBUG)
         # Get any die modifiers if they have been entered
         numDie = self.numDieText.GetValue()
         dieMod = self.dieModText.GetValue()
@@ -1307,35 +1318,37 @@ class chat_panel(wx.Panel):
         dieText = "[" + dieText + "]"
         self.ParsePost(dieText, 1, 1)
         self.chattxt.SetFocus()
-        self.log.log("Exit chat_panel->onDieRoll(self, evt)", ORPG_DEBUG)
 
     # This subroutine saves a chat buffer as html to a file chosen via a
     # FileDialog.
     #
     # !self : instance of self
     # !evt :
+    @debugging
     def on_chat_save(self, evt):
-        self.log.log("Enter chat_panel->on_chat_save(self, evt)", ORPG_DEBUG)
         f = wx.FileDialog(self,"Save Chat Buffer",".","","HTM* (*.htm*)|*.htm*|HTML (*.html)|*.html|HTM (*.htm)|*.htm",wx.SAVE)
         if f.ShowModal() == wx.ID_OK:
             file = open(f.GetPath(), "w")
             file.write(self.ResetPage() + "</body></html>")
             file.close()
         f.Destroy()
-        os.chdir(self.root_dir)
-        self.log.log("Exit chat_panel->on_chat_save(self, evt)", ORPG_DEBUG)
+        os.chdir(dir_struct["home"])
     # def on_chat_save - end
 
+    @debugging
     def ResetPage(self):
         self.set_colors()
         buffertext = self.chatwnd.Header() + "\n"
-        buffertext += chat_util.strip_body_tags(self.chatwnd.StripHeader()).replace("<br>", "<br />").replace('</html>', '').replace("<br />", "<br />\n").replace("\n\n", '')
+        buffertext += chat_util.strip_body_tags(self.chatwnd.StripHeader()).replace("<br>", 
+                                                                            "<br />").replace('</html>', 
+                                                                            '').replace("<br />", 
+                                                                            "<br />\n").replace("\n\n", '')
         return buffertext
 
     # This subroutine sets the color of selected text, or base text color if
     # nothing is selected
+    @debugging
     def on_text_color(self, event):
-        self.log.log("Enter chat_panel->on_text_color(self, event)", ORPG_DEBUG)
         hexcolor = self.r_h.do_hex_color_dlg(self)
         if hexcolor != None:
             (beg,end) = self.chattxt.GetSelection()
@@ -1351,7 +1364,6 @@ class chat_panel(wx.Panel):
                 self.settings.set_setting('mytextcolor',hexcolor)
                 self.set_colors()
                 self.Post()
-        self.log.log("Exit chat_panel->on_text_color(self, event)", ORPG_DEBUG)
     # def on_text_color - end
 
     # This subroutine take a color and a text string and formats it into html.
@@ -1359,10 +1371,9 @@ class chat_panel(wx.Panel):
     # !self : instance of self
     # !color : color for the text to be set
     # !text : text string to be included in the html.
+    @debugging
     def colorize(self, color, text):
         """Puts font tags of 'color' around 'text' value, and returns the string"""
-        self.log.log("Enter chat_panel->colorize(self, color, text)", ORPG_DEBUG)
-        self.log.log("Exit chat_panel->colorize(self, color, text)", ORPG_DEBUG)
         return "<font color='" + color + "'>" + text + "</font>"
     # def colorize - end
 
@@ -1371,8 +1382,8 @@ class chat_panel(wx.Panel):
     #
     # !self : instance of self
     # !event :
+    @debugging
     def on_text_format(self, event):
-        self.log.log("Enter chat_panel->on_text_format(self, event)", ORPG_DEBUG)
         id = event.GetId()
         txt = self.chattxt.GetValue()
         (beg,end) = self.chattxt.GetSelection()
@@ -1386,11 +1397,10 @@ class chat_panel(wx.Panel):
         self.chattxt.SetValue(txt)
         self.chattxt.SetInsertionPointEnd()
         self.chattxt.SetFocus()
-        self.log.log("Exit chat_panel->on_text_format(self, event)", ORPG_DEBUG)
     # def on_text_format - end
 
+    @debugging
     def lock_scroll(self, event):
-        self.log.log("Enter chat_panel->lock_scroll(self, event)", ORPG_DEBUG)
         if self.lockscroll:
             self.lockscroll = False
             self.scroll_lock.SetLabel("Scroll ON")
@@ -1401,78 +1411,73 @@ class chat_panel(wx.Panel):
         else:
             self.lockscroll = True
             self.scroll_lock.SetLabel("Scroll OFF")
-        self.log.log("Exit chat_panel->lock_scroll(self, event)", ORPG_DEBUG)
 
     # This subroutine will popup a text window with the chatbuffer contents
     #
     # !self : instance of self
     # !event :
+    @debugging
     def pop_textpop(self, event):
         """searchable popup text view of chatbuffer"""
-        self.log.log("Enter chat_panel->pop_textpop(self, event)", ORPG_DEBUG)
         h_buffertext = self.ResetPage()
         h_dlg = orpgScrolledMessageFrameEditor(self, h_buffertext, "Text View of Chat Window", None, (500,300))
         h_dlg.Show(True)
-        self.log.log("Exit chat_panel->pop_textpop(self, event)", ORPG_DEBUG)
 
     # This subroutine will change the dimension of the window
     #
     # !self : instance of self
     # !event :
+    @debugging
     def OnSize(self, event=None):
-        self.log.log("Enter chat_panel->OnSize(self, event=None)", ORPG_DEBUG)
         event.Skip()
         wx.CallAfter(self.scroll_down)
-        self.log.log("Exit chat_panel->OnSize(self, event=None)", ORPG_DEBUG)
     # def OnSize - end
 
+    @debugging
     def scroll_down(self):
         self.Freeze()
         self.chatwnd.scroll_down()
         self.Thaw()
 
     ###### message helpers ######
+    @debugging
     def PurgeChat(self):
         self.set_colors()
         self.chatwnd.SetPage(self.chatwnd.Header())
 
+    @debugging
     def system_message(self, text):
-        self.log.log("Enter chat_panel->system_message(self, text)", ORPG_DEBUG)
         self.send_chat_message(text,chat_msg.SYSTEM_MESSAGE)
         self.SystemPost(text)
-        self.log.log("Exit chat_panel->system_message(self, text)", ORPG_DEBUG)
 
+    @debugging
     def info_message(self, text):
-        self.log.log("Enter chat_panel->info_message(self, text)", ORPG_DEBUG)
         self.send_chat_message(text,chat_msg.INFO_MESSAGE)
         self.InfoPost(text)
-        self.log.log("Exit chat_panel->info_message(self, text)", ORPG_DEBUG)
 
+    @debugging
     def get_gms(self):
-        self.log.log("Enter chat_panel->get_gms(self)", ORPG_DEBUG)
         the_gms = []
         for playerid in self.session.players:
             if len(self.session.players[playerid])>7:
                 if self.session.players[playerid][7]=="GM" and self.session.group_id != '0': the_gms += [playerid]
-        self.log.log("Exit chat_panel->get_gms(self)", ORPG_DEBUG)
         return the_gms
 
+    @debugging
     def GetName(self):
-        self.log.log("Enter chat_panel->GetName(self)", ORPG_DEBUG)
-        self.AliasLib = open_rpg.get_component('alias')
+        self.AliasLib = component.get('alias')
         player = self.session.get_my_info()
         if self.AliasLib != None:
             self.AliasLib.alias = self.aliasList.GetStringSelection();
             if self.AliasLib.alias[0] != self.defaultAliasName:
-                self.log.log("Exit chat_panel->GetName(self)", ORPG_DEBUG)
+                logger.debug("Exit chat_panel->GetName(self)")
                 return [self.chat_display_name([self.AliasLib.alias[0], player[1], player[2]]), self.AliasLib.alias[1]]
-        self.log.log("Exit chat_panel->GetName(self)", ORPG_DEBUG)
         return [self.chat_display_name(player), "Default"]
 
+    @debugging
     def GetFilteredText(self, text):
-        self.log.log("Enter chat_panel->GetFilteredText(self, text)", ORPG_DEBUG)
         advregex = re.compile('\"(.*?)\"', re.I)
-        self.AliasLib = open_rpg.get_component('alias')
+        self.AliasLib = component.get('alias')
         if self.AliasLib != None:
             self.AliasLib.filter = self.filterList.GetSelection()-1;
             for rule in self.AliasLib.filterRegEx:
@@ -1482,11 +1487,10 @@ class chat_panel(wx.Panel):
                         match = m.group(0)
                         newmatch = re.sub(rule[0], rule[1], match)
                         text = text.replace(match, newmatch)
-        self.log.log("Exit chat_panel->GetFilteredText(self, text)", ORPG_DEBUG)
         return text
 
+    @debugging
     def emote_message(self, text):
-        self.log.log("Enter chat_panel->emote_message(self, text)", ORPG_DEBUG)
         text = self.NormalizeParse(text)
         text = self.colorize(self.emotecolor, text)
 
@@ -1503,10 +1507,9 @@ class chat_panel(wx.Panel):
         name = self.GetName()[0]
         text = "** " + name + " " + text + " **"
         self.EmotePost(text)
-        self.log.log("Exit chat_panel->emote_message(self, text)", ORPG_DEBUG)
 
+    @debugging
     def whisper_to_players(self, text, player_ids):
-        self.log.log("Enter chat_panel->whisper_to_players(self, text, player_ids)", ORPG_DEBUG)
         tabbed_whispers_p = self.settings.get_setting("tabbedwhispers")
         # Heroman - apply any filtering selected
         text = self.NormalizeParse(text)
@@ -1531,10 +1534,9 @@ class chat_panel(wx.Panel):
             id = id.strip()
             if self.session.is_valid_id(id): self.send_chat_message(text,chat_msg.WHISPER_MESSAGE,id)
             else: self.InfoPost(id + " Unknown!")
-        self.log.log("Exit chat_panel->whisper_to_players(self, text, player_ids)", ORPG_DEBUG)
 
+    @debugging
     def send_chat_message(self, text, type=chat_msg.CHAT_MESSAGE, player_id="all"):
-        self.log.log("Enter chat_panel->send_chat_message(self, text, type, player_id)", ORPG_DEBUG)
         #########send_msg()#############
         send = 1
         for plugin_fname in self.activeplugins.keys():
@@ -1542,8 +1544,8 @@ class chat_panel(wx.Panel):
             try: text, send = plugin.send_msg(text, send)
             except Exception, e:
                 if str(e) != "'module' object has no attribute 'send_msg'":
-                    self.log.log(traceback.format_exc(), ORPG_GENERAL)
-                    self.log.log("EXCEPTION: " + str(e), ORPG_GENERAL)
+                    logger.general(traceback.format_exc())
+                    logger.general("EXCEPTION: " + str(e))
         msg = chat_msg.chat_msg()
         msg.set_text(text)
         msg.set_type(type)
@@ -1557,11 +1559,10 @@ class chat_panel(wx.Panel):
         msg.set_alias(playername)
         if send: self.session.send(msg.toxml(),player_id)
         del msg
-        self.log.log("Exit chat_panel->send_chat_message(self, text, type, player_id)", ORPG_DEBUG)
 
     #### incoming chat message handler #####
+    @debugging
     def post_incoming_msg(self, msg, player):
-        self.log.log("Enter chat_panel->post_incoming_msg(self, msg, player)", ORPG_DEBUG)
 
         # pull data
         type = msg.get_type()
@@ -1578,8 +1579,8 @@ class chat_panel(wx.Panel):
             try: text, type, name = plugin.plugin_incoming_msg(text, type, display_name, player)
             except Exception, e:
                 if str(e) != "'module' object has no attribute 'receive_msg'":
-                    self.log.log(traceback.format_exc(), ORPG_GENERAL)
-                    self.log.log("EXCEPTION: " + str(e), ORPG_GENERAL)
+                    logger.general(traceback.format_exc())
+                    logger.general("EXCEPTION: " + str(e))
         #end mDuo13 added code
         #image stripping for players' names
         strip_img = self.settings.get_setting("Show_Images_In_Chat")
@@ -1664,8 +1665,8 @@ class chat_panel(wx.Panel):
                         else: self.parent.MainChatPanel.EmotePost("**" + msg + "**")
                         self.parent.newMsg(0)
             except Exception, e:
-                self.log.log(traceback.format_exc(), ORPG_GENERAL)
-                self.log.log("EXCEPTION: 'Error in posting whisper message': " + str(e), ORPG_GENERAL)
+                logger.general(traceback.format_exc())
+                logger.general("EXCEPTION: 'Error in posting whisper message': " + str(e))
         elif (type == chat_msg.EMOTE_MESSAGE):
             text = "** " + display_name + " " + text + " **"
             self.EmotePost(text)
@@ -1681,28 +1682,24 @@ class chat_panel(wx.Panel):
         # playe sound
         sound_file = self.settings.get_setting(recvSound)
         if sound_file != '':
-            self.sound_player.play(sound_file)
-        self.log.log("Exit chat_panel->post_incoming_msg(self, msg, player)", ORPG_DEBUG)
+            component.get('sound').play(sound_file)
     #### Posting helpers #####
 
+    @debugging
     def InfoPost(self, s):
-        self.log.log("Enter chat_panel->InfoPost(self, s)", ORPG_DEBUG)
         self.Post(self.colorize(self.infocolor, s), c='info')
-        self.log.log("Exit chat_panel->InfoPost(self, s)", ORPG_DEBUG)
 
+    @debugging
     def SystemPost(self, s):
-        self.log.log("Enter chat_panel->SystemPost(self, s)", ORPG_DEBUG)
         self.Post(self.colorize(self.syscolor, s), c='system')
-        self.log.log("Exit chat_panel->SystemPost(self, s)", ORPG_DEBUG)
 
+    @debugging
     def EmotePost(self, s):
-        self.log.log("Enter chat_panel->EmotePost(self, s)", ORPG_DEBUG)
         self.Post(self.colorize(self.emotecolor, s), c='emote')
-        self.log.log("Exit chat_panel->EmotePost(self, s)", ORPG_DEBUG)
 
     #### Standard Post method #####
+    @debugging
     def Post(self, s="", send=False, myself=False, c='post'):
-        self.log.log("Enter chat_panel->Post(self, s, send, myself)", ORPG_DEBUG)
         strip_p = self.settings.get_setting("striphtml")
         strip_img = self.settings.get_setting("Show_Images_In_Chat")#moved back 7-11-05. --mDuo13
         if (strip_p == "1"): s = strip_html(s)
@@ -1727,8 +1724,8 @@ class chat_panel(wx.Panel):
                 try: s = plugin.post_msg(s, myself)
                 except Exception, e:
                     if str(e) != "'module' object has no attribute 'post_msg'":
-                        self.log.log(traceback.format_exc(), ORPG_GENERAL)
-                        self.log.log("EXCEPTION: " + str(e), ORPG_GENERAL)
+                        logger.general(traceback.format_exc())
+                        logger.general("EXCEPTION: " + str(e))
         #end mDuo13 added code
         if myself:
             name = "<b>" + display_name + "</b>: "
@@ -1758,8 +1755,8 @@ class chat_panel(wx.Panel):
                         s2 = plugin.post_msg(s2, myself)
                     except Exception, e:
                         if str(e) != "'module' object has no attribute 'post_msg'":
-                            self.log.log(traceback.format_exc(), ORPG_GENERAL)
-                            self.log.log("EXCEPTION: " + str(e), ORPG_GENERAL)
+                            logger.general(traceback.format_exc())
+                            logger.general("EXCEPTION: " + str(e))
                 if s2 != "":
                     #Italici the messages from tabbed whispers
                     if self.type == WHISPER_TAB or self.type == GROUP_TAB or self.sendtarget == 'gm':
@@ -1768,13 +1765,13 @@ class chat_panel(wx.Panel):
                         if self.type == WHISPER_TAB: name += " (whispering): "
                         elif self.type == GROUP_TAB: name += self.settings.get_setting("gwtext") + ' '
                         elif self.sendtarget == 'gm': name += " (whispering to GM) "
-                    newline = self.TimeIndexString() + "<div class='"+c+"'> " +name + s2 + "</div>"
-                    log( self.settings, c+' '+name + s2 )
+                    newline = "<div class='"+c+"'> " + self.TimeIndexString() + name + s2 + "</div>"
+                    log( self.settings, c, name+s2 )
             else:
-                newline = self.TimeIndexString() + "<div class='"+c+"'> " +name + s + "</div>"
-                log( self.settings, c+' '+name + s )
+                newline = "<div class='"+c+"'> " + self.TimeIndexString() + name + s + "</div>"
+                log( self.settings, c, name+s )
         else: send = False
-        newline = chat_util.strip_unicode(newline)
+        newline = component.get('xml').strip_unicode(newline)
         if self.lockscroll == 0:
             self.chatwnd.AppendToPage(newline)
             self.scroll_down()
@@ -1792,61 +1789,56 @@ class chat_panel(wx.Panel):
             elif self.type == NULL_TAB: pass
             else: self.InfoPost("Failed to send message, unknown send type for this tab")
         self.parsed=0
-        self.log.log("Exit chat_panel->Post(self, s, send, myself)", ORPG_DEBUG)
 
     #
     # TimeIndexString()
     #
     # time indexing for chat display only (don't log time indexing)
     # added by Snowdog 4/04
+    @debugging
     def TimeIndexString(self):
-        self.log.log("Enter chat_panel->TimeIndexString(self)", ORPG_DEBUG)
         try:
             mtime = ""
             if self.settings.get_setting('Chat_Time_Indexing') == "0": pass
             elif self.settings.get_setting('Chat_Time_Indexing') == "1":
                 mtime = time.strftime("[%I:%M:%S] ", time.localtime())
-            self.log.log("Exit chat_panel->TimeIndexString(self)", ORPG_DEBUG)
             return mtime
         except Exception, e:
-            self.log.log(traceback.format_exc(), ORPG_GENERAL)
-            self.log.log("EXCEPTION: " + str(e), ORPG_GENERAL)
+            logger.general(traceback.format_exc())
+            logger.general("EXCEPTION: " + str(e))
             return "[ERROR]"
 
     ####  Post with parsing dice ####
+    @debugging
     def ParsePost(self, s, send=False, myself=False):
-        self.log.log("Enter chat_panel->ParsePost(self, s, send, myself)", ORPG_DEBUG)
         s = self.NormalizeParse(s)
         self.set_colors()
         self.Post(s,send,myself)
-        self.log.log("Exit chat_panel->ParsePost(self, s, send, myself)", ORPG_DEBUG)
 
+    @debugging
     def NormalizeParse(self, s):
-        self.log.log("Enter chat_panel->NormalizeParse(self, s)", ORPG_DEBUG)
         for plugin_fname in self.activeplugins.keys():
             plugin = self.activeplugins[plugin_fname]
             try: s = plugin.pre_parse(s)
             except Exception, e:
                 if str(e) != "'module' object has no attribute 'post_msg'":
-                    self.log.log(traceback.format_exc(), ORPG_GENERAL)
-                    self.log.log("EXCEPTION: " + str(e), ORPG_GENERAL)
+                    logger.general(traceback.format_exc())
+                    logger.general("EXCEPTION: " + str(e))
         if self.parsed == 0:
             s = self.ParseNode(s)
             s = self.ParseDice(s)
             s = self.ParseFilter(s)
             self.parsed = 1
-        self.log.log("Exit chat_panel->NormalizeParse(self, s)", ORPG_DEBUG)
         return s
 
+    @debugging
     def ParseFilter(self, s):
-        self.log.log("Enter chat_panel->ParseFilter(self, s)", ORPG_DEBUG)
         s = self.GetFilteredText(s)
-        self.log.log("Exit chat_panel->ParseFilter(self, s)", ORPG_DEBUG)
         return s
 
+    @debugging
     def ParseNode(self, s):
         """Parses player input for embedded nodes rolls"""
-        self.log.log("Enter chat_panel->ParseNode(self, s)", ORPG_DEBUG)
         cur_loc = 0
         #[a-zA-Z0-9 _\-\.]
         reg = re.compile("(!@([a-zA-Z0-9 _\-\./]+(::[a-zA-Z0-9 _\-\./]+)*)@!)")
@@ -1854,12 +1846,11 @@ class chat_panel(wx.Panel):
         for i in xrange(0,len(matches)):
             newstr = self.ParseNode(self.resolve_nodes(matches[i][1]))
             s = s.replace(matches[i][0], newstr, 1)
-        self.log.log("Exit chat_panel->ParseNode(self, s)", ORPG_DEBUG)
         return s
 
+    @debugging
     def ParseDice(self, s):
         """Parses player input for embedded dice rolls"""
-        self.log.log("Enter chat_panel->ParseDice(self, s)", ORPG_DEBUG)
         reg = re.compile("\[([^]]*?)\]")
         matches = reg.findall(s)
         for i in xrange(0,len(matches)):
@@ -1869,17 +1860,16 @@ class chat_panel(wx.Panel):
             if newstr[0].lower() == 'q':
                 newstr = newstr[1:]
                 qmode = 1
-            try: newstr = self.DiceManager.proccessRoll(newstr)
+            try: newstr = component.get('DiceManager').proccessRoll(newstr)
             except: pass
             if qmode == 1:
                 s = s.replace("[" + matches[i] + "]", "<!-- Official Roll [" + newstr1 + "] => " + newstr + "-->" + newstr, 1)
             else: s = s.replace("[" + matches[i] + "]", "[" + newstr1 + "<!-- Official Roll -->] => " + newstr, 1)
-        self.log.log("Exit chat_panel->ParseDice(self, s)", ORPG_DEBUG)
         return s
 
+    @debugging
     def PraseUnknowns(self, s):
 	# Uses a tuple. Usage: ?Label}dY. If no Label is assigned then use ?}DY
-        self.log.log("Enter chat_panel->PraseUnknowns(self, s)", ORPG_DEBUG)
         newstr = "0"
         reg = re.compile("(\?\{*)([a-zA-Z ]*)(\}*)")
         matches = reg.findall(s)
@@ -1895,24 +1885,22 @@ class chat_panel(wx.Panel):
             if newstr == '': newstr = '0'
             s = s.replace(matches[i][0], newstr, 1).replace(matches[i][1], '', 1).replace(matches[i][2], '', 1)
             dlg.Destroy()
-        self.log.log("Exit chat_panel->PraseUnknowns(self, s)", ORPG_DEBUG)
         return s
 
     # This subroutine builds a chat display name.
     #
+    @debugging
     def chat_display_name(self, player):
-        self.log.log("Enter chat_panel->chat_display_name(self, player)", ORPG_DEBUG)
         if self.settings.get_setting("ShowIDInChat") == "0":
             display_name = player[0]
         else:
             display_name = "("+player[2]+") " + player[0]
-        self.log.log("Exit chat_panel->chat_display_name(self, player)", ORPG_DEBUG)
         return display_name
 
     # This subroutine will get a hex color and return it, or return nothing
     #
+    @debugging
     def get_color(self):
-        self.log.log("Enter chat_panel->get_color(self)", ORPG_DEBUG)
         data = wx.ColourData()
         data.SetChooseFull(True)
         dlg = wx.ColourDialog(self, data)
@@ -1921,16 +1909,14 @@ class chat_panel(wx.Panel):
             (red,green,blue) = data.GetColour().Get()
             hexcolor = self.r_h.hexstring(red, green, blue)
             dlg.Destroy()
-            self.log.log("Exit chat_panel->get_color(self) return hexcolor", ORPG_DEBUG)
             return hexcolor
         else:
             dlg.Destroy()
-            self.log.log("Exit chat_panel->get_color(self) return None", ORPG_DEBUG)
             return None
     # def get_color - end
 
+    @debugging
     def replace_quotes(self, s):
-        self.log.log("Enter chat_panel->replace_quotes(self, s)", ORPG_DEBUG)
         in_tag = 0
         i = 0
         rs = s[:]
@@ -1944,11 +1930,10 @@ class chat_panel(wx.Panel):
                 if in_tag:
                     rs = rs[:i] + "'" + rs[i+1:]
             i += 1
-        self.log.log("Exit chat_panel->replace_quotes(self, s)", ORPG_DEBUG)
         return rs
 
+    @debugging
     def resolve_loop(self, dom, nodeName, doLoop = False):
-        self.log.log("Enter chat_panel->resolve_loop(self, dom, nodeName)", ORPG_DEBUG)
         for node in dom:
             if node._get_tagName() != 'nodehandler':
                 continue
@@ -1959,16 +1944,14 @@ class chat_panel(wx.Panel):
             if node.getAttribute('name') != nodeName:
                     continue
             foundNode = node
-            self.log.log("Exit chat_panel->resolve_loop(self, dom, path) return (True, value)", ORPG_DEBUG)
             return (True, foundNode)
-        self.log.log("Exit chat_panel->resolve_loop(self, dom, path) return (False, '')", ORPG_DEBUG)
         return (False, '')
 
+    @debugging
     def resolve_nodes(self, s):
-        self.log.log("Enter chat_panel->resolve_nodes(self, s)", ORPG_DEBUG)
         value = ""
         node_path_list = s.split("::")
-        gametree = open_rpg.get_component('tree')
+        gametree = component.get('tree')
         dom = gametree.master_dom.getChildren()
         for nodeName in node_path_list:
             (found, node) = self.resolve_loop(dom, nodeName)
@@ -1992,5 +1975,4 @@ class chat_panel(wx.Panel):
             value = node._get_nodeValue()
         else:
             value = s
-        self.log.log("Exit chat_panel->resolve_nodes(self, s)", ORPG_DEBUG)
         return value

@@ -32,8 +32,11 @@ import Queue
 import thread
 from threading import Lock
 import time
+
 from orpg.orpg_wx import *
-from orpg.orpgCore import *
+from orpg.orpgCore import component
+from orpg.dirpath import dir_struct
+from orpg.tools.orpg_log import logger
 
 def singleton(cls):
     instances = {}
@@ -48,50 +51,51 @@ class ImageHandlerClass(object):
     __fetching = {}
     __queue = Queue.Queue(0)
     __lock = Lock()
+    chat = component.get("chat")
 
     def load(self, path, image_type, imageId):
-        # Load an image, with a intermideary fetching image shown while it loads in a background thread
+        """Load an image, with a intermideary fetching image shown while it loads in a background thread"""
         if self.__cache.has_key(path): return wx.ImageFromMime(self.__cache[path][1], 
                                                 self.__cache[path][2]).ConvertToBitmap()
         if not self.__fetching.has_key(path):
             self.__fetching[path] = True
-            #Start Image Loading Thread
+            """Start Image Loading Thread"""
             thread.start_new_thread(self.__loadThread, (path, image_type, imageId))
         else:
             if self.__fetching[path] is True: thread.start_new_thread(self.__loadCacheThread, (path, image_type, imageId))
-        return wx.Bitmap(open_rpg.get_component("dir_struct")["icon"] + "fetching.png", wx.BITMAP_TYPE_PNG)
+        return wx.Bitmap(dir_struct["icon"] + "fetching.png", wx.BITMAP_TYPE_PNG)
 
     def directLoad(self, path):
-        # Directly load an image, no threads
+        """Directly load an image, no threads"""
         if self.__cache.has_key(path): return wx.ImageFromMime(self.__cache[path][1], 
                                                 self.__cache[path][2]).ConvertToBitmap()
         uriPath = urllib.unquote(path)
         try:
             d = urllib.urlretrieve(uriPath)
-            # We have to make sure that not only did we fetch something, but that
-            # it was an image that we got back.
+            """We have to make sure that not only did we fetch something, but that
+               it was an image that we got back."""
             if d[0] and d[1].getmaintype() == "image":
                 self.__cache[path] = (path, d[0], d[1].gettype(), None)
                 return wx.ImageFromMime(self.__cache[path][1], self.__cache[path][2]).ConvertToBitmap()
             else:
-                open_rpg.get_component('log').log("Image refused to load or URI did not reference a valid image: " + path, 
-                    ORPG_GENERAL, True)
+                logger.general("Image refused to load or URI did not reference a valid image: " + path)
+                component.get('chat').InfoPost("<font color='#FF0000'>Image refused to load or URI did not reference a valid image: " + path + "</font>")
                 return None
         except IOError:
-            open_rpg.get_component('log').log("Unable to resolve/open the specified URI; image was NOT loaded: " + path, 
-                ORPG_GENERAL, True)
+            logger.general("Unable to resolve/open the specified URI; image was NOT loaded: " + path)
+            component.get('chat').InfoPost("<font color='#FF0000'>Unable to resolve/open the specified URI; image was NOT loaded: " + path + "</font>")
             return None
 
     def cleanCache(self):
-        # Shrinks the Cache down to the proper size
-        try: cacheSize = int(open_rpg.get_component('settings').get_setting("ImageCacheSize"))
+        """Shrinks the Cache down to the proper size"""
+        try: cacheSize = int(component.get('settings').get_setting("ImageCacheSize"))
         except: cacheSize = 32
         cache = self.__cache.keys()
         cache.sort()
         for key in cache[cacheSize:]: del self.__cache[key]
 
     def flushCache(self):
-        #    This function will flush all images contained within the image cache.
+        """This function will flush all images contained within the image cache."""
         self.__lock.acquire()
         try:
             keyList = self.__cache.keys()
@@ -99,26 +103,26 @@ class ImageHandlerClass(object):
         finally: self.__lock.release()
         urllib.urlcleanup()
 
-#Private Methods
+    """Private Methods"""
     def __loadThread(self, path, image_type, imageId):
         uriPath = urllib.unquote(path)
         self.__lock.acquire()
         try:
             d = urllib.urlretrieve(uriPath)
-            # We have to make sure that not only did we fetch something, but that
-            # it was an image that we got back.
+            """We have to make sure that not only did we fetch something, but that
+               it was an image that we got back."""
             if d[0] and d[1].getmaintype() == "image":
                 self.__cache[path] = (path, d[0], d[1].gettype(), imageId)
                 self.__queue.put((self.__cache[path], image_type, imageId))
-                if self.__fetching.has_key(path): del self.__fetching[path]
+                if self.__fetching.has_key(path): self.__fetching[path] = False #Fix for failed multi-load?
             else:
-                open_rpg.get_component('log').log("Image refused to load or URI did not reference a valid image: " + path, 
-                    ORPG_GENERAL, True)
+                logger.general("Image refused to load or URI did not reference a valid image: " + path)
+                component.get('chat').InfoPost("<font color='#FF0000'>Image refused to load or URI did not reference a valid image: " + path +"</font>")
                 del self.__fetching[path]
         except IOError:
             del self.__fetching[path]
-            open_rpg.get_component('log').log("Unable to resolve/open the specified URI; image was NOT laoded: " + path, 
-                ORPG_GENERAL, True)
+            logger.general("Unable to resolve/open the specified URI; image was NOT loaded: " + path)
+            component.get('chat').InfoPost("<font color='#FF0000'> Unable to resolve/open the specified URI; image was NOT loaded: " + path + "</font>")
         finally: self.__lock.release()
 
     def __loadCacheThread(self, path, image_type, imageId):
@@ -128,26 +132,28 @@ class ImageHandlerClass(object):
                 while self.__fetching.has_key(path) and self.__fetching[path] is not False:
                     time.sleep(0.025)
                     if (time.time()-st) > 120:
-                        open_rpg.get_component('log').log("Timeout: " + path, ORPG_GENERAL, True)
+                        logger.general("Timeout: " + path)
                         break
             except:
                 del self.__fetching[path]
-                open_rpg.get_component('log').log("Unable to resolve/open the specified URI; image was NOT loaded: " + path, ORPG_GENERAL, True)
+                logger.general("Unable to resolve/open the specified URI; image was NOT loaded: " + path)
+                component.get('chat').InfoPost("<font color='#FF0000'>Unable to resolve/open the specified URI; image was NOT loaded: " + path + "</font>")
                 return 
             self.__lock.acquire()
             try:
-                open_rpg.get_component('log').log("Adding Image to Queue from Cache: " + str(self.__cache[path]), ORPG_DEBUG)
+                logger.debug("Adding Image to Queue from Cache: " + str(self.__cache[path]))
+                component.debug('chat').InfoPost("<font color='#FF0000'>Adding Image to Queue from Cache: " + str(self.__cache[path]) + "</font>")
                 self.__queue.put((self.__cache[path], image_type, imageId))
             finally: self.__lock.release()
 
-#Property Methods
+    """Property Methods"""
     def _getCache(self):
         return self.__cache
 
     def _getQueue(self):
         return self.__queue
 
-#Properties
+    """Properties"""
     Cache = property(_getCache)
     Queue = property(_getQueue)
 

@@ -35,10 +35,12 @@ import mimetypes
 import os
 from base import *
 
+from orpg.tools.orpg_settings import settings
+
 class background_handler(base_layer_handler):
     def __init__(self, parent, id, canvas):
         base_layer_handler.__init__(self, parent, id, canvas)
-        self.settings = self.canvas.settings
+        self.settings = settings
 
     def build_ctrls(self):
         base_layer_handler.build_ctrls(self)
@@ -86,10 +88,10 @@ class background_handler(base_layer_handler):
                 thread.start_new_thread(self.canvas.layers['bg'].upload, 
                     (postdata, dlg.GetPath(), self.bg_type.GetStringSelection()))
             else:
-                try: min_url = open_rpg.get_component("cherrypy") + filename
+                try: min_url = component.get("cherrypy") + filename
                 except: return
                 min_url = dlg.GetDirectory().replace(orpg.dirpath.dir_struct["user"]+'webfiles' + os.sep, 
-                    open_rpg.get_component("cherrypy")) + '/' + filename
+                    component.get("cherrypy")) + '/' + filename
 
                 if self.bg_type.GetStringSelection() == 'Texture': self.canvas.layers['bg'].set_texture(min_url)
                 elif self.bg_type.GetStringSelection() == 'Image': self.size = self.canvas.layers['bg'].set_image(min_url,1)
@@ -138,7 +140,7 @@ class background_handler(base_layer_handler):
     def on_apply(self, evt):
         session=self.canvas.frame.session
         if (session.my_role() != session.ROLE_GM) and (session.use_roles()):
-            open_rpg.get_component("chat").InfoPost("You must be a GM to use this feature")
+            component.get("chat").InfoPost("You must be a GM to use this feature")
             return
         self.canvas.layers['bg'].set_color(self.color_button.GetBackgroundColour())
 
