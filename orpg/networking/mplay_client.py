@@ -29,7 +29,8 @@
 
 __version__ = "$Id: mplay_client.py,v 1.71 2007/05/12 20:41:54 digitalxero Exp $"
 
-#import orpg.minidom
+### Alpha ### 
+##import orpg.minidom ## Deprecated. xml.parseXml calls minidom.parseString so it was superfluous and wasteful.
 import socket
 import Queue
 import thread

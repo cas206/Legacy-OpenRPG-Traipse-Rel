@@ -15,13 +15,14 @@ import time
 import types
 from orpg.dirpath import dir_struct
 #import orpg.systempath looks old
-from orpg.tools.validate import Validate
+from orpg.tools.validate import validate
 from orpg.orpg_wx import *
 import webbrowser
 from threading import Thread
 from meta_server_lib import post_server_data, remove_server
-from mplay_server import mplay_server
+from mplay_server import mplay_server, server
 from xml.dom import minidom
+from orpg.orpgCore import component
 
 # Constants ######################################
 SERVER_RUNNING = 1
@@ -34,9 +35,17 @@ MENU_UNREGISTER_SERVER = wx.NewId()
 MENU_START_PING_PLAYERS = wx.NewId()
 MENU_STOP_PING_PLAYERS = wx.NewId()
 MENU_PING_INTERVAL = wx.NewId()
+### Alpha ###
+MENU_MODIFY_BANLIST = wx.NewId()
+#############
 
 # Add our menu id's for our right click popup
 MENU_PLAYER_BOOT = wx.NewId()
+### Alpha ###
+MENU_ADMIN_BAN = wx.NewId()
+MENU_BAN_LIST = wx.NewId()
+MENU_ADMIN_UNBAN = wx.NewId()
+#############
 MENU_PLAYER_CREATE_ROOM = wx.NewId()
 MENU_PLAYER_SEND_MESSAGE = wx.NewId()
 MENU_PLAYER_SEND_ROOM_MESSAGE = wx.NewId()
@@ -83,12 +92,11 @@ class MessageFunctionEvent(wx.PyEvent):
 # ServerConfig Object ############################
 class ServerConfig:
     """ This class contains configuration
-        setting used to control the server.
-    """
+        setting used to control the server."""
 
     def __init__(self, owner ): 
         """ Loads default configuration settings."""
-        Validate(dir_struct["user"]).config_file("server_ini.xml", "default_server_ini.xml" ) 
+        validate.config_file("server_ini.xml", "default_server_ini.xml" ) 
         configDom = minidom.parse(dir_struct["user"] + 'server_ini.xml') 
         port = configDom.childNodes[0].childNodes[1].getAttribute('port')
         OPENRPG_PORT = 6774 if port == '' else int(port) #Pretty ugly, but I couldn't find the tag any other way.
@@ -96,14 +104,12 @@ class ServerConfig:
 
     def load_xml(self, xml):
         """ Load configuration from XML data.
-            xml (xml) -- xml string to parse
-        """
+            xml (xml) -- xml string to parse """
         pass
 
     def save_xml(self):
         """ Returns XML file representing
-            the active configuration.
-        """
+            the active configuration. """
         pass
 
 # Server Monitor #################################
@@ -146,7 +152,14 @@ class Connections(wx.ListCtrl):
         wx.ListCtrl.__init__( self, parent, -1, wx.DefaultPosition, 
                             wx.DefaultSize, wx.LC_REPORT|wx.SUNKEN_BORDER|wx.EXPAND|wx.LC_HRULES )
         self.main = main
-        self.roomList = { 0 : "Lobby" }
+
+        ### Alpha ### Get Lobby Name
+        validate.config_file("server_ini.xml", "default_server_ini.xml" ) 
+        configDom = minidom.parse(dir_struct["user"] + 'server_ini.xml') 
+        lobbyname = configDom.childNodes[0].getAttribute('lobbyname')
+        #############
+
+        self.roomList = { 0 : lobbyname }
         self._imageList = wx.ImageList( 16, 16, False )
         img = wx.Image(dir_struct["icon"]+"player.gif", wx.BITMAP_TYPE_GIF).ConvertToBitmap()
         self._imageList.Add( img )
@@ -171,6 +184,7 @@ class Connections(wx.ListCtrl):
         self.menu = wx.Menu()
         self.menu.SetTitle( "Player Menu" )
         self.menu.Append( MENU_PLAYER_BOOT, "Boot Player" )
+        self.menu.Append( MENU_ADMIN_BAN, 'Ban Player' )
         self.menu.AppendSeparator()
         self.menu.Append( MENU_PLAYER_SEND_MESSAGE, "Send Player Message" )
         self.menu.Append( MENU_PLAYER_SEND_ROOM_MESSAGE, "Send Room Message" ) 
@@ -179,6 +193,7 @@ class Connections(wx.ListCtrl):
         # Associate our events
         self.Bind(wx.EVT_RIGHT_DOWN, self.OnPopupMenu)
         self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_PLAYER_BOOT)
+        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_ADMIN_BAN)
         self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_PLAYER_SEND_MESSAGE)
         self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_PLAYER_SEND_ROOM_MESSAGE)
         self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_PLAYER_SEND_SERVER_MESSAGE)
@@ -186,10 +201,10 @@ class Connections(wx.ListCtrl):
     def add(self, player):
         i = self.InsertImageStringItem( 0, player["id"], 0 )
         self.SetStringItem( i, 1, self.stripHtml( player["name"] ) )
-        self.SetStringItem( i, 2, "new" )
+        self.SetStringItem( i, 2, "NEW" )
         self.SetStringItem( i, 3, self.roomList[0] )
         self.SetStringItem( i, 4, self.stripHtml( player["version"] ) )
-        self.SetStringItem( i, 5, self.stripHtml( player["role"] ) )
+        self.SetStringItem( i, 5, 'Lurker' if self.stripHtml( player["role"] ) == '' else self.stripHtml( player["role"] ))
         self.SetStringItem( i, 6, self.stripHtml( player["ip"] ) )
         self.SetStringItem (i, 7, "PING" )
         self.SetItemData( i, int(player["id"]) )
@@ -216,18 +231,20 @@ class Connections(wx.ListCtrl):
         if i > -1:
             self.SetStringItem(i, 1, self.stripHtml(player["name"]))
             self.SetStringItem(i, 2, self.stripHtml(player["status"]))
+            self.SetStringItem(i, 5, 'Lurker' if self.stripHtml(player["role"]) == '' else self.stripHtml(player["role"]))
             self.AutoAjust()
         else: self.add(player)
 
     def updateRoom( self, data ):
         (room, room_id, player) = data
         i = self.FindItemData( -1, int(player) )
-        if i > 0: self.SetStringItem( i, 3, room )
+        if player > 0: self.SetStringItem( i, 3, room )
         self.AutoAjust()
 
     def setPlayerRole( self, id, role ):
         i = self.FindItemData( -1, int(id) )
         self.SetStringItem( i, 5, role )
+        self.AutoAjust
 
     def stripHtml( self, name ):
         ret_string = ""
@@ -265,6 +282,20 @@ class Connections(wx.ListCtrl):
                 self.main.server.server.del_player( playerID, groupID )
                 self.main.server.server.check_group( playerID, groupID )
                 self.remove( playerID )
+            ### Alpha ###
+            elif menuItem == MENU_ADMIN_BAN:
+                message = 'Banishment'
+                BanMsg = wx.TextEntryDialog( self, "Enter A Message To Send:",
+                                                 "Ban Message", message, wx.OK|wx.CANCEL|wx.CENTRE )
+                if BanMsg.ShowModal() == wx.ID_OK: message = BanMsg.GetValue()
+                else: message = ''
+                Silent = wx.MessageDialog(None, 'Silent Ban?', 'Question', 
+                    wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+                if Silent.ShowModal() == wx.ID_YES: silent = 1
+                else: silent = 0
+                self.main.server.server.admin_ban(playerID, message, silent)
+                self.remove( playerID )
+            ###############
             elif menuItem == MENU_PLAYER_SEND_MESSAGE:
                 print "send a message..."
                 msg = self.GetMessageInput( "Send a message to player" )
@@ -306,6 +337,11 @@ class ServerGUI(wx.Frame):
         self.build_menu()
         self.build_body()
         self.build_status()
+
+        ### Alpha ###
+        # Ban List Dialog
+        self.BanListDialog = BanListDialog(self)
+        #############
 
         # Server Callbacks
         cb = {}
@@ -355,6 +391,8 @@ class ServerGUI(wx.Frame):
 
         # Server Configuration Menu
         menu = wx.Menu()
+        menu.Append( MENU_BAN_LIST, 'Ban List', 'Modify Ban List.' )
+        self.Bind(wx.EVT_MENU, self.ModifyBanList, id=MENU_BAN_LIST)
         menu.Append( MENU_START_PING_PLAYERS, 'Start Ping', 'Ping players to validate remote connection.' )
         self.Bind(wx.EVT_MENU, self.PingPlayers, id=MENU_START_PING_PLAYERS)
         menu.Append( MENU_STOP_PING_PLAYERS, 'Stop Ping', 'Stop validating player connections.' )
@@ -470,19 +508,20 @@ class ServerGUI(wx.Frame):
         if self.STATUS == SERVER_STOPPED:
             # see if we already have name specified 
             try:
-                Validate(dir_struct["user"]).config_file( "server_ini.xml", "default_server_ini.xml" ) 
+                validate.config_file( "server_ini.xml", "default_server_ini.xml" ) 
                 configDom = minidom.parse(dir_struct["user"] + 'server_ini.xml') 
                 configDom.normalize() 
                 configDoc = configDom.documentElement 
                 if configDoc.hasAttribute("name"): self.serverName = configDoc.getAttribute("name")
             except: pass 
-            if self.serverName == '': 
+            if self.serverName == '':
+                self.serverName = 'Server Name'
                 serverNameEntry = wx.TextEntryDialog( self, "Please Enter The Server Name You Wish To Use:",
                                                  "Server's Name", self.serverName, wx.OK|wx.CANCEL|wx.CENTRE )
                 if serverNameEntry.ShowModal() == wx.ID_OK: self.serverName = serverNameEntry.GetValue()
             # see if we already have password specified 
             try: 
-                Validate(dir_struct["user"]).config_file( "server_ini.xml", "default_server_ini.xml" ) 
+                validate.config_file( "server_ini.xml", "default_server_ini.xml" ) 
                 configDom = minidom.parse(dir_struct["user"] + 'server_ini.xml') 
                 configDom.normalize() 
                 configDoc = configDom.documentElement 
@@ -551,6 +590,12 @@ class ServerGUI(wx.Frame):
         self.SetTitle(__appname__ + "- (running) - (unregistered)")
         wx.EndBusyCursor()
 
+    ### Alpha ###
+    def ModifyBanList(self, event):
+        if self.BanListDialog.IsShown() == True: self.BanListDialog.Hide()
+        else: self.BanListDialog.Show()
+    #############
+
     def PingPlayers( self, event = None ):
         "Ping all players that are connected at a periodic interval, detecting dropped connections."
         wx.BeginBusyCursor()
@@ -566,7 +611,78 @@ class ServerGUI(wx.Frame):
     def OnExit(self, event = None):
         """ Quit the program. """
         self.OnStop()
+        self.BanListDialog.Destroy() ### Alpha ###
         wx.CallAfter(self.Destroy)
+
+### Alpha ###
+class BanListDialog(wx.Frame):
+    def __init__(self, parent):
+        super(BanListDialog, self).__init__(parent, -1, "Ban List")
+        icon = wx.Icon(dir_struct["icon"]+'noplayer.gif', wx.BITMAP_TYPE_GIF)
+        self.SetIcon( icon )
+        self.BanList = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_SINGLE_SEL|wx.LC_REPORT|wx.LC_HRULES)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.Add(self.BanList, 1, wx.EXPAND)
+        self.BuildList()
+        self.SetSizer(sizer)
+        self.SetAutoLayout(True)
+        self.SetSize((300, 175))
+        self.Bind(wx.EVT_CLOSE, self.Min) 
+        self.Min(None)
+
+        # Ban List Dialog Pop Up Menu, more can be added
+        self.menu = wx.Menu()
+        self.menu.SetTitle( "Modify Ban List" )
+        self.menu.Append( MENU_ADMIN_UNBAN, "Un-Ban Player" )
+
+        # Even Association
+        self.BanList.Bind(wx.EVT_RIGHT_DOWN, self.BanPopupMenu)
+        self.Bind(wx.EVT_MENU, self.BanPopupMenuItem, id=MENU_ADMIN_UNBAN)
+
+    # When we right click, cause our popup menu to appear
+    def BanPopupMenu( self, event ):
+        pos = wx.Point( event.GetX(), event.GetY() )
+        (item, flag) = self.BanList.HitTest( pos )
+        if item > -1:
+            self.selectedItem = item
+            self.PopupMenu( self.menu, pos )
+
+    def BanPopupMenuItem( self, event):
+        menuItem = event.GetId()
+        player = str(self.BanList.GetItemData(self.selectedItem))
+        playerIP = str(self.BanList.GetItem((int(player)), 1).GetText())
+        if menuItem == MENU_ADMIN_UNBAN:
+            server.admin_unban(playerIP)
+            self.BanList.DeleteItem(self.BanList.GetItemData(self.selectedItem))
+            self.BanList.Refresh()   
+
+    def BuildList(self):
+        # Build Dialog Columns
+        self.BanList.ClearAll()
+        self.BanList.InsertColumn(0, "User Name")
+        self.BanList.InsertColumn(1, "IP")
+
+        validate.config_file("ban_list.xml", "default_ban_list.xml" ) 
+        configDom = minidom.parse(dir_struct["user"] + 'ban_list.xml')
+        ban_dict = {}
+        for element in configDom.getElementsByTagName('banned'):
+            player = element.getAttribute('name').replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;").replace(">", "&gt;")
+            playerIP = element.getAttribute('ip')
+            ban_dict[player] = playerIP
+        for key in ban_dict:
+            i = self.BanList.InsertImageStringItem( 0, key, 0 )
+            self.BanList.SetStringItem(i, 1, ban_dict[key])
+            self.BanList.RefreshItem(i)
+        self.AutoAdjust()
+
+    def AutoAdjust(self):
+        self.BanList.SetColumnWidth(0, -1)
+        self.BanList.SetColumnWidth(1, -1)
+        self.BanList.Refresh()
+
+    def Min(self, evt):
+        self.Hide()
+###############
 
 class ServerGUIApp(wx.App):
     def OnInit(self):
