@@ -21,15 +21,20 @@
 # Author: Chris Davis
 # Maintainer:
 # Version:
-#   $Id: d20.py,v 1.30 2007/05/22 00:50:57 digitalxero Exp $
+#   $Id: d20.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description: The file contains code for the d20 nodehanlers
 #
 
-__version__ = "$Id: d20.py,v 1.30 2007/05/22 00:50:57 digitalxero Exp $"
+__version__ = "$Id: d20.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from core import *
+from containers import *
 import re
+from xml.etree.ElementTree import ElementTree, Element, iselement
+from xml.etree.ElementTree import fromstring, tostring, parse, XML
+from orpg.tools.orpg_log import debug
+from orpg.tools.InterParse import Parse
 
 D20_EXPORT = wx.NewId()
 ############################
@@ -42,50 +47,42 @@ class container_handler(node_handler):
     """ should not be used! only a base class!
     <nodehandler name='?'  module='core' class='container_handler'  />
     """
-    def __init__(self,xml_dom,tree_node):
-        node_handler.__init__(self,xml_dom,tree_node)
+    def __init__(self,xml,tree_node):
+        node_handler.__init__(self,xml,tree_node)
         self.load_children()
 
     def load_children(self):
-        children = self.master_dom._get_childNodes()
+        children = self.xml.getchildren()
         for c in children:
             self.tree.load_xml(c,self.mytree_node)
 
-
     def on_drop(self,evt):
         drag_obj = self.tree.drag_obj
-        #if self.is_my_child(self.mytree_node,drag_obj.mytree_node):
-        #    return
-        if drag_obj == self:
-            return
+        if drag_obj == self: return
         opt = wx.MessageBox("Add node as child?","Container Node",wx.YES_NO|wx.CANCEL)
         if opt == wx.YES:
-            xml_dom = self.tree.drag_obj.delete()
-            xml_dom = self.master_dom.insertBefore(xml_dom,None)
-            self.tree.load_xml(xml_dom, self.mytree_node)
+            xml = self.tree.drag_obj.delete()
+            xml = self.xml.append(xml,None)
+            self.tree.load_xml(xml, self.mytree_node)
             self.tree.Expand(self.mytree_node)
-        elif opt == wx.NO:
-            node_handler.on_drop(self,evt)
+        elif opt == wx.NO: node_handler.on_drop(self,evt)
 
     def tohtml(self):
         cookie = 0
         html_str = "<table border=\"1\" ><tr><td>"
-        html_str += "<b>"+self.master_dom.getAttribute("name") + "</b>"
+        html_str += "<b>"+self.xml.get("name") + "</b>"
         html_str += "</td></tr>\n"
         html_str += "<tr><td>"
-
         max = tree.GetChildrenCount(handler.mytree_node,0)
-        try:
-            (child,cookie)=self.tree.GetFirstChild(self.mytree_node,cookie)
-        except: # If this happens we probably have a newer version of wxPython
-            (child,cookie)=self.tree.GetFirstChild(self.mytree_node)
+        try: (child,cookie)=self.tree.GetFirstChild(self.mytree_node,cookie)
+        # If this happens we probably have a newer version of wxPython
+        except: (child,cookie)=self.tree.GetFirstChild(self.mytree_node)
         obj = self.tree.GetPyData(child)
         for m in range(max):
             html_str += "<p>" + obj.tohtml()
             if m < max-1:
                 child = self.tree.GetNextSibling(child)
-                if child.IsOk():
-                    obj = self.tree.GetPyData(child)
+                if child.IsOk(): obj = self.tree.GetPyData(child)
         html_str += "</td></tr></table>"
         return html_str
 
@@ -105,13 +102,12 @@ class container_handler(node_handler):
         return self.child_handlers['classes'].get_char_lvl(attr)
 
 
-
 class d20char_handler(node_handler):
     """ Node handler for a d20 charactor
         <nodehandler name='?'  module='d20' class='d20char_handler2'  />
     """
-    def __init__(self,xml_dom,tree_node):
-        node_handler.__init__(self,xml_dom,tree_node)
+    def __init__(self,xml,tree_node):
+        node_handler.__init__(self,xml,tree_node)
         self.frame = component.get('frame')
         self.child_handlers = {}
         self.new_child_handler('howtouse','HowTO use this tool',d20howto,'note')
@@ -129,45 +125,32 @@ class d20char_handler(node_handler):
         self.new_child_handler('pp','Power Points',d20pp,'gear')
         self.new_child_handler('attacks','Attacks',d20attacks,'spears')
         self.new_child_handler('ac','Armor',d20armor,'spears')
-        #wxMenuItem(self.tree.std_menu, D20_EXPORT, "Export...", "Export")
         self.myeditor = None
-
 
     def on_version(self,old_version):
         node_handler.on_version(self,old_version)
         if old_version == "":
-            tmp = open(orpg.dirpath.dir_struct["nodes"]+"d20character.xml","r")
-            xml_dom = parseXml_with_dlg(self.tree,tmp.read())
-            xml_dom = xml_dom._get_firstChild()
-            tmp.close()
-            ## add new nodes
+            data = parse(orpg.dirpath.dir_struct["nodes"]+"d20character.xml").getroot()
             for tag in ("howtouse","inventory","powers","divine","pp"):
-                node_list = xml_dom.getElementsByTagName(tag)
-                self.master_dom.appendChild(node_list[0])
+                self.xml.append(data.find(tag))
 
             ## add new atts
-            melee_attack = self.master_dom.getElementsByTagName('melee')[0]
-            melee_attack.setAttribute("second","0")
-            melee_attack.setAttribute("third","0")
-            melee_attack.setAttribute("forth","0")
-            melee_attack.setAttribute("fifth","0")
-            melee_attack.setAttribute("sixth","0")
-            range_attack = self.master_dom.getElementsByTagName('ranged')[0]
-            range_attack.setAttribute("second","0")
-            range_attack.setAttribute("third","0")
-            range_attack.setAttribute("forth","0")
-            range_attack.setAttribute("fifth","0")
-            range_attack.setAttribute("sixth","0")
+            melee_attack = self.xml.find('melee')
+            melee_attack.set("second","0")
+            melee_attack.set("third","0")
+            melee_attack.set("forth","0")
+            melee_attack.set("fifth","0")
+            melee_attack.set("sixth","0")
+            range_attack = self.xml.find('ranged')
+            range_attack.set("second","0")
+            range_attack.set("third","0")
+            range_attack.set("forth","0")
+            range_attack.set("fifth","0")
+            range_attack.set("sixth","0")
 
-            gen_list = self.master_dom.getElementsByTagName('general')[0]
+            gen_list = self.xml.find('general')
 
-            for tag in ("currentxp","xptolevel"):
-                node_list = xml_dom.getElementsByTagName(tag)
-                gen_list.appendChild(node_list[0])
-            ## temp fix
-            #parent = self.master_dom._get_parentNode()
-            #old_dom = parent.replaceChild(xml_dom,self.master_dom)
-            #self.master_dom = xml_dom
+            for tag in ("currentxp","xptolevel"): gen_list.append(data.find(tag))
         print old_version
 
 
@@ -183,23 +166,19 @@ class d20char_handler(node_handler):
     def get_char_lvl( self, attr ):
         return self.child_handlers['classes'].get_char_lvl(attr)
 
-
     def new_child_handler(self,tag,text,handler_class,icon='gear'):
-        node_list = self.master_dom.getElementsByTagName(tag)
         tree = self.tree
         i = self.tree.icons[icon]
         new_tree_node = tree.AppendItem(self.mytree_node,text,i,i)
-        handler = handler_class(node_list[0],new_tree_node,self)
+        handler = handler_class(self.xml.find(tag),new_tree_node,self)
         tree.SetPyData(new_tree_node,handler)
         self.child_handlers[tag] = handler
 
     def get_design_panel(self,parent):
         return tabbed_panel(parent,self,1)
 
-
     def get_use_panel(self,parent):
         return tabbed_panel(parent,self,2)
-
 
     def tohtml(self):
         html_str = "<table><tr><td colspan=2 >"+self.child_handlers['general'].tohtml()+"</td></tr>"
@@ -220,9 +199,12 @@ class d20char_handler(node_handler):
         return html_str
 
     def about(self):
-        html_str = "<img src='" + orpg.dirpath.dir_struct["icon"]+'d20_logo.gif' "><br /><b>d20 Character Tool v0.7 beta</b>"
+        """html_str = "<img src='" + orpg.dirpath.dir_struct["icon"]+'d20_logo.gif' "><br /><b>d20 Character Tool v0.7 beta</b>"
         html_str += "<br />by Chris Davis<br />chris@rpgarchive.com"
-        return html_str
+        return html_str"""
+        text = 'd20 Character Tool 0.7 beta\n'
+        text += 'by Chris Davis chris@rpgarchive.com'
+        return text
 
     def get_char_name( self ):
         return self.child_handlers['general'].get_char_name()
@@ -242,6 +224,7 @@ class d20char_handler(node_handler):
     def get_char_lvl( self, attr ):
         return self.child_handlers['classes'].get_char_lvl(attr)
 
+""" Removed to use the supplied Tabbed Panel
 class tabbed_panel(wx.Notebook):
     def __init__(self, parent, handler, mode):
         wx.Notebook.__init__(self, parent, -1, size=(1200,800))
@@ -249,32 +232,22 @@ class tabbed_panel(wx.Notebook):
         self.parent = parent
         tree = self.handler.tree
         max = tree.GetChildrenCount(handler.mytree_node)
-
         cookie = 0
 
-        try:
-            (child,cookie)=tree.GetFirstChild(handler.mytree_node,cookie)
-        except: # If this happens we probably have a newer version of wxPython
-            (child,cookie)=tree.GetFirstChild(handler.mytree_node)
-        if not child.IsOk():
-            return
+        try: (child,cookie)=tree.GetFirstChild(handler.mytree_node,cookie)
+        # If this happens we probably have a newer version of wxPython
+        except: (child,cookie)=tree.GetFirstChild(handler.mytree_node)
+        if not child.IsOk(): return
         obj = tree.GetPyData(child)
         for m in range(max):
-            if mode == 1:
-                panel = obj.get_design_panel(self)
-            else:
-                panel = obj.get_use_panel(self)
-            name = obj.master_dom.getAttribute("name")
-
-            if panel:
-                self.AddPage(panel,name)
+            if mode == 1: panel = obj.get_design_panel(self)
+            else: panel = obj.get_use_panel(self)
+            name = obj.xml.get("name")
+            if panel: self.AddPage(panel,name)
             if m < max-1:
                 child = tree.GetNextSibling(child)
-                if child.IsOk():
-                    obj = tree.GetPyData(child)
-                else:
-                    break
-
+                if child.IsOk(): obj = tree.GetPyData(child)
+                else: break
 
     def about(self):
         html_str = "<img src='" + orpg.dirpath.dir_struct["icon"]+'d20_logo.gif' "><br /><b>d20 Character Tool v0.7 beta</b>"
@@ -292,18 +265,17 @@ class tabbed_panel(wx.Notebook):
 
     def get_char_lvl( self, attr ):
         return self.child_handlers['classes'].get_char_lvl(attr)
-
+"""
 class d20_char_child(node_handler):
     """ Node Handler for skill.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        node_handler.__init__(self,xml_dom,tree_node)
+    def __init__(self,xml,tree_node,parent):
+        node_handler.__init__(self,xml,tree_node)
         self.char_hander = parent
         self.drag = False
         self.frame = component.get('frame')
         self.myeditor = None
-
 
     def on_drop(self,evt):
         pass
@@ -314,7 +286,7 @@ class d20_char_child(node_handler):
     def on_ldclick(self,evt):
         return
         if self.myeditor == None or self.myeditor.destroyed:
-            title = self.master_dom.getAttribute('name') + " Editor"
+            title = self.xml.get('name') + " Editor"
             self.myeditor = wx.Frame(self.frame, -1, title)
             if wx.Platform == '__WXMSW__':
                 icon = wx.Icon(orpg.dirpath.dir_struct["icon"]+'grid.ico', wx.BITMAP_TYPE_ICO)
@@ -330,7 +302,7 @@ class d20_char_child(node_handler):
     def on_html(self,evt):
         html_str = self.tohtml()
         wnd = http_html_window(self.frame.note,-1)
-        wnd.title = self.master_dom.getAttribute('name')
+        wnd.title = self.xml.get('name')
         self.frame.add_panel(wnd)
         wnd.SetPage(html_str)
 
@@ -348,50 +320,42 @@ class d20skill(d20_char_child):
     """ Node Handler for skill.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
         tree = self.tree
         icons = self.tree.icons
-        node_list = self.master_dom.getElementsByTagName('skill')
         self.skills={}
-        for n in node_list:
-            name = n.getAttribute('name')
+        for n in self.xml.findall('skill'):
+            name = n.get('name')
             self.skills[name] = n
             new_tree_node = tree.AppendItem(self.mytree_node,name,icons['gear'],icons['gear'])
             tree.SetPyData(new_tree_node,self)
 
     def get_mod(self,name):
         skill = self.skills[name]
-        stat = skill.getAttribute('stat')
-        ac = int(skill.getAttribute('armorcheck'))
+        stat = skill.get('stat')
+        ac = int(skill.get('armorcheck'))
         if ac:
             ac = self.char_hander.child_handlers['ac'].get_check_pen()
         stat_mod = self.char_hander.child_handlers['abilities'].get_mod(stat)
-        rank = int(skill.getAttribute('rank'))
-        misc = int(skill.getAttribute('misc'))
+        rank = int(skill.get('rank'))
+        misc = int(skill.get('misc'))
         total = stat_mod + rank + misc + ac
         return total
 
     def on_rclick(self,evt):
         item = self.tree.GetSelection()
         name = self.tree.GetItemText(item)
-        if item == self.mytree_node:
-            d20_char_child.on_ldclick(self,evt)
-            #wnd = skill_grid(self.frame.note,self)
-            #wnd.title = "Skills
-            #self.frame.add_panel(wnd)
+        if item == self.mytree_node: d20_char_child.on_ldclick(self,evt)
         else:
             skill = self.skills[name];
-            untrained = skill.getAttribute('untrained');
-            rank = skill.getAttribute('rank');
-            if untrained == "0" and rank == "0":
-                txt = '%s Skill Check: Untrained' % (name)
+            untrained = skill.get('untrained');
+            rank = skill.get('rank');
+            if untrained == "0" and rank == "0": txt = '%s Skill Check: Untrained' % (name)
             else:
                 mod = self.get_mod(name)
-                if mod >= 0:
-                    mod1 = "+"
-                else:
-                    mod1 = ""
+                if mod >= 0: mod1 = "+"
+                else: mod1 = ""
                 txt = '%s Skill Check: [1d20%s%s]' % (name, mod1, mod)
             chat = self.chat
             chat.ParsePost(txt,True,True)
@@ -404,19 +368,16 @@ class d20skill(d20_char_child):
     def tohtml(self):
         html_str = """<table border='1' width=100% ><tr BGCOLOR=#E9E9E9 ><th width='30%'>Skill</th><th>Key</th>
                     <th>Rank</th><th>Abil</th><th>Misc</th><th>Total</th></tr>"""
-        node_list = self.master_dom.getElementsByTagName('skill')
-        for n in node_list:
-            name = n.getAttribute('name')
-            stat = n.getAttribute('stat')
-            rank = n.getAttribute('rank')
+        for n in self.xml.findall('skill'):
+            name = n.get('name')
+            stat = n.get('stat')
+            rank = n.get('rank')
             html_str = html_str + "<tr ALIGN='center'><td>"+name+"</td><td>"+stat+"</td><td>"+rank+"</td>"
             stat_mod = str(self.char_hander.child_handlers['abilities'].get_mod(stat))
-            misc = n.getAttribute('misc')
+            misc = n.get('misc')
             mod = str(self.get_mod(name))
-            if mod >= 0:
-                mod1 = "+"
-            else:
-                mod1 = ""
+            if mod >= 0: mod1 = "+"
+            else: mod1 = ""
             html_str = html_str + "<td>"+stat_mod+"</td><td>"+misc+'</td><td>%s%s</td></tr>' % (mod1, mod)
         html_str = html_str + "</table>"
         return html_str
@@ -426,14 +387,13 @@ class d20ability(d20_char_child):
     """ Node Handler for ability.   This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
         self.abilities = {}
-        node_list = self.master_dom.getElementsByTagName('stat')
         tree = self.tree
         icons = tree.icons
-        for n in node_list:
-            name = n.getAttribute('abbr')
+        for n in self.xml.findall('stat'):
+            name = n.get('abbr')
             self.abilities[name] = n
             new_tree_node = tree.AppendItem( self.mytree_node, name, icons['gear'], icons['gear'] )
             tree.SetPyData( new_tree_node, self )
@@ -445,22 +405,20 @@ class d20ability(d20_char_child):
             d20_char_child.on_ldclick( self, evt )
         else:
             mod = self.get_mod( name )
-            if mod >= 0:
-                mod1 = "+"
-            else:
-                mod1 = ""
+            if mod >= 0: mod1 = "+"
+            else: mod1 = ""
             chat = self.chat
             txt = '%s check: [1d20%s%s]' % ( name, mod1, mod )
             chat.ParsePost( txt, True, True )
 
     def get_mod(self,abbr):
-        score = int(self.abilities[abbr].getAttribute('base'))
+        score = int(self.abilities[abbr].get('base'))
         mod = (score - 10) / 2
         return mod
 
     def set_score(self,abbr,score):
         if score >= 0:
-            self.abilities[abbr].setAttribute("base",str(score))
+            self.abilities[abbr].set("base",str(score))
 
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,abil_grid,"Abilities")
@@ -469,44 +427,41 @@ class d20ability(d20_char_child):
 
     def tohtml(self):
         html_str = """<table border='1' width=100%><tr BGCOLOR=#E9E9E9 ><th width='50%'>Ability</th>
-                    <th>Base</th><th>Modifier</th></tr>"""
-        node_list = self.master_dom.getElementsByTagName('stat')
-        for n in node_list:
-            name = n.getAttribute('name')
-            abbr = n.getAttribute('abbr')
-            base = n.getAttribute('base')
+                    <th>Base</th><th>Modifier</th></tr>""" 
+        for n in self.xml.findall('stat'):
+            name = n.get('name')
+            abbr = n.get('abbr')
+            base = n.get('base')
             mod = str(self.get_mod(abbr))
-            if mod >= 0:
-                mod1 = "+"
-            else:
-                mod1 = ""
+            if mod >= 0: mod1 = "+"
+            else: mod1 = ""
             html_str = html_str + "<tr ALIGN='center'><td>"+name+"</td><td>"+base+'</td><td>%s%s</td></tr>' % (mod1, mod)
         html_str = html_str + "</table>"
         return html_str
+
 
 class d20saves(d20_char_child):
     """ Node Handler for saves.   This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
         tree = self.tree
         icons = self.tree.icons
-        node_list = self.master_dom.getElementsByTagName('save')
         self.saves={}
-        for n in node_list:
-            name = n.getAttribute('name')
+        for n in self.xml.findall('save'):
+            name = n.get('name')
             self.saves[name] = n
             new_tree_node = tree.AppendItem(self.mytree_node,name,icons['gear'],icons['gear'])
             tree.SetPyData(new_tree_node,self)
 
     def get_mod(self,name):
         save = self.saves[name]
-        stat = save.getAttribute('stat')
+        stat = save.get('stat')
         stat_mod = self.char_hander.child_handlers['abilities'].get_mod(stat)
-        base = int(save.getAttribute('base'))
-        miscmod = int(save.getAttribute('miscmod'))
-        magmod = int(save.getAttribute('magmod'))
+        base = int(save.get('base'))
+        miscmod = int(save.get('miscmod'))
+        magmod = int(save.get('magmod'))
         total = stat_mod + base + miscmod + magmod
         return total
 
@@ -515,15 +470,11 @@ class d20saves(d20_char_child):
         name = self.tree.GetItemText(item)
         if item == self.mytree_node:
             d20_char_child.on_ldclick(self,evt)
-            #wnd = save_grid(self.frame.note,self)
-            #wnd.title = "Saves"
-            #self.frame.add_panel(wnd)
+
         else:
             mod = self.get_mod(name)
-            if mod >= 0:
-                mod1 = "+"
-            else:
-                mod1 = ""
+            if mod >= 0: mod1 = "+"
+            else: mod1 = ""
             chat = self.chat
             txt = '%s save: [1d20%s%s]' % (name, mod1, mod)
             chat.ParsePost( txt, True, True )
@@ -537,20 +488,17 @@ class d20saves(d20_char_child):
         html_str = """<table border='1' width=100% ><tr BGCOLOR=#E9E9E9 ><th width='30%'>Save</th>
                     <th>Key</th><th>Base</th><th>Abil</th><th>Magic</th>
                     <th>Misc</th><th>Total</th></tr>"""
-        node_list = self.master_dom.getElementsByTagName('save')
-        for n in node_list:
-            name = n.getAttribute('name')
-            stat = n.getAttribute('stat')
-            base = n.getAttribute('base')
+        for n in self.xml.findall('save'):
+            name = n.get('name')
+            stat = n.get('stat')
+            base = n.get('base')
             html_str = html_str + "<tr ALIGN='center'><td>"+name+"</td><td>"+stat+"</td><td>"+base+"</td>"
             stat_mod = str(self.char_hander.child_handlers['abilities'].get_mod(stat))
-            mag = n.getAttribute('magmod')
-            misc = n.getAttribute('miscmod')
+            mag = n.get('magmod')
+            misc = n.get('miscmod')
             mod = str(self.get_mod(name))
-            if mod >= 0:
-                mod1 = "+"
-            else:
-                mod1 = ""
+            if mod >= 0:  mod1 = "+"
+            else: mod1 = ""
             html_str = html_str + "<td>"+stat_mod+"</td><td>"+mag+"</td>"
             html_str = html_str + '<td>'+misc+'</td><td>%s%s</td></tr>' % (mod1, mod)
         html_str = html_str + "</table>"
@@ -561,8 +509,8 @@ class d20general(d20_char_child):
     """ Node Handler for general information.   This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
 
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,gen_grid,"General Information")
@@ -570,12 +518,10 @@ class d20general(d20_char_child):
         return wnd
 
     def tohtml(self):
-        n_list = self.master_dom._get_childNodes()
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>General Information</th></tr><tr><td>"
-        for n in n_list:
-            t_node = component.get('xml').safe_get_text_node(n)
-            html_str += "<B>"+n._get_tagName().capitalize() +":</B> "
-            html_str += t_node._get_nodeValue() + ", "
+        for n in self.xml:
+            html_str += "<B>"+n.tag.capitalize() +":</B> "
+            html_str += n.text + ", "
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
         return html_str
 
@@ -583,17 +529,15 @@ class d20general(d20_char_child):
         self.char_hander.rename(name)
 
     def get_char_name( self ):
-        node = self.master_dom.getElementsByTagName( 'name' )[0]
-        t_node = component.get('xml').safe_get_text_node( node )
-        return t_node._get_nodeValue()
+        return self.xml.find( 'name' ).text
 
 
 class d20classes(d20_char_child):
     """ Node Handler for classes.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
 
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,class_panel,"Classes")
@@ -602,29 +546,24 @@ class d20classes(d20_char_child):
 
     def tohtml(self):
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>Classes</th></tr><tr><td>"
-        n_list = self.master_dom._get_childNodes()
-        for n in n_list:
-            html_str += n.getAttribute('name') + " ("+n.getAttribute('level')+"), "
+        for n in self.xml: html_str += n.get('name') + " ("+n.get('level')+"), "
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
         return html_str
 
     def get_char_lvl( self, attr ):
-        node_list = self.master_dom.getElementsByTagName('class')
-        for n in node_list:
-            lvl = n.getAttribute('level')
-            type = n.getAttribute('name')
-            if attr == "level":
-                return lvl
-            elif attr == "class":
-                return type
+        for n in self.xml.findall('class'):
+            lvl = n.get('level')
+            type = n.get('name')
+            if attr == "level": return lvl
+            elif attr == "class": return type
 
 
 class d20feats(d20_char_child):
     """ Node Handler for classes.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
 
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,feat_panel,"Feats")
@@ -633,24 +572,22 @@ class d20feats(d20_char_child):
 
     def tohtml(self):
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>Feats</th></tr><tr><td>"
-        n_list = self.master_dom._get_childNodes()
-        for n in n_list:
-            html_str += n.getAttribute('name')+ ", "
+        for n in self.xml: html_str += n.get('name')+ ", "
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
         return html_str
+
 
 class d20spells(d20_char_child):
     """ Node Handler for classes.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
-        node_list = self.master_dom.getElementsByTagName( 'spell' )
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
         self.spells = {}
         tree = self.tree
         icons = self.tree.icons
-        for n in node_list:
-            name = n.getAttribute('name')
+        for n in self.xml.findall( 'spell' ):
+            name = n.get('name')
             self.spells[ name ] = n
             new_tree_node = tree.AppendItem( self.mytree_node, name, icons['gear'], icons['gear'] )
             tree.SetPyData( new_tree_node, self )
@@ -661,10 +598,10 @@ class d20spells(d20_char_child):
         if item == self.mytree_node:
             d20_char_child.on_ldclick( self, evt )
         else:
-            level = self.spells[ name ].getAttribute( 'level' )
-            descr = self.spells[ name ].getAttribute( 'desc' )
-            use = self.spells[ name ].getAttribute( 'used' )
-            memrz = self.spells[ name ].getAttribute( 'memrz' )
+            level = self.spells[ name ].get( 'level' )
+            descr = self.spells[ name ].get( 'desc' )
+            use = self.spells[ name ].get( 'used' )
+            memrz = self.spells[ name ].get( 'memrz' )
             cname = self.char_hander.get_char_name()
             use += '+1'
             left = eval( '%s - ( %s )' % ( memrz, use ) )
@@ -675,20 +612,18 @@ class d20spells(d20_char_child):
                 txt = '%s casts %s ( level %s, "%s" )' % ( cname, name, level, descr )
                 self.chat.ParsePost( txt, True, False )
                 s = ''
-                if left != 1:
-                    s = 's'
+                if left != 1: s = 's'
                 txt = '%s can cast %s %d more time%s' % ( cname, name, left, s )
                 self.chat.ParsePost( txt, False, False )
-                self.spells[ name ].setAttribute( 'used', `eval( use )` )
+                self.spells[ name ].set( 'used', `eval( use )` )
 
     def refresh_spells(self):
         self.spells = {}
         tree = self.tree
         icons = self.tree.icons
         tree.CollapseAndReset(self.mytree_node)
-        node_list = self.master_dom.getElementsByTagName('spell')
-        for n in node_list:
-            name = n.getAttribute('name')
+        for n in self.xml.findall('spell'):
+            name = n.get('name')
             new_tree_node = tree.AppendItem(self.mytree_node,name,icons['gear'],icons['gear'])
             tree.SetPyData(new_tree_node,self)
             self.spells[name]=n
@@ -700,9 +635,7 @@ class d20spells(d20_char_child):
 
     def tohtml(self):
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>Arcane Spells</th></tr><tr><td><br />"
-        n_list = self.master_dom._get_childNodes()
-        for n in n_list:
-            html_str += "(" + n.getAttribute('level') + ") " + n.getAttribute('name')+ ", "
+        for n in self.xml: html_str += "(" + n.get('level') + ") " + n.get('name')+ ", "
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
         return html_str
 
@@ -713,14 +646,13 @@ class d20divine(d20_char_child):
     """ Node Handler for classes.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,component,parent)
-        node_list = self.master_dom.getElementsByTagName( 'gift' )
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
         self.spells = {}
         tree = self.tree
         icons = self.tree.icons
-        for n in node_list:
-            name = n.getAttribute('name')
+        for n in self.xml.findall( 'gift' ):
+            name = n.get('name')
             self.spells[ name ] = n
             new_tree_node = tree.AppendItem( self.mytree_node, name, icons['flask'], icons['flask'] )
             tree.SetPyData( new_tree_node, self )
@@ -731,10 +663,10 @@ class d20divine(d20_char_child):
         if item == self.mytree_node:
             d20_char_child.on_ldclick( self, evt )
         else:
-            level = self.spells[ name ].getAttribute( 'level' )
-            descr = self.spells[ name ].getAttribute( 'desc' )
-            use = self.spells[ name ].getAttribute( 'used' )
-            memrz = self.spells[ name ].getAttribute( 'memrz' )
+            level = self.spells[ name ].get( 'level' )
+            descr = self.spells[ name ].get( 'desc' )
+            use = self.spells[ name ].get( 'used' )
+            memrz = self.spells[ name ].get( 'memrz' )
             cname = self.char_hander.get_char_name()
             use += '+1'
             left = eval( '%s - ( %s )' % ( memrz, use ) )
@@ -745,24 +677,22 @@ class d20divine(d20_char_child):
                 txt = '%s casts %s ( level %s, "%s" )' % ( cname, name, level, descr )
                 self.chat.ParsePost( txt, True, False )
                 s = ''
-                if left != 1:
-                    s = 's'
+                if left != 1: s = 's'
                 txt = '%s can cast %s %d more time%s' % ( cname, name, left, s )
                 self.chat.ParsePost( txt, False, False )
-                self.spells[ name ].setAttribute( 'used', `eval( use )` )
+                self.spells[ name ].set( 'used', `eval( use )` )
 
     def refresh_spells(self):
         self.spells = {}
         tree = self.tree
         icons = self.tree.icons
         tree.CollapseAndReset(self.mytree_node)
-        node_list = self.master_dom.getElementsByTagName('gift')
-        for n in node_list:
-            name = n.getAttribute('name')
+        for n in self.xml.findall('gift'):
+            name = n.get('name')
             new_tree_node = tree.AppendItem(self.mytree_node,name,icons['flask'],icons['flask'])
             tree.SetPyData(new_tree_node,self)
             self.spells[name]=n
-
+            
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,divine_panel,"Spells")
         wnd.title = "Spells"
@@ -770,9 +700,7 @@ class d20divine(d20_char_child):
 
     def tohtml(self):
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>Divine Spells</th></tr><tr><td><br />"
-        n_list = self.master_dom._get_childNodes()
-        for n in n_list:
-            html_str += "(" + n.getAttribute('level') + ") " + n.getAttribute('name')+ ", "
+        for n in self.xml: html_str += "(" + n.get('level') + ") " + n.get('name')+ ", "
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
         return html_str
 
@@ -783,15 +711,14 @@ class d20powers(d20_char_child):
     """ Node Handler for classes.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
-        node_list = self.master_dom.getElementsByTagName( 'power' )
-        #cpp = self.master_dom.getElementsByTagName( 'pp' ).getAttribute('current1')
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
+        #cpp = self.xml.findall( 'pp' ).get('current1')
         self.powers = {}
         tree = self.tree
         icons = self.tree.icons
-        for n in node_list:
-            name = n.getAttribute('name')
+        for n in self.xml.findall( 'power' ):
+            name = n.get('name')
             self.powers[ name ] = n
             new_tree_node = tree.AppendItem( self.mytree_node, name, icons['gear'], icons['gear'] )
             tree.SetPyData( new_tree_node, self )
@@ -802,10 +729,10 @@ class d20powers(d20_char_child):
         if item == self.mytree_node:
             d20_char_child.on_ldclick( self, evt )
         else:
-            level = self.powers[ name ].getAttribute( 'level' )
-            descr = self.powers[ name ].getAttribute( 'desc' )
-            use = self.powers[ name ].getAttribute( 'used' )
-            points = self.powers[ name ].getAttribute( 'point' )
+            level = self.powers[ name ].get( 'level' )
+            descr = self.powers[ name ].get( 'desc' )
+            use = self.powers[ name ].get( 'used' )
+            points = self.powers[ name ].get( 'point' )
             cpp = self.char_hander.get_char_pp('current1')
             fre = self.char_hander.get_char_pp('free')
             cname = self.char_hander.get_char_name()
@@ -819,8 +746,7 @@ class d20powers(d20_char_child):
                     txt = '%s uses %s as a Free Talent ( level %s, "%s" )' % ( cname, name, level, descr )
                     self.chat.ParsePost( txt, True, False )
                     s = ''
-                    if left != 1:
-                        s = 's'
+                    if left != 1: s = 's'
                     txt = '%s can use %s %d more time%s' % ( cname, name, numcast, s )
                     self.chat.ParsePost( txt, False, False )
                     self.char_hander.set_char_pp('free', left)
@@ -834,10 +760,9 @@ class d20powers(d20_char_child):
                     txt = '%s uses %s ( level %s, "%s" )' % ( cname, name, level, descr )
                     self.chat.ParsePost( txt, True, False )
                     s = ''
-                    if left != 1:
-                        s = 's'
+                    if left != 1: s = 's'
                     txt = '%s can use %s %d more time%s' % ( cname, name, numcast, s )
-                    txt += ' - And has %d more PowerpointsP left' % (left)
+                    txt += ' - And has %d more Powerpoints left' % (left)
                     self.chat.ParsePost( txt, False, False )
                     self.char_hander.set_char_pp('current1', left)
 
@@ -846,9 +771,8 @@ class d20powers(d20_char_child):
         tree = self.tree
         icons = self.tree.icons
         tree.CollapseAndReset(self.mytree_node)
-        node_list = self.master_dom.getElementsByTagName('power')
-        for n in node_list:
-            name = n.getAttribute('name')
+        for n in self.xml.findall('power'):
+            name = n.get('name')
             new_tree_node = tree.AppendItem(self.mytree_node,name,icons['questionhead'],icons['questionhead'])
             tree.SetPyData(new_tree_node,self)
             self.powers[name]=n
@@ -860,9 +784,7 @@ class d20powers(d20_char_child):
 
     def tohtml(self):
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>Powers</th></tr><tr><td><br />"
-        n_list = self.master_dom._get_childNodes()
-        for n in n_list:
-            html_str += "(" + n.getAttribute('level') + ") " + n.getAttribute('name')+ ", "
+        for n in self.xml: html_str += "(" + n.get('level') + ") " + n.get('name')+ ", "
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
         return html_str
 
@@ -879,8 +801,8 @@ class d20howto(d20_char_child):
     """ Node Handler for hit points.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
 
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,howto_panel,"How To")
@@ -891,8 +813,8 @@ class d20inventory(d20_char_child):
     """ Node Handler for general information.   This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
 
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,inventory_grid,"Inventory")
@@ -900,12 +822,10 @@ class d20inventory(d20_char_child):
         return wnd
 
     def tohtml(self):
-        n_list = self.master_dom._get_childNodes()
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th>General Information</th></tr><tr><td>"
-        for n in n_list:
-            t_node = component.get('xml').safe_get_text_node(n)
-            html_str += "<B>"+n._get_tagName().capitalize() +":</B> "
-            html_str += t_node._get_nodeValue() + "<br />"
+        for n in self.xml:
+            html_str += "<B>"+n.tag.capitalize() +":</B> "
+            html_str += n.text + "<br />"
         html_str = html_str[:len(html_str)-2] + "</td></tr></table>"
         return html_str
 
@@ -913,16 +833,15 @@ class d20inventory(d20_char_child):
         self.char_hander.rename(name)
 
     def get_char_name( self ):
-        node = self.master_dom.getElementsByTagName( 'name' )[0]
-        t_node = component.get('xml').safe_get_text_node( node )
-        return t_node._get_nodeValue()
+        return self.xml.find( 'name' ).text
+
 
 class d20hp(d20_char_child):
     """ Node Handler for hit points.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
 
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,hp_panel,"Hit Points")
@@ -931,28 +850,24 @@ class d20hp(d20_char_child):
 
     def tohtml(self):
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th colspan=4>Hit Points</th></tr>"
-        html_str += "<tr><th>Max:</th><td>"+self.master_dom.getAttribute('max')+"</td>"
-        html_str += "<th>Current:</th><td>"+self.master_dom.getAttribute('current')+"</td>"
+        html_str += "<tr><th>Max:</th><td>"+self.xml.get('max')+"</td>"
+        html_str += "<th>Current:</th><td>"+self.xml.get('current')+"</td>"
         html_str += "</tr></table>"
         return html_str
 
     def get_max_hp( self ):
-        try:
-            return eval( self.master_dom.getAttribute( 'max' ) )
-        except:
-            return 0
+        try: return eval( self.xml.get( 'max' ) )
+        except: return 0
     def get_current_hp( self ):
-        try:
-            return eval( self.master_dom.getAttribute( 'current' ) )
-        except:
-            return 0
+        try: return eval( self.xml.get( 'current' ) )
+        except: return 0
 
 class d20pp(d20_char_child):
     """ Node Handler for power points.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
 
     def get_design_panel(self,parent):
         wnd = outline_panel(parent,self,pp_panel,"Power Points")
@@ -961,30 +876,30 @@ class d20pp(d20_char_child):
 
     def tohtml(self):
         html_str = "<table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th colspan=8>Power Points</th></tr>"
-        html_str += "<tr><th>Max:</th><td>"+self.master_dom.getAttribute('max1')+"</td>"
-        html_str += "<th>Current:</th><td>"+self.master_dom.getAttribute('current1')+"</td>"
-        html_str += "<th>Current Talents/day:</th><td>"+self.master_dom.getAttribute('free')+"</td>"
-        html_str += "<th>Max Talents/day:</th><td>"+self.master_dom.getAttribute('maxfree')+"</td>"
+        html_str += "<tr><th>Max:</th><td>"+self.xml.get('max1')+"</td>"
+        html_str += "<th>Current:</th><td>"+self.xml.get('current1')+"</td>"
+        html_str += "<th>Current Talents/day:</th><td>"+self.xml.get('free')+"</td>"
+        html_str += "<th>Max Talents/day:</th><td>"+self.xml.get('maxfree')+"</td>"
         html_str += "</tr></table>"
         return html_str
 
     def get_char_pp( self, attr ):
-        pp = self.master_dom.getAttribute(attr)
+        pp = self.xml.get(attr)
         return pp
 
     def set_char_pp( self, attr, evl ):
-        pp = self.master_dom.setAttribute(attr, evl)
+        pp = self.xml.set(attr, evl)
         return pp
 
 class d20attacks(d20_char_child):
     """ Node Handler for attacks.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
-        node_list = self.master_dom.getElementsByTagName('melee')
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
+        node_list = self.xml.findall('melee')
         self.melee = node_list[0]
-        node_list = self.master_dom.getElementsByTagName('ranged')
+        node_list = self.xml.findall('ranged')
         self.ranged = node_list[0]
         self.refresh_weapons()
 
@@ -993,22 +908,22 @@ class d20attacks(d20_char_child):
         tree = self.tree
         icons = self.tree.icons
         tree.CollapseAndReset(self.mytree_node)
-        node_list = self.master_dom.getElementsByTagName('weapon')
+        node_list = self.xml.findall('weapon')
         for n in node_list:
-            name = n.getAttribute('name')
+            name = n.get('name')
             new_tree_node = tree.AppendItem(self.mytree_node,name,icons['sword'],icons['sword'])
             tree.SetPyData(new_tree_node,self)
             self.weapons[name]=n
 
     def get_attack_data(self):
         temp = self.melee
-        base = int(temp.getAttribute('base'))
-        base2 = int(temp.getAttribute('second'))
-        base3 = int(temp.getAttribute('third'))
-        base4 = int(temp.getAttribute('forth'))
-        base5 = int(temp.getAttribute('fifth'))
-        base6 = int(temp.getAttribute('sixth'))
-        misc = int(temp.getAttribute('misc'))
+        base = int(temp.get('base'))
+        base2 = int(temp.get('second'))
+        base3 = int(temp.get('third'))
+        base4 = int(temp.get('forth'))
+        base5 = int(temp.get('fifth'))
+        base6 = int(temp.get('sixth'))
+        misc = int(temp.get('misc'))
         return (base, base2, base3, base4, base5, base6, misc)
 
     # Replace any 'S' and 'D' in an attack modifier and damage modifier with the
@@ -1038,10 +953,10 @@ class d20attacks(d20_char_child):
             #self.frame.add_panel(self.get_design_panel(self.frame.note))
         else:
             # Weapon/attack specific attack modifier (e.g. "S+1" for a longsword+1).
-            attack_mod_str = self.weapons[name].getAttribute('mod')
+            attack_mod_str = self.weapons[name].get('mod')
 
             # Weapon/attack specific damage (e.g. "1d8+S+1" for a longsword+1).
-            damage_str = self.weapons[name].getAttribute('damage')
+            damage_str = self.weapons[name].get('damage')
             (num_damage_dice, damage_die, damage_mods, extra_damage) = self.decompose_damage( damage_str )
 
             # Replace any 'S' and 'D' in attack_mod_str and damage_str with the
@@ -1051,42 +966,35 @@ class d20attacks(d20_char_child):
             # Base attack bonuses for up to six attacks.
             bab_attributes = ['base', 'second', 'third', 'forth', 'fifth', 'sixth']
             bab = []
-            for b in bab_attributes:
-                bab.append( int(self.melee.getAttribute( b )) )
+            for b in bab_attributes: bab.append( int(self.melee.get( b )) )
 
             # Misc. attack modifier to be applied to *all* attacks.
-            misc_mod = int(self.melee.getAttribute( 'misc' ));
+            misc_mod = int(self.melee.get( 'misc' ));
 
             # Attack modifier (except BAB)
             attack_mod = misc_mod + eval( attack_mod_str )
 
             # Total damage mod (except extra dice)
-            if damage_mods != '':
-                damage_mod = eval( damage_mods )
-            else:
-                damage_mod = 0
+            if damage_mods != '': damage_mod = eval( damage_mods )
+            else: damage_mod = 0
 
             # Determine critical hit range and multiplier.
-            critical_str = self.weapons[name].getAttribute( 'critical' )
+            critical_str = self.weapons[name].get( 'critical' )
             m = re.match( r"(((?P<min>\d+)-)?\d+/)?x(?P<mult>\d+)", critical_str )
             crit_min = m.group( 'min' )
             crit_mult = m.group( 'mult' )
-            if crit_min == None:
-                crit_min = 20
-            else:
-                crit_min = int( crit_min )
-            if crit_mult == None:
-                crit_mult = 2
-            else:
-                crit_mult = int( crit_mult )
+            if crit_min == None: crit_min = 20
+            else: crit_min = int( crit_min )
+            if crit_mult == None: crit_mult = 2
+            else: crit_mult = int( crit_mult )
 
             # Simple matter to output all the attack/damage lines to the chat buffer.
             for i in range( 0, len( bab ) ):
                 if bab[i] > 0 or i == 0:
                     attack_roll_str = '[1d20%+d]' % (bab[i] + attack_mod)
-                    attack_roll_parsed = self.chat.ParseDice( attack_roll_str )
+                    attack_roll_parsed = Parse.Dice( attack_roll_str )
                     damage_roll_str = '[%dd%d%+d%s]' % (num_damage_dice, damage_die, damage_mod, extra_damage)
-                    damage_roll_parsed = self.chat.ParseDice( damage_roll_str )
+                    damage_roll_parsed = Parse.Dice( damage_roll_str )
                     txt = '%s (%s): %s ===> Damage: %s' \
                           % (name, bab_attributes[i], attack_roll_parsed, damage_roll_parsed)
                     self.chat.Post( txt, True, True )
@@ -1095,8 +1003,7 @@ class d20attacks(d20_char_child):
                     d20_roll = int(re.match( r".*\[(\d+),.*", attack_roll_parsed ).group(1));
                     dmg = damage_str
                     if d20_roll >= crit_min:
-                        for j in range(1,crit_mult):
-                            dmg += '+%s' % damage_str
+                        for j in range(1,crit_mult): dmg += '+%s' % damage_str
                         txt = 'Critical hit? [1d20%+d] ===> Damage: [%dd%d%+d%s]' \
                               % (bab[i] + attack_mod, crit_mult*num_damage_dice, \
                                  damage_die, crit_mult*damage_mod, extra_damage)
@@ -1115,37 +1022,36 @@ class d20attacks(d20_char_child):
         html_str = "<table width=100% border=1 ><tr ALIGN='center'><th BGCOLOR=#E9E9E9>Base Attack Bonus</th>"
         html_str += '<td>%+d' % babs[0]
         for i in range(1,6):
-            if babs[i] > 0:
-                html_str += '/%+d' % babs[i]
+            if babs[i] > 0: html_str += '/%+d' % babs[i]
         html_str += "</td></tr><tr ALIGN='center' ><th BGCOLOR=#E9E9E9>Misc. Attack Bonus</th>"
         html_str += '<td>%+d</td></tr></table>' % babs[6]
 
-        n_list = self.master_dom.getElementsByTagName('weapon')
+        n_list = self.xml.findall('weapon')
         for n in n_list:
-            (attack_mod, damage_mod) = self.process_mod_codes( n.getAttribute( 'mod' ), \
-                                                               n.getAttribute( 'damage' ) )
+            (attack_mod, damage_mod) = self.process_mod_codes( n.get( 'mod' ), \
+                                                               n.get( 'damage' ) )
             attack_mod = eval( attack_mod )
             html_str += """<P><table width=100% border=1><tr BGCOLOR=#E9E9E9><th colspan=3>Weapon</th>
                     <th>Attack</th><th >Damage</th></tr>""" \
                       + "<tr ALIGN='center'><td colspan=3>" \
-                      + n.getAttribute('name') + "</td><td>"
+                      + n.get('name') + "</td><td>"
             html_str += '%+d</td><td>%s</td></tr>' % (attack_mod, damage_mod)
             html_str += """<tr BGCOLOR=#E9E9E9 ><th>Critical</th><th>Range</th><th>Weight</th>
                         <th>Type</th><th>Size</th></tr>""" \
                       + "<tr ALIGN='center'><td>" \
-                      + n.getAttribute( 'critical' ) + "</td><td>" \
-                      + n.getAttribute( 'range' ) + "</td><td>" \
-                      + n.getAttribute( 'weight' )+"</td><td>" \
-                      + n.getAttribute( 'type' ) + "</td><td>" \
-                      + n.getAttribute( 'size' ) + "</td></tr></table>"
+                      + n.get( 'critical' ) + "</td><td>" \
+                      + n.get( 'range' ) + "</td><td>" \
+                      + n.get( 'weight' )+"</td><td>" \
+                      + n.get( 'type' ) + "</td><td>" \
+                      + n.get( 'size' ) + "</td></tr></table>"
         return html_str
 
 class d20armor(d20_char_child):
     """ Node Handler for ac.  This handler will be
         created by d20char_handler.
     """
-    def __init__(self,xml_dom,tree_node,parent):
-        d20_char_child.__init__(self,xml_dom,tree_node,parent)
+    def __init__(self,xml,tree_node,parent):
+        d20_char_child.__init__(self,xml,tree_node,parent)
 
     def get_spell_failure(self):
         return self.get_total('spellfailure')
@@ -1161,26 +1067,22 @@ class d20armor(d20_char_child):
         ac_total += self.get_total('bonus')
         dex_mod = self.char_hander.child_handlers['abilities'].get_mod('Dex')
         max_dex = self.get_max_dex()
-        if dex_mod < max_dex:
-            ac_total += dex_mod
-        else:
-            ac_total += max_dex
+        if dex_mod < max_dex: ac_total += dex_mod
+        else: ac_total += max_dex
         return ac_total
 
     def get_max_dex(self):
-        armor_list = self.master_dom.getElementsByTagName('armor')
+        armor_list = self.xml.findall('armor')
         dex = 10
         for a in armor_list:
-            temp = int(a.getAttribute("maxdex"))
-            if temp < dex:
-                dex = temp
+            temp = int(a.get("maxdex"))
+            if temp < dex: dex = temp
         return dex
 
     def get_total(self,attr):
-        armor_list = self.master_dom.getElementsByTagName('armor')
+        armor_list = self.xml.findall('armor')
         total = 0
-        for a in armor_list:
-            total += int(a.getAttribute(attr))
+        for a in armor_list: total += int(a.get(attr))
         return total
 
     def get_design_panel(self,parent):
@@ -1196,20 +1098,19 @@ class d20armor(d20_char_child):
         html_str += "<td>"+str(self.get_spell_failure())+"</td>"
         html_str += "<td>"+str(self.get_max_dex())+"</td>"
         html_str += "<td>"+str(self.get_total_weight())+"</td></tr></table>"
-        n_list = self.master_dom._get_childNodes()
-        for n in n_list:
+        for n in self.xml:
             html_str += """<P><table width=100% border=1 ><tr BGCOLOR=#E9E9E9 ><th colspan=3>Armor</th>
                     <th>Type</th><th >Bonus</th></tr>"""
-            html_str += "<tr ALIGN='center' ><td  colspan=3>"+n.getAttribute('name')+"</td>"
-            html_str += "<td>"+n.getAttribute('type')+"</td>"
-            html_str += "<td>"+n.getAttribute('bonus')+"</td></tr>"
+            html_str += "<tr ALIGN='center' ><td  colspan=3>"+n.get('name')+"</td>"
+            html_str += "<td>"+n.get('type')+"</td>"
+            html_str += "<td>"+n.get('bonus')+"</td></tr>"
             html_str += """<tr BGCOLOR=#E9E9E9 ><th>Check Penalty</th><th>Spell Failure</th>
                         <th>Max Dex</th><th>Speed</th><th>Weight</th></tr>"""
-            html_str += "<tr ALIGN='center'><td>"+n.getAttribute('checkpenalty')+"</td>"
-            html_str += "<td>"+n.getAttribute('spellfailure')+"</td>"
-            html_str += "<td>"+n.getAttribute('maxdex')+"</td>"
-            html_str += "<td>"+n.getAttribute('speed')+"</td>"
-            html_str += "<td>"+n.getAttribute('weight')+"</td></tr></table>"
+            html_str += "<tr ALIGN='center'><td>"+n.get('checkpenalty')+"</td>"
+            html_str += "<td>"+n.get('spellfailure')+"</td>"
+            html_str += "<td>"+n.get('maxdex')+"</td>"
+            html_str += "<td>"+n.get('speed')+"</td>"
+            html_str += "<td>"+n.get('weight')+"</td></tr></table>"
         return html_str
 
 
@@ -1242,15 +1143,14 @@ class outline_panel(wx.Panel):
 
 class char_panel(wx.ScrolledWindow):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'TWO')
+        pname = handler.xml.set("name", 'TWO')
         wx.ScrolledWindow.__init__(self, parent, -1,style=wx.VSCROLL | wx.SUNKEN_BORDER  )
         self.height = 1200
         self.SetScrollbars(10, 10,80, self.height/10)
         self.main_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.panels = {}
         keys = handler.child_handlers.keys()
-        for k in keys:
-            self.panels[k] = handler.child_handlers[k].get_design_panel(self, [k])
+        for k in keys: self.panels[k] = handler.child_handlers[k].get_design_panel(self, [k])
         self.sub_sizer = wx.BoxSizer(wx.VERTICAL)
         self.sub_sizer2 = wx.BoxSizer(wx.VERTICAL)
         self.sub_sizer.Add(self.panels['general'], 1, wx.EXPAND)
@@ -1297,14 +1197,12 @@ HOWTO_MAX = wx.NewId()
 class howto_panel(wx.Panel):
     def __init__(self, parent, handler):
         wx.Panel.__init__(self, parent, -1)
-        pname = handler.master_dom.setAttribute("name", 'How To')
+        pname = handler.xml.set("name", 'How To')
         self.sizer = wx.FlexGridSizer(2, 4, 2, 2)  # rows, cols, hgap, vgap
-        self.master_dom = handler.master_dom
-        n_list = self.master_dom._get_childNodes()
-        for n in n_list:
-            t_node = component.get('xml').safe_get_text_node(n)
-        self.sizer.AddMany([ (wx.StaticText(self, -1, t_node._get_nodeValue()),   0, wx.ALIGN_CENTER_VERTICAL),
-                 ])
+        self.sizer.AddMany([ (wx.StaticText(self, -1, 
+                              handler.xml.find('howto').text), 
+                              0, wx.ALIGN_CENTER_VERTICAL),
+                            ])
         self.sizer.AddGrowableCol(1)
         self.SetSizer(self.sizer)
 
@@ -1315,13 +1213,13 @@ HP_MAX = wx.NewId()
 class hp_panel(wx.Panel):
     def __init__(self, parent, handler):
         wx.Panel.__init__(self, parent, -1)
-        pname = handler.master_dom.setAttribute("name", 'HitPoints')
+        pname = handler.xml.set("name", 'HitPoints')
         self.sizer = wx.FlexGridSizer(2, 4, 2, 2)  # rows, cols, hgap, vgap
-        self.master_dom = handler.master_dom
+        self.xml = handler.xml
         self.sizer.AddMany([ (wx.StaticText(self, -1, "HP Current:"),   0, wx.ALIGN_CENTER_VERTICAL),
-                 (wx.TextCtrl(self, HP_CUR, self.master_dom.getAttribute('current')),   0, wx.EXPAND),
+                 (wx.TextCtrl(self, HP_CUR, self.xml.get('current')),   0, wx.EXPAND),
                  (wx.StaticText(self, -1, "HP Max:"), 0, wx.ALIGN_CENTER_VERTICAL),
-                 (wx.TextCtrl(self, HP_MAX, self.master_dom.getAttribute('max')),  0, wx.EXPAND),
+                 (wx.TextCtrl(self, HP_MAX, self.xml.get('max')),  0, wx.EXPAND),
                  ])
         self.sizer.AddGrowableCol(1)
         self.SetSizer(self.sizer)
@@ -1331,10 +1229,8 @@ class hp_panel(wx.Panel):
 
     def on_text(self,evt):
         id = evt.GetId()
-        if id == HP_CUR:
-            self.master_dom.setAttribute('current',evt.GetString())
-        elif id == HP_MAX:
-            self.master_dom.setAttribute('max',evt.GetString())
+        if id == HP_CUR: self.xml.set('current',evt.GetString())
+        elif id == HP_MAX: self.xml.set('max',evt.GetString())
 
     def on_size(self,evt):
         s = self.GetClientSizeTuple()
@@ -1348,18 +1244,18 @@ PP_MFRE = wx.NewId()
 class pp_panel(wx.Panel):
     def __init__(self, parent, handler):
         wx.Panel.__init__(self, parent, -1)
-        pname = handler.master_dom.setAttribute("name", 'PowerPoints')
+        pname = handler.xml.set("name", 'PowerPoints')
         self.sizer = wx.FlexGridSizer(2, 4, 2, 2)  # rows, cols, hgap, vgap
-        self.master_dom = handler.master_dom
+        self.xml = handler.xml
 
         self.sizer.AddMany([ (wx.StaticText(self, -1, "PP Current:"),   0, wx.ALIGN_CENTER_VERTICAL),
-                 (wx.TextCtrl(self, PP_CUR, self.master_dom.getAttribute('current1')),   0, wx.EXPAND),
+                 (wx.TextCtrl(self, PP_CUR, self.xml.get('current1')),   0, wx.EXPAND),
                  (wx.StaticText(self, -1, "PP Max:"), 0, wx.ALIGN_CENTER_VERTICAL),
-                 (wx.TextCtrl(self, PP_MAX, self.master_dom.getAttribute('max1')),  0, wx.EXPAND),
+                 (wx.TextCtrl(self, PP_MAX, self.xml.get('max1')),  0, wx.EXPAND),
                  (wx.StaticText(self, -1, "Current Free Talants per day:"), 0, wx.ALIGN_CENTER_VERTICAL),
-                 (wx.TextCtrl(self, PP_FRE, self.master_dom.getAttribute('free')),  0, wx.EXPAND),
+                 (wx.TextCtrl(self, PP_FRE, self.xml.get('free')),  0, wx.EXPAND),
                  (wx.StaticText(self, -1, "Max Free Talants per day:"), 0, wx.ALIGN_CENTER_VERTICAL),
-                 (wx.TextCtrl(self, PP_MFRE, self.master_dom.getAttribute('maxfree')),  0, wx.EXPAND),
+                 (wx.TextCtrl(self, PP_MFRE, self.xml.get('maxfree')),  0, wx.EXPAND),
                  ])
         self.sizer.AddGrowableCol(1)
         self.SetSizer(self.sizer)
@@ -1371,14 +1267,10 @@ class pp_panel(wx.Panel):
 
     def on_text(self,evt):
         id = evt.GetId()
-        if id == PP_CUR:
-            self.master_dom.setAttribute('current1',evt.GetString())
-        elif id == PP_MAX:
-            self.master_dom.setAttribute('max1',evt.GetString())
-        elif id == PP_FRE:
-            self.master_dom.setAttribute('free',evt.GetString())
-        elif id == PP_MFRE:
-            self.master_dom.setAttribute('maxfree',evt.GetString())
+        if id == PP_CUR: self.xml.set('current1',evt.GetString())
+        elif id == PP_MAX: self.xml.set('max1',evt.GetString())
+        elif id == PP_FRE: self.xml.set('free',evt.GetString())
+        elif id == PP_MFRE: self.xml.set('maxfree',evt.GetString())
 
     def on_size(self,evt):
         s = self.GetClientSizeTuple()
@@ -1388,101 +1280,91 @@ class pp_panel(wx.Panel):
 class gen_grid(wx.grid.Grid):
     """grid for gen info"""
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'General')
+        pname = handler.xml.set("name", 'General')
         wx.grid.Grid.__init__(self, parent, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.Bind(wx.EVT_SIZE, self.on_size)
         self.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
         self.handler = handler
-        n_list = handler.master_dom._get_childNodes()
+        n_list = handler.xml[:]
         self.CreateGrid(len(n_list),2)
         self.SetRowLabelSize(0)
         self.SetColLabelSize(0)
         self.n_list = n_list
         i = 0
-        for i in range(len(n_list)):
-            self.refresh_row(i)
+        for i in range(len(n_list)): self.refresh_row(i)
 
     def on_cell_change(self,evt):
         row = evt.GetRow()
         col = evt.GetCol()
         value = self.GetCellValue(row,col)
-        t_node = self.n_list[row]._get_firstChild()
-        t_node._set_nodeValue(value)
+        self.n_list[row].text = value
         if row==0: self.handler.on_name_change(value)
 
     def refresh_row(self,rowi):
-        t_node = component.get('xml').safe_get_text_node(self.n_list[rowi])
-        self.SetCellValue(rowi,0,self.n_list[rowi]._get_tagName())
+        self.SetCellValue(rowi,0,self.n_list[rowi].tag)
         self.SetReadOnly(rowi,0)
-        self.SetCellValue(rowi,1,t_node._get_nodeValue())
+        self.SetCellValue(rowi,1,self.n_list[rowi].text)
 
     def on_size(self,evt):
         (w,h) = self.GetClientSizeTuple()
         cols = self.GetNumberCols()
         col_w = w/(cols)
-        for i in range(0,cols):
-            self.SetColSize(i,col_w)
+        for i in range(0,cols):  self.SetColSize(i,col_w)
         evt.Skip()
         self.Refresh()
 
 class inventory_grid(wx.grid.Grid):
     """grid for gen info"""
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Money and Inventory')
+        pname = handler.xml.set("name", 'Money and Inventory')
         wx.grid.Grid.__init__(self, parent, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.Bind(wx.EVT_SIZE, self.on_size)
         self.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
         self.handler = handler
-        n_list = handler.master_dom._get_childNodes()
+        n_list = handler.xml[:]
         self.CreateGrid(len(n_list),2)
         self.SetRowLabelSize(0)
         self.SetColLabelSize(0)
         self.n_list = n_list
         i = 0
-        for i in range(len(n_list)):
-            self.refresh_row(i)
+        for i in range(len(n_list)): self.refresh_row(i)
 
     def on_cell_change(self,evt):
         row = evt.GetRow()
         col = evt.GetCol()
         value = self.GetCellValue(row,col)
-        t_node = self.n_list[row]._get_firstChild()
-        t_node._set_nodeValue(value)
+        self.n_list[row].text = value
         if row==0: self.handler.on_name_change(value)
 
     def refresh_row(self,rowi):
-        t_node = component.get('xml').safe_get_text_node(self.n_list[rowi])
-        self.SetCellValue(rowi,0,self.n_list[rowi]._get_tagName())
+        self.SetCellValue(rowi,0,self.n_list[rowi].tag)
         self.SetReadOnly(rowi,0)
-        self.SetCellValue(rowi,1,t_node._get_nodeValue())
+        self.SetCellValue(rowi,1,self.n_list[rowi].text)
 
     def on_size(self,evt):
         (w,h) = self.GetClientSizeTuple()
         cols = self.GetNumberCols()
         col_w = w/(cols)
-        for i in range(0,cols):
-            self.SetColSize(i,col_w)
+        for i in range(0,cols): self.SetColSize(i,col_w)
         evt.Skip()
         self.Refresh()
 
 class abil_grid(wx.grid.Grid):
     """grid for abilities"""
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Stats')
+        pname = handler.xml.set("name", 'Stats')
         wx.grid.Grid.__init__(self, parent, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.Bind(wx.EVT_SIZE, self.on_size)
         self.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
         self.handler = handler
-        stats = handler.master_dom.getElementsByTagName('stat')
+        stats = handler.xml.findall('stat')
         self.CreateGrid(len(stats),3)
         self.SetRowLabelSize(0)
         col_names = ['Ability','Score','Modifier']
-        for i in range(len(col_names)):
-            self.SetColLabelValue(i,col_names[i])
+        for i in range(len(col_names)): self.SetColLabelValue(i,col_names[i])
         self.stats = stats
         i = 0
-        for i in range(len(stats)):
-            self.refresh_row(i)
+        for i in range(len(stats)): self.refresh_row(i)
         self.char_wnd = None
 
     def on_cell_change(self,evt):
@@ -1491,20 +1373,18 @@ class abil_grid(wx.grid.Grid):
         value = self.GetCellValue(row,col)
         try:
             int(value)
-            self.stats[row].setAttribute('base',value)
+            self.stats[row].set('base',value)
             self.refresh_row(row)
-        except:
-            self.SetCellValue(row,col,"0")
-        if self.char_wnd:
-            self.char_wnd.refresh_data()
+        except: self.SetCellValue(row,col,"0")
+        if self.char_wnd: self.char_wnd.refresh_data()
 
     def refresh_row(self,rowi):
         s = self.stats[rowi]
-        name = s.getAttribute('name')
-        abbr = s.getAttribute('abbr')
+        name = s.get('name')
+        abbr = s.get('abbr')
         self.SetCellValue(rowi,0,name)
         self.SetReadOnly(rowi,0)
-        self.SetCellValue(rowi,1,s.getAttribute('base'))
+        self.SetCellValue(rowi,1,s.get('base'))
         self.SetCellValue(rowi,2,str(self.handler.get_mod(abbr)))
         self.SetReadOnly(rowi,2)
 
@@ -1513,35 +1393,31 @@ class abil_grid(wx.grid.Grid):
         cols = self.GetNumberCols()
         col_w = w/(cols+2)
         self.SetColSize(0,col_w*3)
-        for i in range(1,cols):
-            self.SetColSize(i,col_w)
+        for i in range(1,cols): self.SetColSize(i,col_w)
         evt.Skip()
         self.Refresh()
 
     def refresh_data(self):
-        for r in range(self.GetNumberRows()-1):
-            self.refresh_row(r)
+        for r in range(self.GetNumberRows()-1): self.refresh_row(r)
 
 
 class save_grid(wx.grid.Grid):
     """grid for saves"""
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Saves')
+        pname = handler.xml.set("name", 'Saves')
         wx.grid.Grid.__init__(self, parent, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.Bind(wx.EVT_SIZE, self.on_size)
         self.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
         self.handler = handler
-        saves = handler.master_dom.getElementsByTagName('save')
+        saves = handler.xml.findall('save')
         self.stats = handler.char_hander.child_handlers['abilities']
         self.CreateGrid(len(saves),7)
         self.SetRowLabelSize(0)
         col_names = ['Save','Key','base','Abil','Magic','Misc','Total']
-        for i in range(len(col_names)):
-            self.SetColLabelValue(i,col_names[i])
+        for i in range(len(col_names)): self.SetColLabelValue(i,col_names[i])
         self.saves = saves
         i = 0
-        for i in range(len(saves)):
-            self.refresh_row(i)
+        for i in range(len(saves)): self.refresh_row(i)
 
     def on_cell_change(self,evt):
         row = evt.GetRow()
@@ -1549,29 +1425,25 @@ class save_grid(wx.grid.Grid):
         value = self.GetCellValue(row,col)
         try:
             int(value)
-            if col == 2:
-                self.saves[row].setAttribute('base',value)
-            elif col ==4:
-                self.saves[row].setAttribute('magmod',value)
-            elif col ==4:
-                self.saves[row].setAttribute('miscmod',value)
+            if col == 2: self.saves[row].set('base',value)
+            elif col == 4: self.saves[row].set('magmod',value)
+            elif col == 4: self.saves[row].set('miscmod',value)
             self.refresh_row(row)
-        except:
-            self.SetCellValue(row,col,"0")
+        except: self.SetCellValue(row,col,"0")
 
     def refresh_row(self,rowi):
         s = self.saves[rowi]
-        name = s.getAttribute('name')
+        name = s.get('name')
         self.SetCellValue(rowi,0,name)
         self.SetReadOnly(rowi,0)
-        stat = s.getAttribute('stat')
+        stat = s.get('stat')
         self.SetCellValue(rowi,1,stat)
         self.SetReadOnly(rowi,1)
-        self.SetCellValue(rowi,2,s.getAttribute('base'))
+        self.SetCellValue(rowi,2,s.get('base'))
         self.SetCellValue(rowi,3,str(self.stats.get_mod(stat)))
         self.SetReadOnly(rowi,3)
-        self.SetCellValue(rowi,4,s.getAttribute('magmod'))
-        self.SetCellValue(rowi,5,s.getAttribute('miscmod'))
+        self.SetCellValue(rowi,4,s.get('magmod'))
+        self.SetCellValue(rowi,5,s.get('miscmod'))
         mod = str(self.handler.get_mod(name))
         self.SetCellValue(rowi,6,mod)
         self.SetReadOnly(rowi,6)
@@ -1581,35 +1453,31 @@ class save_grid(wx.grid.Grid):
         cols = self.GetNumberCols()
         col_w = w/(cols+2)
         self.SetColSize(0,col_w*3)
-        for i in range(1,cols):
-            self.SetColSize(i,col_w)
+        for i in range(1,cols): self.SetColSize(i,col_w)
         evt.Skip()
         self.Refresh()
 
     def refresh_data(self):
-        for r in range(self.GetNumberRows()):
-            self.refresh_row(r)
+        for r in range(self.GetNumberRows()): self.refresh_row(r)
 
 
 class skill_grid(wx.grid.Grid):
     """ panel for skills """
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Skills')
+        pname = handler.xml.set("name", 'Skills')
         wx.grid.Grid.__init__(self, parent, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.Bind(wx.EVT_SIZE, self.on_size)
         self.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
         self.handler = handler
-        skills = handler.master_dom.getElementsByTagName('skill')
+        skills = handler.xml.findall('skill')
         self.stats = handler.char_hander.child_handlers['abilities']
         self.CreateGrid(len(skills),6)
         self.SetRowLabelSize(0)
         col_names = ['Skill','Key','Rank','Abil','Misc','Total']
-        for i in range(len(col_names)):
-            self.SetColLabelValue(i,col_names[i])
+        for i in range(len(col_names)): self.SetColLabelValue(i,col_names[i])
         rowi = 0
         self.skills = skills
-        for i in range(len(skills)):
-            self.refresh_row(i)
+        for i in range(len(skills)): self.refresh_row(i)
 
     def on_cell_change(self,evt):
         row = evt.GetRow()
@@ -1617,26 +1485,23 @@ class skill_grid(wx.grid.Grid):
         value = self.GetCellValue(row,col)
         try:
             int(value)
-            if col == 2:
-                self.skills[row].setAttribute('rank',value)
-            elif col ==4:
-                self.skills[row].setAttribute('misc',value)
+            if col == 2: self.skills[row].set('rank',value)
+            elif col == 4: self.skills[row].set('misc',value)
             self.refresh_row(row)
-        except:
-            self.SetCellValue(row,col,"0")
+        except: self.SetCellValue(row,col,"0")
 
     def refresh_row(self,rowi):
         s = self.skills[rowi]
-        name = s.getAttribute('name')
+        name = s.get('name')
         self.SetCellValue(rowi,0,name)
         self.SetReadOnly(rowi,0)
-        stat = s.getAttribute('stat')
+        stat = s.get('stat')
         self.SetCellValue(rowi,1,stat)
         self.SetReadOnly(rowi,1)
-        self.SetCellValue(rowi,2,s.getAttribute('rank'))
+        self.SetCellValue(rowi,2,s.get('rank'))
         self.SetCellValue(rowi,3,str(self.stats.get_mod(stat)))
         self.SetReadOnly(rowi,3)
-        self.SetCellValue(rowi,4,s.getAttribute('misc'))
+        self.SetCellValue(rowi,4,s.get('misc'))
         mod = str(self.handler.get_mod(name))
         self.SetCellValue(rowi,5,mod)
         self.SetReadOnly(rowi,5)
@@ -1646,20 +1511,17 @@ class skill_grid(wx.grid.Grid):
         cols = self.GetNumberCols()
         col_w = w/(cols+2)
         self.SetColSize(0,col_w*3)
-        for i in range(1,cols):
-            self.SetColSize(i,col_w)
+        for i in range(1,cols): self.SetColSize(i,col_w)
         evt.Skip()
         self.Refresh()
 
     def refresh_data(self):
-        for r in range(self.GetNumberRows()):
-            self.refresh_row(r)
-
+        for r in range(self.GetNumberRows()): self.refresh_row(r)
 
 
 class feat_panel(wx.Panel):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Feats')
+        pname = handler.xml.set("name", 'Feats')
         wx.Panel.__init__(self, parent, -1)
         self.grid =wx.grid.Grid(self, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -1671,22 +1533,21 @@ class feat_panel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.on_remove, id=10)
         self.Bind(wx.EVT_BUTTON, self.on_add, id=20)
 
-        n_list = handler.master_dom._get_childNodes()
+        n_list = handler.xml[:]
         self.n_list = n_list
-        self.master_dom = handler.master_dom
+        self.xml = handler.xml
         self.grid.CreateGrid(len(n_list),2,1)
         self.grid.SetRowLabelSize(0)
         self.grid.SetColLabelValue(0,"Feat")
         self.grid.SetColLabelValue(1,"Type")
-        for i in range(len(n_list)):
-            self.refresh_row(i)
+        for i in range(len(n_list)): self.refresh_row(i)
         self.temp_dom = None
         self.SetSizer(self.sizer)
 
     def refresh_row(self,i):
         feat = self.n_list[i]
-        name = feat.getAttribute('name')
-        type = feat.getAttribute('type')
+        name = feat.get('name')
+        type = feat.get('type')
         self.grid.SetCellValue(i,0,name)
         self.grid.SetReadOnly(i,0)
         self.grid.SetCellValue(i,1,type)
@@ -1697,27 +1558,23 @@ class feat_panel(wx.Panel):
         for i in range(rows):
             if self.grid.IsInSelection(i,0):
                 self.grid.DeleteRows(i)
-                self.master_dom.removeChild(self.n_list[i])
+                self.xml.removeChild(self.n_list[i])
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["d20"]+"d20feats.xml","r")
-            xml_dom = parseXml_with_dlg(self,tmp.read())
-            xml_dom = xml_dom._get_firstChild()
-            tmp.close()
-            self.temp_dom = xml_dom
-        f_list = self.temp_dom.getElementsByTagName('feat')
+            tree = parse(orpg.dirpath.dir_struct["d20"]+"d20feats.xml")
+            self.temp_dom = tree.getroot()
+        f_list = self.temp_dom.findall('feat')
         opts = []
-        for f in f_list:
-            opts.append(f.getAttribute('name'))
+        for f in f_list: opts.append(f.get('name'))
         dlg = wx.SingleChoiceDialog(self,'Choose Feat','Feats',opts)
         if dlg.ShowModal() == wx.ID_OK:
             i = dlg.GetSelection()
-            new_node = self.master_dom.appendChild(f_list[i].cloneNode(False))
+            new_node = self.xml.append(XML(tostring(f_list[i])))
             self.grid.AppendRows(1)
+            self.n_list = self.xml.findall('feat')
             self.refresh_row(self.grid.GetNumberRows()-1)
         dlg.Destroy()
-
 
     def on_size(self,event):
         s = self.GetClientSizeTuple()
@@ -1726,12 +1583,11 @@ class feat_panel(wx.Panel):
         (w,h) = self.grid.GetClientSizeTuple()
         cols = self.grid.GetNumberCols()
         col_w = w/(cols)
-        for i in range(0,cols):
-            self.grid.SetColSize(i,col_w)
+        for i in range(0,cols): self.grid.SetColSize(i,col_w)
 
 class spell_panel(wx.Panel):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Arcane Spells')
+        pname = handler.xml.set("name", 'Arcane Spells')
         wx.Panel.__init__(self, parent, -1)
         self.grid =wx.grid.Grid(self, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.handler = handler
@@ -1748,33 +1604,30 @@ class spell_panel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.on_add, id=20)
         self.Bind(wx.EVT_BUTTON, self.on_refresh_spells, id=30)
         self.grid.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
-        n_list = handler.master_dom._get_childNodes()
+        n_list = handler.xml[:]
         self.n_list = n_list
-        self.master_dom = handler.master_dom
+        self.xml = handler.xml
         self.grid.CreateGrid(len(n_list),4,1)
         self.grid.SetRowLabelSize(0)
         self.grid.SetColLabelValue(0,"No.")
         self.grid.SetColLabelValue(1,"Lvl")
         self.grid.SetColLabelValue(2,"Spell")
         self.grid.SetColLabelValue(3,"Desc")
-        for i in range(len(n_list)):
-            self.refresh_row(i)
+        for i in range(len(n_list)): self.refresh_row(i)
         self.temp_dom = None
 
     def on_cell_change(self,evt):
         row = evt.GetRow()
         col = evt.GetCol()
         value = self.grid.GetCellValue(row,col)
-        if col == 0:
-            self.n_list[row].setAttribute('memrz',value)
-
+        if col == 0: self.n_list[row].set('memrz',value)
 
     def refresh_row(self,i):
         spell = self.n_list[i]
-        memrz = spell.getAttribute('memrz')
-        name = spell.getAttribute('name')
-        type = spell.getAttribute('desc')
-        level = spell.getAttribute('level')
+        memrz = spell.get('memrz')
+        name = spell.get('name')
+        type = spell.get('desc')
+        level = spell.get('level')
         self.grid.SetCellValue(i,0,memrz)
         self.grid.SetCellValue(i,2,name)
         self.grid.SetReadOnly(i,2)
@@ -1788,42 +1641,29 @@ class spell_panel(wx.Panel):
         for i in range(rows):
             if self.grid.IsInSelection(i,0):
                 self.grid.DeleteRows(i)
-                self.master_dom.removeChild(self.n_list[i])
+                self.xml.removeChild(self.n_list[i])
                 self.handler.refresh_spells()
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["d20"]+"d20spells.xml","r")
-            xml_dom = parseXml_with_dlg(self,tmp.read())
-            xml_dom = xml_dom._get_firstChild()
-            tmp.close()
-            self.temp_dom = xml_dom
-        f_list = self.temp_dom.getElementsByTagName('spell')
+            tree = parse(orpg.dirpath.dir_struct["d20"]+"d20spells.xml")
+            self.temp_dom = tree.getroot()
+        f_list = self.temp_dom.findall('spell')
         opts = []
-        # lvl = int(self.handler.get_char_lvl('level'))
-        # castlvl = lvl / 2
-        for f in f_list:
-            opts.append("(" + f.getAttribute('level') + ")" + f.getAttribute('name'))
-            # spelllvl = f.getAttribute('level')
-            # if spelllvl <= "1":
-            #     opts.append("(" + f.getAttribute('level') + ")" + f.getAttribute('name'))
-            # else:
-            #     if eval('%d >= %s' %(castlvl, spelllvl)):
-            #         opts.append("(" + f.getAttribute('level') + ")" + f.getAttribute('name'))
+        for f in f_list: opts.append("(" + f.get('level') + ")" + f.get('name'))
         dlg = wx.SingleChoiceDialog(self,'Choose Spell','Spells',opts)
         if dlg.ShowModal() == wx.ID_OK:
             i = dlg.GetSelection()
-            new_node = self.master_dom.appendChild(f_list[i].cloneNode(False))
+            new_node = self.xml.append(XML(tostring(f_list[i])))
             self.grid.AppendRows(1)
-            self.n_list = self.master_dom.getElementsByTagName('spell')
+            self.n_list = self.xml.findall('spell')
             self.refresh_row(self.grid.GetNumberRows()-1)
             self.handler.refresh_spells()
         dlg.Destroy()
 
     def on_refresh_spells( self, evt ):
-        f_list = self.master_dom.getElementsByTagName('spell')
-        for spell in f_list:
-            spell.setAttribute( 'used', '0' )
+        f_list = self.xml.findall('spell')
+        for spell in f_list: spell.set( 'used', '0' )
 
     def on_size(self,event):
         s = self.GetClientSizeTuple()
@@ -1832,20 +1672,18 @@ class spell_panel(wx.Panel):
         (w,h) = self.grid.GetClientSizeTuple()
         cols = self.grid.GetNumberCols()
         col_w = w/(cols)
-        for i in range(0,cols):
-            self.grid.SetColSize(i,col_w)
+        for i in range(0,cols): self.grid.SetColSize(i,col_w)
         self.grid.SetColSize(0,w * 0.10)
         self.grid.SetColSize(1,w * 0.10)
         self.grid.SetColSize(2,w * 0.30)
         self.grid.SetColSize(3,w * 0.50)
 
     def refresh_data(self):
-        for i in range(len(self.n_list)):
-            self.refresh_row(i)
+        for i in range(len(self.n_list)): self.refresh_row(i)
 
 class divine_panel(wx.Panel):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Divine Spells')
+        pname = handler.xml.set("name", 'Divine Spells')
         wx.Panel.__init__(self, parent, -1)
         self.grid =wx.grid.Grid(self, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.handler = handler
@@ -1862,33 +1700,31 @@ class divine_panel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.on_add, id=20)
         self.Bind(wx.EVT_BUTTON, self.on_refresh_spells, id=30)
         self.grid.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
-        n_list = handler.master_dom._get_childNodes()
+        n_list = handler.xml[:]
         self.n_list = n_list
-        self.master_dom = handler.master_dom
+        self.xml = handler.xml
         self.grid.CreateGrid(len(n_list),4,1)
         self.grid.SetRowLabelSize(0)
         self.grid.SetColLabelValue(0,"No.")
         self.grid.SetColLabelValue(1,"Lvl")
         self.grid.SetColLabelValue(2,"Spell")
         self.grid.SetColLabelValue(3,"Desc")
-        for i in range(len(n_list)):
-            self.refresh_row(i)
+        for i in range(len(n_list)): self.refresh_row(i)
         self.temp_dom = None
 
     def on_cell_change(self,evt):
         row = evt.GetRow()
         col = evt.GetCol()
         value = self.grid.GetCellValue(row,col)
-        if col == 0:
-            self.n_list[row].setAttribute('memrz',value)
+        if col == 0: self.n_list[row].set('memrz',value)
 
 
     def refresh_row(self,i):
         spell = self.n_list[i]
-        memrz = spell.getAttribute('memrz')
-        name = spell.getAttribute('name')
-        type = spell.getAttribute('desc')
-        level = spell.getAttribute('level')
+        memrz = spell.get('memrz')
+        name = spell.get('name')
+        type = spell.get('desc')
+        level = spell.get('level')
         self.grid.SetCellValue(i,0,memrz)
         self.grid.SetCellValue(i,2,name)
         self.grid.SetReadOnly(i,2)
@@ -1902,42 +1738,29 @@ class divine_panel(wx.Panel):
         for i in range(rows):
             if self.grid.IsInSelection(i,0):
                 self.grid.DeleteRows(i)
-                self.master_dom.removeChild(self.n_list[i])
+                self.xml.remove(self.n_list[i])
                 self.handler.refresh_spells()
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["d20"]+"d20divine.xml","r")
-            xml_dom = parseXml_with_dlg(self,tmp.read())
-            xml_dom = xml_dom._get_firstChild()
-            tmp.close()
-            self.temp_dom = xml_dom
-        f_list = self.temp_dom.getElementsByTagName('gift')
+            tree = parse(orpg.dirpath.dir_struct["d20"]+"d20divine.xml")
+            self.temp_dom = tree.getroot()
+        f_list = self.temp_dom.findall('gift')
         opts = []
-        # lvl = int(self.handler.get_char_lvl('level'))
-        # castlvl = lvl / 2
-        for f in f_list:
-            opts.append("(" + f.getAttribute('level') + ")" + f.getAttribute('name'))
-            # spelllvl = f.getAttribute('level')
-            # if spelllvl <= "1":
-            #     opts.append("(" + f.getAttribute('level') + ")" + f.getAttribute('name'))
-            # else:
-            #     if eval('%d >= %s' %(castlvl, spelllvl)):
-            #         opts.append("(" + f.getAttribute('level') + ")" + f.getAttribute('name'))
+        for f in f_list: opts.append("(" + f.get('level') + ")" + f.get('name'))
         dlg = wx.SingleChoiceDialog(self,'Choose Spell','Spells',opts)
         if dlg.ShowModal() == wx.ID_OK:
             i = dlg.GetSelection()
-            new_node = self.master_dom.appendChild(f_list[i].cloneNode(False))
+            new_node = self.xml.append(XML(tostring(f_list[i])))
             self.grid.AppendRows(1)
-            self.n_list = self.master_dom.getElementsByTagName('gift')
+            self.n_list = self.xml.findall('gift')
             self.refresh_row(self.grid.GetNumberRows()-1)
             self.handler.refresh_spells()
         dlg.Destroy()
 
     def on_refresh_spells( self, evt ):
-        f_list = self.master_dom.getElementsByTagName('gift')
-        for spell in f_list:
-            spell.setAttribute( 'used', '0' )
+        f_list = self.xml.findall('gift')
+        for spell in f_list: spell.set( 'used', '0' )
 
     def on_size(self,event):
         s = self.GetClientSizeTuple()
@@ -1946,21 +1769,19 @@ class divine_panel(wx.Panel):
         (w,h) = self.grid.GetClientSizeTuple()
         cols = self.grid.GetNumberCols()
         col_w = w/(cols)
-        for i in range(0,cols):
-            self.grid.SetColSize(i,col_w)
+        for i in range(0,cols): self.grid.SetColSize(i,col_w)
         self.grid.SetColSize(0,w * 0.10)
         self.grid.SetColSize(1,w * 0.10)
         self.grid.SetColSize(2,w * 0.30)
         self.grid.SetColSize(3,w * 0.50)
 
     def refresh_data(self):
-        for i in range(len(self.n_list)):
-            self.refresh_row(i)
+        for i in range(len(self.n_list)): self.refresh_row(i)
 
 
 class power_panel(wx.Panel):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Pionic Powers')
+        pname = handler.xml.set("name", 'Pionic Powers')
         wx.Panel.__init__(self, parent, -1)
         self.grid =wx.grid.Grid(self, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.handler = handler
@@ -1976,9 +1797,9 @@ class power_panel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.on_add, id=20)
         self.Bind(wx.EVT_BUTTON, self.on_refresh_powers, id=30)
         self.grid.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
-        n_list = handler.master_dom._get_childNodes()
+        n_list = handler.xml[:]
         self.n_list = n_list
-        self.master_dom = handler.master_dom
+        self.xml = handler.xml
         self.grid.CreateGrid(len(n_list),5,1)
         self.grid.SetRowLabelSize(0)
         self.grid.SetColLabelValue(0,"PP")
@@ -1986,8 +1807,7 @@ class power_panel(wx.Panel):
         self.grid.SetColLabelValue(2,"Power")
         self.grid.SetColLabelValue(3,"Desc")
         self.grid.SetColLabelValue(4,"Type")
-        for i in range(len(n_list)):
-            self.refresh_row(i)
+        for i in range(len(n_list)): self.refresh_row(i)
         self.refresh_data()
         self.temp_dom = None
         self.SetSizer(self.sizer)
@@ -1996,17 +1816,14 @@ class power_panel(wx.Panel):
         row = evt.GetRow()
         col = evt.GetCol()
         value = self.grid.GetCellValue(row,col)
-        """if col == 0:
-            self.n_list[row].setAttribute('memrz',value)"""
-
 
     def refresh_row(self,i):
         power = self.n_list[i]
-        point = power.getAttribute('point')
-        name = power.getAttribute('name')
-        type = power.getAttribute('desc')
-        test = power.getAttribute('test')
-        level = power.getAttribute('level')
+        point = power.get('point')
+        name = power.get('name')
+        type = power.get('desc')
+        test = power.get('test')
+        level = power.get('level')
         self.grid.SetCellValue(i,0,point)
         self.grid.SetReadOnly(i,0)
         self.grid.SetCellValue(i,1,level)
@@ -2023,34 +1840,22 @@ class power_panel(wx.Panel):
         for i in range(rows):
             if self.grid.IsInSelection(i,0):
                 self.grid.DeleteRows(i)
-                self.master_dom.removeChild(self.n_list[i])
+                self.xml.removeChild(self.n_list[i])
                 self.handler.refresh_powers()
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["d20"]+"d20powers.xml","r")
-            xml_dom = parseXml_with_dlg(self,tmp.read())
-            xml_dom = xml_dom._get_firstChild()
-            tmp.close()
-            self.temp_dom = xml_dom
-        f_list = self.temp_dom.getElementsByTagName('power')
+            tree = parse(orpg.dirpath.dir_struct["d20"]+"d20powers.xml")
+            self.temp_dom = tree.getroot()
+        f_list = self.temp_dom.findall('power')
         opts = []
-        # lvl = int(self.handler.get_char_lvl('level'))
-        # castlvl = lvl / 2
-        for f in f_list:
-            opts.append("(" + f.getAttribute('level') + ") - " + f.getAttribute('name') + " - " + f.getAttribute('test'))
-            # spelllvl = f.getAttribute('level')
-            # if spelllvl <= "1":
-            #     opts.append("(" + f.getAttribute('level') + ") - " + f.getAttribute('name') + " - " + f.getAttribute('test'))
-            # else:
-            #     if eval('%d >= %s' %(castlvl, spelllvl)):
-            #         opts.append("(" + f.getAttribute('level') + ") - " + f.getAttribute('name') + " - " + f.getAttribute('test'))
+        for f in f_list: opts.append("(" + f.get('level') + ") - " + f.get('name') + " - " + f.get('test'))
         dlg = wx.SingleChoiceDialog(self,'Choose Power','Powers',opts)
         if dlg.ShowModal() == wx.ID_OK:
             i = dlg.GetSelection()
-            new_node = self.master_dom.appendChild(f_list[i].cloneNode(False))
+            new_node = self.xml.append(XML(tostring(f_list[i])))
             self.grid.AppendRows(1)
-            self.n_list = self.master_dom.getElementsByTagName('power')
+            self.n_list = self.xml.findall('power')
             self.refresh_row(self.grid.GetNumberRows()-1)
             self.handler.refresh_powers()
         dlg.Destroy()
@@ -2060,10 +1865,9 @@ class power_panel(wx.Panel):
         for i in range(rows):
             if self.grid.IsInSelection(i,0):
                 self.grid.DeleteRows(i)
-                self.master_dom.removeChild(self.n_list[i])
-                self.n_list = self.master_dom.getElementsByTagName('weapon')
+                self.xml.remove(self.n_list[i])
+                self.n_list = self.xml.findall('weapon')
                 self.handler.refresh_weapons()
-
 
     def on_refresh_powers( self, evt ):
         mfre = self.handler.get_char_pp('maxfree')
@@ -2078,8 +1882,7 @@ class power_panel(wx.Panel):
         (w,h) = self.grid.GetClientSizeTuple()
         cols = self.grid.GetNumberCols()
         col_w = w/(cols)
-        for i in range(0,cols):
-            self.grid.SetColSize(i,col_w)
+        for i in range(0,cols): self.grid.SetColSize(i,col_w)
         self.grid.SetColSize(0,w * 0.05)
         self.grid.SetColSize(1,w * 0.05)
         self.grid.SetColSize(2,w * 0.30)
@@ -2087,13 +1890,12 @@ class power_panel(wx.Panel):
         self.grid.SetColSize(4,w * 0.30)
 
     def refresh_data(self):
-        for i in range(len(self.n_list)):
-            self.refresh_row(i)
+        for i in range(len(self.n_list)): self.refresh_row(i)
 
 class attack_grid(wx.grid.Grid):
     """grid for attacks"""
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Melee')
+        pname = handler.xml.set("name", 'Melee')
         wx.grid.Grid.__init__(self, parent, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         self.parent = parent
         self.handler = handler
@@ -2101,8 +1903,7 @@ class attack_grid(wx.grid.Grid):
         self.CreateGrid(1,7)
         self.SetRowLabelSize(0)
         col_names = ['base','base 2','base 3','base 4','base 5','base 6','misc']
-        for i in range(len(col_names)):
-            self.SetColLabelValue(i,col_names[i])
+        for i in range(len(col_names)): self.SetColLabelValue(i,col_names[i])
         self.refresh_data()
         self.Bind(wx.EVT_SIZE, self.on_size)
         self.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
@@ -2111,32 +1912,29 @@ class attack_grid(wx.grid.Grid):
         row = evt.GetRow()
         col = evt.GetCol()
         value = self.GetCellValue(row,col)
-        try:
-            int(value)
+        try: int(value)
         except:
             value = "0"
             self.SetCellValue( row, col, value )
         attribs = ['base','second','third','forth','fifth','sixth','misc']
-        self.babs.setAttribute( attribs[col], value )
+        self.babs.set( attribs[col], value )
         self.parent.refresh_data()
 
     def refresh_data(self):
         attack_mods = self.handler.get_attack_data()
-        for i in range(0,7):
-            self.SetCellValue( 0, i, str(attack_mods[i]) )
+        for i in range(0,7): self.SetCellValue( 0, i, str(attack_mods[i]) )
 
     def on_size(self,evt):
         (w,h) = self.GetClientSizeTuple()
         cols = self.GetNumberCols()
         col_w = w/cols
-        for i in range(0,cols):
-            self.SetColSize(i,col_w)
+        for i in range(0,cols): self.SetColSize(i,col_w)
         evt.Skip()
         self.Refresh()
 
 class weapon_panel(wx.Panel):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Weapons')
+        pname = handler.xml.set("name", 'Weapons')
         wx.Panel.__init__(self, parent, -1)
         self.grid =wx.grid.Grid(self, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -2148,15 +1946,14 @@ class weapon_panel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.on_remove, id=10)
         self.Bind(wx.EVT_BUTTON, self.on_add, id=20)
         self.grid.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
-        n_list = handler.master_dom.getElementsByTagName('weapon')
+        n_list = handler.xml.findall('weapon')
         self.n_list = n_list
-        self.master_dom = handler.master_dom
+        self.xml = handler.xml
         self.handler = handler
         self.grid.CreateGrid(len(n_list),8,1)
         self.grid.SetRowLabelSize(0)
         col_names = ['Name','damage','mod','critical','type','weight','range','size']
-        for i in range(len(col_names)):
-            self.grid.SetColLabelValue(i,col_names[i])
+        for i in range(len(col_names)): self.grid.SetColLabelValue(i,col_names[i])
         self.refresh_data()
         self.temp_dom = None
         self.SetSizer(self.sizer)
@@ -2166,51 +1963,46 @@ class weapon_panel(wx.Panel):
         col = evt.GetCol()
         value = self.grid.GetCellValue(row,col)
         if col == 0:
-            self.n_list[row].setAttribute('name',value)
+            self.n_list[row].set('name',value)
             self.handler.refresh_weapons();
-        else:
-            self.n_list[row].setAttribute(self.grid.GetColLabelValue(col),value)
+        else: self.n_list[row].set(self.grid.GetColLabelValue(col),value)
 
     def refresh_row(self,i):
         n = self.n_list[i]
-        name = n.getAttribute('name')
-        mod = n.getAttribute('mod')
-        ran = n.getAttribute('range')
+        name = n.get('name')
+        mod = n.get('mod')
+        ran = n.get('range')
         self.grid.SetCellValue(i,0,name)
-        self.grid.SetCellValue(i,1,n.getAttribute('damage'))
+        self.grid.SetCellValue(i,1,n.get('damage'))
         self.grid.SetCellValue(i,2,mod)
-        self.grid.SetCellValue(i,3,n.getAttribute('critical'))
-        self.grid.SetCellValue(i,4,n.getAttribute('type'))
-        self.grid.SetCellValue(i,5,n.getAttribute('weight'))
+        self.grid.SetCellValue(i,3,n.get('critical'))
+        self.grid.SetCellValue(i,4,n.get('type'))
+        self.grid.SetCellValue(i,5,n.get('weight'))
         self.grid.SetCellValue(i,6,ran)
-        self.grid.SetCellValue(i,7,n.getAttribute('size') )
+        self.grid.SetCellValue(i,7,n.get('size') )
 
     def on_remove(self,evt):
         rows = self.grid.GetNumberRows()
         for i in range(rows):
             if self.grid.IsInSelection(i,0):
                 self.grid.DeleteRows(i)
-                self.master_dom.removeChild(self.n_list[i])
-                self.n_list = self.master_dom.getElementsByTagName('weapon')
+                self.xml.remove(self.n_list[i])
+                self.n_list = self.xml.findall('weapon')
                 self.handler.refresh_weapons()
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["d20"]+"d20weapons.xml","r")
-            xml_dom = parseXml_with_dlg(self,tmp.read())
-            xml_dom = xml_dom._get_firstChild()
-            tmp.close()
-            self.temp_dom = xml_dom
-        f_list = self.temp_dom.getElementsByTagName('weapon')
+            tree = parse(orpg.dirpath.dir_struct["d20"]+"d20weapons.xml")
+            self.temp_dom = tree.getroot()
+        f_list = self.temp_dom.findall('weapon')
         opts = []
-        for f in f_list:
-            opts.append(f.getAttribute('name'))
+        for f in f_list: opts.append(f.get('name'))
         dlg = wx.SingleChoiceDialog(self,'Choose Weapon','Weapon List',opts)
         if dlg.ShowModal() == wx.ID_OK:
             i = dlg.GetSelection()
-            new_node = self.master_dom.appendChild(f_list[i].cloneNode(False))
+            new_node = self.xml.append(XML(tostring(f_list[i])))
             self.grid.AppendRows(1)
-            self.n_list = self.master_dom.getElementsByTagName('weapon')
+            self.n_list = self.xml.findall('weapon')
             self.refresh_row(self.grid.GetNumberRows()-1)
             self.handler.refresh_weapons()
         dlg.Destroy()
@@ -2223,17 +2015,15 @@ class weapon_panel(wx.Panel):
         cols = self.grid.GetNumberCols()
         col_w = w/(cols+1)
         self.grid.SetColSize(0,col_w*2)
-        for i in range(1,cols):
-            self.grid.SetColSize(i,col_w)
+        for i in range(1,cols): self.grid.SetColSize(i,col_w)
 
     def refresh_data(self):
-        for i in range(len(self.n_list)):
-            self.refresh_row(i)
+        for i in range(len(self.n_list)): self.refresh_row(i)
 
 
 class attack_panel(wx.Panel):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Melee')
+        pname = handler.xml.set("name", 'Melee')
         wx.Panel.__init__(self, parent, -1)
 
         self.a_grid = attack_grid(self, handler)
@@ -2255,7 +2045,7 @@ class attack_panel(wx.Panel):
 
 class ac_panel(wx.Panel):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Armor')
+        pname = handler.xml.set("name", 'Armor')
         wx.Panel.__init__(self, parent, -1)
         self.grid =wx.grid.Grid(self, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -2267,17 +2057,15 @@ class ac_panel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.on_remove, id=10)
         self.Bind(wx.EVT_BUTTON, self.on_add, id=20)
         self.grid.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
-        self.master_dom = handler.master_dom
-        n_list = handler.master_dom._get_childNodes()
+        self.xml = handler.xml
+        n_list = handler.xml[:]
         self.n_list = n_list
         col_names = ['Armor','bonus','maxdex','cp','sf','weight','speed','type']
         self.grid.CreateGrid(len(n_list),len(col_names),1)
         self.grid.SetRowLabelSize(0)
-        for i in range(len(col_names)):
-            self.grid.SetColLabelValue(i,col_names[i])
+        for i in range(len(col_names)): self.grid.SetColLabelValue(i,col_names[i])
         self.atts =['name','bonus','maxdex','checkpenalty','spellfailure','weight','speed','type']
-        for i in range(len(n_list)):
-            self.refresh_row(i)
+        for i in range(len(n_list)): self.refresh_row(i)
         self.temp_dom = None
         self.SetSizer(self.sizer)
 
@@ -2288,40 +2076,35 @@ class ac_panel(wx.Panel):
         if col >= 1 and col <= 5:
             try:
                 int(value)
-                self.n_list[row].setAttribute(self.atts[col],value)
-            except:
-                self.grid.SetCellValue(row,col,"0")
-        else:
-            self.n_list[row].setAttribute(self.atts[col],value)
+                self.n_list[row].set(self.atts[col],value)
+            except: self.grid.SetCellValue(row,col,"0")
+        else: self.n_list[row].set(self.atts[col],value)
 
     def refresh_row(self,i):
         n = self.n_list[i]
         for y in range(len(self.atts)):
-            self.grid.SetCellValue(i,y,n.getAttribute(self.atts[y]))
+            self.grid.SetCellValue(i,y,n.get(self.atts[y]))
 
     def on_remove(self,evt):
         rows = self.grid.GetNumberRows()
         for i in range(rows):
             if self.grid.IsInSelection(i,0):
                 self.grid.DeleteRows(i)
-                self.master_dom.removeChild(self.n_list[i])
+                self.xml.remove(self.n_list[i])
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["d20"]+"d20armor.xml","r")
-            xml_dom = parseXml_with_dlg(self,tmp.read())
-            xml_dom = xml_dom._get_firstChild()
-            tmp.close()
-            self.temp_dom = xml_dom
-        f_list = self.temp_dom.getElementsByTagName('armor')
+            tree = parse(orpg.dirpath.dir_struct["d20"]+"d20armor.xml")
+            self.temp_dom = tree.getroot()
+        f_list = self.temp_dom.findall('armor')
         opts = []
-        for f in f_list:
-            opts.append(f.getAttribute('name'))
+        for f in f_list: opts.append(f.get('name'))
         dlg = wx.SingleChoiceDialog(self,'Choose Armor:','Armor List',opts)
         if dlg.ShowModal() == wx.ID_OK:
             i = dlg.GetSelection()
-            new_node = self.master_dom.appendChild(f_list[i].cloneNode(False))
+            new_node = self.xml.append(XML(tostring(f_list[i])))
             self.grid.AppendRows(1)
+            self.n_list = self.xml.findall('armor')
             self.refresh_row(self.grid.GetNumberRows()-1)
         dlg.Destroy()
 
@@ -2333,13 +2116,12 @@ class ac_panel(wx.Panel):
         cols = self.grid.GetNumberCols()
         col_w = w/(cols+2)
         self.grid.SetColSize(0,col_w*3)
-        for i in range(1,cols):
-            self.grid.SetColSize(i,col_w)
+        for i in range(1,cols): self.grid.SetColSize(i,col_w)
 
 
 class class_panel(wx.Panel):
     def __init__(self, parent, handler):
-        pname = handler.master_dom.setAttribute("name", 'Class')
+        pname = handler.xml.set("name", 'Class')
         wx.Panel.__init__(self, parent, -1)
         self.grid =wx.grid.Grid(self, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS)
         sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -2353,15 +2135,14 @@ class class_panel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.on_add, id=20)
         self.grid.Bind(wx.grid.EVT_GRID_CELL_CHANGE, self.on_cell_change)
 
-        n_list = handler.master_dom._get_childNodes()
+        n_list = handler.xml[:]
         self.n_list = n_list
-        self.master_dom = handler.master_dom
+        self.xml = handler.xml
         self.grid.CreateGrid(len(n_list),2,1)
         self.grid.SetRowLabelSize(0)
         self.grid.SetColLabelValue(0,"Class")
         self.grid.SetColLabelValue(1,"Level")
-        for i in range(len(n_list)):
-            self.refresh_row(i)
+        for i in range(len(n_list)): self.refresh_row(i)
         self.temp_dom = None
 
     def on_cell_change(self,evt):
@@ -2370,46 +2151,39 @@ class class_panel(wx.Panel):
         value = self.grid.GetCellValue(row,col)
         try:
             int(value)
-            self.n_list[row].setAttribute('level',value)
-        except:
-            self.grid.SetCellValue(row,col,"1")
-
+            self.n_list[row].set('level',value)
+        except: self.grid.SetCellValue(row,col,"1")
 
     def refresh_row(self,i):
         n = self.n_list[i]
-        name = n.getAttribute('name')
-        level = n.getAttribute('level')
+        name = n.get('name')
+        level = n.get('level')
         self.grid.SetCellValue(i,0,name)
         self.grid.SetReadOnly(i,0)
         self.grid.SetCellValue(i,1,level)
-        #self.grid.SetReadOnly(i,1)
 
     def on_remove(self,evt):
         rows = self.grid.GetNumberRows()
         for i in range(rows):
             if self.grid.IsInSelection(i,0):
                 self.grid.DeleteRows(i)
-                self.master_dom.removeChild(self.n_list[i])
+                self.xml.remove(self.n_list[i])
 
     def on_add(self,evt):
         if not self.temp_dom:
-            tmp = open(orpg.dirpath.dir_struct["d20"]+"d20classes.xml","r")
-            xml_dom = parseXml_with_dlg(self,tmp.read())
-            xml_dom = xml_dom._get_firstChild()
-            tmp.close()
-            self.temp_dom = xml_dom
-        f_list = self.temp_dom.getElementsByTagName('class')
+            tree = parse(orpg.dirpath.dir_struct["d20"]+"d20classes.xml")
+            self.temp_dom = tree.getroot()
+        f_list = self.temp_dom.findall('class')
         opts = []
-        for f in f_list:
-            opts.append(f.getAttribute('name'))
+        for f in f_list: opts.append(f.get('name'))
         dlg = wx.SingleChoiceDialog(self,'Choose Class','Classes',opts)
         if dlg.ShowModal() == wx.ID_OK:
             i = dlg.GetSelection()
-            new_node = self.master_dom.appendChild(f_list[i].cloneNode(False))
+            new_node = self.xml.append(XML(tostring(f_list[i])))
             self.grid.AppendRows(1)
+            self.n_list = self.xml.findall('class')
             self.refresh_row(self.grid.GetNumberRows()-1)
         dlg.Destroy()
-
 
     def on_size(self,event):
         s = self.GetClientSizeTuple()
@@ -2418,5 +2192,4 @@ class class_panel(wx.Panel):
         (w,h) = self.grid.GetClientSizeTuple()
         cols = self.grid.GetNumberCols()
         col_w = w/(cols)
-        for i in range(0,cols):
-            self.grid.SetColSize(i,col_w)
+        for i in range(0,cols): self.grid.SetColSize(i,col_w)

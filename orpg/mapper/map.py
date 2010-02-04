@@ -21,22 +21,18 @@
 # Author: OpenRPG
 # Maintainer:
 # Version:
-#   $Id: map.py,v 1.73 2007/12/07 20:39:49 digitalxero Exp $
+#   $Id: map.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description:
 #
-__version__ = "$Id: map.py,v 1.73 2007/12/07 20:39:49 digitalxero Exp $"
+__version__ = "$Id: map.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from map_version import MAP_VERSION
 from map_msg import *
 from min_dialogs import *
 from map_prop_dialog import *
 
-import random
-import os
-import thread
-#import gc #Garbage Collecter Needed?
-import traceback
+import random, os, thread, traceback
 
 from miniatures_handler import *
 from whiteboard_handler import *
@@ -160,14 +156,15 @@ class MapCanvas(wx.ScrolledWindow):
             else: pass
         if not ImageHandler.Queue.empty():
             (path, image_type, imageId) = ImageHandler.Queue.get()
-            img = wx.ImageFromMime(path[1], path[2]).ConvertToBitmap()
+            if path == 'failed': img = wx.Image(dir_struct["icon"] + "failed.png", wx.BITMAP_TYPE_PNG)
+            else: img = wx.ImageFromMime(path[1], path[2])
             try:
                 # Now, apply the image to the proper object
                 if image_type == "miniature":
                     min = self.layers['miniatures'].get_miniature_by_id(imageId)
-                    min.set_bmp(img)
+                    if min: min.set_bmp(img)
                 elif image_type == "background" or image_type == "texture":
-                    self.layers['bg'].bg_bmp = img
+                    self.layers['bg'].bg_bmp = img.ConvertToBitmap()
                     if image_type == "background": self.set_size([img.GetWidth(), img.GetHeight()])
             except: pass
             # Flag that we now need to refresh!
@@ -253,9 +250,8 @@ class MapCanvas(wx.ScrolledWindow):
         topleft1 = self.GetViewStart()
         topleft = [topleft1[0]*scrollsize[0], topleft1[1]*scrollsize[1]]
         if (clientsize[0] > 1) and (clientsize[1] > 1):
-            dc = wx.MemoryDC()
-            bmp = wx.EmptyBitmap(clientsize[0]+1, clientsize[1]+1)
-            dc.SelectObject(bmp)
+            self.SetBackgroundStyle(wx.BG_STYLE_CUSTOM)
+            dc = wx.AutoBufferedPaintDC(self)
             dc.SetPen(wx.TRANSPARENT_PEN)
             dc.SetBrush(wx.Brush(self.GetBackgroundColour(), wx.SOLID))
             dc.DrawRectangle(0,0,clientsize[0]+1,clientsize[1]+1)
@@ -270,19 +266,10 @@ class MapCanvas(wx.ScrolledWindow):
             self.layers['fog'].layerDraw(dc, topleft, clientsize)
             dc.SetPen(wx.NullPen)
             dc.SetBrush(wx.NullBrush)
-            dc.SelectObject(wx.NullBitmap)
-            del dc
-            wdc = self.preppaint()
-            wdc.DrawBitmap(bmp, topleft[0], topleft[1])
             if settings.get_setting("AlwaysShowMapScale") == "1":
-                self.showmapscale(wdc)
+                self.showmapscale(dc)
         try: evt.Skip()
         except: pass
-
-    def preppaint(self):
-        dc = wx.PaintDC(self)
-        self.PrepareDC(dc)
-        return (dc)
 
     def showmapscale(self, dc):
         scalestring = "Scale x" + `self.layers['grid'].mapscale`[:3]
@@ -380,8 +367,6 @@ class MapCanvas(wx.ScrolledWindow):
             dc.SetUserScale(self.layers['grid'].mapscale,self.layers['grid'].mapscale)
             # Grab the current map position
             pos = self.snapMarker( evt.GetLogicalPosition( dc ) )
-            # Enable brush optimizations
-            # dc.SetOptimization( True )
             # Set up the pen used for drawing our marker
             dc.SetPen( wx.Pen(wx.RED, 1, wx.LONG_DASH) )
             # Now, based on the marker mode, draw the right thing
@@ -399,8 +384,6 @@ class MapCanvas(wx.ScrolledWindow):
                 # As long as we are in marker mode, we ned to update the stop point
                 self.markerStop = pos
             dc.SetPen(wx.NullPen)
-            # Disable brush optimizations
-            #dc.SetOptimization( False )
             del dc
 
     def on_tape_down(self, evt):
@@ -416,8 +399,6 @@ class MapCanvas(wx.ScrolledWindow):
         self.markerMode = MARKER_MODE_MEASURE
         # Erase the old line if her have one
         if self.markerStart.x != -1 and self.markerStart.y != -1:
-            # Enable brush optimizations
-            #dc.SetOptimization( True )
             # Set up the pen used for drawing our marker
             dc.SetPen( wx.Pen(wx.RED, 1, wx.LONG_DASH) )
             # Set the DC function that we need
@@ -429,8 +410,6 @@ class MapCanvas(wx.ScrolledWindow):
             # Restore the default DC function and pen
             dc.SetLogicalFunction(wx.COPY)
             dc.SetPen(wx.NullPen)
-            # Disable brush optimizations
-            #dc.SetOptimization( False )
         # Save our current start and reset the stop value
         self.markerStart = pos
         self.markerStop = pos
@@ -486,8 +465,8 @@ class MapCanvas(wx.ScrolledWindow):
 
     def on_left_up(self, evt):
         if evt.ShiftDown(): self.on_tape_up(evt)
-        elif component.get("tree").dragging:
-            tree = component.get("tree")
+        elif component.get('tree_fs').dragging:
+            tree = component.get('tree_fs')
             if tree.drag_obj.map_aware():
                 tree.drag_obj.on_send_to_map(evt)
                 tree.dragging = False
@@ -496,7 +475,7 @@ class MapCanvas(wx.ScrolledWindow):
 
     def on_motion(self, evt):
         if evt.ShiftDown(): self.on_tape_motion(evt)
-        elif evt.LeftIsDown() and component.get("tree").dragging: pass
+        elif evt.LeftIsDown() and component.get('tree_fs').dragging: pass
         else: self.frame.on_motion(evt)
 
     def on_zoom_out(self, evt):
@@ -717,8 +696,8 @@ class map_wnd(wx.Panel):
         wx.Panel.__init__(self, parent, id)
         self.canvas = MapCanvas(self, -1)
         self.session = component.get('session')
-        self.chat = component.get('chat')
         self.top_frame = component.get('frame')
+        self.chat = self.top_frame.chat
         self.root_dir = os.getcwd()
         self.current_layer = 2
         self.layer_tabs = orpgTabberWnd(self, style=FNB.FNB_NO_X_BUTTON|FNB.FNB_BOTTOM|FNB.FNB_NO_NAV_BUTTONS)
@@ -821,7 +800,6 @@ class map_wnd(wx.Panel):
     def on_left_down(self, evt):
         self.layer_handlers[self.current_layer].on_left_down(evt)
 
-    #double click handler added by Snowdog 5/03
     def on_left_dclick(self, evt):
         self.layer_handlers[self.current_layer].on_left_dclick(evt)
 

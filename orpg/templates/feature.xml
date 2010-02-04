@@ -1,108 +1,430 @@
+<nodehandler class="tabber_handler" frame="400,400,0,48" icon="help" map="" module="containers" name="Traipse OpenRPG" version="1.0">
+  <nodehandler class="tabber_handler" frame="636,449,368,80" icon="labtop" map="Traipse OpenRPG" module="containers" name="User Manual" version="1.0"><nodehandler class="textctrl_handler" frame="400,400,0,48" icon="note" map="Traipse OpenRPG::User Manual" module="forms" name="Introduction" version="1.0">
+  <text multiline="1" send_button="0">Welcome to Traipse OpenRPG.
 
-<nodehandler class="tabber_handler" icon="help" module="containers" name="OpenRPG+ 1.7.1" version="1.0">
-  <nodehandler class="link_handler" icon="html" module="forms" name="Release Notes" version="1.0">
-    <link href="http://openrpg.digitalxero.net/wiki/index.php?page=Release+Notes"/>
+This small user manual should help users learn about the details of OpenRPG that are often times obscure.  
+
+What is OpenRPG:
+OpenRPG is a virtual game table software that allows users to connect via a network. The software includes a Map, Chat, and a Game Tree.
+
+What is Traipse OpenRPG:
+Traipse OpenRPG is a fork of the original software that is designed to be easy for users, extremely stable, and really powerful.
+
+Traipse has features that set it apart from all other distributions of OpenRPG. The Traipse Suite includes a powerful Update Manager that makes it easy for new developers to create and share their own fork. The Suite also contains an in house Debug Console so users can see what errors, if any, occur.
+
+The User Manual:
+The user manual is divided into Chapters and Sections.  Each Chapter will go over the various features of OpenRPG and attempt to explain them in an easy to understand format.
+
+Adding to the Manual:
+Do you see something that could be explained eaiser?  Report the problem as a bug and it will be added to the manual.</text>
+</nodehandler><nodehandler class="tabber_handler" icon="player" map="Traipse OpenRPG::User Manual" module="containers" name="Chat" version="1.0"><nodehandler class="textctrl_handler" icon="note" map="Traipse OpenRPG::User Manual::Chat" module="forms" name="Using Chat" version="1.0">
+  <text multiline="1" send_button="0">The Chat window is a basic HTML Parser. It understands all basic HTML tags including table, td, tr, span, font, to name a few.
+
+The chat includes a set of commands. You can learn about the commands by entering /help
+
+The chat also has Settings in the Chat menu that allow you see a Chat Time Index, Images, or strip the HTML and see raw text.</text>
+</nodehandler></nodehandler><nodehandler class="tabber_handler" icon="ccmap" map="Traipse OpenRPG::User Manual" module="containers" name="Map" version="1.0"><nodehandler class="textctrl_handler" frame="400,400,310,82" icon="note" map="Traipse OpenRPG::User Manual::Map" module="forms" name="Using The Map" version="1.0">
+  <text multiline="1" raw_mode="0" send_button="0">The Tabs:
+The Map is divided into 7 tabs. They are Background, Grid, Miniatures, Whiteboard, Fog, and General. There are 6 layers to the map, one tab for each layer except General.  
+
+When you select one of the tabs you may access that map layer and it's settings.  You may only select tabs based on your role.
+
+Lurker or in the Lobby: 
+You cannot access any map tab or changes it's settings.
+
+Player: 
+You have access to the Miniatures tab and the Whiteboard tab.
+
+GM: 
+You have access to all of the tabs.
+
+The Layers:
+A small description of each of the layers.
+
+Background: 
+You can set an image as the background, an image as a tile, or you can set a color.
+
+Grid: 
+You can change the grid size, lines, turn off the grid snap, and change the grid shape.
+
+Miniatures: 
+You can add new or remove miniatures and change mini properties and labels.
+
+Whiteboard: 
+With the whiteboard you can draw lines or add text to the map.
+
+Fog: 
+The fog layer hides the entire map from the prying eyes of players.
+</text>
+</nodehandler></nodehandler><nodehandler class="tabber_handler" icon="gear" map="Traipse OpenRPG::User Manual" module="containers" name="Game Tree" version="1.0"><nodehandler class="tabber_handler" frame="410,490,334,45" icon="tabber" map="Traipse OpenRPG::User Manual::Game Tree" module="containers" name="Reference Examples" version="1.0"><nodehandler class="textctrl_handler" frame="400,400,484,144" icon="note" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples" module="forms" name="Quick Help" version="1.0">
+  <text multiline="1" raw_mode="1" send_button="1">Quick Help:
+
+The referencing system is an update to the Core of how the Game Tree works.  In it's current state I understand the syntax is difficult to pick up. Here are some tips to help you grasp the syntax further
+
+A.
+Think of the Game Tree has a folder on your hard drive. Each :: inside the reference syntax works just like a system separator (/ or \)
+
+B.
+Root References start at the tree itself. If the node being referenced changes location the reference will be invalid.
+
+C.
+Child References work at the location of the node containing the reference. 
+
+Example: 
+Game Tree
+- Group
+-- Text Node
+--- Group_2
+---- Text Node_2
+--- Group_3
+---- Text Node_3
+
+In the above Tree example you can reference Text Node_2 with a root reference
+
+!@Group::Group_2::Text Node_2@!
+
+or you can use a Child Reference from within Text Node
+
+!!Group_2::Text Node_2!!
+
+D.
+Parent References work with the Tree Map. Unlike Child references that look only at the current nodes location, Parent References are allowed to travel backwards in the gametree. 
+
+Using the above example, you could reference Text Node from Text Node_2 with the syntax: !#Group::Text Node#!
+
+Parent References have a special power in that they need only a certain amount of data for the software to understand them. In the above example you could reference Text Node_3 from Text Node_2 with only this syntax !#Group_3::Text Node_3#!
+
+The reference system is still a bit primitive in it's implementation.  As I was saying it is an advancement to the Core technology of Traipse OpenRPG.
+
+While it is confusing at first, the model is far superior to other tree referencing systems.  Pre 1.8.0, no node could reference a Grid. The referencing system required the reference to be exact and started at the root. Also, the new model is designed to enable freedom of creation and greater control over the Game Tree.
+
+With the Traipse Game Tree GMs are enabled to reference any data from the Game Tree, no matter where it stands. Players can create fewer nodes and use more of the data with fewer nodes.
+
+EZ_Tree (One Touch Reference):
+(ALPHA!)
+The new EZ_Tree System will help benefit users who do not understand the syntax, nor care to learn.
+
+The EZ_Tree System works from within Lists, Texts, and Grids. In the Design Panel you can push the Reference button and navigate the small gametree that pops up to the node you want. Double click that node and the software will create the most efficient node reference for you.
+
+(ALPHA!) In it's Alpha state, Grids will not work completely. You can reference a grid, but you must add teh cell reference. That is not a design flaw, but a restriction of time constraints.
+
+Developer Note:
+The syntax is the hardest part to understand and I expect to change that in the future. The Core of a more expansive Game Tree model is designed. In Traipse you do not need to give access permissions to a node in order to reference it's entirety, which is what I see with Index and Namespace from OpenRPG Core.
+
+In the OpenRPG Core model your Game Tree has a lot more freedom, but only if you grant it, which I always felt was a design flaw. Comparably, with Traipse you can access any data on the Game Tree, no matter where the location.
+
+This freedom will help with future design and I feel it also frees up the hands of the GM who does not need to Index, un-Index, Namespace, un-Namspace the various creatures he or she may have in a Game Tree.</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,400,540,67" icon="note" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples" module="forms" name="Root Reference" version="1.0">
+  <text multiline="1" raw_mode="1" send_button="1">&lt;b&gt;Root Reference&lt;/b&gt;
+Works at the tree level. Must be exact.
+
+&lt;b&gt;Root Reference 1:&lt;/b&gt; !@Reference Examples::Group::Child@!
+&lt;b&gt;Root Reference 2:&lt;/b&gt; !@Reference Examples::Grid::(2,1)@!</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="441,400,514,48" icon="note" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples" module="forms" name="Grid Reference" version="1.0">
+  <text multiline="1" raw_mode="1" send_button="1">&lt;b&gt;Grid Reference&lt;/b&gt;
+Works by looking at the (Row, Column) of a Grid.
+
+&lt;b&gt;Grid Reference 1:&lt;/b&gt; !@Reference Examples::Grid::(1,1)@!
+&lt;b&gt;Grid Reference 2:&lt;/b&gt; !!Grid::(1,1)!!</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,400,517,63" icon="note" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples" module="forms" name="Child Reference" version="1.0">
+  <text hide_title="1" multiline="1" raw_mode="1" send_button="1">&lt;b&gt;Child Reference&lt;/b&gt;
+Works at the current tree location.
+
+&lt;b&gt;Child Reference 1:&lt;/b&gt; !!Group::Child!!
+&lt;b&gt;Child Reference 2:&lt;/b&gt; !!Group::Group_2::Child_2!!
+</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,400,484,144" icon="note" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples" module="forms" name="Parent Reference" version="1.0">
+  <text multiline="1" raw_mode="1" send_button="1">&lt;b&gt;Parent Reference&lt;/b&gt;
+Works by indexing the tree map of the node with the Reference. Allows you to start from a 'Parent'.
+
+&lt;b&gt;Parent Reference 1:&lt;/b&gt; !!Group::Group_2::Child_2!!
+&lt;b&gt;Parent Reference 2:&lt;/b&gt; !#Bonus Nodes::Deck::Draw#!</text>
+</nodehandler><nodehandler border="1" class="group_handler" cols="1" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples" module="containers" name="Group" version="1.0">
+  <nodehandler border="1" class="group_handler" cols="1" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples::Group" module="containers" name="Group_2" version="1.0">
+  <nodehandler class="textctrl_handler" frame="400,400,571,67" icon="note" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples::Group::Group_2" module="forms" name="Child_2" version="1.0">
+  <text multiline="1" raw_mode="1" send_button="0">!#Group::Child#!</text>
+</nodehandler><nodehandler border="1" class="group_handler" cols="1" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples::Group::Group_2" module="containers" name="Group_3" version="1.0">
+  <nodehandler class="textctrl_handler" frame="400,400,571,67" icon="note" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples::Group::Group_2::Group_3" module="forms" name="Child_3" version="1.0">
+  <text multiline="1" raw_mode="1" send_button="0">!#Group::Child#!</text>
+</nodehandler></nodehandler></nodehandler><nodehandler class="textctrl_handler" frame="400,400,0,48" icon="note" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples::Group" module="forms" name="Child" version="1.0">
+  <text multiline="0" raw_mode="1" send_button="0">Child Node Data</text>
+</nodehandler></nodehandler><nodehandler class="rpg_grid_handler" frame="400,400,547,51" icon="grid" map="Traipse OpenRPG::User Manual::Game Tree::Reference Examples" module="rpg_grid" name="Grid" version="1.0">
+  <grid autosize="1" border="1">
+    <row version="1.0">
+      <cell size="147">0</cell>
+      <cell>0</cell>
+    </row>
+    <row version="1.0">
+      <cell>!!Group::Child!!</cell>
+      <cell>0</cell>
+    </row>
+  </grid>
+  <macros>
+    <macro name="" />
+  </macros>
+</nodehandler></nodehandler><nodehandler class="textctrl_handler" frame="400,400,452,36" icon="note" map="Traipse OpenRPG::User Manual::Game Tree" module="forms" name="Additions &amp; Tips" version="1.0"><text hide_title="0" multiline="1" raw_mode="0" send_button="0">  With the new additions to the Game Tree  using nodes has never been easier nor has it ever been more fluid. Included here is a list of the additions to the Game Tree referencing model as well as some tips on how to make the Game Tree work the way it was intended.
+
+Grid Nodes:
+  Grid nodes are now reference-able with the coordinates of the grid. Example: !@Grid::(1,1)@!
+The example will return the top left most cell data. The grid understands coordinates like this (Row, Column)
+
+  Grid nodes can reference node data just like any other node can.  With a new added feature grids are even more useful. By using a new die rolling syntax you can draw just the number of the modified roll.  While this will not pass during game play, you can use it with the grid node to create a random chart. The new die roll syntax is [#XdY]. # works just like q, yet it returns only the modified die result. 
+
+  Here is an example with a 3 x 3 Grid
+Example: !@Grid::([#1d3], [#1d3])@!
+
+The result will be a random event from the grid.
+
+Bonus Node Included: A 52 Card Deck with 4 columns and 13 rows. (4 * 13 = 52)
+
+List Nodes:
+  List nodes now have a check box that allows users to send the content as a macro. List nodes are a prime reference holder because users can place a lot of references into one small node.
+
+  For the best results from a list node my tip to users would be to create a list node and place it next to the character sheet they are using, inside a the PC Sheet. The list will then use the Child Referencing syntax, but the PC Sheet can go anywhere in the tree and the player will have easy access to all the references.
+
+(List Nodes inside a Tool created PC sheet vanish when moved, or I would recommend the list be placed inside these sheets also.)
+
+  Here is an example of a Fortitude save inside the recommended list node: !!Fort::Check!!
+
+Text Nodes:
+  Text nodes remain little changed.  I agree with all the 1.7.1 users who tell me, if it's not broke don't fix it. With that in mind I have some good tips for text nodes.
+
+  Text nodes can be used in conjunction with the new grid features to create random encounters. A GM could place a list of text nodes into a folder and the grid could reference the nodes.
+
+  Text nodes also work great when you need to have story text at hand that you don't want to type out during play.  Create chapters with folder nodes and add the adventure text to different nodes.  You can then use a List Node or a Grid Node to reference the different chapters.
+
+Bonus Node Included: A small book node with 1 Chapter and 3 Parts.</text></nodehandler><nodehandler class="textctrl_handler" frame="400,400,393,95" icon="note" map="Traipse OpenRPG::User Manual::Game Tree" module="forms" name="Node Referencing" version="1.0"><text hide_title="0" multiline="1" raw_mode="0" send_button="0">  Traipse node referencing is unlike other distributions of OpenRPG.  The Game Tree mapping is a fluid map that changes with the location of your nodes.  This allows you to create a reference node that will stay with your character sheet, and if you change the location of your character sheet the reference will still work.
+
+(Note: Renaming your node causes problems with the tree mapping until you restart the software. You can just move the node and the software will reset the Game Tree map)
+
+Reference Types:
+  There are three ways of references node data. A Root Reference, a Child Reference, and a Parent Reference.
+
+Root Reference: 
+  A node reference that starts at the Game Tree. The location of the node must be exact or you will return an Invalid Reference!
+
+A Root Reference uses this syntax:
+!@Node::Child::Data@!
+
+Child Reference: 
+  A node reference syntax that starts by looking at within the current container node. As long as the Child Reference is in the same container as the node, the container can change location and the reference will not be damaged. Child References work from within a PC Sheet node as well.
+
+A Child Reference uses this syntax:
+!!Node::Child::Data!!
+
+Parent Reference:
+  A node reference syntax that starts by looking at the tree map and the reference used, then makes an addendum to the node's map to create a reference.  The Parent Node is used when you want to reference the data in a node that is within a different child container of the same parent node. 
+
+A Parent Reference uses this syntax:
+!#Node::Child::Data#!
+
+Syntax for Special PC Sheet Nodes:
+  The nodes for the specialized PC Sheets now have a new syntax.
+
+Skills, Saves, and Abilities:
+  Skills, Saves, and Abilities all have a similar referencing syntax.  You can return the base value of each by using the correct syntax.
+
+Examples:
+!@Jonethan::Skill::Jump@! (Returns Jump ranks)
+!@Mikael::Strength@! (Returns Ability Score and Mod)
+!@Draj::Will@! (Returns Will Save and Mod)
+
+(Saves and Abilities have a short hand and a long hand. Abilities can use the three letter abbreviation, while saves short hand are Fort, Ref, and Will)
+
+  You can append Check to check each of these against a 1d20 roll, or you can append Mod to discover the Modifier. The Mod can be useful in other nodes
+
+Combat:
+  You can now reference your attacks easily with the Game Tree.  Using the Attack syntax you can select modifier type, and a weapon to attack with.
+Example: !@Kammen-Pai::Attack::M::Dagger@!
+
+Modifier Type:
+  There are two modifier types Melee (M) or Ranged (R) You will see I added can use the long word or the short hand.
+
+Powers, Spells and Feats:
+  Power, Spells and Feats are hard to sometimes hard to remember, and even harder to code.  The use of the Power, Spell or Feat syntax serves as an emote of what you are doing, as well as a reminder of what your Power, Spell, or Feat does.
+
+Examples: 
+!@Kammen-Pai::Cast::Ray of Frost@!
+!@Kammen-Pai::Feat::Ability Focus@!</text></nodehandler></nodehandler><nodehandler class="tabber_handler" icon="labtop" map="Traipse OpenRPG::User Manual" module="containers" name="The Server" version="1.0"><nodehandler class="textctrl_handler" frame="400,400,310,82" icon="note" map="Traipse OpenRPG::User Manual::The Server" module="forms" name="Setting up a Server" version="1.0">
+  <text multiline="1" send_button="0">In Traipse starting a server has never been easier.  The setup is as easy as 1., 2., 3
+
+1. You will need to first start the Server GUI or the basic text based Server at least once so your software creates the server_ini.xml files in your myfiles directory. You can start it once and quit.
+
+2. Edit the server_ini.xml file. Here you can set the server's name, the boot password, and even set the servers port.
+
+Traipse allows you to specify a server port instead of the software demanding port 6774.
+
+3. This is the hardest step. You need to make sure your selected port is forwarded by your router and open to your firewall.
+
+That's it! You can now start the server and register it to the meta for all users to enjoy!</text>
+</nodehandler></nodehandler><nodehandler class="tabber_handler" frame="400,400,0,48" icon="browser" map="Traipse OpenRPG::User Manual" module="containers" name="Links" version="1.0"><nodehandler class="link_handler" icon="html" map="Traipse OpenRPG::User Manual::Links" module="forms" name="Release Notes" version="1.0">
+    <link href="http://www.assembla.com/wiki/show/traipse" />
   </nodehandler>
-  <nodehandler class="link_handler" icon="html" module="forms" name="OpenRPG User Guide" version="1.0">
-    <link href="http://openrpg.digitalxero.net"/>
+  <nodehandler class="link_handler" icon="html" map="Traipse OpenRPG::User Manual::Links" module="forms" name="Traipse User Guide" version="1.0">
+    <link href="http://www.assembla.com/wiki/show/traipse/User_Manual" />
   </nodehandler>
-  <nodehandler class="file_loader" icon="help" module="core" name="Load Die Roller Notes" version="1.0">
-    <file name="die_roller_notes.xml"/>
+  </nodehandler></nodehandler><nodehandler border="0" class="group_handler" cols="1" icon="goblin" map="Traipse OpenRPG" module="containers" name="Bonus Nodes" version="1.0">
+  <nodehandler class="form_handler" frame="514,464,307,57" height="600" icon="book" map="Traipse OpenRPG::Bonus Nodes" module="forms" name="Book" version="1.0" width="400">
+  <nodehandler class="listbox_handler" frame="400,400,0,48" icon="gear" map="Traipse OpenRPG::Bonus Nodes::Book" module="forms" name="Index" version="1.0">
+  <list hide_title="0" raw_mode="1" send_button="1" type="1">
+    <option caption="" selected="0" value="">!!Chapter 1::Part 1!!</option>
+    <option caption="" selected="0" value="">!!Chapter 1::Part 2!!</option>
+    <option caption="" selected="1" value="">!!Chapter 1::Part 3!!</option>
+  </list>
+</nodehandler><nodehandler class="tabber_handler" frame="400,400,392,45" icon="book" map="Traipse OpenRPG::Bonus Nodes::Book" module="containers" name="Chapter 1" version="1.0"><nodehandler class="textctrl_handler" frame="400,400,543,68" icon="note" map="Traipse OpenRPG::Bonus Nodes::Book::Chapter 1" module="forms" name="Part 1" version="1.0">
+  <text multiline="1" raw_mode="0" send_button="1">&lt;br /&gt;
+&lt;b&gt;Chapter 1 Part 1&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;
+An introduction to your adventure module can be placed here.</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,400,435,110" icon="note" map="Traipse OpenRPG::Bonus Nodes::Book::Chapter 1" module="forms" name="Part 2" version="1.0">
+  <text multiline="1" raw_mode="0" send_button="1">&lt;br /&gt;
+&lt;b&gt;Chapter 1 Part 2&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;
+The adventurers have come this far.</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,400,543,68" icon="note" map="Traipse OpenRPG::Bonus Nodes::Book::Chapter 1" module="forms" name="Part 3" version="1.0">
+  <text multiline="1" raw_mode="0" send_button="1">&lt;br /&gt;
+&lt;b&gt;Chapter 1 Part 3&lt;/b&gt;
+&lt;br /&gt;&lt;br /&gt;
+Is this the end already?</text>
+</nodehandler></nodehandler></nodehandler><nodehandler class="form_handler" frame="409,414,422,76" height="600" icon="wizard1" map="Traipse OpenRPG::Bonus Nodes" module="forms" name="Deck" version="1.0" width="400">
+  <nodehandler class="rpg_grid_handler" frame="400,400,425,69" icon="grid" map="Traipse OpenRPG::Bonus Nodes::Deck" module="rpg_grid" name="52 Card Deck" version="1.0">
+  <grid autosize="1" border="1">
+    <row version="1.0">
+      <cell>AS</cell>
+      <cell>AD</cell>
+    <cell>AC</cell><cell>AH</cell></row>
+    <row version="1.0">
+      <cell>KS</cell>
+      <cell>KD</cell>
+    <cell>KC</cell><cell>KH</cell></row>
+  <row version="1.0"><cell>QS</cell><cell>QD</cell><cell>QC</cell><cell>QH</cell></row><row version="1.0"><cell>JS</cell><cell>JD</cell><cell>JC</cell><cell>JH</cell></row><row version="1.0"><cell>10S</cell><cell>10D</cell><cell>10C</cell><cell>10H</cell></row><row version="1.0"><cell>9S</cell><cell>9D</cell><cell>9C</cell><cell>9H</cell></row><row version="1.0"><cell>8S</cell><cell>8D</cell><cell>8C</cell><cell>8H</cell></row><row version="1.0"><cell>7S</cell><cell>7D</cell><cell>7C</cell><cell>7H</cell></row><row version="1.0"><cell>6S</cell><cell>6D</cell><cell>6C</cell><cell>6H</cell></row><row version="1.0"><cell>5S</cell><cell>5D</cell><cell>5C</cell><cell>5H</cell></row><row version="1.0"><cell>4S</cell><cell>4D</cell><cell>4C</cell><cell>4H</cell></row><row version="1.0"><cell>3S</cell><cell>3D</cell><cell>3C</cell><cell>3H</cell></row><row version="1.0"><cell>2S</cell><cell>2D</cell><cell>2C</cell><cell>2H</cell></row></grid>
+  <macros>
+    <macro name="" />
+  </macros>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,90,497,106" icon="note" map="Traipse OpenRPG::Bonus Nodes::Deck" module="forms" name="Draw" version="1.0">
+  <text multiline="0" raw_mode="1" send_button="1">!!52 Card Deck::([#1d13], [#1d4])!!</text>
+</nodehandler></nodehandler><nodehandler class="form_handler" frame="400,400,501,72" height="600" icon="orc" map="Traipse OpenRPG::Bonus Nodes" module="forms" name="Encounters" version="1.0" width="400">
+  <nodehandler class="listbox_handler" frame="400,153,348,150" icon="gear" map="Traipse OpenRPG::Bonus Nodes::Encounters" module="forms" name="Roll" version="1.0">
+  <list raw_mode="1" send_button="1" type="1">
+    <option caption="" selected="0" value="">!!Chart::([#1d3],1)!!</option>
+    <option caption="" selected="1" value="">!!Chart::([#1d2],2)!!</option>
+    </list>
+</nodehandler><nodehandler class="rpg_grid_handler" frame="400,400,0,48" icon="grid" map="Traipse OpenRPG::Bonus Nodes::Encounters" module="rpg_grid" name="Chart" version="1.0">
+  <grid autosize="0" border="1">
+    <row version="1.0">
+      <cell size="119">!!Set 1::Enc 1!!</cell>
+      <cell size="115">!!Set 2::Enc 1!!</cell></row>
+    <row version="1.0">
+      <cell>!!Set 1::Enc 2!!</cell>
+      <cell>!!Set 2::Enc 2!!</cell></row>
+  <row version="1.0"><cell>!!Set 1::Enc 3!!</cell><cell /></row></grid>
+  <macros>
+    <macro name="" />
+  </macros>
+</nodehandler><nodehandler border="1" class="group_handler" cols="1" icon="ninja" map="Traipse OpenRPG::Bonus Nodes::Encounters" module="containers" name="Set 2" version="1.0">
+  <nodehandler class="textctrl_handler" frame="400,400,0,48" icon="note" map="Traipse OpenRPG::Bonus Nodes::Encounters::Set 2" module="forms" name="Enc 2" version="1.0">
+  <text multiline="1" send_button="1">Hoot Hoot. It's an owl.</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,400,0,48" icon="note" map="Traipse OpenRPG::Bonus Nodes::Encounters::Set 2" module="forms" name="Enc 1" version="1.0">
+  <text multiline="1" send_button="1">Set 2 Random Encounter.</text>
+</nodehandler></nodehandler><nodehandler border="1" class="group_handler" cols="1" icon="knight" map="Traipse OpenRPG::Bonus Nodes::Encounters" module="containers" name="Set 1" version="1.0">
+  <nodehandler class="textctrl_handler" frame="400,400,0,48" icon="note" map="Traipse OpenRPG::Bonus Nodes::Encounters::Set 1" module="forms" name="Enc 2" version="1.0">
+  <text multiline="1" send_button="1">Dark Elves.  Watch out!</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,400,0,48" icon="note" map="Traipse OpenRPG::Bonus Nodes::Encounters::Set 1" module="forms" name="Enc 3" version="1.0">
+  <text multiline="1" send_button="1">Kobolds a plenty.</text>
+</nodehandler><nodehandler class="textctrl_handler" frame="400,400,0,48" icon="note" map="Traipse OpenRPG::Bonus Nodes::Encounters::Set 1" module="forms" name="Enc 1" version="1.0">
+  <text multiline="1" send_button="1">A Wandering Minotaur</text>
+</nodehandler></nodehandler></nodehandler></nodehandler><nodehandler class="file_loader" icon="book" map="Traipse OpenRPG" module="core" name="Load User Manual" version="1.0">
+  <file name="Traipse_User_Guide.xml" />
+</nodehandler><nodehandler class="file_loader" icon="d10" map="Traipse OpenRPG" module="core" name="Load Die Roller Notes" version="1.0">
+    <file name="die_roller_notes.xml" />
   </nodehandler>
-  <nodehandler class="group_handler" icon="gear" module="containers" name="Templates" status="useful" version="1.0">
-    <group_atts border="1" cols="1"/>
-    <nodehandler class="group_handler" icon="flask" module="containers" name="Nodes" status="useful" version="1.0">
-      <group_atts border="1" cols="1"/>
-      <nodehandler class="file_loader" icon="note" module="core" name="Create New Text Box" version="1.0">
-        <file name="textctrl.xml"/>
+  <nodehandler border="1" class="group_handler" cols="1" icon="grid" map="Traipse OpenRPG" module="containers" name="Templates" status="useful" version="1.0">
+    <nodehandler border="1" class="group_handler" cols="1" icon="knight" map="Traipse OpenRPG::Templates" module="containers" name="PC Sheets" version="1.0">
+  <nodehandler class="file_loader" icon="d20" map="Traipse OpenRPG::Templates::PC Sheets" module="core" name="Create 4e PC Sheet" version="1.0">
+        <file name="4e_char_sheet.xml" />
+      </nodehandler><nodehandler class="file_loader" icon="d20" map="Traipse OpenRPG::Templates::PC Sheets" module="core" name="3.5 Tool" version="1.0">
+        <file name="dnd3.5.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="gear" module="core" name="Create New List Box" version="1.0">
-        <file name="listbox.xml"/>
+    <nodehandler class="file_loader" icon="d20" map="Traipse OpenRPG::Templates::PC Sheets" module="core" name="3rd Edition Character Tool" version="1.0">
+        <file name="dnd3e.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="grid" module="core" name="Create New Grid" version="1.0">
-        <file name="grid.xml"/>
+      <nodehandler class="file_loader" icon="d20" map="Traipse OpenRPG::Templates::PC Sheets" module="core" name="Create New St*r W*rs Character Tool" version="1.0">
+        <file name="StarWars_d20character.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="html" module="core" name="Create New Web Link" version="1.0">
-        <file name="link.xml"/>
+      <nodehandler class="file_loader" icon="d20" map="Traipse OpenRPG::Templates::PC Sheets" module="core" name="Create New d20 Character Tool" version="1.0">
+        <file name="d20character.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="image" module="core" name="Create New Web Image" version="1.0">
-        <file name="image.xml"/>
+      </nodehandler><nodehandler border="1" class="group_handler" cols="1" icon="flask" map="Traipse OpenRPG::Templates" module="containers" name="Nodes" status="useful" version="1.0">
+      <nodehandler class="file_loader" icon="note" map="Traipse OpenRPG::Templates::Nodes" module="core" name="Create New Text Box" version="1.0">
+        <file name="textctrl.xml" />
       </nodehandler>
-    </nodehandler>
-    <nodehandler class="group_handler" module="containers" name="Containers" status="useful" version="1.0">
-      <group_atts border="1" cols="1"/>
-      <nodehandler class="file_loader" module="core" name="Create New Folder" version="1.0">
-        <file name="group.xml"/>
+      <nodehandler class="file_loader" icon="gear" map="Traipse OpenRPG::Templates::Nodes" module="core" name="Create New List Box" version="1.0">
+        <file name="listbox.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="tabber" module="core" name="Create New Tabber" version="1.0">
-        <file name="tabber.xml"/>
+      <nodehandler class="file_loader" icon="grid" map="Traipse OpenRPG::Templates::Nodes" module="core" name="Create New Grid" version="1.0">
+        <file name="grid.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="divider" module="core" name="Create New Splitter" version="1.0">
-        <file name="split.xml"/>
+      <nodehandler class="file_loader" icon="html" map="Traipse OpenRPG::Templates::Nodes" module="core" name="Create New Web Link" version="1.0">
+        <file name="link.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="form" module="core" name="Create New Form" version="1.0">
-        <file name="form.xml"/>
+      <nodehandler class="file_loader" icon="image" map="Traipse OpenRPG::Templates::Nodes" module="core" name="Create New Web Image" version="1.0">
+        <file name="image.xml" />
       </nodehandler>
     </nodehandler>
-    <nodehandler class="group_handler" icon="gear" module="containers" name="Tools" status="useful" version="1.0">
-      <group_atts border="1" cols="1"/>
-      <nodehandler class="file_loader" icon="gear" module="core" name="Create New Chat Macro" version="1.0">
-        <file name="macro.xml"/>
+    <nodehandler border="1" class="group_handler" cols="1" map="Traipse OpenRPG::Templates" module="containers" name="Containers" status="useful" version="1.0">
+      <nodehandler class="file_loader" map="Traipse OpenRPG::Templates::Containers" module="core" name="Create New Folder" version="1.0">
+        <file name="group.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="gear" module="core" name="Create New Miniature Library Tool" version="1.0">
-        <file name="minlib.xml"/>
+      <nodehandler class="file_loader" icon="tabber" map="Traipse OpenRPG::Templates::Containers" module="core" name="Create New Tabber" version="1.0">
+        <file name="tabber.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="gear" module="core" name="Create remote node loader" version="1.0">
-        <file name="urloader.xml"/>
+      <nodehandler class="file_loader" icon="divider" map="Traipse OpenRPG::Templates::Containers" module="core" name="Create New Splitter" version="1.0">
+        <file name="split.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="d20" module="core" name="Create New d20 Character Tool" version="1.0">
-        <file name="d20character.xml"/>
+      <nodehandler class="file_loader" icon="form" map="Traipse OpenRPG::Templates::Containers" module="core" name="Create New Form" version="1.0">
+        <file name="form.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="d20" module="core" name="Create New St*r W*rs Character Tool" version="1.0">
-        <file name="StarWars_d20character.xml"/>
+    </nodehandler>
+    <nodehandler border="1" class="group_handler" cols="1" icon="grenade" map="Traipse OpenRPG::Templates" module="containers" name="Tools" status="useful" version="1.0">
+      <nodehandler class="file_loader" icon="gear" map="Traipse OpenRPG::Templates::Tools" module="core" name="Create File Loader" version="1.0">
+    <file name="file_loader.xml" />
+  </nodehandler><nodehandler class="file_loader" icon="gear" map="Traipse OpenRPG::Templates::Tools" module="core" name="Create New Chat Macro" version="1.0">
+        <file name="macro.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="d20" module="core" name="3rd Edition Character Tool" version="1.0">
-        <file name="dnd3e.xml"/>
+      <nodehandler class="file_loader" icon="gear" map="Traipse OpenRPG::Templates::Tools" module="core" name="Create New Miniature Library Tool" version="1.0">
+        <file name="minlib.xml" />
       </nodehandler>
-      <nodehandler class="file_loader" icon="d20" module="core" name="3.5 Tool" version="1.0">
-        <file name="dnd3.5.xml"/>
+      <nodehandler class="file_loader" icon="gear" map="Traipse OpenRPG::Templates::Tools" module="core" name="Create Remote Node Loader" version="1.0">
+        <file name="urloader.xml" />
       </nodehandler>
+      </nodehandler>
+  </nodehandler>
+  <nodehandler border="1" class="group_handler" cols="1" icon="browser" map="Traipse OpenRPG" module="containers" name="OpenRPG+ Resources" version="1.0">
+    <nodehandler class="link_handler" icon="html" map="Traipse OpenRPG::OpenRPG+ Resources" module="forms" name="OpenRPG+ Home Page" version="1.0">
+      <link href="http://www.openrpg.com" />
+    </nodehandler>
+    <nodehandler class="link_handler" icon="html" map="Traipse OpenRPG::OpenRPG+ Resources" module="forms" name="OpenRPG Forums" version="1.0">
+      <link href="http://forums.rpghost.com/forumdisplay.php?s=&amp;forumid=118" />
+    </nodehandler>
+    <nodehandler class="link_handler" icon="html" map="Traipse OpenRPG::OpenRPG+ Resources" module="forms" name="OpenRPG Plugin HQ" version="1.0">
+      <link href="http://openrpg.mduo13.com/plugins.php" />
+    </nodehandler>
+    <nodehandler class="link_handler" icon="html" map="Traipse OpenRPG::OpenRPG+ Resources" module="forms" name="OpenRPG Web Ring" version="1.0">
+      <link href="http://www.ringsurf.com/netring?ring=OpenRPG;action=home" />
+    </nodehandler>
+    <nodehandler class="link_handler" icon="html" map="Traipse OpenRPG::OpenRPG+ Resources" module="forms" name="AutoRealm" version="1.0">
+      <link href="http://www.gryc.ws/autorealm.htm" />
+    </nodehandler>
+    <nodehandler class="link_handler" icon="html" map="Traipse OpenRPG::OpenRPG+ Resources" module="forms" name="PCGen" version="1.0">
+      <link href="http://pcgen.sourceforge.net/01_overview.php" />
     </nodehandler>
   </nodehandler>
-  <nodehandler class="group_handler" icon="browser" module="containers" name="OpenRPG+ Resources" version="1.0">
-    <group_atts border="1" cols="1"/>
-    <nodehandler class="link_handler" icon="html" module="forms" name="OpenRPG+ Home Page" version="1.0">
-      <link href="http://openrpg.digitalxero.net"/>
+  <nodehandler border="1" class="group_handler" cols="1" map="Traipse OpenRPG" module="containers" name="Examples (Adventures)" version="1.0">
+    <nodehandler class="file_loader" icon="d20" map="Traipse OpenRPG::Examples (Adventures)" module="core" name="Bastion Press d20 Adventure" version="1.0">
+      <file name="Bastion_adventure.xml" />
     </nodehandler>
-    <nodehandler class="link_handler" icon="html" module="forms" name="OpenRPG Project Page" version="1.0">
-      <link href="http://openrpg.digitalxero.net"/>
-    </nodehandler>
-    <nodehandler class="link_handler" icon="html" module="forms" name="OpenRPG Forums" version="1.0">
-      <link href="http://forums.rpghost.com/forumdisplay.php?s=&amp;forumid=118"/>
-    </nodehandler>
-    <nodehandler class="link_handler" icon="html" module="forms" name="Submit A Bug Report" version="1.0">
-      <link href="http://openrpg.digitalxero.net/phpbb/viewtopic.php?t=10"/>
-    </nodehandler>
-    <nodehandler class="link_handler" icon="html" module="forms" name="OpenRPG Plugin HQ" version="1.0">
-      <link href="http://openrpg.mduo13.com/plugins.php"/>
-    </nodehandler>
-    <nodehandler class="link_handler" icon="html" module="forms" name="OpenRPG Web Ring" version="1.0">
-      <link href="http://www.ringsurf.com/netring?ring=OpenRPG;action=home"/>
-    </nodehandler>
-    <nodehandler class="link_handler" icon="html" module="forms" name="AutoRealm" version="1.0">
-      <link href="http://www.gryc.ws/autorealm.htm"/>
-    </nodehandler>
-    <nodehandler class="link_handler" icon="html" module="forms" name="PCGen" version="1.0">
-      <link href="http://pcgen.sourceforge.net/01_overview.php"/>
-    </nodehandler>
-  </nodehandler>
-  <nodehandler class="group_handler" module="containers" name="Examples (Adventures)" version="1.0">
-    <group_atts border="1" cols="1"/>
-    <nodehandler class="file_loader" icon="d20" module="core" name="Bastion Press d20 Adventure" version="1.0">
-      <file name="Bastion_adventure.xml"/>
-    </nodehandler>
-    <nodehandler class="file_loader" icon="d20" module="core" name="Darwin's World d20 Adventure" version="1.0">
-      <file name="Darwin_adventure.xml"/>
+    <nodehandler class="file_loader" icon="d20" map="Traipse OpenRPG::Examples (Adventures)" module="core" name="Darwin&apos;s World d20 Adventure" version="1.0">
+      <file name="Darwin_adventure.xml" />
     </nodehandler>
   </nodehandler>
 </nodehandler>

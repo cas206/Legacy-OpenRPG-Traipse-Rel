@@ -21,14 +21,15 @@
 # Author: Chris Davis
 # Maintainer:
 # Version:
-#   $Id: base_msg.py,v 1.9 2007/03/09 14:11:55 digitalxero Exp $
+#   $Id: base_msg.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description:
 #
-__version__ = "$Id: base_msg.py,v 1.9 2007/03/09 14:11:55 digitalxero Exp $"
+__version__ = "$Id: base_msg.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from threading import RLock
 from orpg.networking.mplay_client import *
+from xml.etree.ElementTree import ElementTree, Element
 
 class map_element_msg_base:
 #  This is a base class
@@ -37,7 +38,6 @@ class map_element_msg_base:
 
         if not hasattr(self,"tagname"):
             raise Exception, "This is a virtual class that cannot be directly instantiated.  Set self.tagname in derived class."
-
         self._props = {}
         #  This is a dictionary that holds (value,changed) 2-tuples, indexed by attribute
         #  Avoid manipulating these values directly.  Instead, use the provided accessor methods.
@@ -106,7 +106,6 @@ class map_element_msg_base:
             return None
 
     #  Access multiple properties
-
     def init_props(self,props):               # same as init_prop(), but takes dictionary of props
         self.p_lock.acquire()
         for k in props.keys(): self._props[k] = (props[k],0)
@@ -119,12 +118,10 @@ class map_element_msg_base:
 
     def get_all_props(self):                  # returns dictionary of all properties, regardless of change
         self.p_lock.acquire()
-
         result = {}
         for k in self._props.keys():
             (p,c) = self._props[k]
             result[k] = p
-
         self.p_lock.release()
         return result
 
@@ -197,10 +194,14 @@ class map_element_msg_base:
 
     def _from_dom(self,xml_dom,prop_func):
         self.p_lock.acquire()
-        if xml_dom.tagName == self.tagname:
-            if xml_dom.getAttributeKeys():
-                for k in xml_dom.getAttributeKeys():
-                    prop_func(k,xml_dom.getAttribute(k))
+        if iselement(xml_dom): ## Uses new Element Tree style
+            if xml_dom.tag == self.tagname:
+                if xml_dom.attrib:
+                    for k in xml_dom.attrib: prop_func(k,xml_dom.get(k))
+        elif not iselement(xml_dom): ## Uses old DOM style (deprecated!!)
+            if xml_dom.tagName == self.tagname:
+                if xml_dom.getAttributeKeys():
+                    for k in xml_dom.getAttributeKeys(): prop_func(k,xml_dom.getAttribute(k))
         else:
             self.p_lock.release()
             raise Exception, "Error attempting to modify a " + self.tagname + " from a non-<" + self.tagname + "/> element"

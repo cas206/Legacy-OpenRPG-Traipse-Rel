@@ -6,50 +6,32 @@
 
 __appname__=' OpenRPG GUI Server v0.7 '
 __version__='$Revision: 1.26 $'[11:-2]
-__cvsinfo__='$Id: mplay_server_gui.py,v 1.26 2007/11/06 00:32:39 digitalxero Exp $'[5:-2]
+__cvsinfo__="$Id: mplay_server_gui.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"[5:-2]
 __doc__="""OpenRPG Server Graphical Interface"""
 
-import os
-import sys
-import time
-import types
+import os, sys, time, types, webbrowser
+
 from orpg.dirpath import dir_struct
-#import orpg.systempath looks old
 from orpg.tools.validate import validate
 from orpg.orpg_wx import *
-import webbrowser
 from threading import Thread
+
 from meta_server_lib import post_server_data, remove_server
 from mplay_server import mplay_server, server
+
 from xml.dom import minidom
 from orpg.orpgCore import component
+from orpg.tools.orpg_log import debug
+from orpg.tools.orpg_settings import settings
+
+from xml.etree.ElementTree import ElementTree, Element, iselement
+from xml.etree.ElementTree import fromstring, tostring, parse
 
 # Constants ######################################
 SERVER_RUNNING = 1
 SERVER_STOPPED = 0
-MENU_START_SERVER = wx.NewId()
-MENU_STOP_SERVER = wx.NewId()
-MENU_EXIT = wx.NewId()
-MENU_REGISTER_SERVER = wx.NewId()
-MENU_UNREGISTER_SERVER = wx.NewId()
-MENU_START_PING_PLAYERS = wx.NewId()
-MENU_STOP_PING_PLAYERS = wx.NewId()
-MENU_PING_INTERVAL = wx.NewId()
-### Alpha ###
 MENU_MODIFY_BANLIST = wx.NewId()
-#############
-
-# Add our menu id's for our right click popup
-MENU_PLAYER_BOOT = wx.NewId()
-### Alpha ###
-MENU_ADMIN_BAN = wx.NewId()
-MENU_BAN_LIST = wx.NewId()
-MENU_ADMIN_UNBAN = wx.NewId()
-#############
 MENU_PLAYER_CREATE_ROOM = wx.NewId()
-MENU_PLAYER_SEND_MESSAGE = wx.NewId()
-MENU_PLAYER_SEND_ROOM_MESSAGE = wx.NewId()
-MENU_PLAYER_SEND_SERVER_MESSAGE = wx.NewId()
 
 # Our new event type that gets posted from one
 # thread to another
@@ -96,10 +78,10 @@ class ServerConfig:
 
     def __init__(self, owner ): 
         """ Loads default configuration settings."""
-        validate.config_file("server_ini.xml", "default_server_ini.xml" ) 
-        configDom = minidom.parse(dir_struct["user"] + 'server_ini.xml') 
-        port = configDom.childNodes[0].childNodes[1].getAttribute('port')
-        OPENRPG_PORT = 6774 if port == '' else int(port) #Pretty ugly, but I couldn't find the tag any other way.
+        validate.config_file("server_ini.xml", "default_server_ini.xml")
+        config_xml = parse(dir_struct['user'] + 'server_ini.xml').getroot()
+        port = config_xml.find('service').get('port')
+        OPENRPG_PORT = 6774 if port == '' else int(port)
         self.owner = owner
 
     def load_xml(self, xml):
@@ -147,18 +129,52 @@ class ServerMonitor(Thread):
 # GUI Server #####################################
 # Parent = notebook
 # Main = GUI
+class Groups(wx.ListCtrl):
+    def __init__(self, parent, main):
+        wx.ListCtrl.__init__(self, parent, -1, wx.DefaultPosition,
+                            wx.DefaultSize, wx.LC_REPORT|wx.SUNKEN_BORDER|wx.EXPAND|wx.LC_HRULES)
+
+        """Not completed.  Creates room, delets rooms.  Does not track players.  Nor does gsclient, ftm."""
+        validate.config_file("server_ini.xml", "default_server_ini.xml" )
+        config_xml = parse(dir_struct["user"] + 'server_ini.xml').getroot()
+        lobbyname = config_xml.get('lobbyname')
+
+        self.main = main
+        self.roomList = { 0 : lobbyname }
+        self.InsertColumn(0, 'Group ID')
+        self.InsertColumn(1, 'Game')
+        self.InsertColumn(2, 'Players')
+        self.InsertColumn(3, 'Passworded')
+        self.AddGroup((self.roomList[0], '0', '0', 'No'))
+
+    def AddGroup(self, data):
+        (room, room_id, players, passworded) = data
+        i = self.InsertStringItem(0, str(room_id))
+        self.SetStringItem(i, 1, room)
+        self.SetStringItem(i, 2, players)
+        self.SetStringItem(i, 3, str(passworded))
+
+    def DeleteGroup(self, data):
+        i = self.FindItem(-1, str(data))
+        self.DeleteItem(i)        
+
+    def UpdateGroup(self, data):
+        (room, room_id, players) = data
+        i = self.FindItem( -1, str(room_id))
+        self.SetStringItem( i, 1, room )
+        if players: self.SetStringItem(i, 2, str(players))
+        ### Need to add room for Password Updates ###
+
 class Connections(wx.ListCtrl):
     def __init__( self, parent, main ):
         wx.ListCtrl.__init__( self, parent, -1, wx.DefaultPosition, 
                             wx.DefaultSize, wx.LC_REPORT|wx.SUNKEN_BORDER|wx.EXPAND|wx.LC_HRULES )
-        self.main = main
 
-        ### Alpha ### Get Lobby Name
         validate.config_file("server_ini.xml", "default_server_ini.xml" ) 
-        configDom = minidom.parse(dir_struct["user"] + 'server_ini.xml') 
-        lobbyname = configDom.childNodes[0].getAttribute('lobbyname')
-        #############
+        config_xml = parse(dir_struct["user"] + 'server_ini.xml').getroot()
+        lobbyname = config_xml.get('lobbyname')
 
+        self.main = main
         self.roomList = { 0 : lobbyname }
         self._imageList = wx.ImageList( 16, 16, False )
         img = wx.Image(dir_struct["icon"]+"player.gif", wx.BITMAP_TYPE_GIF).ConvertToBitmap()
@@ -183,36 +199,39 @@ class Connections(wx.ListCtrl):
         # Build our pop up menu to do cool things with the players in the list
         self.menu = wx.Menu()
         self.menu.SetTitle( "Player Menu" )
-        self.menu.Append( MENU_PLAYER_BOOT, "Boot Player" )
-        self.menu.Append( MENU_ADMIN_BAN, 'Ban Player' )
+        self.menu.Append( 1, "Boot Player" )
+        self.menu.Append( 2, 'Ban Player' )
+        self.menu.Append( 3, "Player Version" )
         self.menu.AppendSeparator()
-        self.menu.Append( MENU_PLAYER_SEND_MESSAGE, "Send Player Message" )
-        self.menu.Append( MENU_PLAYER_SEND_ROOM_MESSAGE, "Send Room Message" ) 
-        self.menu.Append( MENU_PLAYER_SEND_SERVER_MESSAGE, "Broadcast Server Message" )
+        self.menu.Append( 4, "Send Player Message" )
+        self.menu.Append( 5, "Send Room Message" )
+        self.menu.Append( 6, "Broadcast Server Message" )
 
         # Associate our events
         self.Bind(wx.EVT_RIGHT_DOWN, self.OnPopupMenu)
-        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_PLAYER_BOOT)
-        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_ADMIN_BAN)
-        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_PLAYER_SEND_MESSAGE)
-        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_PLAYER_SEND_ROOM_MESSAGE)
-        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=MENU_PLAYER_SEND_SERVER_MESSAGE)
+        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=1)
+        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=2)
+        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=4)
+        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=5)
+        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=6)
+        self.Bind(wx.EVT_MENU, self.OnPopupMenuItem, id=3)
 
     def add(self, player):
         i = self.InsertImageStringItem( 0, player["id"], 0 )
-        self.SetStringItem( i, 1, self.stripHtml( player["name"] ) )
-        self.SetStringItem( i, 2, "NEW" )
-        self.SetStringItem( i, 3, self.roomList[0] )
-        self.SetStringItem( i, 4, self.stripHtml( player["version"] ) )
-        self.SetStringItem( i, 5, 'Lurker' if self.stripHtml( player["role"] ) == '' else self.stripHtml( player["role"] ))
-        self.SetStringItem( i, 6, self.stripHtml( player["ip"] ) )
-        self.SetStringItem (i, 7, "PING" )
-        self.SetItemData( i, int(player["id"]) )
+        self.SetStringItem(i, 1, self.stripHtml(player["name"]))
+        self.SetStringItem(i, 2, "NEW")
+        self.SetStringItem(i, 3, self.roomList[0])
+        self.SetStringItem(i, 4, self.stripHtml(player["version"]))
+        self.SetStringItem(i, 5, 'Lurker' if player["role"] == None else self.stripHtml(player["role"]))
+        self.SetStringItem(i, 6, self.stripHtml(player["ip"]))
+        self.SetStringItem(i, 7, "PING")
+        self.SetItemData(i, int(player["id"]))
+        self.colorize_player_list(player)
         self.AutoAjust()
 
     def remove(self, id):
-        i = self.FindItemData( -1, int(id) )
-        self.DeleteItem( i )
+        i = self.FindItemData( -1, int(id))
+        self.DeleteItem(i)
         self.AutoAjust()
 
     def AutoAjust(self):
@@ -226,12 +245,29 @@ class Connections(wx.ListCtrl):
         self.SetColumnWidth(7, -1)
         self.Refresh()
 
+    def colorize_player_list(self, player):
+        if player == 0: return
+        for m in player.keys():
+            id = player['id']
+            item_list_location = self.FindItemData(-1, int(id))
+            if item_list_location == -1: continue
+            item = self.GetItem(item_list_location)
+            role = player['role']
+            try: #Players that turn up Blue are not passing the correct arguments.
+                try: 
+                    if player['group_id'] != "0": item.SetTextColour(settings.get_setting(role + "RoleColor"))
+                except KeyError: # Needed because group_id turns into group somewhere.
+                    if player['group'] != "0": item.SetTextColour(settings.get_setting(role + "RoleColor"))
+            except: item.SetTextColour('BLUE')
+            self.SetItem(item)
+
     def update(self, player):
         i = self.FindItemData( -1, int(player["id"]) )
         if i > -1:
             self.SetStringItem(i, 1, self.stripHtml(player["name"]))
             self.SetStringItem(i, 2, self.stripHtml(player["status"]))
-            self.SetStringItem(i, 5, 'Lurker' if self.stripHtml(player["role"]) == '' else self.stripHtml(player["role"]))
+            self.SetStringItem(i, 5, 'Lurker' if player["role"] == None else self.stripHtml(player["role"]))
+            self.colorize_player_list(player)
             self.AutoAjust()
         else: self.add(player)
 
@@ -240,11 +276,12 @@ class Connections(wx.ListCtrl):
         i = self.FindItemData( -1, int(player) )
         if player > 0: self.SetStringItem( i, 3, room )
         self.AutoAjust()
+        #self.update(player) # player object doesn't send role object.
 
     def setPlayerRole( self, id, role ):
         i = self.FindItemData( -1, int(id) )
         self.SetStringItem( i, 5, role )
-        self.AutoAjust
+        self.AutoAjust()
 
     def stripHtml( self, name ):
         ret_string = ""
@@ -277,13 +314,9 @@ class Connections(wx.ListCtrl):
             for r in self.roomList:
                 if room == self.roomList[r]: groupID = r
                 else: groupID = 0
-            if menuItem == MENU_PLAYER_BOOT:
-                print "booting player: ", playerID
-                self.main.server.server.del_player( playerID, groupID )
-                self.main.server.server.check_group( playerID, groupID )
-                self.remove( playerID )
-            ### Alpha ###
-            elif menuItem == MENU_ADMIN_BAN:
+            if menuItem == 1:
+                self.main.server.server.admin_kick( playerID )
+            elif menuItem == 2:
                 message = 'Banishment'
                 BanMsg = wx.TextEntryDialog( self, "Enter A Message To Send:",
                                                  "Ban Message", message, wx.OK|wx.CANCEL|wx.CENTRE )
@@ -295,21 +328,20 @@ class Connections(wx.ListCtrl):
                 else: silent = 0
                 self.main.server.server.admin_ban(playerID, message, silent)
                 self.remove( playerID )
-            ###############
-            elif menuItem == MENU_PLAYER_SEND_MESSAGE:
-                print "send a message..."
+            elif menuItem == 4:
                 msg = self.GetMessageInput( "Send a message to player" )
                 if len(msg): self.main.server.server.send( msg, playerID, str(groupID) )
             #Leave this in for now.
-            elif menuItem == MENU_PLAYER_SEND_ROOM_MESSAGE:
-                print "Send message to room..."
+            elif menuItem == 5:
                 msg = self.GetMessageInput( "Send message to room of this player")
                 if len(msg): self.main.server.server.send_to_group('0', str(groupID), msg )
-            elif menuItem == MENU_PLAYER_SEND_SERVER_MESSAGE:
-                print "broadcast a message..."
+            elif menuItem == 6:
                 msg = self.GetMessageInput( "Broadcast Server Message" )
-                # If we got a message back, send it
                 if len(msg): self.main.server.server.broadcast( msg )
+            elif menuItem == 3:
+                version_string = self.main.server.server.obtain_by_id(playerID, 'client_string')
+                if version_string: wx.MessageBox("Running client version " + version_string,"Version")
+                else: wx.MessageBox("No client version available for this player", "Version")
 
     def GetMessageInput( self, title ):
         prompt = "Please enter the message you wish to send:"
@@ -327,6 +359,7 @@ class ServerGUI(wx.Frame):
         self.SetIcon(icon)
         self.serverName = "Server Name"
         self.bootPwd = ""
+        self.do_log = True
 
         # Register our events to process -- notice the custom event handler
         self.Bind(wx.EVT_CLOSE, self.OnExit)
@@ -337,16 +370,12 @@ class ServerGUI(wx.Frame):
         self.build_menu()
         self.build_body()
         self.build_status()
-
-        ### Alpha ###
-        # Ban List Dialog
         self.BanListDialog = BanListDialog(self)
-        #############
 
         # Server Callbacks
         cb = {}
         cb["log"]        = self.Log
-        cb["connect"]    = self.OnConnect  ##Fixed!!
+        cb["connect"]    = self.OnConnect
         cb["disconnect"] = self.OnDisconnect
         cb["update"]     = self.OnUpdatePlayer
         cb["data_recv"]  = self.OnDataRecv
@@ -354,6 +383,7 @@ class ServerGUI(wx.Frame):
         cb["create_group"] = self.OnCreateGroup
         cb["delete_group"] = self.OnDeleteGroup
         cb["join_group"] = self.OnJoinGroup
+        cb['update_group'] = self.OnUpdateGroup
         cb["role"] = self.OnSetRole
         self.callbacks = cb
 
@@ -365,64 +395,76 @@ class ServerGUI(wx.Frame):
         self.total_data_sent = 0
 
     """ Build GUI """
-
     def build_menu(self):
         """ Build the GUI menu. """
         self.mainMenu = wx.MenuBar()
 
         # File Menu
         menu = wx.Menu()
-        menu.Append( MENU_START_SERVER, 'Start', 'Start server.')
-        self.Bind(wx.EVT_MENU, self.OnStart, id=MENU_START_SERVER)
-        menu.Append( MENU_STOP_SERVER, 'Stop', 'Shutdown server.')
-        self.Bind(wx.EVT_MENU, self.OnStop, id=MENU_STOP_SERVER)
+        menu.Append( 1, 'Start', 'Start server.')
+        menu.Append( 2, 'Stop', 'Shutdown server.')
         menu.AppendSeparator()
-        menu.Append( MENU_EXIT, 'E&xit', 'Exit application.')
-        self.Bind(wx.EVT_MENU, self.OnExit, id=MENU_EXIT)
+        menu.Append( 3, 'E&xit', 'Exit application.')
+        self.Bind(wx.EVT_MENU, self.OnStart, id=1)
+        self.Bind(wx.EVT_MENU, self.OnStop, id=2)
+        self.Bind(wx.EVT_MENU, self.OnExit, id=3)
         self.mainMenu.Append(menu, '&Server')
 
         # Registration Menu
         menu = wx.Menu()
-        menu.Append( MENU_REGISTER_SERVER, 'Register', 'Register with OpenRPG server directory.')
-        self.Bind(wx.EVT_MENU, self.OnRegister, id=MENU_REGISTER_SERVER)
-        menu.Append( MENU_UNREGISTER_SERVER, 'Unregister', 'Unregister from OpenRPG server directory.')
-        self.Bind(wx.EVT_MENU, self.OnUnregister, id=MENU_UNREGISTER_SERVER)
+        menu.Append( 4, 'Register', 'Register with OpenRPG server directory.')
+        menu.Append( 5, 'Unregister', 'Unregister from OpenRPG server directory.')
+        self.Bind(wx.EVT_MENU, self.OnRegister, id=4)
+        self.Bind(wx.EVT_MENU, self.OnUnregister, id=5)
         self.mainMenu.Append( menu, '&Registration' )
 
         # Server Configuration Menu
         menu = wx.Menu()
-        menu.Append( MENU_BAN_LIST, 'Ban List', 'Modify Ban List.' )
-        self.Bind(wx.EVT_MENU, self.ModifyBanList, id=MENU_BAN_LIST)
-        menu.Append( MENU_START_PING_PLAYERS, 'Start Ping', 'Ping players to validate remote connection.' )
-        self.Bind(wx.EVT_MENU, self.PingPlayers, id=MENU_START_PING_PLAYERS)
-        menu.Append( MENU_STOP_PING_PLAYERS, 'Stop Ping', 'Stop validating player connections.' )
-        self.Bind(wx.EVT_MENU, self.StopPingPlayers, id=MENU_STOP_PING_PLAYERS)
-        menu.Append( MENU_PING_INTERVAL, 'Ping Interval', 'Change the ping interval.' )
-        self.Bind(wx.EVT_MENU, self.ConfigPingInterval, id=MENU_PING_INTERVAL)
+        menu.Append( 6, 'Ban List', 'Modify Ban List.')
+        menu.Append(11, 'Zombies', 'Set auto-kick time for zombie clients')
+        menu.Append(14, 'Send Size', 'Adjust the send size limit')
+        menu.AppendSeparator()
+        menu.Append( 7, 'Start Ping', 'Ping players to validate remote connection.' )
+        menu.Append( 8, 'Stop Ping', 'Stop validating player connections.' )
+        menu.Append( 9, 'Ping Interval', 'Change the ping interval.' )
+        menu.AppendSeparator()
+        menu.AppendCheckItem( 10, 'Server Logging', 'Turn on or off the Server GUI Log').Check(self.do_log)
+        menu.AppendCheckItem(12, 'Room Passwords', 'Allow or Deny Room Passwords').Check(False)
+        menu.AppendCheckItem(13, 'Remote Admin', 'Allow or Deny Remote Admin').Check(False)
+        menu.AppendCheckItem(15, 'Remote Kill', 'Allow or Deny Remote Admin Server Kill').Check(False)
+        self.Bind(wx.EVT_MENU, self.ModifyBanList, id=6)
+        self.Bind(wx.EVT_MENU, self.PingPlayers, id=7)
+        self.Bind(wx.EVT_MENU, self.StopPingPlayers, id=8)
+        self.Bind(wx.EVT_MENU, self.ConfigPingInterval, id=9)
+        self.Bind(wx.EVT_MENU, self.LogToggle, id=10)
         self.mainMenu.Append( menu, '&Configuration' )
-
         self.SetMenuBar( self.mainMenu )
 
-        self.mainMenu.Enable( MENU_STOP_SERVER, False )
-        self.mainMenu.Enable( MENU_REGISTER_SERVER, False )
-        self.mainMenu.Enable( MENU_UNREGISTER_SERVER, False )
+        self.mainMenu.Enable( 2, False )
+        self.mainMenu.Enable( 4, False )
+        self.mainMenu.Enable( 5, False )
 
         # Disable the ping menu items
-        self.mainMenu.Enable( MENU_START_PING_PLAYERS, False )
-        self.mainMenu.Enable( MENU_STOP_PING_PLAYERS, False )
-        self.mainMenu.Enable( MENU_PING_INTERVAL, False )
+        self.mainMenu.Enable( 7, False )
+        self.mainMenu.Enable( 8, False )
+        self.mainMenu.Enable( 9, False )
 
+        # Disable placeholders
+        self.mainMenu.Enable( 11, False )
+        self.mainMenu.Enable( 14, False )
+        self.mainMenu.Enable( 12, False )
+        self.mainMenu.Enable( 13, False )
+        self.mainMenu.Enable( 15, False )
     def build_body(self):
         """ Create the ViewNotebook and logger. """
         splitter = wx.SplitterWindow(self, -1, style=wx.NO_3D | wx.SP_3D)
         nb = wx.Notebook( splitter, -1 )
-        self.conns = Connections( nb, self )
-        nb.AddPage( self.conns, "Players" )
-
-        #Not sure why this is Remarked TaS - Sirebral
-        #nb.AddPage( self.conns, "Rooms" )
-        #self.msgWindow = HTMLMessageWindow( nb )
-        #nb.AddPage( self.msgWindow, "Messages" )
+        self.conns = Connections(nb, self)
+        self.groups = Groups(nb, self)
+        self.msgWindow = HTMLMessageWindow( nb )
+        nb.AddPage(self.conns, "Players")
+        nb.AddPage(self.groups, 'Rooms')
+        nb.AddPage( self.msgWindow, "Messages" )
 
         log = wx.TextCtrl(splitter, -1, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.HSCROLL)
         wx.Log.SetActiveTarget( wx.LogTextCtrl(log) )
@@ -454,16 +496,19 @@ class ServerGUI(wx.Frame):
 
 
     # Event handler for out logging event
+    def LogToggle(self, event):
+        self.do_log = event.IsChecked()
+
     def OnLogMessage( self, event ):
         self.Log( event.message )
 
     # Event handler for out logging event
-    def OnFunctionMessage( self, event ):
+    def OnFunctionMessage(self, event):
         self.callbacks[event.func]( event.message )
 
     ### Server Callbacks #####################################
     def Log(self, log):
-        wx.LogMessage(str(log))
+        if self.do_log: wx.LogMessage(str(log))
 
     def OnConnect(self, player):
         self.conns.add(player)
@@ -485,49 +530,48 @@ class ServerGUI(wx.Frame):
         self.sb.SetStatusText("Recv: %s (%d)" % (format_bytes(self.total_data_received), self.total_messages_received), 2)
 
     def OnCreateGroup( self, data ):
-        room_id = data[1]
-        name = data[0]
-        self.conns.roomList[room_id] = name
-        (room, room_id, player) = data
+        (room, room_id, player, pwd) = data
+        self.groups.AddGroup(data)
+        self.conns.roomList[room_id] = room
+        data = (room, room_id, player)
         self.conns.updateRoom(data)
 
-    def OnDeleteGroup( self, data ):
+    def OnDeleteGroup(self, data):
         (room_id, player) = data
+        self.groups.DeleteGroup(room_id)
         del self.conns.roomList[room_id]
 
-    def OnJoinGroup( self, data ):
-        self.conns.updateRoom( data )
+    def OnJoinGroup(self, data):
+        self.conns.updateRoom(data)
+
+    def OnUpdateGroup(self, data):
+        (room, room_id, players) = data
+        self.groups.UpdateGroup(data)
 
     def OnSetRole( self, data ):
         (id, role) = data
-        self.conns.setPlayerRole( id, role )
+        self.conns.setPlayerRole(id, role)
 
     ### Misc. ################################################
     def OnStart(self, event = None):
         """ Start server. """
         if self.STATUS == SERVER_STOPPED:
-            # see if we already have name specified 
+            ## Set name and admin password as empty
+            self.serverName = ''
+            self.bootPwd = ''
+            # see if we already have serverName and bootPwd specified
             try:
                 validate.config_file( "server_ini.xml", "default_server_ini.xml" ) 
-                configDom = minidom.parse(dir_struct["user"] + 'server_ini.xml') 
-                configDom.normalize() 
-                configDoc = configDom.documentElement 
-                if configDoc.hasAttribute("name"): self.serverName = configDoc.getAttribute("name")
+                configDoc = parse(dir_struct["user"] + 'server_ini.xml').getroot()
+                self.serverName = configDoc.get("name")
+                if configDoc.get("admin"): self.bootPwd = configDoc.get("admin") 
+                elif configDoc.get("boot"): self.bootPwd = configDoc.get("boot") 
             except: pass 
             if self.serverName == '':
                 self.serverName = 'Server Name'
-                serverNameEntry = wx.TextEntryDialog( self, "Please Enter The Server Name You Wish To Use:",
+                serverNameEntry = wx.TextEntryDialog(self, "Please Enter The Server Name You Wish To Use:",
                                                  "Server's Name", self.serverName, wx.OK|wx.CANCEL|wx.CENTRE )
                 if serverNameEntry.ShowModal() == wx.ID_OK: self.serverName = serverNameEntry.GetValue()
-            # see if we already have password specified 
-            try: 
-                validate.config_file( "server_ini.xml", "default_server_ini.xml" ) 
-                configDom = minidom.parse(dir_struct["user"] + 'server_ini.xml') 
-                configDom.normalize() 
-                configDoc = configDom.documentElement 
-                if configDoc.hasAttribute("admin"): self.bootPwd = configDoc.getAttribute("admin") 
-                elif configDoc.hasAttribute("boot"): self.bootPwd = configDoc.getAttribute("boot") 
-            except: pass 
             if self.bootPwd == '': 
                 serverPasswordEntry = wx.TextEntryDialog(self, 
                                             "Please Enter The Server Admin Password:", "Server's Password", 
@@ -540,9 +584,9 @@ class ServerGUI(wx.Frame):
                 self.STATUS = SERVER_RUNNING
                 self.sb.SetStatusText("Running", 3)
                 self.SetTitle(__appname__ + "- (running) - (unregistered)")
-                self.mainMenu.Enable( MENU_START_SERVER, False )
-                self.mainMenu.Enable( MENU_STOP_SERVER, True )
-                self.mainMenu.Enable( MENU_REGISTER_SERVER, True )
+                self.mainMenu.Enable( 1, False )
+                self.mainMenu.Enable( 2, True )
+                self.mainMenu.Enable( 4, True )
                 wx.EndBusyCursor()
             else: self.show_error("Server is already running.", "Error Starting Server")
 
@@ -554,10 +598,10 @@ class ServerGUI(wx.Frame):
             self.STATUS = SERVER_STOPPED
             self.sb.SetStatusText("Stopped", 3)
             self.SetTitle(__appname__ + "- (stopped) - (unregistered)")
-            self.mainMenu.Enable( MENU_STOP_SERVER, False )
-            self.mainMenu.Enable( MENU_START_SERVER, True )
-            self.mainMenu.Enable( MENU_REGISTER_SERVER, False )
-            self.mainMenu.Enable( MENU_UNREGISTER_SERVER, False )
+            self.mainMenu.Enable( 1, True )
+            self.mainMenu.Enable( 2, False )
+            self.mainMenu.Enable( 4, False )
+            self.mainMenu.Enable( 5, False )
             self.conns.DeleteAllItems()
 
     def OnRegister(self, event = None):
@@ -569,9 +613,9 @@ class ServerGUI(wx.Frame):
             wx.BeginBusyCursor()
             self.server.server.register(self.serverName)
             self.sb.SetStatusText( ("%s" % (self.serverName)), 4 )
-            self.mainMenu.Enable( MENU_REGISTER_SERVER, False )
-            self.mainMenu.Enable( MENU_UNREGISTER_SERVER, True )
-            self.mainMenu.Enable( MENU_STOP_SERVER, False )
+            self.mainMenu.Enable( 4, False )
+            self.mainMenu.Enable( 5, True )
+            #self.mainMenu.Enable( 2, False )
             self.SetTitle(__appname__ + "- (running) - (registered)")
             wx.EndBusyCursor()
 
@@ -584,17 +628,15 @@ class ServerGUI(wx.Frame):
         wx.BeginBusyCursor()
         self.server.server.unregister()
         self.sb.SetStatusText( "Unregistered", 4 )
-        self.mainMenu.Enable( MENU_UNREGISTER_SERVER, False )
-        self.mainMenu.Enable( MENU_REGISTER_SERVER, True )
-        self.mainMenu.Enable( MENU_STOP_SERVER, True )
+        self.mainMenu.Enable( 5, False )
+        self.mainMenu.Enable( 4, True )
+        #self.mainMenu.Enable( 2, True )
         self.SetTitle(__appname__ + "- (running) - (unregistered)")
         wx.EndBusyCursor()
 
-    ### Alpha ###
     def ModifyBanList(self, event):
         if self.BanListDialog.IsShown() == True: self.BanListDialog.Hide()
         else: self.BanListDialog.Show()
-    #############
 
     def PingPlayers( self, event = None ):
         "Ping all players that are connected at a periodic interval, detecting dropped connections."
@@ -608,13 +650,18 @@ class ServerGUI(wx.Frame):
     def ConfigPingInterval( self, event = None ):
         "Configure the player ping interval.  Note that all players are pinged on a single timer."
 
-    def OnExit(self, event = None):
+    def OnExit(self, event):
+        dlg = wx.MessageDialog(self, "Exit the Server?", "OpenRPG- Server", wx.YES_NO)
+        if dlg.ShowModal() == wx.ID_YES:
+            dlg.Destroy()
+            self.ExitConfirmed()
+
+    def ExitConfirmed(self, event=None):
         """ Quit the program. """
         self.OnStop()
-        self.BanListDialog.Destroy() ### Alpha ###
+        self.BanListDialog.Destroy()
         wx.CallAfter(self.Destroy)
 
-### Alpha ###
 class BanListDialog(wx.Frame):
     def __init__(self, parent):
         super(BanListDialog, self).__init__(parent, -1, "Ban List")
@@ -633,11 +680,11 @@ class BanListDialog(wx.Frame):
         # Ban List Dialog Pop Up Menu, more can be added
         self.menu = wx.Menu()
         self.menu.SetTitle( "Modify Ban List" )
-        self.menu.Append( MENU_ADMIN_UNBAN, "Un-Ban Player" )
+        self.menu.Append( 1, "Un-Ban Player" )
 
         # Even Association
         self.BanList.Bind(wx.EVT_RIGHT_DOWN, self.BanPopupMenu)
-        self.Bind(wx.EVT_MENU, self.BanPopupMenuItem, id=MENU_ADMIN_UNBAN)
+        self.Bind(wx.EVT_MENU, self.BanPopupMenuItem, id=1)
 
     # When we right click, cause our popup menu to appear
     def BanPopupMenu( self, event ):
@@ -651,7 +698,7 @@ class BanListDialog(wx.Frame):
         menuItem = event.GetId()
         player = str(self.BanList.GetItemData(self.selectedItem))
         playerIP = str(self.BanList.GetItem((int(player)), 1).GetText())
-        if menuItem == MENU_ADMIN_UNBAN:
+        if menuItem == 1:
             server.admin_unban(playerIP)
             self.BanList.DeleteItem(self.BanList.GetItemData(self.selectedItem))
             self.BanList.Refresh()   
@@ -663,11 +710,11 @@ class BanListDialog(wx.Frame):
         self.BanList.InsertColumn(1, "IP")
 
         validate.config_file("ban_list.xml", "default_ban_list.xml" ) 
-        configDom = minidom.parse(dir_struct["user"] + 'ban_list.xml')
+        configDom = parse(dir_struct["user"] + 'ban_list.xml').getroot()
         ban_dict = {}
-        for element in configDom.getElementsByTagName('banned'):
-            player = element.getAttribute('name').replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;").replace(">", "&gt;")
-            playerIP = element.getAttribute('ip')
+        for element in configDom.findall('banned'):
+            player = element.get('name').replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;").replace(">", "&gt;")
+            playerIP = element.get('ip')
             ban_dict[player] = playerIP
         for key in ban_dict:
             i = self.BanList.InsertImageStringItem( 0, key, 0 )
@@ -681,6 +728,7 @@ class BanListDialog(wx.Frame):
         self.BanList.Refresh()
 
     def Min(self, evt):
+        self.BuildList()
         self.Hide()
 ###############
 

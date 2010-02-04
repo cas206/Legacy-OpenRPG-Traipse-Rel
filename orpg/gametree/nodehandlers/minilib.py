@@ -21,12 +21,12 @@
 # Author: Ted Berg
 # Maintainer:
 # Version:
-#   $Id: minilib.py,v 1.28 2007/04/22 22:00:18 digitalxero Exp $
+#   $Id: minilib.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description: nodehandler for a collection of miniatures.
 #
 
-__version__ = "$Id: minilib.py,v 1.28 2007/04/22 22:00:18 digitalxero Exp $"
+__version__ = "$Id: minilib.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 """Nodehandler for collections of miniatures.  User can add, delete, edit
 miniatures as sending them to the map singly or in batches.
@@ -68,15 +68,13 @@ class minilib_handler( node_handler ):
         &lt;/nodehandler&gt;
     </pre>
     """
-    def __init__(self, xml_dom, tree_node):
+    def __init__(self, xml, tree_node):
         """Instantiates the class, and sets all vars to their default state
         """
-        node_handler.__init__(self, xml_dom, tree_node)
-
+        node_handler.__init__(self, xml, tree_node)
         self.myeditor = None
         self.mywindow = None
         self.tree_node = tree_node
-        # self.xml_dom = xml_dom
         self.update_leaves()
         self.sanity_check_nodes()
 
@@ -101,30 +99,22 @@ class minilib_handler( node_handler ):
         expecting for a given column.
         """
         str = '<table border="2" >'
-        list = self.master_dom.getElementsByTagName(TAG_MINIATURE)
-        str += "<tr><th width='20%'>Label</th><th>Image</th><th width='65%'>URL</th><th>Unique</th></t>"
-        for mini in list:
-            url = mini.getAttribute(ATTRIBUTE_URL)
-            label = mini.getAttribute(ATTRIBUTE_NAME)
+        str += "<tr><th width='20%'>Label</th><th>Image</th><th width='65%'>URL</th><th>Unique</th></tr>"
+        for mini in self.xml.findall(TAG_MINIATURE):
+            url = mini.get(ATTRIBUTE_URL)
+            label = mini.get(ATTRIBUTE_NAME)
             flag = 0
-            try:
-                flag = eval( mini.getAttribute(ATTRIBUTE_UNIQUE) )
-            except:
-                pass
-
+            try: flag = eval( mini.get(ATTRIBUTE_UNIQUE) )
+            except: pass
             show = 'yes'
-            if flag:
-                show = 'no'
-
+            if flag: show = 'no'
             str += """<tr>
                 <td> %s </td>
                 <td><img src="%s"></td>
                 <td> %s </td>
                 <td> %s </td>
             </tr>""" % ( label, url, url, show )
-
         str += "</table>"
-        print str
         return str
 
     def html_view( self ):
@@ -134,61 +124,50 @@ class minilib_handler( node_handler ):
 
     def on_drop(self, evt):
         drag_obj = self.tree.drag_obj
-        if drag_obj == self or self.tree.is_parent_node( self.mytree_node, drag_obj.mytree_node ):
-            return
-        if isinstance( drag_obj, minilib_handler ):
-            item = self.tree.GetSelection()
-            name = self.tree.GetItemText( item )
-        if isinstance( drag_obj, map_miniature_nodehandler.map_miniature_handler ):
-            xml_dom = self.tree.drag_obj.master_dom#.delete()
-            obj = xml_dom.firstChild
-            print obj.getAttributeKeys()
+        if drag_obj == self or self.tree.is_parent_node( self.mytree_node, drag_obj.mytree_node ): return
+        elif isinstance( drag_obj, map_miniature_nodehandler.map_miniature_handler ):
+            drop_xml = self.tree.drag_obj.xml#.delete()
+            obj = drop_xml[0]
             dict = {}
             unique = ''
-            for attrib in obj.getAttributeKeys():
+            for attrib in obj.keys():
                 key = TO_MINILIB_MAP.get( attrib, attrib )
-                if key != None:
-                    dict[ key ] = obj.getAttribute( attrib )
+                if key != None: dict[ key ] = obj.get( attrib )
             dict[ ATTRIBUTE_UNIQUE ] = unique
             self.new_mini( dict )
+        else: node_handler.on_drop(self, evt)
 
 
     def new_mini( self, data={}, add=1 ):
-        mini = minidom.Element( TAG_MINIATURE )
-        for key in data.keys():
-            mini.setAttribute( key, data[ key ] )
+        mini = Element( TAG_MINIATURE )
+        for key in data.keys(): mini.set( key, data[ key ] )
         for key in CORE_ATTRIBUTES:
-            if mini.getAttribute( key ) == '':
-                mini.setAttribute( key, '0' )
+            if mini.get( key ) == '': mini.set( key, '0' )
         if add:
             self.add_mini( mini )
             self.add_leaf( mini )
         return mini
 
     def add_mini( self, mini ):
-        self.master_dom.appendChild( mini )
+        self.xml.append( mini )
 
     def add_leaf( self, mini, icon='gear' ):
         tree = self.tree
         icons = tree.icons
-        key = mini.getAttribute( ATTRIBUTE_NAME )
+        key = mini.get( ATTRIBUTE_NAME )
         self.mydata.append( mini )
 
     def update_leaves( self ):
         self.mydata = []
-        nl = self.master_dom.getElementsByTagName( TAG_MINIATURE )
-        for n in nl:
-            self.add_leaf( n )
-
+        for n in self.xml.findall(TAG_MINIATURE): self.add_leaf( n )
 
     def on_drag( self, evt ):
         print 'drag event caught'
 
     def send_mini_to_map( self, mini, count=1, addName=True ):
-        if mini == None:
-            return
-        if mini.getAttribute( ATTRIBUTE_URL ) == '' or mini.getAttribute( ATTRIBUTE_URL ) == 'http://':
-            self.chat.ParsePost( self.chat.colorize(self.chat.syscolor, '"%s" is not a valid URL, the mini "%s" will not be added to the map' % ( mini.getAttribute( ATTRIBUTE_URL ), mini.getAttribute( ATTRIBUTE_NAME ) )) )
+        if mini == None: return
+        if mini.get( ATTRIBUTE_URL ) == '' or mini.get( ATTRIBUTE_URL ) == 'http://':
+            self.chat.ParsePost( self.chat.colorize(self.chat.syscolor, '"%s" is not a valid URL, the mini "%s" will not be added to the map' % ( mini.get( ATTRIBUTE_URL ), mini.get( ATTRIBUTE_NAME ) )) )
             return
         session = component.get( COMPONENT_SESSION )
         if (session.my_role() != session.ROLE_GM) and (session.my_role() != session.ROLE_PLAYER):
@@ -201,57 +180,46 @@ class minilib_handler( node_handler ):
             map.new_data( msg )
             session.send( msg )
 
-    def get_miniature_XML( self, mini, addName = True ):
+    def get_miniature_XML( self, mini_xml, addName = True ):
         msg = orpg.mapper.map_msg.mini_msg()
         map = component.get( COMPONENT_MAP )
         session = component.get( COMPONENT_SESSION )
         msg.init_prop( ATTRIBUTE_ID, session.get_next_id() )
-        for k in mini.getAttributeKeys():
+        msg.init_prop('selected', '1')# this will make the mini initially selected
+        for k in mini_xml.keys():
             # translate our attributes to map attributes
             key = FROM_MINILIB_MAP.get( k, k )
             if key != None:
-                if not addName and k == 'name':
-                    pass
-                else:
-                    msg.init_prop( key, mini.getAttribute( k ) )
-        unique = self.is_unique( mini )
-        if addName:
-            label = mini.getAttribute( ATTRIBUTE_NAME )
-        else:
-            label = ''
+                if not addName and k == 'name': pass
+                else: msg.init_prop( key, mini_xml.get( k ) )
+        unique = self.is_unique( mini_xml )
+        if addName: label = mini_xml.get( ATTRIBUTE_NAME )
+        else: label = ''
         return msg.get_all_xml()
 
     def is_unique( self, mini ):
-        unique = mini.getAttribute( ATTRIBUTE_UNIQUE )
+        unique = mini.get( ATTRIBUTE_UNIQUE )
         val = 0
-        try:
-            val = eval( unique )
-        except:
-            val = len( unique )
+        try: val = eval( unique )
+        except: val = len( unique )
         return val
 
     def sanity_check_nodes( self ):
-        nl = self.master_dom.getElementsByTagName( TAG_MINIATURE )
-        for node in nl:
-            if node.getAttribute( ATTRIBUTE_POSX ) == '':
-                node.setAttribute( ATTRIBUTE_POSX, '0' )
-            if node.getAttribute( ATTRIBUTE_POSY ) == '':
-                node.setAttribute( ATTRIBUTE_POSY, '0' )
+        for node in self.xml.findall(TAG_MINIATURE):
+            if node.get( ATTRIBUTE_POSX ) == '': node.set( ATTRIBUTE_POSX, '0' )
+            if node.get( ATTRIBUTE_POSY ) == '': node.set( ATTRIBUTE_POSY, '0' )
 
     def get_mini( self, index ):
-        try:
-            nl = self.master_dom.getElementsByTagName( TAG_MINIATURE )
-            return nl[ index ]
-        except:
-            return None
+        try: return self.xml.findall(TAG_MINIATURE)[index]
+        except: return None
 
 class mini_handler( node_handler ):
-    def __init__( self, xml_dom, tree_node, handler ):
-        node_handler.__init__( self, xml_dom, tree_node)
+    def __init__( self, xml, tree_node, handler ):
+        node_handler.__init__( self, xml, tree_node)
         self.handler = handler
 
     def on_ldclick( self, evt ):
-        self.handler.send_mini_to_map( self.master_dom )
+        self.handler.send_mini_to_map( self.xml )
 
     def on_drop( self, evt ):
         pass
@@ -275,9 +243,6 @@ class minilib_use_panel(wx.Panel):
 
         self.map = component.get('map')
         names = self.buildList()
-        # self.keys = self.list.keys()
-        # self.keys.sort()
-
 
         s = self.GetClientSizeTuple()
 
@@ -313,17 +278,9 @@ class minilib_use_panel(wx.Panel):
     def buildList( self ):
         """Returns a dictionary of label => game tree miniature DOM node mappings.
         """
-        list = self.handler.master_dom.getElementsByTagName(TAG_MINIATURE)
         self.list = []
-        for mini in list:
-            self.list.append( mini.getAttribute( ATTRIBUTE_NAME ) )
+        for mini in self.handler.xml.findall(TAG_MINIATURE): self.list.append( mini.get( ATTRIBUTE_NAME ) )
         return self.list
-        # self.list = {}
-        # for mini in list:
-        #     name = mini.getAttribute( ATTRIBUTE_NAME )
-        #     if name == '':
-        #         name = self.map.canvas.get_label_from_url( mini.getAttribute( ATTRIBUTE_URL ) )
-        #     self.list[ name ] = mini
 
     def on_close(self, evt):
         self.frame.Close()
@@ -333,22 +290,15 @@ class minilib_use_panel(wx.Panel):
         """
         btn = self.FindWindowById(evt.GetId())
         sendName = True
+        try: count = eval( self.count.GetValue() )
+        except: count = 1
         try:
-            count = eval( self.count.GetValue() )
-        except:
-            count = 1
-
-        try:
-            if eval( unique ):
-                count = 1
+            if eval( unique ): count = 1
             unique = eval( unique )
-        except:
-            pass
+        except: pass
 
-        if btn.GetLabel() == 'Add No Label':
-            sendName = False
-        for index in self.listbox.GetSelections():
-            self.handler.send_mini_to_map( self.handler.get_mini( index ), count, sendName )
+        if btn.GetLabel() == 'Add No Label': sendName = False
+        for index in self.listbox.GetSelections(): self.handler.send_mini_to_map( self.handler.get_mini( index ), count, sendName )
 
 
 class minpedit(wx.Panel):
@@ -417,12 +367,8 @@ class minpedit(wx.Panel):
                 'How many %s\'s do you want to add?' %
                 ( self.grid.getSelectedLabel() ), 'Batch mini add', '2' )
             if dlg.ShowModal() == wx.ID_OK:
-                try:
-                    value = eval( dlg.GetValue() )
-                except:
-                    value = 0
-                # for loop in range( 0, value ):
-                #     self.send_to_map()
+                try: value = eval( dlg.GetValue() )
+                except: value = 0
                 print 'getting selected index for batch send'
                 index = self.grid.GetGridCursorRow()
                 print 'sending batch to map'
@@ -438,15 +384,9 @@ class minilib_grid(wx.grid.Grid):
         wx.grid.Grid.__init__(self, parent, -1, style=wx.SUNKEN_BORDER | wx.WANTS_CHARS )
         self.parent = parent
         self.handler = handler
-        #self.keys = [ ATTRIBUTE_NAME, ATTRIBUTE_URL, ATTRIBUTE_UNIQUE ]
         self.keys = CORE_ATTRIBUTES
         self.CreateGrid( 1, len( self.keys ) )
-        # self.SetColLabelValue( 0, 'Name' )
-        # self.SetColLabelValue( 1, 'URL' )
-        # self.SetColSize( 1, 250 )
-        # self.SetColLabelValue( 2, 'Unique' )
-        for key in self.keys:
-            self.SetColLabelValue( self.keys.index( key ), key )
+        for key in self.keys: self.SetColLabelValue( self.keys.index( key ), key )
         self.update_all()
         self.selectedRow = 0
         self.AutoSizeColumns()
@@ -454,11 +394,9 @@ class minilib_grid(wx.grid.Grid):
         self.Bind(wx.grid.EVT_GRID_SELECT_CELL, self.select_cell)
 
     def update_cols( self ):
-        nl = self.handler.master_dom.getElementsByTagName( TAG_MINIATURE )
-        for n in nl:
-            for k in n.getAttributeKeys():
-                if k not in self.keys:
-                    self.keys.append( k )
+        for n in self.handler.xml.findall(TAG_MINIATURE):
+            for k in n.keys():
+                if k not in self.keys: self.keys.append( k )
 
     def select_cell( self, evt ):
         """Event handler for grid cell selection changes.  It stores the
@@ -475,7 +413,7 @@ class minilib_grid(wx.grid.Grid):
         """Returns the list of 'miniature' DOM elements associated with this
         miniature library.
         """
-        return self.handler.master_dom.getElementsByTagName( TAG_MINIATURE )
+        return self.handler.xml.findall( TAG_MINIATURE )
 
     def add_row( self, count = 1 ):
         """creates a new miniature node, and then adds it to the current
@@ -486,7 +424,7 @@ class minilib_grid(wx.grid.Grid):
           ATTRIBUTE_NAME :' ',
           ATTRIBUTE_URL :'http://'} )# minidom.Element( TAG_MINIATURE )
         self.update_all()
-        #self.handler.master_dom.appendChild( node )
+        #self.handler.xml.append( node )
 
     def del_row( self ):
         """deletes the miniature associated with the currently selected
@@ -495,8 +433,8 @@ class minilib_grid(wx.grid.Grid):
         """
         if self.selectedRow > -1:
             pos = self.selectedRow
-            list = self.handler.master_dom.getElementsByTagName(TAG_MINIATURE)
-            self.handler.master_dom.removeChild( list[pos] )
+            list = self.handler.xml.findall(TAG_MINIATURE)
+            self.handler.xml.remove( list[pos] )
             self.DeleteRows( pos, 1 )
             list = self.getList()
             del list[ pos ]
@@ -515,14 +453,12 @@ class minilib_grid(wx.grid.Grid):
         list = self.getList()
         count = 0
         for n in list:
-            for k in n.getAttributeKeys():
-                if k not in self.keys:
-                    self.keys.append( k )
+            for k in n.keys():
+                if k not in self.keys: self.keys.append( k )
         count = len( self.keys )
         if self.GetNumberCols() < count:
             self.AppendCols( count - self.GetNumberCols() )
-            for k in self.keys:
-                self.SetColLabelValue( self.keys.index( k ), k )
+            for k in self.keys: self.SetColLabelValue( self.keys.index( k ), k )
         count = len( list )
         rowcount = self.GetNumberRows()
         if ( count > rowcount ):
@@ -555,22 +491,11 @@ class minilib_grid(wx.grid.Grid):
         """
         list = self.getList()
         item = list[ row ]
-        # self.GetTable().SetValue( row, 0, item.getAttribute(ATTRIBUTE_NAME) )
-        # self.GetTable().SetValue( row, 1, item.getAttribute(ATTRIBUTE_URL) )
-        # self.GetTable().SetValue( row, 2, item.getAttribute(ATTRIBUTE_UNIQUE) )
-        for key in self.keys:
-            self.GetTable().SetValue( row, self.keys.index( key ), item.getAttribute( key ) )
+        for key in self.keys: self.GetTable().SetValue( row, self.keys.index( key ), item.get( key ) )
 
     def update_data_row( self, row ):
         """Updates the DOM nodw 'row' with grid data from 'row'
         """
         list = self.getList()
         item = list[ row ]
-        for key in self.keys:
-            item.setAttribute( key, string.strip( self.GetTable().GetValue( row, self.keys.index( key ) ) ) )
-        # item.setAttribute( ATTRIBUTE_NAME, string.strip( self.GetTable().GetValue( row, 0 ) ) )
-        # item.setAttribute( ATTRIBUTE_URL, string.strip( self.GetTable().GetValue( row, 1 ) ) )
-        # item.setAttribute( ATTRIBUTE_UNIQUE, string.strip( self.GetTable().GetValue( row, 2 ) ) )
-        # self.GetTable().SetValue( row, 0, item.getAttribute(ATTRIBUTE_NAME) )
-        # self.GetTable().SetValue( row, 1, item.getAttribute(ATTRIBUTE_URL) )
-        # self.GetTable().SetValue( row, 2, item.getAttribute(ATTRIBUTE_UNIQUE) )
+        for key in self.keys: item.set( key, string.strip( self.GetTable().GetValue( row, self.keys.index( key ) ) ) ) 

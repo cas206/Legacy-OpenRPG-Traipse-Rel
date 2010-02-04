@@ -21,12 +21,12 @@
 # Author: Chris Davis
 # Maintainer:
 # Version:
-#   $Id: whiteboard.py,v 1.47 2007/03/09 14:11:55 digitalxero Exp $
+#   $Id: whiteboard.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description: This file contains some of the basic definitions for the chat
 # utilities in the orpg project.
 #
-__version__ = "$Id: whiteboard.py,v 1.47 2007/03/09 14:11:55 digitalxero Exp $"
+__version__ = "$Id: whiteboard.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from base import *
 from orpg.mapper.map_utils import *
@@ -121,10 +121,8 @@ class WhiteboardText:
     def takedom(self, xml_dom):
         self.text_string = xml_dom.getAttribute("text_string")
         self.id = xml_dom.getAttribute("id")
-        if xml_dom.hasAttribute("posy"):
-            self.posy = int(xml_dom.getAttribute("posy"))
-        if xml_dom.hasAttribute("posx"):
-            self.posx = int(xml_dom.getAttribute("posx"))
+        if xml_dom.hasAttribute("posy"): self.posy = int(xml_dom.getAttribute("posy"))
+        if xml_dom.hasAttribute("posx"): self.posx = int(xml_dom.getAttribute("posx"))
         if xml_dom.hasAttribute("weight"):
             self.weight = int(xml_dom.getAttribute("weight"))
             self.font.SetWeight(self.weight)
@@ -175,11 +173,9 @@ class WhiteboardLine:
         oldicords = (int(stcords[0]),int(stcords[1]))
         for coordinate_string_counter in range(1, len(coords)):
             stcords = coords[coordinate_string_counter].split(",")
-            if stcords[0] == "":
-                return False
+            if stcords[0] == "": return False
             icords = (int(stcords[0]),int(stcords[1]))
-            if orpg.mapper.map_utils.proximity_test(oldicords,icords,pt,12):
-                return True
+            if orpg.mapper.map_utils.proximity_test(oldicords,icords,pt,12): return True
             oldicords = icords
         return False
 
@@ -237,20 +233,14 @@ class WhiteboardLine:
     def takedom(self, xml_dom):
         self.line_string = xml_dom.getAttribute("line_string")
         self.id = xml_dom.getAttribute("id")
-        if xml_dom.hasAttribute("upperleftx"):
-            self.upperleft.x = int(xml_dom.getAttribute("upperleftx"))
-        if xml_dom.hasAttribute("upperlefty"):
-            self.upperleft.y = int(xml_dom.getAttribute("upperlefty"))
-        if xml_dom.hasAttribute("lowerrightx"):
-            self.lowerright.x = int(xml_dom.getAttribute("lowerrightx"))
-        if xml_dom.hasAttribute("lowerrighty"):
-            self.lowerright.y = int(xml_dom.getAttribute("lowerrighty"))
+        if xml_dom.hasAttribute("upperleftx"): self.upperleft.x = int(xml_dom.getAttribute("upperleftx"))
+        if xml_dom.hasAttribute("upperlefty"): self.upperleft.y = int(xml_dom.getAttribute("upperlefty"))
+        if xml_dom.hasAttribute("lowerrightx"): self.lowerright.x = int(xml_dom.getAttribute("lowerrightx"))
+        if xml_dom.hasAttribute("lowerrighty"): self.lowerright.y = int(xml_dom.getAttribute("lowerrighty"))
         if xml_dom.hasAttribute("color") and xml_dom.getAttribute("color") != '':
             self.linecolor = xml_dom.getAttribute("color")
-            if self.linecolor == '#0000000':
-                self.linecolor = '#000000'
-        if xml_dom.hasAttribute("width"):
-            self.linewidth = int(xml_dom.getAttribute("width"))
+            if self.linecolor == '#0000000': self.linecolor = '#000000'
+        if xml_dom.hasAttribute("width"): self.linewidth = int(xml_dom.getAttribute("width"))
 
 ##-----------------------------
 ## whiteboard layer
@@ -287,7 +277,7 @@ class whiteboard_layer(layer_base):
         self.serial_number -= 1
 
     def add_line(self, line_string="", upperleft=cmpPoint(0,0), lowerright=cmpPoint(0,0), color="#000000", width=1):
-        id = 'line-' + str(self.next_serial())
+        id = 'line-' + self.canvas.session.get_next_id()
         line = WhiteboardLine(id, line_string, upperleft, lowerright, color=self.color, width=self.width)
         self.lines.append(line)
         xml_str = "<map><whiteboard>"
@@ -299,14 +289,12 @@ class whiteboard_layer(layer_base):
 
     def get_line_by_id(self, id):
         for line in self.lines:
-            if str(line.id) == str(id):
-                return line
+            if str(line.id) == str(id): return line
         return None
 
     def get_text_by_id(self, id):
         for text in self.texts:
-            if str(text.id) == str(id):
-                return text
+            if str(text.id) == str(id): return text
         return None
 
     def del_line(self, line):
@@ -327,17 +315,14 @@ class whiteboard_layer(layer_base):
             self.canvas.Refresh(True)
 
     def del_all_lines(self):
-        for i in xrange(len(self.lines)):
-            self.del_line(self.lines[0])
-        print self.lines
+        for i in xrange(len(self.lines)): self.del_line(self.lines[0])
 
     def del_text(self, text):
         xml_str = "<map><whiteboard>"
         xml_str += text.toxml("del")
         xml_str += "</whiteboard></map>"
         self.canvas.frame.session.send(xml_str)
-        if text:
-            self.texts.remove(text)
+        if text: self.texts.remove(text)
         self.canvas.Refresh(True)
 
     def layerDraw(self, dc):
@@ -347,8 +332,7 @@ class whiteboard_layer(layer_base):
     def hit_test_text(self, pos, dc):
         list_of_texts_matching = []
         if self.canvas.layers['fog'].use_fog == 1:
-            if self.canvas.frame.session.role != "GM":
-                return list_of_texts_matching
+            if self.canvas.frame.session.role != "GM": return list_of_texts_matching
         for m in self.texts:
             if m.hit_test(pos,dc): list_of_texts_matching.append(m)
         return list_of_texts_matching
@@ -356,8 +340,7 @@ class whiteboard_layer(layer_base):
     def hit_test_lines(self, pos, dc):
         list_of_lines_matching = []
         if self.canvas.layers['fog'].use_fog == 1:
-            if self.canvas.frame.session.role != "GM":
-                return list_of_lines_matching
+            if self.canvas.frame.session.role != "GM": return list_of_lines_matching
         for m in self.lines:
             if m.hit_test(pos): list_of_lines_matching.append(m)
         return list_of_lines_matching
@@ -368,10 +351,8 @@ class whiteboard_layer(layer_base):
         self.canvas.PrepareDC( dc )
         dc.SetUserScale(scale,scale)
         line_list = self.hit_test_lines(pt,dc)
-        if line_list:
-            return line_list[0]
-        else:
-            return None
+        if line_list: return line_list[0]
+        else: return None
 
     def setcolor(self, color):
         r,g,b = color.Get()
@@ -387,7 +368,7 @@ class whiteboard_layer(layer_base):
         self.font = font
 
     def add_text(self, text_string, pos, style, pointsize, weight, color="#000000"):
-        id = 'text-' + str(self.next_serial())
+        id = 'text-' + self.canvas.session.get_next_id()
         text = WhiteboardText(id,text_string, pos, style, pointsize, weight, color)
         self.texts.append(text)
         xml_str = "<map><whiteboard>"
@@ -412,8 +393,7 @@ class whiteboard_layer(layer_base):
             points = x.split(",")
             x1 = int(points[0])
             y1 = int(points[1])
-            if x2 != -999:
-                dc.DrawLine(x2,y2,x1,y1)
+            if x2 != -999: dc.DrawLine(x2,y2,x1,y1)
             x2 = x1
             y2 = y1
         dc.SetPen(wx.NullPen)
@@ -422,9 +402,9 @@ class whiteboard_layer(layer_base):
     def layerToXML(self, action="update"):
         """ format  """
         white_string = ""
-        if self.lines:
+        if self.lines: 
             for l in self.lines: white_string += l.toxml(action)
-        if self.texts:
+        if self.texts: 
             for l in self.texts: white_string += l.toxml(action)
         if len(white_string):
             s = "<whiteboard"
@@ -433,8 +413,7 @@ class whiteboard_layer(layer_base):
             s += white_string
             s += "</whiteboard>"
             return s
-        else:
-            return ""
+        else: return ""
 
     def layerTakeDOM(self, xml_dom):
         serial_number = xml_dom.getAttribute('serial')
@@ -444,6 +423,9 @@ class whiteboard_layer(layer_base):
             nodename = l._get_nodeName()
             action = l.getAttribute("action")
             id = l.getAttribute('id')
+            try:
+                if self.serial_number < int(id.split('-')[2]): self.serial_number = int(id.split('-')[2])
+            except: pass
             if action == "del":
                 if nodename == 'line':
                     line = self.get_line_by_id(id)
@@ -484,8 +466,7 @@ class whiteboard_layer(layer_base):
                         pos = wx.Point(0,0)
                         pos.x = int(posx)
                         pos.y = int(posy)
-                    except:
-                        continue
+                    except: continue
                     text = WhiteboardText(id, text_string, pos, style, pointsize, weight, color)
                     self.texts.append(text)
             else:
@@ -495,7 +476,6 @@ class whiteboard_layer(layer_base):
                 if nodename == "text":
                     text = self.get_text_by_id(id)
                     if text: text.takedom(l)
-        #self.canvas.send_map_data()
 
     def add_temp_line(self, line_string):
         line = WhiteboardLine(0, line_string, wx.Point(0,0), wx.Point(0,0), 

@@ -21,17 +21,18 @@
 # Author: Chris Davis
 # Maintainer:
 # Version:
-#   $Id: orpg_windows.py,v 1.42 2007/12/07 20:59:16 digitalxero Exp $
+#   $Id: orpg_windows.py,v Traipse 'Ornery-Orc' prof.ebral Exp  $
 #
 # Description: orpg custom windows
 #
 
-__version__ = "$Id: orpg_windows.py,v 1.42 2007/12/07 20:59:16 digitalxero Exp $"
+__version__ = "$Id: orpg_windows.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from orpg.orpg_wx import *
 from orpg.orpgCore import *
 import orpg.tools.rgbhex
 from orpg.dirpath import dir_struct
+from orpg.tools.orpg_log import debug
 from orpg.tools.metamenus import MenuEx
 
 class img_helper:
@@ -55,11 +56,10 @@ class img_helper:
         pos = string.rfind(file_name,'.')
         ext = string.lower(file_name[pos+1:])
         img_type = 0
-	# TaS - sirebral.  Replaces 10 lines with 6 lines.
 	recycle_bin = {"gif": wx.BITMAP_TYPE_GIF, "jpg": wx.BITMAP_TYPE_JPEG, 
         "jpeg": wx.BITMAP_TYPE_JPEG, "bmp": wx.BITMAP_TYPE_BMP, "png": wx.BITMAP_TYPE_PNG}
 	if recycle_bin.has_key(ext): img_type = recycle_bin[ext]
-	else: img_type = None ## this was imf_type = None.  imf?
+	else: img_type = None
 	del recycle_bin; return img_type
 
 ################################
@@ -87,7 +87,7 @@ class orpgTabberWnd(FNB.FlatNotebook):
         if style: nbstyle |= style
         self.SetWindowStyleFlag(nbstyle)
 
-	#Tas - sirebral.  Planned changes to the huge statement below.  
+        # Tas - sirebral.  Planned changes to the huge statement below.  
         if tabtheme == 'slanted&aqua':
             self.SetGradientColourTo(wx.Color(0, 128, 255))
             self.SetGradientColourFrom(wx.WHITE)
@@ -188,14 +188,14 @@ class orpgFocusSplitterWindow(wx.SplitterWindow):
         sash = self.GetSashPosition()
 
         if splitmode == wx.SPLIT_VERTICAL:
-            pos = mouse_X #  Position of the mouse pointer
-            second = second_x  #  Beginning of the second (Right) pane
+            pos = mouse_X           #  Position of the mouse pointer
+            second = second_x       #  Beginning of the second (Right) pane
             second_size = second_w  # Size of the second pane
         else:
-            pos = mouse_Y #  Position of the mouse pointer
-            second = second_y  #  Beginning of the second (Bottom) pane
+            pos = mouse_Y           #  Position of the mouse pointer
+            second = second_y       #  Beginning of the second (Bottom) pane
             second_size = second_h  # Size of the second pane
-        sash_size = second - sash    # Beginning of sash to beginning of second is the sash size
+        sash_size = second - sash   # Beginning of sash to beginning of second is the sash size
 
         if (pos > sash + sash_size and second_size < sash) or (pos < sash and second_size > sash):
             #  Equivalent to the following
@@ -277,7 +277,7 @@ class html_text_edit(wx.Panel):
         (beg,end) = self.text.GetSelection()
         if beg != end: sel_txt = txt[beg:end]
         else: return
-        print txt
+
 	# TaS - sirebral. Replaces 6 lines with 4 lines.
 	recycle_bin = {self.BOLD: "b", self.ITALIC: "i", self.UNDER: "u"}
 	if recycle_bin.has_key(id):
@@ -329,7 +329,6 @@ class http_html_window(wx.html.HtmlWindow):
         else: self.load_url(self.path+address)
 
     def load_url(self,path):
-        print path
         dlg = wx.ProgressDialog("HTML Document","Loading...",3,self)
         dlg.Update(1)
         try:
@@ -483,7 +482,6 @@ class orpgScrolledMessageFrameEditor(wx.Frame):
 
         # continue search from insertion point instead of top
         self.matchPosition = self.matchPositionOld = self.text.GetInsertionPoint()
-
         # find search string in chatbuffer
         self.matchPosition = string.find(textValue[self.matchPositionOld:], matchValue)
         # cumulate position for substring matching in continuing search

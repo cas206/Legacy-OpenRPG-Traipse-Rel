@@ -22,78 +22,83 @@
 # Author: OpenRPG Team
 # Maintainer:
 # Version:
-#   $Id: utils.py,v 1.22 2007/05/05 05:30:10 digitalxero Exp $
+#   $Id: utils.py,v Traipse 'Ornery-Orc' prof.ebral Exp  $
 #
 # Description: Classes to help manage the die roller
 #
 
-__version__ = "$Id: utils.py,v 1.22 2007/05/05 05:30:10 digitalxero Exp $"
+__version__ = "$Id: utils.py,v Traipse 'Ornery-Orc' prof.ebral Exp  Exp $"
 
-from die import *
-from wod import *
-from d20 import *
-from hero import *
-from shadowrun import *
-from sr4 import *
-from hackmaster import *
-from wodex import *
-from srex import *
-from gurps import *
-from runequest import *
-from savage import *
-from trinity import *
 import re
 
-rollers = ['std','wod','d20','hero','shadowrun', 'sr4','hackmaster','srex','wodex', 'gurps', 'runequest', 'sw', 'trinity']
+import orpg.dieroller.rollers
+from orpg.dieroller.base import die_rollers
 
-class roller_manager:
-    
-    def __init__(self,roller_class="d20"):
-        try: self.setRoller(roller_class)
-        except: self.roller_class = "std"
+class roller_manager(object):
+    def __new__(cls):
+        it = cls.__dict__.get("__it__")
+        if it is not None: return it
+        cls.__it__ = it = object.__new__(cls)
+        it._init()
+        return it
 
-    
-    def setRoller(self,roller_class):
-        try:
-            rollers.index(roller_class)
-            self.roller_class = roller_class
-        except: raise Exception, "Invalid die roller!"
+    def _init(self):
+        self.setRoller('std')
 
-    
+    def setRoller(self, roller_class):
+        try: self.roller_class = die_rollers[roller_class]
+        except KeyError: raise Exception("Invalid die roller!")
+
     def getRoller(self):
-        return self.roller_class
+        return self.roller_class.name
 
-    
     def listRollers(self):
-        return rollers
+        return die_rollers.keys()
 
-    
-    def stdDieToDClass(self,match):
-        s = match.group(0)
-        (num,sides) = s.split('d')
+    def stdDieToDClass(self, match):
+        s = match.group(0); self.eval = str(match.string)
+        num_sides = s.split('d')
+        if len(num_sides) > 1: 
+            num_sides; num = num_sides[0]; sides = num_sides[1]
+            if sides.strip().upper() == 'F': sides = "'f'"
+            try:
+                if int(num) > 100 or int(sides) > 10000: return None
+            except: pass
+            ret = ['(', num.strip(), "**die_rollers['", self.getRoller(), "'](",
+                    sides.strip(), '))']
+            s =  ''.join(ret)
+            self.eval = s
+            return s
 
-        if sides.strip().upper() == 'F': sides = "'f'"
-        try:
-            if int(num) > 100 or int(sides) > 10000:
-                return None
-        except: pass
-        return "(" + num.strip() + "**" + self.roller_class + "(" + sides.strip() + "))"
+        ## Portable Non Standard Die Characters #Prof-Ebral
+        else: s = die_rollers._rollers[self.getRoller()]().non_stdDie(s); return s
 
     #  Use this to convert ndm-style (3d6) dice to d_base format
-    
     def convertTheDieString(self,s):
+        self.result = ''
         reg = re.compile("(?:\d+|\([0-9\*/\-\+]+\))\s*[a-zA-Z]+\s*[\dFf]+")
         (result, num_matches) = reg.subn(self.stdDieToDClass, s)
         if num_matches == 0 or result is None:
-            try:
-                s2 = self.roller_class + "(0)." + s
+            reg = re.compile("(?:\d+|\([0-9\*/\-\+]+\))\s*[a-zA-Z]+\s*[a-zA-Z]+") ## Prof Ebral
+            (result, num_matches) = reg.subn(self.stdDieToDClass, s) ## Prof Ebral
+            """try: ## Kinda pointless when you can create new Regular Expressions
+                s2 = self.roller_class + "(0)." + s ## Broken method
                 test = eval(s2)
                 return s2
+            except Exception, e: print e; pass"""
+            self.result = result
+            try: return self.do_math(s)
             except: pass
         return result
 
-    
-    def proccessRoll(self,s):
-        return str(eval(self.convertTheDieString(s)))
+    def do_math(self, s):
+        return str(eval(s))
 
-DiceManager = roller_manager
+    def proccessRoll(self, s):
+        v = self.convertTheDieString(s)
+        try: b = str(eval(v))
+        except: 
+            if v == self.eval: b = s
+            else: b = str(v) ##Fail safe for non standard dice.
+        return b
+

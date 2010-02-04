@@ -21,7 +21,7 @@
 # Author: Chris Davis
 # Maintainer:
 # Version:
-#   $Id: containers.py,v 1.43 2007/08/08 19:17:17 digitalxero Exp $
+#   $Id: containers.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description: The file contains code for the container nodehandlers
 #
@@ -29,73 +29,61 @@
 
 from core import *
 from wx.lib.splitter import MultiSplitterWindow
-
+from orpg.tools.orpg_log import logger
+from orpg.orpgCore import component
 
 ##########################
-##  base contiainer
+##  base container
 ##########################
 
 class container_handler(node_handler):
     """ should not be used! only a base class!
     <nodehandler name='?'  module='core' class='container_handler'  />
     """
-    def __init__(self,xml_dom,tree_node):
-        node_handler.__init__(self,xml_dom,tree_node)
+    def __init__(self, xml, tree_node):
+        node_handler.__init__(self, xml, tree_node)
         self.load_children()
 
     def load_children(self):
-        children = self.master_dom._get_childNodes()
-        for c in children:
-            self.tree.load_xml(c,self.mytree_node)
+        for child_xml in self.xml: self.tree.load_xml(child_xml,self.mytree_node)
 
-    def check_map_aware(self, obj, evt):
-        if hasattr(obj,"map_aware") and obj.map_aware():
-            obj.on_send_to_map(evt)
-
+    def check_map_aware(self, treenode, evt):
+        node = self.tree.GetPyData(treenode)
+        if hasattr(node,"map_aware") and node.map_aware(): node.on_send_to_map(evt)
 
     def on_send_to_map(self, evt):
-        child = self.tree.GetFirstChild(self.mytree_node)
-        if child[0].IsOk():
-            self.traverse(child[0], self.check_map_aware, 0, evt)
+        self.tree.traverse(self.mytree_node, self.check_map_aware, evt) 
 
-
-    def checkChildToMap(self, obj, evt):
-        if hasattr(obj,"map_aware") and obj.map_aware():
-            self.mapcheck = True
+    def checkChildToMap(self, treenode, evt):
+        node = self.tree.GetPyData(treenode)
+        if hasattr(node,"map_aware") and node.map_aware(): self.mapcheck = True
 
     def checkToMapMenu(self):
         self.mapcheck = False
-        child = self.tree.GetFirstChild(self.mytree_node)
-        if child[0].IsOk():
-            self.traverse(child[0], self.checkChildToMap, 0, self.mapcheck)
-
+        self.tree.traverse(self.mytree_node, self.checkChildToMap)
         return self.mapcheck
 
     def on_drop(self,evt):
         drag_obj = self.tree.drag_obj
-        if drag_obj == self or self.tree.is_parent_node(self.mytree_node,drag_obj.mytree_node):
-            return
+        if drag_obj == self or self.tree.is_parent_node(self.mytree_node,drag_obj.mytree_node): return
         opt = wx.MessageBox("Add node as child?","Container Node",wx.YES_NO|wx.CANCEL)
         if opt == wx.YES:
-            xml_dom = self.tree.drag_obj.delete()
-            xml_dom = self.master_dom.insertBefore(xml_dom,None)
-            self.tree.load_xml(xml_dom, self.mytree_node)
+            drop_xml = self.tree.drag_obj.delete()
+            self.xml.insert(0, drop_xml)
+            self.tree.load_xml(drop_xml, self.mytree_node)
             self.tree.Expand(self.mytree_node)
-        elif opt == wx.NO:
-            node_handler.on_drop(self,evt)
+        elif opt == wx.NO: node_handler.on_drop(self,evt)
 
-    def gen_html(self, obj, evt):
-        self.html_str += "<p>" + obj.tohtml()
-
+    def gen_html(self, treenode, evt):
+        node = self.tree.GetPyData(treenode)
+        self.html_str += "<p>" + node.tohtml()
+        
     def tohtml(self):
-        self.html_str = "<table border=\"1\" ><tr><td>"
-        self.html_str += "<b>"+self.master_dom.getAttribute("name") + "</b>"
+        self.html_str = "<table border='1' ><tr><td>"
+        self.html_str += "<b>"+self.xml.get("name") + "</b>"
         self.html_str += "</td></tr>\n"
         self.html_str += "<tr><td>"
-
-        child = self.tree.GetFirstChild(self.mytree_node)
-        self.traverse(child[0], self.gen_html, 0, None)
-
+        self.tree.traverse(self.mytree_node, self.gen_html, recurse=False)
         self.html_str += "</td></tr></table>"
         return self.html_str
 
@@ -111,22 +99,17 @@ class group_handler(container_handler):
         This handler will continue parsing child xml data.
         <nodehandler name='?'  module='core' class='group_handler'  />
     """
-    def __init__(self,xml_dom,tree_node):
-        container_handler.__init__(self,xml_dom,tree_node)
+    def __init__(self, xml, tree_node):
+        container_handler.__init__(self, xml, tree_node)
 
     def load_children(self):
         self.atts = None
-        children = self.master_dom._get_childNodes()
-        for c in children:
-            if c._get_tagName() == "group_atts":
-                self.atts = c
-            else:
-                self.tree.load_xml(c,self.mytree_node)
-        if not self.atts:
-            elem = self.xml.minidom.Element('group_atts')
-            elem.setAttribute("cols","1")
-            elem.setAttribute("border","1")
-            self.atts = self.master_dom.appendChild(elem)
+        for child_xml in self.xml:
+            if child_xml.tag == "group_atts": #having the group attributes as a child is bad!
+                self.xml.remove(child_xml)
+            elif child_xml: self.tree.load_xml(child_xml, self.mytree_node)
+        if not self.xml.get('cols'): self.xml.set('cols', '1')
+        if not self.xml.get('border'): self.xml.set('border', '1')
 
     def get_design_panel(self,parent):
         return group_edit_panel(parent,self)
@@ -134,31 +117,24 @@ class group_handler(container_handler):
     def on_use(self,evt):
         return
 
-    def gen_html(self, obj, evt):
-        if self.i  not in self.tdatas:
-            self.tdatas[self.i] = ''
-        self.tdatas[self.i] += "<P>" + obj.tohtml()
+    def gen_html(self, treenode, evt):
+        node = self.tree.GetPyData(treenode)
+        if self.i  not in self.tdatas: self.tdatas[self.i] = ''
+        self.tdatas[self.i] += "<P>" + node.tohtml()
         self.i += 1
-        if self.i >= self.cols:
-            self.i = 0
+        if self.i >= self.cols: self.i = 0
 
     def tohtml(self):
-        cols = self.atts.getAttribute("cols")
-        border = self.atts.getAttribute("border")
-        self.html_str = "<table border=\""+border+"\" ><tr><td colspan=\""+cols+"\">"
-        self.html_str += "<font size=4>"+self.master_dom.getAttribute("name") + "</font>"
+        cols = self.xml.get("cols")
+        border = self.xml.get("border")
+        self.html_str = "<table border='"+border+"' ><tr><td colspan='"+cols+"'>"
+        self.html_str += "<font size=4>"+self.xml.get("name") + "</font>"
         self.html_str += "</td></tr>\n<tr>"
-
         self.cols = int(cols)
         self.i = 0
         self.tdatas = {}
-
-        child = self.tree.GetFirstChild(self.mytree_node)
-        if child[0].IsOk():
-            self.traverse(child[0], self.gen_html, 0, None)
-
-        for td in self.tdatas:
-            self.html_str += "<td valign=\"top\" >" + self.tdatas[td] + "</td>\n";
+        self.tree.traverse(self.mytree_node, self.gen_html, recurse=False)
+        for td in self.tdatas: self.html_str += "<td valign='top' >" + self.tdatas[td] + "</td>\n";
         self.html_str += "</tr></table>"
         return self.html_str
 
@@ -169,29 +145,28 @@ class group_edit_panel(wx.Panel):
     def __init__(self, parent, handler):
         wx.Panel.__init__(self, parent, -1)
         self.handler = handler
+        self.outline = wx.StaticBoxSizer(wx.StaticBox(self, -1, "Group"), wx.VERTICAL)
+
         sizer = wx.BoxSizer(wx.VERTICAL)
-        self.text = {   P_TITLE : wx.TextCtrl(self, P_TITLE, handler.master_dom.getAttribute('name'))
-                      }
+        self.text = {P_TITLE : wx.TextCtrl(self, P_TITLE, handler.xml.get('name')) }
         sizer.Add(wx.StaticText(self, -1, "Title:"), 0, wx.EXPAND)
         sizer.Add(self.text[P_TITLE], 0, wx.EXPAND)
         sizer.Add(wx.Size(10,10))
 
         radio_c = wx.RadioBox(self, GROUP_COLS, "Columns", choices=["1","2","3","4"])
-        cols = handler.atts.getAttribute("cols")
-        if cols != "":
-            radio_c.SetSelection(int(cols)-1)
+        cols = handler.xml.get("cols")
+        if cols != "": radio_c.SetSelection(int(cols)-1)
 
         radio_b = wx.RadioBox(self, GROUP_BOR, "Border", choices=["no","yes"])
-        border = handler.atts.getAttribute("border")
-        if border != "":
-            radio_b.SetSelection(int(border))
+        border = handler.xml.get("border")
+        if border != "": radio_b.SetSelection(int(border))
 
         sizer.Add(radio_c, 0, wx.EXPAND)
         sizer.Add(wx.Size(10,10))
         sizer.Add(radio_b, 0, wx.EXPAND)
 
-        self.sizer = sizer
-        self.outline = wx.StaticBox(self,-1,"Group")
+        self.outline.Add(sizer, 0)
+        self.sizer = self.outline
         self.SetSizer(self.sizer)
         self.SetAutoLayout(True)
         self.Fit()
@@ -203,17 +178,15 @@ class group_edit_panel(wx.Panel):
     def on_radio_box(self,evt):
         id = evt.GetId()
         index = evt.GetInt()
-        if id == GROUP_COLS:
-            self.handler.atts.setAttribute("cols",str(index+1))
-        elif id == GROUP_BOR:
-            self.handler.atts.setAttribute("border",str(index))
+        if id == GROUP_COLS: self.handler.xml.set("cols",str(index+1))
+        elif id == GROUP_BOR: self.handler.xml.set("border",str(index))
 
     def on_text(self,evt):
         id = evt.GetId()
         if id == P_TITLE:
             txt = self.text[id].GetValue()
             if txt != "":
-                self.handler.master_dom.setAttribute('name',txt)
+                self.handler.xml.set('name',txt)
                 self.handler.rename(txt)
 
 
@@ -224,14 +197,14 @@ class group_edit_panel(wx.Panel):
 class tabber_handler(container_handler):
     """ <nodehandler name='?'  module='containers' class='tabber_handler'  />"""
 
-    def __init__(self,xml_dom,tree_node):
-        container_handler.__init__(self,xml_dom,tree_node)
+    def __init__(self, xml, tree_node):
+        container_handler.__init__(self, xml, tree_node)
 
-    def get_design_panel(self,parent):
-        return tabbed_panel(parent,self,1)
+    def get_design_panel(self, parent):
+        return tabbed_panel(parent, self, 1)
 
-    def get_use_panel(self,parent):
-        return tabbed_panel(parent,self,2)
+    def get_use_panel(self, parent):
+        return tabbed_panel(parent, self, 0)
 
 
 class tabbed_panel(orpgTabberWnd):
@@ -239,23 +212,46 @@ class tabbed_panel(orpgTabberWnd):
         orpgTabberWnd.__init__(self, parent, style=FNB.FNB_NO_X_BUTTON)
         self.handler = handler
         self.parent = parent
-        tree = self.handler.tree
-        child = tree.GetFirstChild(handler.mytree_node)
-        if child[0].IsOk():
-            handler.traverse(child[0], self.pick_panel, 0, mode, False)
-
+        if mode == 1: self.AddPage(tabbed_edit_panel(parent, handler), 'Tabber', False)
+        handler.tree.traverse(handler.mytree_node, self.pick_panel, mode, False)
         parent.SetSize(self.GetBestSize())
 
-    def pick_panel(self, obj, mode):
-        if mode == 1:
-            panel = obj.get_design_panel(self)
-        else:
-            panel = obj.get_use_panel(self)
+    def pick_panel(self, treenode, mode):
+        node = self.handler.tree.GetPyData(treenode)
 
-        name = obj.master_dom.getAttribute("name")
+        if mode == 1: panel = node.get_design_panel(self)
+        else: panel = node.get_use_panel(self)
+        name = node.xml.get("name")
+        if name == None: ## Fixes broken 3e Inventory child
+            if node.xml.tag == 'inventory':
+                node.xml.set('name', 'Inventory')
+                name = "Inventory"
+                logger.info('A corrective action was take to a 3e PC Sheet', True)
+                component.get('frame').TraipseSuiteWarn('item')
+        if panel: self.AddPage(panel, name, False)
 
-        if panel:
-            self.AddPage(panel, name, False)
+class tabbed_edit_panel(wx.Panel):
+    def __init__(self, parent, handler):
+        wx.Panel.__init__(self, parent, -1, style=FNB.FNB_NO_X_BUTTON)
+        self.handler = handler
+        self.parent = parent
+        main_sizer = wx.StaticBoxSizer(wx.StaticBox(self, -1, "Tabber"), wx.VERTICAL)
+        self.title = wx.TextCtrl(self, 1, handler.xml.get('name'))
+        main_sizer.Add(wx.StaticText(self, -1, "Title:"), 0, wx.EXPAND)
+        main_sizer.Add(self.title, 0, wx.EXPAND)
+        self.SetSizer(main_sizer)
+        self.SetAutoLayout(True)
+        self.Fit()
+        parent.SetSize(self.GetBestSize())
+        self.Bind(wx.EVT_TEXT, self.on_text, id=1)
+
+
+    def on_text(self,evt):
+        txt = self.title.GetValue()
+        if txt != "":
+            self.handler.xml.set('name',txt)
+            self.handler.rename(txt)
+
 
 #################################
 ## Splitter container
@@ -264,82 +260,56 @@ class tabbed_panel(orpgTabberWnd):
 class splitter_handler(container_handler):
     """ <nodehandler name='?'  module='containers' class='splitter_handler'  />"""
 
-    def __init__(self,xml_dom,tree_node):
-        container_handler.__init__(self,xml_dom,tree_node)
+    def __init__(self,xml,tree_node):
+        container_handler.__init__(self,xml,tree_node)
 
     def load_children(self):
         self.atts = None
-        children = self.master_dom._get_childNodes()
-        for c in children:
-            if c._get_tagName() == "splitter_atts":
-                self.atts = c
-            else:
-                self.tree.load_xml(c,self.mytree_node)
-        if not self.atts:
-            elem = self.xml.minidom.Element('splitter_atts')
-            elem.setAttribute("horizontal","0")
-            self.atts = self.master_dom.appendChild(elem)
+        for child_xml in self.xml:
+            if child_xml.tag == "splitter_atts": print 'splitter_atts exist!'; self.xml.remove(child_xml) #Same here!
+            elif child_xml: self.tree.load_xml(child_xml,self.mytree_node)
+        if not self.xml.get('horizontal'): self.xml.set('horizontal', '0')
 
     def get_design_panel(self,parent):
         return self.build_splitter_wnd(parent, 1)
 
     def get_use_panel(self,parent):
-        return self.build_splitter_wnd(parent, 2)
+        return self.build_splitter_wnd(parent, 0)
 
     def on_drop(self,evt):
         drag_obj = self.tree.drag_obj
         container_handler.on_drop(self,evt)
 
     def build_splitter_wnd(self, parent, mode):
-        self.split = self.atts.getAttribute("horizontal")
-
+        self.split = self.xml.get("horizontal")
         self.pane = splitter_panel(parent, self)
-
-        self.splitter = MultiSplitterWindow(self.pane, -1, style=wx.SP_LIVE_UPDATE|wx.SP_3DSASH|wx.SP_NO_XP_THEME)
-
-        if self.split == '1':
-            self.splitter.SetOrientation(wx.VERTICAL)
-        else:
-            self.splitter.SetOrientation(wx.HORIZONTAL)
-
+        self.splitter = MultiSplitterWindow(self.pane, -1, 
+                        style=wx.SP_LIVE_UPDATE|wx.SP_3DSASH|wx.SP_NO_XP_THEME)
+        if self.split == '1': self.splitter.SetOrientation(wx.VERTICAL)
+        else: self.splitter.SetOrientation(wx.HORIZONTAL)
         self.bestSizex = -1
         self.bestSizey = -1
-
-        cookie = 0
-        (child, cookie) = self.tree.GetFirstChild(self.mytree_node)
-        if child.IsOk():
-            self.traverse(child, self.doSplit, 0, mode, False)
-
+        self.tree.traverse(self.mytree_node, self.doSplit, mode, False) 
         self.pane.sizer.Add(self.splitter, 1, wx.EXPAND)
-
-
-        if mode != 1:
-            self.pane.hozCheck.Hide()
-
+        if mode != 1: self.pane.hozCheck.Hide()
         self.pane.SetSize((self.bestSizex, self.bestSizey))
         self.pane.Layout()
         parent.SetSize(self.pane.GetSize())
         return self.pane
 
-    def doSplit(self, obj, mode):
-        if mode == 1:
-            tmp = obj.get_design_panel(self.splitter)
-        else:
-            tmp = obj.get_use_panel(self.splitter)
-
+    def doSplit(self, treenode, mode):
+        node = self.tree.GetPyData(treenode)
+        if mode == 1: tmp = node.get_design_panel(self.splitter)
+        else: tmp = node.get_use_panel(self.splitter)
         if self.split == '1':
             sash = tmp.GetBestSize()[1]+1
             self.bestSizey += sash+11
-            if self.bestSizex < tmp.GetBestSize()[0]:
-                self.bestSizex = tmp.GetBestSize()[0]+10
+            if self.bestSizex < tmp.GetBestSize()[0]: self.bestSizex = tmp.GetBestSize()[0]+10
         else:
             sash = tmp.GetBestSize()[0]+1
             self.bestSizex += sash
-            if self.bestSizey < tmp.GetBestSize()[1]:
-                self.bestSizey = tmp.GetBestSize()[1]+31
-
+            if self.bestSizey < tmp.GetBestSize()[1]: self.bestSizey = tmp.GetBestSize()[1]+31
         self.splitter.AppendWindow(tmp, sash)
-
     def get_size_constraint(self):
         return 1
 
@@ -348,30 +318,33 @@ class splitter_panel(wx.Panel):
         wx.Panel.__init__(self, parent, -1)
         self.handler = handler
         sizer = wx.BoxSizer(wx.VERTICAL)
+        self.title = wx.TextCtrl(self, 1, handler.xml.get('name'))
 
         self.hozCheck = wx.CheckBox(self, -1, "Horizontal Split")
-        hoz = self.handler.atts.getAttribute("horizontal")
+        hoz = self.handler.xml.get("horizontal")
 
-        if hoz == '1':
-            self.hozCheck.SetValue(True)
-            #self.splitsize = wx.BoxSizer(wx.HORIZONTAL)
-        else:
-            self.hozCheck.SetValue(False)
-            #self.splitsize = wx.BoxSizer(wx.VERTICAL)
+        if hoz == '1': self.hozCheck.SetValue(True)
+        else: self.hozCheck.SetValue(False)
 
+        sizer.Add(wx.StaticText(self, -1, "Title:"), 0, wx.EXPAND)
+        sizer.Add(self.title, 0)
         sizer.Add(self.hozCheck, 0, wx.EXPAND)
         sizer.Add(wx.Size(10,0))
-        #sizer.Add(self.splitsize,  1, wx.EXPAND)
 
         self.sizer = sizer
         self.SetSizer(self.sizer)
         self.SetAutoLayout(True)
-
+        self.Bind(wx.EVT_TEXT, self.on_text, id=1)
         self.Bind(wx.EVT_CHECKBOX, self.on_check_box, id=self.hozCheck.GetId())
 
     def on_check_box(self,evt):
         state = self.hozCheck.GetValue()
-        if state:
-            self.handler.atts.setAttribute("horizontal", "1")
-        else:
-            self.handler.atts.setAttribute("horizontal", "0")
+        if state: self.handler.xml.set("horizontal", "1")
+        else: self.handler.xml.set("horizontal", "0")
+
+    def on_text(self,evt):
+        txt = self.title.GetValue()
+        if txt != "":
+            self.handler.xml.set('name',txt)
+            self.handler.rename(txt)
+

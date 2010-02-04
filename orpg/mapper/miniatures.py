@@ -21,22 +21,21 @@
 # Author: Chris Davis
 # Maintainer:
 # Version:
-#   $Id: miniatures.py,v 1.46 2007/12/07 20:39:50 digitalxero Exp $
+#   $Id: miniatures.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description: This file contains some of the basic definitions for the chat
 # utilities in the orpg project.
 #
-__version__ = "$Id: miniatures.py,v 1.46 2007/12/07 20:39:50 digitalxero Exp $"
+__version__ = "$Id: miniatures.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from base import *
-import thread
-import time
-import urllib
-import os.path
-import mimetypes
+import thread, time, urllib, os.path, mimetypes
 
 import xml.dom.minidom as minidom
 from orpg.tools.orpg_settings import settings
+
+from xml.etree.ElementTree import ElementTree, Element
+from xml.etree.ElementTree import fromstring, tostring
 
 MIN_STICKY_BACK = -0XFFFFFF
 MIN_STICKY_FRONT = 0xFFFFFF
@@ -68,15 +67,14 @@ def cmp_zorder(first,second):
     return value
 
 class BmpMiniature:
-    def __init__(self, id,path, bmp, pos=cmpPoint(0,0), 
+    def __init__(self, id, path, bmp, pos=cmpPoint(0,0), 
                 heading=FACE_NONE, face=FACE_NONE, label="", 
                 locked=False, hide=False, snap_to_align=SNAPTO_ALIGN_CENTER, 
-                zorder=0, width=0, height=0, log=None, local=False, localPath='', localTime=-1):
+                zorder=0, width=0, height=0, log=None, local=False, localPath='', localTime=-1, func='none'):
         self.heading = heading
         self.face = face
         self.label = label
         self.path = path
-        self.bmp = bmp
         self.pos = pos
         self.selected = False
         self.locked = locked
@@ -97,13 +95,25 @@ class BmpMiniature:
         self.bottom = bmp.GetHeight()
         self.isUpdated = False
         self.gray = False
+        self.set_bmp(bmp)
 
     def __del__(self):
-        del self.bmp
-        self.bmp = None
+        del self.image
+        self.image = None
 
     def set_bmp(self, bmp):
-        self.bmp = bmp
+        self.image = bmp
+        self.image.ConvertAlphaToMask()
+        self.generate_bmps()
+        
+    def generate_bmps(self):
+        if self.width:
+            bmp = self.image.Copy()
+            bmp.Rescale(int(self.width), int(self.height))
+        else:
+            bmp = self.image
+        self.bmp = bmp.ConvertToBitmap()
+        self.bmp_gray = bmp.ConvertToGreyscale().ConvertToBitmap()
 
     def set_min_props(self, heading=FACE_NONE, face=FACE_NONE, label="", locked=False, hide=False, width=0, height=0):
         self.heading = heading
@@ -116,6 +126,7 @@ class BmpMiniature:
         self.width = int(width)
         self.height = int(height)
         self.isUpdated = True
+        self.generate_bmps()
 
     def hit_test(self, pt):
         rect = self.get_rect()
@@ -128,41 +139,27 @@ class BmpMiniature:
         return ret
 
     def draw(self, dc, mini_layer, op=wx.COPY):
-        if isinstance(self.bmp, tuple):
-            self.bmp = wx.ImageFromMime(self.bmp[1], self.bmp[2]).ConvertToBitmap()
-        if self.bmp != None and self.bmp.Ok():
-            # check if hidden and GM: we outline the mini in grey (little bit smaller than the actual size)
-            # and write the label in the center of the mini
-            if self.hide and mini_layer.canvas.frame.session.my_role() == mini_layer.canvas.frame.session.ROLE_GM:
-                # set the width and height of the image
-                if self.width and self.height:
-                    tmp_image = self.bmp.ConvertToImage()
-                    tmp_image.Rescale(int(self.width), int(self.height))
-                    tmp_image.ConvertAlphaToMask()
-                    self.bmp = tmp_image.ConvertToBitmap()
-                    mask = wx.Mask(self.bmp, wx.Colour(tmp_image.GetMaskRed(), 
-                        tmp_image.GetMaskGreen(), tmp_image.GetMaskBlue()))
-                    self.bmp.SetMask(mask)
-                    del tmp_image
-                    del mask
-                self.left = 0
-                self.right = self.bmp.GetWidth()
-                self.top = 0
-                self.bottom = self.bmp.GetHeight()
-                # grey outline
-                graypen = wx.Pen("gray", 1, wx.DOT)
-                dc.SetPen(graypen)
-                dc.SetBrush(wx.TRANSPARENT_BRUSH)
-                #if width or height < 20 then offset = 1
-                if self.bmp.GetWidth() <= 20: xoffset = 1
-                else: xoffset = 5
-                if self.bmp.GetHeight() <= 20: yoffset = 1
-                else: yoffset = 5
-                dc.DrawRectangle(self.pos.x + xoffset, 
-                    self.pos.y + yoffset, self.bmp.GetWidth() - (xoffset * 2), 
-                    self.bmp.GetHeight() - (yoffset * 2))
-                dc.SetBrush(wx.NullBrush)
-                dc.SetPen(wx.NullPen)
+        if self.hide and mini_layer.canvas.frame.session.my_role() == mini_layer.canvas.frame.session.ROLE_GM:
+            # set the width and height of the image
+            self.left = 0
+            self.right = self.bmp.GetWidth()
+            self.top = 0
+            self.bottom = self.bmp.GetHeight()
+            # grey outline
+            graypen = wx.Pen("gray", 1, wx.DOT)
+            dc.SetPen(graypen)
+            dc.SetBrush(wx.TRANSPARENT_BRUSH)
+            #if width or height < 20 then offset = 1
+            if self.bmp.GetWidth() <= 20: xoffset = 1
+            else: xoffset = 5
+            if self.bmp.GetHeight() <= 20: yoffset = 1
+            else: yoffset = 5
+            dc.DrawRectangle(self.pos.x + xoffset, 
+                self.pos.y + yoffset, self.bmp.GetWidth(), 
+                self.bmp.GetHeight())
+            dc.SetBrush(wx.NullBrush)
+            dc.SetPen(wx.NullPen)
+            if mini_layer.show_labels:
                 ## draw label in the center of the mini
                 label = mini_layer.get_mini_label(self)
                 if len(label):
@@ -180,177 +177,139 @@ class BmpMiniature:
                     dc.SetPen(wx.NullPen)
                     dc.SetBrush(wx.NullBrush)
                     dc.DrawText(label, x+1, y+1)
-
-                #selected outline
-                if self.selected:
-                    dc.SetPen(wx.RED_PEN)
-                    dc.SetBrush(wx.TRANSPARENT_BRUSH)
-                    dc.DrawRectangle(self.pos.x, self.pos.y, self.bmp.GetWidth(), self.bmp.GetHeight())
-                    dc.SetBrush(wx.NullBrush)
-                    dc.SetPen(wx.NullPen)
-                return True
-            elif self.hide: return True
-
-            else:
-                # set the width and height of the image
-                bmp = self.bmp
-                if self.width and self.height:
-                    tmp_image = self.bmp.ConvertToImage()
-                    tmp_image.Rescale(int(self.width), int(self.height))
-                    tmp_image.ConvertAlphaToMask()
-                    self.bmp = tmp_image.ConvertToBitmap()
-                    mask = wx.Mask(self.bmp, wx.Colour(tmp_image.GetMaskRed(), 
-                        tmp_image.GetMaskGreen(), tmp_image.GetMaskBlue()))
-                    self.bmp.SetMask(mask)
-                    if self.gray:
-                        tmp_image = tmp_image.ConvertToGreyscale()
-                        bmp = tmp_image.ConvertToBitmap()
-                    else: bmp = self.bmp
-                dc.DrawBitmap(bmp, self.pos.x, self.pos.y, True)
-                self.left = 0
-                self.right = self.bmp.GetWidth()
-                self.top = 0
-                self.bottom = self.bmp.GetHeight()
-
-                # Draw the facing marker if needed
-                if self.face != 0:
-                    x_mid = self.pos.x + (self.bmp.GetWidth()/2)
-                    x_right = self.pos.x + self.bmp.GetWidth()
-                    y_mid = self.pos.y + (self.bmp.GetHeight()/2)
-                    y_bottom = self.pos.y + self.bmp.GetHeight()
-                    dc.SetPen(wx.WHITE_PEN)
-                    dc.SetBrush(wx.RED_BRUSH)
-                    triangle = []
-
-                    # Figure out which direction to draw the marker!!
-                    if self.face == FACE_WEST:
-                        triangle.append(cmpPoint(self.pos.x,self.pos.y))
-                        triangle.append(cmpPoint(self.pos.x - 5, y_mid))
-                        triangle.append(cmpPoint(self.pos.x, y_bottom))
-                    elif self.face ==  FACE_EAST:
-                        triangle.append(cmpPoint(x_right, self.pos.y))
-                        triangle.append(cmpPoint(x_right + 5, y_mid))
-                        triangle.append(cmpPoint(x_right, y_bottom))
-                    elif self.face ==  FACE_SOUTH:
-                        triangle.append(cmpPoint(self.pos.x, y_bottom))
-                        triangle.append(cmpPoint(x_mid, y_bottom + 5))
-                        triangle.append(cmpPoint(x_right, y_bottom))
-                    elif self.face ==  FACE_NORTH:
-                        triangle.append(cmpPoint(self.pos.x, self.pos.y))
-                        triangle.append(cmpPoint(x_mid, self.pos.y - 5))
-                        triangle.append(cmpPoint(x_right, self.pos.y))
-                    elif self.face == FACE_NORTHEAST:
-                        triangle.append(cmpPoint(x_mid, self.pos.y))
-                        triangle.append(cmpPoint(x_right + 5, self.pos.y - 5))
-                        triangle.append(cmpPoint(x_right, y_mid))
-                        triangle.append(cmpPoint(x_right, self.pos.y))
-                    elif self.face == FACE_SOUTHEAST:
-                        triangle.append(cmpPoint(x_right, y_mid))
-                        triangle.append(cmpPoint(x_right + 5, y_bottom + 5))
-                        triangle.append(cmpPoint(x_mid, y_bottom))
-                        triangle.append(cmpPoint(x_right, y_bottom))
-                    elif self.face == FACE_SOUTHWEST:
-                        triangle.append(cmpPoint(x_mid, y_bottom))
-                        triangle.append(cmpPoint(self.pos.x - 5, y_bottom + 5))
-                        triangle.append(cmpPoint(self.pos.x, y_mid))
-                        triangle.append(cmpPoint(self.pos.x, y_bottom))
-                    elif self.face == FACE_NORTHWEST:
-                        triangle.append(cmpPoint(self.pos.x, y_mid))
-                        triangle.append(cmpPoint(self.pos.x - 5, self.pos.y - 5))
-                        triangle.append(cmpPoint(x_mid, self.pos.y))
-                        triangle.append(cmpPoint(self.pos.x, self.pos.y))
-                    dc.DrawPolygon(triangle)
-                    dc.SetBrush(wx.NullBrush)
-                    dc.SetPen(wx.NullPen)
-
-                # Draw the heading if needed
-                if self.heading:
-                    x_adjust = 0
-                    y_adjust = 4
-                    x_half = self.bmp.GetWidth()/2
-                    y_half = self.bmp.GetHeight()/2
-                    x_quarter = self.bmp.GetWidth()/4
-                    y_quarter = self.bmp.GetHeight()/4
-                    x_3quarter = x_quarter*3
-                    y_3quarter = y_quarter*3
-                    x_full = self.bmp.GetWidth()
-                    y_full = self.bmp.GetHeight()
-                    x_center = self.pos.x + x_half
-                    y_center = self.pos.y + y_half
-                    # Remember, the pen/brush must be a different color than the
-                    # facing marker!!!!  We'll use black/cyan for starters.
-                    # Also notice that we will draw the heading on top of the
-                    # larger facing marker.
-                    dc.SetPen(wx.BLACK_PEN)
-                    dc.SetBrush(wx.CYAN_BRUSH)
-                    triangle = []
-
-                    # Figure out which direction to draw the marker!!
-                    if self.heading == FACE_NORTH:
-                        triangle.append(cmpPoint(x_center - x_quarter, y_center - y_half ))
-                        triangle.append(cmpPoint(x_center, y_center - y_3quarter ))
-                        triangle.append(cmpPoint(x_center + x_quarter, y_center - y_half ))
-                    elif self.heading ==  FACE_SOUTH:
-                        triangle.append(cmpPoint(x_center - x_quarter, y_center + y_half ))
-                        triangle.append(cmpPoint(x_center, y_center + y_3quarter ))
-                        triangle.append(cmpPoint(x_center + x_quarter, y_center + y_half ))
-                    elif self.heading == FACE_NORTHEAST:
-                        triangle.append(cmpPoint(x_center + x_quarter, y_center - y_half ))
-                        triangle.append(cmpPoint(x_center + x_3quarter, y_center - y_3quarter ))
-                        triangle.append(cmpPoint(x_center + x_half, y_center - y_quarter ))
-                    elif self.heading == FACE_EAST:
-                        triangle.append(cmpPoint(x_center + x_half, y_center - y_quarter ))
-                        triangle.append(cmpPoint(x_center + x_3quarter, y_center ))
-                        triangle.append(cmpPoint(x_center + x_half, y_center + y_quarter ))
-                    elif self.heading == FACE_SOUTHEAST:
-                        triangle.append(cmpPoint(x_center + x_half, y_center + y_quarter ))
-                        triangle.append(cmpPoint(x_center + x_3quarter, y_center + y_3quarter ))
-                        triangle.append(cmpPoint(x_center + x_quarter, y_center + y_half ))
-                    elif self.heading == FACE_SOUTHWEST:
-                        triangle.append(cmpPoint(x_center - x_quarter, y_center + y_half ))
-                        triangle.append(cmpPoint(x_center - x_3quarter, y_center + y_3quarter ))
-                        triangle.append(cmpPoint(x_center - x_half, y_center + y_quarter ))
-                    elif self.heading == FACE_WEST:
-                        triangle.append(cmpPoint(x_center - x_half, y_center + y_quarter ))
-                        triangle.append(cmpPoint(x_center - x_3quarter, y_center ))
-                        triangle.append(cmpPoint(x_center - x_half, y_center - y_quarter ))
-                    elif self.heading == FACE_NORTHWEST:
-                        triangle.append(cmpPoint(x_center - x_half, y_center - y_quarter ))
-                        triangle.append(cmpPoint(x_center - x_3quarter, y_center - y_3quarter ))
-                        triangle.append(cmpPoint(x_center - x_quarter, y_center - y_half ))
-                    dc.DrawPolygon(triangle)
-                    dc.SetBrush(wx.NullBrush)
-                    dc.SetPen(wx.NullPen)
-                #selected outline
-                if self.selected:
-                    dc.SetPen(wx.RED_PEN)
-                    dc.SetBrush(wx.TRANSPARENT_BRUSH)
-                    dc.DrawRectangle(self.pos.x, self.pos.y, self.bmp.GetWidth(), self.bmp.GetHeight())
-                    dc.SetBrush(wx.NullBrush)
-                    dc.SetPen(wx.NullPen)
+        
+            #selected outline
+            if self.selected:
+                dc.SetPen(wx.RED_PEN)
+                dc.SetBrush(wx.TRANSPARENT_BRUSH)
+                dc.DrawRectangle(self.pos.x, self.pos.y, self.bmp.GetWidth(), self.bmp.GetHeight())
+                dc.SetBrush(wx.NullBrush)
+                dc.SetPen(wx.NullPen)
+            return True
+        elif self.hide: return True
+        
+        else:
+            bmp = self.bmp_gray if self.gray else self.bmp
+            try: dc.DrawBitmap(bmp, self.pos.x, self.pos.y, True)
+            except: print bmp
+            self.left = 0
+            self.right = self.bmp.GetWidth()
+            self.top = 0
+            self.bottom = self.bmp.GetHeight()
+            # Draw the facing marker if needed
+            if self.face != 0:
+                x_mid = self.pos.x + (self.bmp.GetWidth()/2)
+                x_right = self.pos.x + self.bmp.GetWidth()
+                y_mid = self.pos.y + (self.bmp.GetHeight()/2)
+                y_bottom = self.pos.y + self.bmp.GetHeight()
+                dc.SetPen(wx.WHITE_PEN)
+                dc.SetBrush(wx.RED_BRUSH)
+                triangle = []
+                # Figure out which direction to draw the marker!!
+                tri_list = {
+                FACE_WEST: [cmpPoint(self.pos.x, self.pos.y), cmpPoint(self.pos.x-5, y_mid), cmpPoint(self.pos.x, y_bottom)], 
+                FACE_EAST: [cmpPoint(x_right, self.pos.y), cmpPoint(x_right + 5, y_mid), cmpPoint(x_right, y_bottom)], 
+                FACE_SOUTH: [cmpPoint(self.pos.x, y_bottom), cmpPoint(x_mid, y_bottom + 5), cmpPoint(x_right, y_bottom)],
+                FACE_NORTH: [cmpPoint(self.pos.x, self.pos.y), cmpPoint(x_mid, self.pos.y - 5), cmpPoint(x_right, self.pos.y)],
+                FACE_NORTHEAST: [cmpPoint(x_mid, self.pos.y), cmpPoint(x_right + 5, self.pos.y - 5), cmpPoint(x_right, y_mid), cmpPoint(x_right, self.pos.y)],
+                FACE_SOUTHEAST: [cmpPoint(x_right, y_mid), cmpPoint(x_right + 5, y_bottom + 5), cmpPoint(x_mid, y_bottom), cmpPoint(x_right, y_bottom)],
+                FACE_SOUTHWEST: [cmpPoint(x_mid, y_bottom), cmpPoint(self.pos.x - 5, y_bottom + 5),
+                cmpPoint(self.pos.x, y_mid), cmpPoint(self.pos.x, y_bottom)],
+                FACE_NORTHWEST: [cmpPoint(self.pos.x, y_mid), cmpPoint(self.pos.x - 5, self.pos.y - 5), cmpPoint(x_mid, self.pos.y), cmpPoint(self.pos.x, self.pos.y)]
+                }
+                for tri in tri_list[self.face]:
+                    triangle.append(tri)
+                del tri_list
+                dc.DrawPolygon(triangle)
+                dc.SetBrush(wx.NullBrush)
+                dc.SetPen(wx.NullPen)
+            # Draw the heading if needed
+            if self.heading:
+                x_adjust = 0
+                y_adjust = 4
+                x_half = self.bmp.GetWidth()/2
+                y_half = self.bmp.GetHeight()/2
+                x_quarter = self.bmp.GetWidth()/4
+                y_quarter = self.bmp.GetHeight()/4
+                x_3quarter = x_quarter*3
+                y_3quarter = y_quarter*3
+                x_full = self.bmp.GetWidth()
+                y_full = self.bmp.GetHeight()
+                x_center = self.pos.x + x_half
+                y_center = self.pos.y + y_half
+                # Remember, the pen/brush must be a different color than the
+                # facing marker!!!!  We'll use black/cyan for starters.
+                # Also notice that we will draw the heading on top of the
+                # larger facing marker.
+                dc.SetPen(wx.BLACK_PEN)
+                dc.SetBrush(wx.CYAN_BRUSH)
+                triangle = []
+                # Figure out which direction to draw the marker!!
+                tri_list = {
+                FACE_NORTH: [cmpPoint(x_center - x_quarter, y_center - y_half ), 
+                            cmpPoint(x_center, y_center - y_3quarter ), 
+                            cmpPoint(x_center + x_quarter, y_center - y_half)],
+                FACE_SOUTH: [cmpPoint(x_center - x_quarter, y_center + y_half ), 
+                            cmpPoint(x_center, y_center + y_3quarter ), 
+                            cmpPoint(x_center + x_quarter, y_center + y_half )],
+                FACE_NORTHEAST: [cmpPoint(x_center + x_quarter, y_center - y_half ), 
+                                cmpPoint(x_center + x_3quarter, y_center - y_3quarter ), 
+                                cmpPoint(x_center + x_half, y_center - y_quarter)],
+                FACE_EAST: [cmpPoint(x_center + x_half, y_center - y_quarter ), 
+                            cmpPoint(x_center + x_3quarter, y_center ), 
+                            cmpPoint(x_center + x_half, y_center + y_quarter )],
+                FACE_SOUTHEAST: [cmpPoint(x_center + x_half, y_center + y_quarter ), 
+                                cmpPoint(x_center + x_3quarter, y_center + y_3quarter ), 
+                                cmpPoint(x_center + x_quarter, y_center + y_half )],
+                FACE_SOUTHWEST: [cmpPoint(x_center - x_quarter, y_center + y_half ), 
+                                cmpPoint(x_center - x_3quarter, y_center + y_3quarter ), 
+                                cmpPoint(x_center - x_half, y_center + y_quarter )],
+                FACE_WEST: [cmpPoint(x_center - x_half, y_center + y_quarter ), 
+                            cmpPoint(x_center - x_3quarter, y_center ), 
+                            cmpPoint(x_center - x_half, y_center - y_quarter )],
+                FACE_NORTHWEST: [cmpPoint(x_center - x_half, y_center - y_quarter ), 
+                                cmpPoint(x_center - x_3quarter, y_center - y_3quarter ), 
+                                cmpPoint(x_center - x_quarter, y_center - y_half )]}
+                for tri in tri_list[self.heading]:
+                    triangle.append(tri)
+                del tri_list
+                dc.DrawPolygon(triangle)
+                dc.SetBrush(wx.NullBrush)
+                dc.SetPen(wx.NullPen)
+            #selected outline
+            if self.selected:
+                dc.SetPen(wx.RED_PEN)
+                dc.SetBrush(wx.TRANSPARENT_BRUSH)
+                dc.DrawRectangle(self.pos.x, self.pos.y, self.bmp.GetWidth(), self.bmp.GetHeight())
+                dc.SetBrush(wx.NullBrush)
+                dc.SetPen(wx.NullPen)
+            if mini_layer.show_labels:
                 # draw label
-                label = mini_layer.get_mini_label(self)
-                if len(label):
-                    dc.SetTextForeground(wx.RED)
-                    (textWidth,textHeight) = dc.GetTextExtent(label)
-                    x = self.pos.x +((self.bmp.GetWidth() - textWidth) /2) - 1
-                    y = self.pos.y + self.bmp.GetHeight() + 6
-                    dc.SetPen(wx.WHITE_PEN)
-                    dc.SetBrush(wx.WHITE_BRUSH)
-                    dc.DrawRectangle(x,y,textWidth+2,textHeight+2)
-                    if (textWidth+2 > self.right):
-                        self.right += int((textWidth+2-self.right)/2)+1
-                        self.left -= int((textWidth+2-self.right)/2)+1
-                    self.bottom = y+textHeight+2-self.pos.y
-                    dc.SetPen(wx.NullPen)
-                    dc.SetBrush(wx.NullBrush)
-                    dc.DrawText(label,x+1,y+1)
-                self.top-=5
-                self.bottom+=5
-                self.left-=5
-                self.right+=5
-                return True
-        else: return False
+                self.mini_label(mini_layer, dc)
+            self.top-=5
+            self.bottom+=5
+            self.left-=5
+            self.right+=5
+            return True
+        
+        
+    def mini_label(self, mini_layer, dc):
+        label = mini_layer.get_mini_label(self)
+        if len(label):
+            dc.SetTextForeground(wx.RED)
+            (textWidth,textHeight) = dc.GetTextExtent(label)
+            x = self.pos.x +((self.bmp.GetWidth() - textWidth) /2) - 1
+            y = self.pos.y + self.bmp.GetHeight() + 6
+            dc.SetPen(wx.WHITE_PEN)
+            dc.SetBrush(wx.WHITE_BRUSH)
+            dc.DrawRectangle(x,y,textWidth+2,textHeight+2)
+            if (textWidth+2 > self.right):
+                self.right += int((textWidth+2-self.right)/2)+1
+                self.left -= int((textWidth+2-self.right)/2)+1
+            self.bottom = y+textHeight+2-self.pos.y
+            dc.SetPen(wx.NullPen)
+            dc.SetBrush(wx.NullBrush)
+            dc.DrawText(label,x+1,y+1)
 
     def toxml(self, action="update"):
         if action == "del":
@@ -386,14 +345,10 @@ class BmpMiniature:
 
     def takedom(self, xml_dom):
         self.id = xml_dom.getAttribute("id")
-        if xml_dom.hasAttribute("posx"):
-            self.pos.x = int(xml_dom.getAttribute("posx"))
-        if xml_dom.hasAttribute("posy"):
-            self.pos.y = int(xml_dom.getAttribute("posy"))
-        if xml_dom.hasAttribute("heading"):
-            self.heading = int(xml_dom.getAttribute("heading"))
-        if xml_dom.hasAttribute("face"):
-            self.face = int(xml_dom.getAttribute("face"))
+        if xml_dom.hasAttribute("posx"): self.pos.x = int(xml_dom.getAttribute("posx"))
+        if xml_dom.hasAttribute("posy"): self.pos.y = int(xml_dom.getAttribute("posy"))
+        if xml_dom.hasAttribute("heading"): self.heading = int(xml_dom.getAttribute("heading"))
+        if xml_dom.hasAttribute("face"): self.face = int(xml_dom.getAttribute("face"))
         if xml_dom.hasAttribute("path"):
             self.path = urllib.unquote(xml_dom.getAttribute("path"))
             self.set_bmp(ImageHandler.load(self.path, 'miniature', self.id))
@@ -403,17 +358,13 @@ class BmpMiniature:
         if xml_dom.hasAttribute("hide"):
             if xml_dom.getAttribute("hide") == '1' or xml_dom.getAttribute("hide") == 'True': self.hide = True
             else: self.hide = False
-        if xml_dom.hasAttribute("label"):
-            self.label = xml_dom.getAttribute("label")
-        if xml_dom.hasAttribute("zorder"):
-            self.zorder = int(xml_dom.getAttribute("zorder"))
+        if xml_dom.hasAttribute("label"): self.label = xml_dom.getAttribute("label")
+        if xml_dom.hasAttribute("zorder"): self.zorder = int(xml_dom.getAttribute("zorder"))
         if xml_dom.hasAttribute("align"):
             if xml_dom.getAttribute("align") == '1' or xml_dom.getAttribute("align") == 'True': self.snap_to_align = 1
             else: self.snap_to_align = 0
-        if xml_dom.hasAttribute("width"):
-            self.width = int(xml_dom.getAttribute("width"))
-        if xml_dom.hasAttribute("height"):
-            self.height = int(xml_dom.getAttribute("height"))
+        if xml_dom.hasAttribute("width"): self.width = int(xml_dom.getAttribute("width"))
+        if xml_dom.hasAttribute("height"): self.height = int(xml_dom.getAttribute("height"))
 
 ##-----------------------------
 ## miniature layer
@@ -422,15 +373,17 @@ class miniature_layer(layer_base):
     def __init__(self, canvas):
         self.canvas = canvas
         layer_base.__init__(self)
-        self.id = -1 #added.
+        self.id = -1 
         self.miniatures = []
         self.serial_number = 0
-
+        self.show_labels = True
         # Set the font of the labels to be the same as the chat window
         # only smaller.
         font_size = int(settings.get_setting('defaultfontsize'))
         if (font_size >= 10): font_size -= 2
-        self.label_font = wx.Font(font_size, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL,
+        self.label_font = wx.Font(font_size, 
+                                  wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, 
+                                  wx.FONTWEIGHT_NORMAL,
                                   False, settings.get_setting('defaultfont'))
 
     def next_serial(self):
@@ -470,7 +423,7 @@ class miniature_layer(layer_base):
         bmp = ImageHandler.load(path, 'miniature', id)
         if bmp:
             mini = BmpMiniature(id, path, bmp, pos, heading, face, label, 
-                zorder=self. get_next_highest_z(), width=width, 
+                zorder=self.get_next_highest_z(), width=width, 
                 height=height, local=local, localPath=localPath, localTime=localTime)
             self.miniatures.append(mini)
             xml_str = "<map><miniatures>"
@@ -480,8 +433,7 @@ class miniature_layer(layer_base):
 
     def get_miniature_by_id(self, id):
         for mini in self.miniatures:
-            if str(mini.id) == str(id):
-                return mini
+            if str(mini.id) == str(id): return mini
         return None
 
     def del_miniature(self, min):
@@ -545,9 +497,7 @@ class miniature_layer(layer_base):
             id = c.getAttribute('id')
             if action == "del": 
                 mini = self.get_miniature_by_id(id)
-                if mini:
-                    self.miniatures.remove(mini)
-                    del mini
+                if mini: self.miniatures.remove(mini); del mini
             elif action == "new":
                 pos = cmpPoint(int(c.getAttribute('posx')),int(c.getAttribute('posy')))
                 path = urllib.unquote(c.getAttribute('path'))
@@ -578,7 +528,7 @@ class miniature_layer(layer_base):
                         postdata = urllib.urlencode({'filename':filename[1], 'imgdata':imgdata, 'imgtype':imgtype})
                         thread.start_new_thread(self.upload, (postdata, localPath, True))
                 #  collapse the zorder.  If the client behaved well, then nothing should change.
-                #    Otherwise, this will ensure that there's some kind of z-order
+                #  Otherwise, this will ensure that there's some kind of z-order
                 self.collapse_zorder()
             else:
                 mini = self.get_miniature_by_id(id)
@@ -591,9 +541,9 @@ class miniature_layer(layer_base):
         recvdata = file.read()
         file.close()
         try:
-            xml_dom = minidom.parseString(recvdata)._get_documentElement()
-            if xml_dom.nodeName == 'path':
-                path = xml_dom.getAttribute('url')
+            xml_dom = fromstring(recvdata)
+            if xml_dom.tag == 'path':
+                path = xml_dom.get('url')
                 path = urllib.unquote(path)
                 if not modify:
                     start = path.rfind("/") + 1
@@ -607,8 +557,7 @@ class miniature_layer(layer_base):
                     self.miniatures[len(self.miniatures)-1].localPath = filename
                     self.miniatures[len(self.miniatures)-1].localTime = time.time()
                     self.miniatures[len(self.miniatures)-1].path = path
-            else:
-                print xml_dom.getAttribute('msg')
+            else: print xml_dom.get('msg')
         except Exception, e:
             print e
             print recvdata

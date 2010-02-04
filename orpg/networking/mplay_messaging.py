@@ -21,24 +21,20 @@
 # Author: Dj Gilcrease
 # Maintainer:
 # Version:
-#   $Id: mplay_messaging.py,v 1.5 2007/05/06 16:42:59 digitalxero Exp $
+#   $Id: mplay_messaging.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description: This file contains the code for the client / server messaging
 #
 
-__version__ = "$Id: mplay_messaging.py,v 1.5 2007/05/06 16:42:59 digitalxero Exp $"
+__version__ = "$Id: mplay_messaging.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
-import socket
-import Queue
-import thread
-import traceback
+import socket, Queue, thread, traceback, os, time
+
 from threading import Event, Lock
 from xml.sax.saxutils import escape
 from struct import pack, unpack, calcsize
 from string import *
 from orpg.orpg_version import VERSION, PROTOCOL_VERSION, CLIENT_STRING, SERVER_MIN_CLIENT_VERSION
-import os
-import time
 
 from orpg.tools.orpg_log import logger
 from orpg.orpgCore import component
@@ -48,10 +44,8 @@ def myescape(data):
 
 class messenger:
     def __init__(self, *args, **kwargs):
-        #self.xml = component.get("xml") used once, no need for the object.
         self.dir_struct = component.get("dir_struct") #used?
         self.validate = component.get("validate") #used??
-        #self.settings = component.get("settings") ## used once, no need for the object.
         if kwargs.has_key('isServer'):
             self.isServer = kwargs['isServer']
         else:
@@ -67,7 +61,8 @@ class messenger:
         self.port = int(component.get("settings").get_setting("port")) ##used even?
         self.ip = socket.gethostbyname(socket.gethostname())
         self.lensize = calcsize('i')
-        self.mplay_type = ('disconnected', 'connected', 'disconnecting', 'group change', 'group change failed')
+        self.mplay_type = ('disconnected', 'connected', 
+                            'disconnecting', 'group change', 'group change failed')
         self.status = self.mplay_type[0]
         self.alive = False
         self.sock = None
@@ -92,30 +87,20 @@ class messenger:
         self.players = {}
         self.groups = {}
 
-        #Setup Stuff from the Server
-        if kwargs.has_key('inbox'):
-            self.inbox = kwargs['inbox']
-        if kwargs.has_key('sock'):
-            self.sock = kwargs['sock']
-        if kwargs.has_key('ip'):
-            self.ip = kwargs['ip']
-        if kwargs.has_key('role'):
-            self.role = kwargs['role']
-        if kwargs.has_key('id'):
-            self.id = kwargs['id']
-        if kwargs.has_key('group_id'):
-            self.group_id = kwargs['group_id']
-        if kwargs.has_key('name'):
-            self.name = kwargs['name']
-        if kwargs.has_key('version'):
-            self.version = kwargs['version']
-        if kwargs.has_key('protocol_version'):
-            self.protocol_version = kwargs['protocol_version']
-        if kwargs.has_key('client_string'):
-            self.client_string = kwargs['client_string']
+        ### Alpha ###
+        self.inbox = kwargs['inbox'] or pass
+        self.sock = kwargs['sock'] or pass
+        self.ip = kwargs['ip'] or pass
+        self.role = kwargs['role'] or pass
+        self.id = kwargs['id'] or pass
+        self.group_id = kwargs['group_id'] or pass
+        self.name = kwargs['name'] or pass
+        self.version = kwargs['version'] or pass
+        self.protocol_version = kwargs['protocol_version'] or pass
+        self.client_string = kwargs['client_string'] or pass
+
 
     def build_message(self, *args, **kwargs):
-        #print args
         message = '<' + args[0]
 
         #Setup the attributes of the message
@@ -128,11 +113,9 @@ class messenger:
             #Close the first part
             message += '>'
             message += escape(args[1])
-
             #Close the whole thing
             message += '</' + args[0] + '>'
-        else:
-            message += ' />'
+        else: message += ' />'
         return message
 
     def disconnect(self):
@@ -159,7 +142,8 @@ class messenger:
 
     def update_self_from_player(self, player):
         try:
-            (self.name, self.ip, self.id, self.text_status, self.version, self.protocol_version, self.client_string,role) = player
+            (self.name, self.ip, self.id, self.text_status, 
+            self.version, self.protocol_version, self.client_string,role) = player
         except:
             logger.general("Exception:  messenger->update_self_from_player():\n" + traceback.format_exc())
 
@@ -205,7 +189,6 @@ class messenger:
     def __str__(self):
         return "%s(%s)\nIP:%s\ngroup_id:%s\n%s (%s)" % (self.name, self.id, self.ip, self.group_id, self.idle_time(), self.connected_time())
 
-    # idle time functions added by snowdog 3/31/04
     def update_idle_time(self):
         self.lastmessagetime = time.time()
 
@@ -218,12 +201,9 @@ class messenger:
         idletime = self.idle_time()
         idlemins = idletime / 60
         status = "Unknown"
-        if idlemins < 3:
-            status = "Active"
-        elif idlemins < 10:
-            status = "Idle ("+str(int(idlemins))+" mins)"
-        else:
-            status = "Inactive ("+str(int(idlemins))+" mins)"
+        if idlemins < 3: status = "Active"
+        elif idlemins < 10: status = "Idle ("+str(int(idlemins))+" mins)"
+        else: status = "Inactive ("+str(int(idlemins))+" mins)"
         return status
 
     def connected_time(self):
@@ -245,18 +225,14 @@ class messenger:
         self.timeout_time = None
 
     def check_time_out(self):
-        if self.timeout_time==None:
-            self.timeout_time = time.time()
+        if self.timeout_time == None: self.timeout_time = time.time()
         curtime = time.time()
         diff = curtime - self.timeout_time
-        if diff > 1800:
-            return 1
-        else:
-            return 0
+        if diff > 1800: return 1
+        else: return 0
 
     def send(self, msg):
-        if self.get_status() == 'connected':
-            self.outbox.put(msg)
+        if self.get_status() == 'connected': self.outbox.put(msg)
 
     def change_group(self, group_id, groups):
         old_group_id = str(self.group_id)
@@ -275,17 +251,13 @@ class messenger:
     def add_msg_handler(self, tag, function, core=False):
         if not self.msg_handlers.has_key(tag):
             self.msg_handlers[tag] = function
-            if core:
-                self.core_msg_handlers.append(tag)
-        else:
-            print 'XML Messages ' + tag + ' already has a handler'
+            if core: self.core_msg_handlers.append(tag)
+        else: print 'XML Messages ' + tag + ' already has a handler'
 
     def remove_msg_handler(self, tag):
         if self.msg_handlers.has_key(tag) and not tag in self.core_msg_handlers:
             del self.msg_handlers[tag]
-        else:
-            print 'XML Messages ' + tag + ' already deleted'
-
+        else: print 'XML Messages ' + tag + ' already deleted'
 
     #Message Handaling
     def message_handler(self, arg):
@@ -293,14 +265,12 @@ class messenger:
         logger.note("message handler thread running...", ORPG_NOTE)
         while self.alive or self.status == 'connected':
             data = None
-            try:
-                data = self.inbox.get(0)
+            try: data = self.inbox.get(0)
             except Queue.Empty:
                 time.sleep(0.25) #sleep 1/4 second
                 continue
             bytes = len(data)
-            if bytes < 5:
-                continue
+            if bytes < 5: continue
             try:
                 thread.start_new_thread(self.parse_incoming_dom,(str(data),))
                 #data has been passed... unlink from the variable references
@@ -315,7 +285,6 @@ class messenger:
         self.inbox_event.set()
 
     def parse_incoming_dom(self, data):
-        #print data
         xml_dom = None
         try:
             xml_dom = component.get("xml").parseXml(data)
@@ -338,7 +307,6 @@ class messenger:
         #Message Action thread expires and closes here.
         return
 
-    #Privet functions
     def sendThread( self, arg ):
         "Sending thread.  This thread reads from the data queue and writes to the socket."
         # Wait to be told it's okay to start running
@@ -346,19 +314,15 @@ class messenger:
 
         # Loop as long as we have a connection
         while( self.get_status() == 'connected' ):
-            try:
-                readMsg = self.outbox.get( block=1 )
-
+            try: readMsg = self.outbox.get( block=1 )
             except Exception, text:
                 logger.exception("Exception:  messenger->sendThread():  " + str(text)
-
             # If we are here, it's because we have data to send, no doubt!
             if self.status == 'connected':
                 try:
                     # Send the entire message, properly formated/encoded
                     sent = self.sendMsg( self.sock, readMsg )
-                except:
-                    logger.exception("Exception:  messenger->sendThread():\n" + traceback.format_exc()
+                except: logger.exception("Exception:  messenger->sendThread():\n" + traceback.format_exc()
             else:
                 # If we are not connected, purge the data queue
                 logger.note("Data queued without a connection, purging data from queue...")
@@ -368,21 +332,15 @@ class messenger:
     def sendMsg( self, sock, msg ):
         """Very simple function that will properly encode and send a message to te
         remote on the specified socket."""
-
-        # Calculate our message length
         length = len( msg )
-
-        # Encode the message length into network byte order
         lp = pack( 'i', socket.htonl( length ) )
 
         try:
             # Send the encoded length
             sentl = sock.send( lp )
-
             # Now, send the message the the length was describing
             sentm = sock.send( msg )
-            if self.isServer:
-                logger.debug("('data_sent', " + str(sentl+sentm) + ")")
+            if self.isServer: logger.debug("('data_sent', " + str(sentl+sentm) + ")")
             return sentm
         except socket.error, e:
             logger.exception("Socket Error: messenger->sendMsg(): " +  traceback.format_exc())
@@ -399,15 +357,11 @@ class messenger:
 
             # Make sure we didn't get disconnected
             bytes = len( readMsg )
-            if bytes == 0:
-                break
-
+            if bytes == 0: break
             # Check the length of the message
             bytes = len( readMsg )
-
             # Make sure we are still connected
-            if bytes == 0:
-                break
+            if bytes == 0: break
             else:
                 # Pass along the message so it can be processed
                 self.inbox.put( readMsg )
@@ -456,20 +410,16 @@ class messenger:
         msgData = ""
         try:
             lenData = self.recvData( sock, self.lensize )
-
             # Now, convert to a usable form
             (length,) = unpack( 'i', lenData )
             length = socket.ntohl( length )
-
             # Read exactly the remaining amount of data
             msgData = self.recvData( sock, length )
-
-            if self.isServer:
-                logger.debug("('data_recv', " + str(length+4) + ")")
-        except:
-            logger.exception("Exception: messenger->recvMsg():\n" + traceback.format_exc())
+            if self.isServer: logger.debug("('data_recv', " + str(length+4) + ")")
+        except: logger.exception("Exception: messenger->recvMsg():\n" + traceback.format_exc())
         return msgData
 
 if __name__ == "__main__":
     test = messenger(None)
     print test.build_message('hello', "This is a test message", attrib1="hello world", attrib2="hello world2", attrib3="hello world3")
+

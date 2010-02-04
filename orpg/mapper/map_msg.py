@@ -21,13 +21,12 @@
 # Author: OpenRPG
 # Maintainer:
 # Version:
-#   $Id: map_msg.py,v 1.16 2007/03/09 14:11:55 digitalxero Exp $
+#   $Id: map_msg.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description:
 #
-__version__ = "$Id: map_msg.py,v 1.16 2007/03/09 14:11:55 digitalxero Exp $"
+__version__ = "$Id: map_msg.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
-#from base import *
 from base_msg import *
 from background_msg import *
 from grid_msg import *
@@ -92,8 +91,7 @@ class map_msg(map_element_msg_base):
                 self.clear()
             # Process all of the properties in each tag
             if xml_dom.getAttributeKeys():
-                for k in xml_dom.getAttributeKeys():
-                    self.set_prop(k,xml_dom.getAttribute(k))
+                for k in xml_dom.getAttributeKeys(): self.set_prop(k,xml_dom.getAttribute(k))
             for c in xml_dom._get_childNodes():
                 name = c._get_nodeName()
                 if not self.children.has_key(name):

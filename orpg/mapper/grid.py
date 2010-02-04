@@ -21,11 +21,11 @@
 # Author: OpenRPG Team
 # Maintainer:
 # Version:
-#   $Id: grid.py,v 1.29 2007/12/07 20:39:49 digitalxero Exp $
+#   $Id: grid.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description:
 #
-__version__ = "$Id: grid.py,v 1.29 2007/12/07 20:39:49 digitalxero Exp $"
+__version__ = "$Id: grid.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from base import *
 from isometric import *
@@ -101,7 +101,7 @@ class grid_layer(layer_base):
                 elif self.mode == GRID_ISOMETRIC:
                     x = (topLeft.x)-(mini_width/2)
                     y = (topLeft.y)-(mini_height)
-                else:# GRID_RECTANGLE
+                else: # GRID_RECTANGLE
                     x = topLeft.x + ((self.unit_size - mini_width) / 2)
                     y = topLeft.y + ((self.unit_size_y - mini_height) /2)
             else:

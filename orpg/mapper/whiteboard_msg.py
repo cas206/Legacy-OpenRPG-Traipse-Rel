@@ -21,12 +21,12 @@
 # Author: Chris Davis
 # Maintainer:
 # Version:
-#   $Id: whiteboard_msg.py,v 1.12 2007/03/09 14:11:56 digitalxero Exp $
+#   $Id: whiteboard_msg.py,v Traipse 'Ornery-Orc' prof.ebral Exp $
 #
 # Description: This file contains some of the basic definitions for the chat
 # utilities in the orpg project.
 #
-__version__ = "$Id: whiteboard_msg.py,v 1.12 2007/03/09 14:11:56 digitalxero Exp $"
+__version__ = "$Id: whiteboard_msg.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from base_msg import *
 
@@ -82,8 +82,7 @@ class whiteboard_msg(map_element_msg_base):
         self.p_lock.acquire()
         if xml_dom.tagName == self.tagname:
             if xml_dom.getAttributeKeys():
-                for k in xml_dom.getAttributeKeys():
-                    self.init_prop(k,xml_dom.getAttribute(k))
+                for k in xml_dom.getAttributeKeys(): self.init_prop(k,xml_dom.getAttribute(k))
             for c in xml_dom._get_childNodes():
                 item = item_msg(self.p_lock,c._get_nodeName())
                 try: item.init_from_dom(c)
@@ -108,8 +107,7 @@ class whiteboard_msg(map_element_msg_base):
         self.p_lock.acquire()
         if xml_dom.tagName == self.tagname:
             if xml_dom.getAttributeKeys():
-                for k in xml_dom.getAttributeKeys():
-                    self.set_prop(k,xml_dom.getAttribute(k))
+                for k in xml_dom.getAttributeKeys(): self.set_prop(k,xml_dom.getAttribute(k))
             for c in xml_dom._get_childNodes():
                 item = item_msg(self.p_lock, c._get_nodeName())
                 try: item.set_from_dom(c)

@@ -21,27 +21,23 @@
 # Author: Chris Davis
 # Maintainer:
 # Version:
-#   $Id: orpg_xml.py,v 1.12 2007/07/19 20:33:10 digitalxero Exp $
+#   $Id: orpg_xml.py,v Traipse 'Ornery-Orc' prof.ebral Exp  $
 #
 # Description: xml utilies
 #
 
 from orpg import minidom
 import string
-
-from orpg.tools.orpg_log import logger
-from orpg.tools.decorators import debugging
+from orpg.tools.orpg_log import logger, debug
 
 class xml:
-    @debugging
+    debug('Developers note. Deprecated call to orpg_xml!!')
     def __init__(self):
         pass
 
-    @debugging
     def toxml(self, root, pretty=0):
         return root.toxml(pretty)
 
-    @debugging
     def parseXml(self, s):
         "parse and return doc"
         try:
@@ -52,7 +48,6 @@ class xml:
             print e
             return None
 
-    @debugging
     def safe_get_text_node(self, xml_dom):
         """ returns the child text node or creates one if doesnt exist """
         t_node = xml_dom._get_firstChild()
@@ -61,7 +56,6 @@ class xml:
             t_node = xml_dom.appendChild(t_node)
         return t_node
 
-    @debugging
     def strip_unicode(self, txt):
         for i in xrange(len(txt)):
             if txt[i] not in string.printable:
@@ -69,7 +63,6 @@ class xml:
                 except: txt = txt.replace(txt[i], '{?}')
         return txt
 
-    @debugging
     def strip_text(self, txt):
         #  The following block strips out 8-bit characters
         u_txt = ""
@@ -80,6 +73,5 @@ class xml:
             else: bad_txt_found = 1
         if bad_txt_found: print "Some non 7-bit ASCII characters found and stripped"
         return u_txt
-
 
 xml = xml()
