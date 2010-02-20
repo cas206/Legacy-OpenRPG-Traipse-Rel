@@ -77,7 +77,7 @@ class InterParse():
             lb = "Replace '?' with: "
             if len(matches[i][0]):
                 lb = matches[i][1] + "?: "
-            dlg = TextEntryDialog(self, lb, "Missing Value?")
+            dlg = TextEntryDialog(component.get('chat'), lb, "Missing Value?")
             dlg.SetValue('')
             if matches[i][0] != '':
                 dlg.SetTitle("Enter Value for " + matches[i][1])
@@ -208,6 +208,8 @@ class InterParse():
         grid = node.find('grid')
         rows = grid.findall('row')
         col = rows[int(self.Dice(cell[0]))-1].findall('cell')
+        try: s = self.NodeParent(col[int(self.Dice(cell[1]))-1].text, node.get('map')) or 'No Cell Data'
+        except: s = 'Invalid Grid Reference!'
         try: s = self.NodeMap(col[int(self.Dice(cell[1]))-1].text, node) or 'No Cell Data'
         except: s = 'Invalid Grid Reference!'
         return s

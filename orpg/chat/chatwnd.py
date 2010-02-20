@@ -45,7 +45,7 @@ __version__ = "$Id: chatwnd.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 ##
 import os, time, re, sys, traceback, webbrowser, commands, chat_msg, chat_util
 
-from orpg.orpg_version import VERSION
+from orpg.orpg_version import VERSION, DISTRO, DIS_VER, BUILD
 from orpg.orpg_windows import *
 from orpg.player_list import WG_LIST
 from orpg.dirpath import dir_struct
@@ -763,9 +763,11 @@ class chat_panel(wx.Panel):
         self.chatwnd = chat_html_window(self,-1)
         self.set_colors()
         wx.CallAfter(self.chatwnd.SetPage, self.chatwnd.Header())
+        welcome = "<b>Welcome to <a href='http://www.knowledgearcana.com//content/view/199/128/'>"
+        welcome += DISTRO +'</a> '+ DIS_VER +' {'+BUILD+'},'
+        welcome += ' built on OpenRPG '+ VERSION +'</b>'
         if (self.sendtarget == "all"):
-            wx.CallAfter(self.Post, self.colorize(self.syscolor, 
-                "<b>Welcome to <a href='http://www.openrpg.com'>OpenRPG</a> version " + self.version + "...  </b>"))
+            wx.CallAfter(self.Post, self.colorize(self.syscolor, welcome))
         self.chattxt = orpg.tools.predTextCtrl.predTextCtrl(self, -1, "", 
                         style=wx.TE_PROCESS_ENTER |wx.TE_PROCESS_TAB|wx.TE_LINEWRAP, 
                         keyHook = self.myKeyHook, validator=None )

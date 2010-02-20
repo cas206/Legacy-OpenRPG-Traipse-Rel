@@ -64,7 +64,7 @@ from orpg.tools.orpg_log import logger, crash, debug
 from orpg.tools.decorators import debugging
 
 # Snag the version number
-from orpg.orpg_version import VERSION, PROTOCOL_VERSION, CLIENT_STRING, SERVER_MIN_CLIENT_VERSION
+from orpg.orpg_version import VERSION, DISTRO, DIS_VER, BUILD, PROTOCOL_VERSION, CLIENT_STRING, SERVER_MIN_CLIENT_VERSION
 
 #Plugins
 from server_plugins import ServerPlugins
@@ -253,7 +253,7 @@ class mplay_server:
         self.allowRemoteKill = False
         self.allowRemoteAdmin = True
         self.sendLobbySound = False
-        self.lobbySound = 'http://www.digitalxero.net/music/mus_tavern1.bmu' ##used?
+        #self.lobbySound = 'http://www.digitalxero.net/music/mus_tavern1.bmu' ##used?
 
     def initServer(self, **kwargs):
         for atter, value in kwargs.iteritems(): setattr(self, atter, value)
@@ -1107,8 +1107,8 @@ class mplay_server:
             (remote_host,remote_port) = newsock.getpeername()
             bad_xml_string =  "Your client sent an illegal message to the server and will be disconnected. "
             bad_xml_string += "Please report this bug to the development team at:<br /> "
-            bad_xml_string += "<a href=\"http://sourceforge.net/tracker/?group_id=2237&atid=102237\">OpenRPG bugs "
-            bad_xml_string += "(http://sourceforge.net/tracker/?group_id=2237&atid=102237)</a><br />"
+            bad_xml_string += "<a href='http://www.assembla.com/spaces/traipse_dev/tickets/'>Traipse-Dev "
+            bad_xml_string += "(http://www.assembla.com/spaces/traipse_dev/tickets/)</a><br />"
             self.sendMsg( newsock, "<msg to='" + props['id'] + "' from='" + props['id'] + "' group_id='0' />" + bad_xml_string, 
                             new_stub.useCompression, new_stub.compressionType)
 
@@ -1234,8 +1234,9 @@ class mplay_server:
         #  prepend this server's version string to the the lobby message
         """
         try:
-            lobbyMsg = "You have connected to an <a href=\"http://www.openrpg.com\">OpenRPG</a> "
-            lobbyMsg += "server, version '" + VERSION + "'"
+            lobbyMsg = "You have connected to a <a href='http://www.knowledgearcana.com//content/view/199/128/'>"
+            lobbyMsg += DISTRO +'</a> '+ DIS_VER +' {'+ BUILD+'}'
+            lobbyMsg += " server, built on OpenRPG version '" + VERSION + "'"
 
             # See if we have a server name to report!
             if len(self.serverName): lobbyMsg += ", named '" + self.serverName + "'."
