@@ -21,7 +21,7 @@ from mplay_server import mplay_server, server
 
 from xml.dom import minidom
 from orpg.orpgCore import component
-from orpg.tools.orpg_log import debug
+from orpg.tools.orpg_log import debug, DebugConsole
 from orpg.tools.orpg_settings import settings
 
 from xml.etree.ElementTree import ElementTree, Element, iselement
@@ -151,8 +151,8 @@ class Groups(wx.ListCtrl):
         (room, room_id, players, passworded) = data
         i = self.InsertStringItem(0, str(room_id))
         self.SetStringItem(i, 1, room)
-        self.SetStringItem(i, 2, players)
-        self.SetStringItem(i, 3, str(passworded))
+        self.SetStringItem(i, 2, str(players))
+        self.SetStringItem(i, 3, passworded)
 
     def DeleteGroup(self, data):
         i = self.FindItem(-1, str(data))
@@ -162,7 +162,7 @@ class Groups(wx.ListCtrl):
         (room, room_id, players) = data
         i = self.FindItem( -1, str(room_id))
         self.SetStringItem( i, 1, room )
-        if players: self.SetStringItem(i, 2, str(players))
+        self.SetStringItem(i, 2, str(players))
         ### Need to add room for Password Updates ###
 
 class Connections(wx.ListCtrl):
@@ -321,7 +321,7 @@ class Connections(wx.ListCtrl):
                 BanMsg = wx.TextEntryDialog( self, "Enter A Message To Send:",
                                                  "Ban Message", message, wx.OK|wx.CANCEL|wx.CENTRE )
                 if BanMsg.ShowModal() == wx.ID_OK: message = BanMsg.GetValue()
-                else: message = ''
+                else: return
                 Silent = wx.MessageDialog(None, 'Silent Ban?', 'Question', 
                     wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
                 if Silent.ShowModal() == wx.ID_YES: silent = 1
@@ -330,14 +330,30 @@ class Connections(wx.ListCtrl):
                 self.remove( playerID )
             elif menuItem == 4:
                 msg = self.GetMessageInput( "Send a message to player" )
-                if len(msg): self.main.server.server.send( msg, playerID, str(groupID) )
+
+                broadcast = '<chat type="1" version="1.0"><font color="#FF0000">' +msg+ '</font></chat>'
+                chat = Element('chat')
+                chat.set('type', '1')
+                chat.set('version', '1.0')
+                chat.text = broadcast
+                msg = self.main.server.server.buildMsg(str(playerID), '0', '1', msg)
+
+                if len(msg): self.main.server.server.players[playerID].outbox.put(msg)
             #Leave this in for now.
             elif menuItem == 5:
                 msg = self.GetMessageInput( "Send message to room of this player")
+
+                broadcast = '<chat type="1" version="1.0"><font color="#FF0000">' +msg+ '</font></chat>'
+                chat = Element('chat')
+                chat.set('type', '1')
+                chat.set('version', '1.0')
+                chat.text = broadcast
+                msg = self.main.server.server.buildMsg('all', '0', '1', tostring(chat))
+
                 if len(msg): self.main.server.server.send_to_group('0', str(groupID), msg )
             elif menuItem == 6:
                 msg = self.GetMessageInput( "Broadcast Server Message" )
-                if len(msg): self.main.server.server.broadcast( msg )
+                if len(msg): self.main.server.server.broadcast(msg )
             elif menuItem == 3:
                 version_string = self.main.server.server.obtain_by_id(playerID, 'client_string')
                 if version_string: wx.MessageBox("Running client version " + version_string,"Version")
@@ -354,8 +370,8 @@ class ServerGUI(wx.Frame):
     STATUS = SERVER_STOPPED
     def __init__(self, parent, id, title):
         wx.Frame.__init__(self, parent, id, title, size = (760, 560) )
-        if wx.Platform == '__WXMSW__': icon = wx.Icon( dir_struct["icon"]+'WAmisc9.ico', wx.BITMAP_TYPE_ICO )
-        else: icon = wx.Icon( dir_struct["icon"]+'connect.gif', wx.BITMAP_TYPE_GIF )
+        if wx.Platform == '__WXMSW__': icon = wx.Icon(dir_struct["icon"]+'WAmisc9.ico', wx.BITMAP_TYPE_ICO)
+        else: icon = wx.Icon(dir_struct["icon"]+'connect.gif', wx.BITMAP_TYPE_GIF)
         self.SetIcon(icon)
         self.serverName = "Server Name"
         self.bootPwd = ""
@@ -384,6 +400,7 @@ class ServerGUI(wx.Frame):
         cb["delete_group"] = self.OnDeleteGroup
         cb["join_group"] = self.OnJoinGroup
         cb['update_group'] = self.OnUpdateGroup
+        cb['exception'] = self.OnException
         cb["role"] = self.OnSetRole
         self.callbacks = cb
 
@@ -401,10 +418,10 @@ class ServerGUI(wx.Frame):
 
         # File Menu
         menu = wx.Menu()
-        menu.Append( 1, 'Start', 'Start server.')
-        menu.Append( 2, 'Stop', 'Shutdown server.')
+        menu.Append(1, 'Start', 'Start server.')
+        menu.Append(2, 'Stop', 'Shutdown server.')
         menu.AppendSeparator()
-        menu.Append( 3, 'E&xit', 'Exit application.')
+        menu.Append(3, 'E&xit', 'Exit application.')
         self.Bind(wx.EVT_MENU, self.OnStart, id=1)
         self.Bind(wx.EVT_MENU, self.OnStop, id=2)
         self.Bind(wx.EVT_MENU, self.OnExit, id=3)
@@ -412,23 +429,24 @@ class ServerGUI(wx.Frame):
 
         # Registration Menu
         menu = wx.Menu()
-        menu.Append( 4, 'Register', 'Register with OpenRPG server directory.')
-        menu.Append( 5, 'Unregister', 'Unregister from OpenRPG server directory.')
+        menu.Append(4, 'Register', 'Register with OpenRPG server directory.')
+        menu.Append(5, 'Unregister', 'Unregister from OpenRPG server directory.')
         self.Bind(wx.EVT_MENU, self.OnRegister, id=4)
         self.Bind(wx.EVT_MENU, self.OnUnregister, id=5)
         self.mainMenu.Append( menu, '&Registration' )
 
         # Server Configuration Menu
         menu = wx.Menu()
-        menu.Append( 6, 'Ban List', 'Modify Ban List.')
+        menu.Append(6, 'Ban List', 'Modify Ban List.')
         menu.Append(11, 'Zombies', 'Set auto-kick time for zombie clients')
         menu.Append(14, 'Send Size', 'Adjust the send size limit')
         menu.AppendSeparator()
-        menu.Append( 7, 'Start Ping', 'Ping players to validate remote connection.' )
-        menu.Append( 8, 'Stop Ping', 'Stop validating player connections.' )
-        menu.Append( 9, 'Ping Interval', 'Change the ping interval.' )
+        menu.Append(7, 'Start Ping', 'Ping players to validate remote connection.' )
+        menu.Append(8, 'Stop Ping', 'Stop validating player connections.' )
+        menu.Append(9, 'Ping Interval', 'Change the ping interval.' )
         menu.AppendSeparator()
-        menu.AppendCheckItem( 10, 'Server Logging', 'Turn on or off the Server GUI Log').Check(self.do_log)
+        menu.AppendCheckItem(10, 'Server Logging', 
+                                'Turn on or off the Server GUI Log').Check(self.do_log)
         menu.AppendCheckItem(12, 'Room Passwords', 'Allow or Deny Room Passwords').Check(False)
         menu.AppendCheckItem(13, 'Remote Admin', 'Allow or Deny Remote Admin').Check(False)
         menu.AppendCheckItem(15, 'Remote Kill', 'Allow or Deny Remote Admin Server Kill').Check(False)
@@ -437,37 +455,82 @@ class ServerGUI(wx.Frame):
         self.Bind(wx.EVT_MENU, self.StopPingPlayers, id=8)
         self.Bind(wx.EVT_MENU, self.ConfigPingInterval, id=9)
         self.Bind(wx.EVT_MENU, self.LogToggle, id=10)
-        self.mainMenu.Append( menu, '&Configuration' )
-        self.SetMenuBar( self.mainMenu )
+        self.mainMenu.Append( menu, '&Configuration')
 
-        self.mainMenu.Enable( 2, False )
-        self.mainMenu.Enable( 4, False )
-        self.mainMenu.Enable( 5, False )
+        # Traipse Suite of Additions.
+        self.traipseSuite = wx.Menu()
+        self.debugger = DebugConsole(self)
+        self.mainMenu.Insert(3, self.traipseSuite, "&Traipse Suite")
+
+        #Debugger Console
+        self.debugConsole = wx.MenuItem(self.traipseSuite, -1, "Debug Console", "Debug Console")
+        self.Bind(wx.EVT_MENU, self.OnMB_DebugConsole, self.debugConsole)
+        self.traipseSuite.AppendItem(self.debugConsole)
+
+        self.SetMenuBar(self.mainMenu)
+
+        self.mainMenu.Enable(2, False)
+        self.mainMenu.Enable(4, False)
+        self.mainMenu.Enable(5, False)
 
         # Disable the ping menu items
-        self.mainMenu.Enable( 7, False )
-        self.mainMenu.Enable( 8, False )
-        self.mainMenu.Enable( 9, False )
+        self.mainMenu.Enable(7, False)
+        self.mainMenu.Enable(8, False)
+        self.mainMenu.Enable(9, False)
 
         # Disable placeholders
-        self.mainMenu.Enable( 11, False )
-        self.mainMenu.Enable( 14, False )
-        self.mainMenu.Enable( 12, False )
-        self.mainMenu.Enable( 13, False )
-        self.mainMenu.Enable( 15, False )
+        self.mainMenu.Enable(11, False)
+        self.mainMenu.Enable(14, False)
+        self.mainMenu.Enable(12, False)
+        self.mainMenu.Enable(13, False)
+        self.mainMenu.Enable(15, False)
+
+    def OnException(self, error):
+        self.TraipseSuiteWarn('debug')
+        self.debugger.console.AppendText(".. " + str(error) +'\n')
+
+    def OnMB_DebugConsole(self, evt):
+        self.TraipseSuiteWarnCleanup('debug')
+        if self.debugger.IsShown() == True: self.debugger.Hide()
+        else: self.debugger.Show()
+
+    def TraipseSuiteWarn(self, menuitem):
+        ### Allows for the reuse of the 'Attention' menu.
+        ### component.get('frame').TraipseSuiteWarn('item') ### Portable
+        self.mainMenu.Remove(3)
+        self.mainMenu.Insert(3, self.traipseSuite, "&Traipse Suite!")
+        if menuitem == 'debug':
+            if self.debugger.IsShown() == True:
+                self.mainMenu.Remove(3)
+                self.mainMenu.Insert(3, self.traipseSuite, "&Traipse Suite")
+            else:
+                self.debugConsole.SetBitmap(wx.Bitmap(dir_struct["icon"] + 'spotlight.png'))
+                self.traipseSuite.RemoveItem(self.debugConsole)
+                self.traipseSuite.AppendItem(self.debugConsole)
+
+    def TraipseSuiteWarnCleanup(self, menuitem):
+        ### Allows for portable cleanup of the 'Attention' menu.
+        ### component.get('frame').TraipseSuiteWarnCleanup('item') ### Portable
+        self.mainMenu.Remove(3)
+        self.mainMenu.Insert(3, self.traipseSuite, "&Traipse Suite")        
+        if menuitem == 'debug':
+            self.traipseSuite.RemoveItem(self.debugConsole)
+            self.debugConsole.SetBitmap(wx.Bitmap(dir_struct["icon"] + 'clear.gif'))
+            self.traipseSuite.AppendItem(self.debugConsole)
+
     def build_body(self):
         """ Create the ViewNotebook and logger. """
         splitter = wx.SplitterWindow(self, -1, style=wx.NO_3D | wx.SP_3D)
-        nb = wx.Notebook( splitter, -1 )
+        nb = wx.Notebook(splitter, -1)
         self.conns = Connections(nb, self)
         self.groups = Groups(nb, self)
-        self.msgWindow = HTMLMessageWindow( nb )
+        self.msgWindow = HTMLMessageWindow(nb)
         nb.AddPage(self.conns, "Players")
         nb.AddPage(self.groups, 'Rooms')
-        nb.AddPage( self.msgWindow, "Messages" )
+        nb.AddPage(self.msgWindow, "Messages")
 
         log = wx.TextCtrl(splitter, -1, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.HSCROLL)
-        wx.Log.SetActiveTarget( wx.LogTextCtrl(log) )
+        wx.Log.SetActiveTarget(wx.LogTextCtrl(log))
         splitter.SplitHorizontally(nb, log, 400)
         splitter.SetMinimumPaneSize(40)
         self.nb = nb
@@ -522,12 +585,14 @@ class ServerGUI(wx.Frame):
     def OnDataSent(self, bytes):
         self.total_messages_sent += 1
         self.total_data_sent += bytes
-        self.sb.SetStatusText("Sent: %s (%d)" % (format_bytes(self.total_data_sent), self.total_messages_sent), 1)
+        self.sb.SetStatusText("Sent: %s (%d)" % (format_bytes(self.total_data_sent), 
+                                self.total_messages_sent), 1)
 
     def OnDataRecv(self, bytes):
         self.total_messages_received += 1
         self.total_data_received += bytes
-        self.sb.SetStatusText("Recv: %s (%d)" % (format_bytes(self.total_data_received), self.total_messages_received), 2)
+        self.sb.SetStatusText("Recv: %s (%d)" % (format_bytes(self.total_data_received), 
+                                self.total_messages_received), 2)
 
     def OnCreateGroup( self, data ):
         (room, room_id, player, pwd) = data
@@ -569,13 +634,16 @@ class ServerGUI(wx.Frame):
             except: pass 
             if self.serverName == '':
                 self.serverName = 'Server Name'
-                serverNameEntry = wx.TextEntryDialog(self, "Please Enter The Server Name You Wish To Use:",
-                                                 "Server's Name", self.serverName, wx.OK|wx.CANCEL|wx.CENTRE )
+                serverNameEntry = wx.TextEntryDialog(self, 
+                                    "Please Enter The Server Name You Wish To Use:",
+                                    "Server's Name", 
+                                    self.serverName, wx.OK|wx.CANCEL|wx.CENTRE)
                 if serverNameEntry.ShowModal() == wx.ID_OK: self.serverName = serverNameEntry.GetValue()
             if self.bootPwd == '': 
                 serverPasswordEntry = wx.TextEntryDialog(self, 
-                                            "Please Enter The Server Admin Password:", "Server's Password", 
-                                            self.bootPwd, wx.OK|wx.CANCEL|wx.CENTRE)
+                                    "Please Enter The Server Admin Password:", 
+                                    "Server's Password", 
+                                    self.bootPwd, wx.OK|wx.CANCEL|wx.CENTRE)
                 if serverPasswordEntry.ShowModal() == wx.ID_OK: self.bootPwd = serverPasswordEntry.GetValue()
             if len(self.serverName):
                 wx.BeginBusyCursor()
@@ -584,9 +652,9 @@ class ServerGUI(wx.Frame):
                 self.STATUS = SERVER_RUNNING
                 self.sb.SetStatusText("Running", 3)
                 self.SetTitle(__appname__ + "- (running) - (unregistered)")
-                self.mainMenu.Enable( 1, False )
-                self.mainMenu.Enable( 2, True )
-                self.mainMenu.Enable( 4, True )
+                self.mainMenu.Enable(1, False)
+                self.mainMenu.Enable(2, True)
+                self.mainMenu.Enable(4, True)
                 wx.EndBusyCursor()
             else: self.show_error("Server is already running.", "Error Starting Server")
 
@@ -598,10 +666,10 @@ class ServerGUI(wx.Frame):
             self.STATUS = SERVER_STOPPED
             self.sb.SetStatusText("Stopped", 3)
             self.SetTitle(__appname__ + "- (stopped) - (unregistered)")
-            self.mainMenu.Enable( 1, True )
-            self.mainMenu.Enable( 2, False )
-            self.mainMenu.Enable( 4, False )
-            self.mainMenu.Enable( 5, False )
+            self.mainMenu.Enable(1, True)
+            self.mainMenu.Enable(2, False)
+            self.mainMenu.Enable(4, False)
+            self.mainMenu.Enable(5, False)
             self.conns.DeleteAllItems()
 
     def OnRegister(self, event = None):
@@ -613,8 +681,8 @@ class ServerGUI(wx.Frame):
             wx.BeginBusyCursor()
             self.server.server.register(self.serverName)
             self.sb.SetStatusText( ("%s" % (self.serverName)), 4 )
-            self.mainMenu.Enable( 4, False )
-            self.mainMenu.Enable( 5, True )
+            self.mainMenu.Enable(4, False)
+            self.mainMenu.Enable(5, True)
             #self.mainMenu.Enable( 2, False )
             self.SetTitle(__appname__ + "- (running) - (registered)")
             wx.EndBusyCursor()
@@ -627,9 +695,9 @@ class ServerGUI(wx.Frame):
         """
         wx.BeginBusyCursor()
         self.server.server.unregister()
-        self.sb.SetStatusText( "Unregistered", 4 )
-        self.mainMenu.Enable( 5, False )
-        self.mainMenu.Enable( 4, True )
+        self.sb.SetStatusText("Unregistered", 4)
+        self.mainMenu.Enable(5, False)
+        self.mainMenu.Enable(4, True)
         #self.mainMenu.Enable( 2, True )
         self.SetTitle(__appname__ + "- (running) - (unregistered)")
         wx.EndBusyCursor()

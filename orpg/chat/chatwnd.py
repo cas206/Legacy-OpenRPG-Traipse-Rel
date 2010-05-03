@@ -502,7 +502,7 @@ class chat_panel(wx.Panel):
                     wx.WXK_F9: 'event.GetKeyCode() == wx.WXK_F9', wx.WXK_F10: 'event.GetKeyCode() == wx.WXK_F10', 
                     wx.WXK_F11: 'event.GetKeyCode() == wx.WXK_F11', wx.WXK_F12: 'event.GetKeyCode() == wx.WXK_F12'}
         #Alias Lib stuff
-        self.defaultAliasName = 'Use Real Name'
+        self.defaultAliasName = 'Real Name'
         self.defaultFilterName = 'No Filter'
         self.advancedFilter = False
         self.lastSend = 0         #  this is used to help implement the player typing indicator
@@ -763,7 +763,7 @@ class chat_panel(wx.Panel):
         self.chatwnd = chat_html_window(self,-1)
         self.set_colors()
         wx.CallAfter(self.chatwnd.SetPage, self.chatwnd.Header())
-        welcome = "<b>Welcome to <a href='http://www.knowledgearcana.com//content/view/199/128/'>"
+        welcome = "<b>Welcome to <a href='http://www.knowledgearcana.com/traipse-openrpg/'>"
         welcome += DISTRO +'</a> '+ DIS_VER +' {'+BUILD+'},'
         welcome += ' built on OpenRPG '+ VERSION +'</b>'
         if (self.sendtarget == "all"):
@@ -827,7 +827,7 @@ class chat_panel(wx.Panel):
 
     def build_alias(self):
         self.aliasSizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.aliasList = wx.Choice(self, wx.ID_ANY, size=(100, 25), choices=[self.defaultAliasName])
+        self.aliasList = wx.Choice(self, wx.ID_ANY, size=(120, 25), choices=[self.defaultAliasName])
         self.aliasButton = createMaskedButton( self, dir_struct["icon"] + 'player.gif', 
                                             'Refresh list of aliases from Game Tree', 
                                             wx.ID_ANY, '#bdbdbd' )
@@ -1032,7 +1032,7 @@ class chat_panel(wx.Panel):
         sound_file = self.settings.get_setting("SendSound")
         if sound_file != '': component.get('sound').play(sound_file)
         if s[0] != "/": ## it's not a slash command
-            s = self.ParsePost( s, True, True )
+            s = Parse.Post(s, self, True, True)
         else: self.chat_cmds.docmd(s) # emote is in chatutils.py
 
     def on_chat_key_down(self, event):
@@ -1171,7 +1171,7 @@ class chat_panel(wx.Panel):
         if len(dieMod) and dieMod[0] not in "*/-+": dieMod = "+" + dieMod
         dieText += dieMod
         dieText = "[" + dieText + "]"
-        self.ParsePost(dieText, 1, 1)
+        Parse.Post(dieText, self, 1, 1)
         self.chattxt.SetFocus()
 
     def on_chat_save(self, evt):
@@ -1301,7 +1301,7 @@ class chat_panel(wx.Panel):
         return text
 
     def emote_message(self, text):
-        text = Parse.Normalize(text)
+        text = Parse.Normalize(text, self)
         text = self.colorize(self.emotecolor, text)
         if self.type == MAIN_TAB and self.sendtarget == 'all': self.send_chat_message(text,chat_msg.EMOTE_MESSAGE)
         elif self.type == MAIN_TAB and self.sendtarget == "gm":
@@ -1319,7 +1319,7 @@ class chat_panel(wx.Panel):
 
     def whisper_to_players(self, text, player_ids):
         tabbed_whispers_p = self.settings.get_setting("tabbedwhispers")
-        text = Parse.Normalize(text)
+        text = Parse.Normalize(text, self)
         player_names = ""
         for m in player_ids:
             id = m.strip()
@@ -1371,8 +1371,7 @@ class chat_panel(wx.Panel):
         alias = msg.get_alias()
         # who sent us the message?
         if alias: display_name = self.chat_display_name([alias, player[1], player[2]])
-        elif player: display_name = self.chat_display_name(player)
-        else: display_name = "Server Administrator"
+        else: display_name = self.chat_display_name(player)
 
         ######### START plugin_incoming_msg() ###########
         for plugin_fname in self.activeplugins.keys():
@@ -1386,6 +1385,7 @@ class chat_panel(wx.Panel):
         if (strip_img == "0"): display_name = chat_util.strip_img_tags(display_name)
         recvSound = "RecvSound"
         # act on the type of messsage
+
         if (type == chat_msg.CHAT_MESSAGE):
             text = "<b>" + display_name + "</b>: " + text
             self.Post(text)
@@ -1591,18 +1591,13 @@ class chat_panel(wx.Panel):
             logger.general("EXCEPTION: " + str(e))
             return "[ERROR]"
 
-    def ParsePost(self, s, send=False, myself=False):
-        s = Parse.Normalize(s)
-        self.set_colors()
-        self.Post(s,send,myself)
-
     # This subroutine builds a chat display name.
     #
     def chat_display_name(self, player):
-        if self.settings.get_setting("ShowIDInChat") == "0":
-            display_name = player[0]
-        else:
-            display_name = "("+player[2]+") " + player[0]
+        if player == None:
+            player = ['<b><i><u>Server Administrator</u>-></i></b> ', '127.0.0.1', '0']
+        if self.settings.get_setting("ShowIDInChat") == "0": display_name = player[0]
+        else: display_name = "("+player[2]+") " + player[0]
         return display_name
 
     # This subroutine will get a hex color and return it, or return nothing
