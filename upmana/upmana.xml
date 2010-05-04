@@ -1,8 +1,0 @@
-<manifest>
-	<updaterepo>
-		<repo-Traipse type="string">http://hg.assembla.com/traipse_dev</repo-Traipse>
-	</updaterepo>
-    <default>
-        <repo type="string">http://hg.assembla.com/traipse</repo>
-    </default>
-<updatemana><no_update type="str">off</no_update></updatemana></manifest>
