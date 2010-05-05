@@ -616,7 +616,7 @@ class mplay_server:
 
     def register_callback(instance, xml_dom = None, source=None):
         if xml_dom:    # if we get something
-            if source == getMetaServerBaseURL():    # if the source of this DOM is the authoritative meta
+            if source == getMetaServerList():    # if the source of this DOM is the authoritative meta
                 try:
                     metacache_lock.acquire()
                     curlist = getRawMetaList()      #  read the raw meta cache lines into a list
@@ -672,10 +672,10 @@ class mplay_server:
         else: num_players = 0
 
         #  request only Meta servers compatible with version 2
-        metalist = getMetaServers(versions=["2"])
+        metalist = getMetaServerList()
         if self.show_meta_messages != 0:
             self.log_msg("Found these valid metas:")
-            for meta in metalist: self.log_msg("Meta:" + meta)
+            for meta in metalist: self.log_msg("Meta:" + meta.get('url'))
 
         """
         #  Go through the list and see if there is already a running register

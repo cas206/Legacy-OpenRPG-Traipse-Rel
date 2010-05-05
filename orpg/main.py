@@ -162,6 +162,11 @@ class orpgFrame(wx.Frame):
             settings.add('Tip of the Day', 'tipotday_enabled', '1', '0|1', 'Show Tip of the Day on startup')
             logger.info('New Settings added', True)
             self.TraipseSuiteWarn('debug')
+        if setting == 'Meta Servers':
+            settings.add('Networking', 'MetaServers', 'metaservers.xml', '.xml file', 'Contains a list of Meta Servers')
+            logger.info('New Settings added', True)
+            self.validate.config_file("metaservers.xml","default_metaservers.xml")
+            self.TraipseSuiteWarn('debug')
 
     def get_activeplugins(self):
         try: tmp = self.pluginsFrame.get_activeplugins()
