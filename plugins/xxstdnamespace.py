@@ -21,15 +21,11 @@ class Plugin(orpg.pluginhandler.PluginHandler):
         self.help += 'is not calculated when using the Standard syntax. References must '
         self.help += 'have a unique name.'
 
-        self.NameSpaceE = Parse.NameSpaceE
-        self.parseMethods = {'Traipse': self.NameSpaceE, 'Standard': self.NameSpaceS}
+        self.parseMethods = {'Traipse': Parse.NameSpaceE, 'Standard': self.NameSpaceS}
 
     def NameSpaceS(self, s): ## Re define NameSpace External
-        reg1 = re.compile("(!@(.*?)@!)") ## Include 'Standard' method
+        reg1 = re.compile("(!@(.*?)@!)") ## Inlcude 'Standard' method
         reg2 = re.compile("(!&(.*?)&!)")
-        ## Before anyone rags on me about how this is a useless plugin, or that two methods are confusing,
-        ## consider that this will be fully integrated later. Then consider that you can now create a reference
-        ## with a reference. !@ :: !& :: &! :: @!
         matches = reg1.findall(s) + reg2.findall(s)
         newstr = False
         nodeable = ['rpg_grid_handler', 'container_handler', 
@@ -40,7 +36,7 @@ class Plugin(orpg.pluginhandler.PluginHandler):
             node = component.get('tree').xml_root
             if not iselement(node): 
                 s = s.replace(matches[i][0], 'Invalid Reference!', 1); 
-                s = self.NameSpaceS(s)
+                s = Parse.NameSpaceE(s)
                 return s
             for x in xrange(0, len(find)):
                 namespace = node.getiterator('nodehandler')
@@ -48,7 +44,7 @@ class Plugin(orpg.pluginhandler.PluginHandler):
                     if find[x] == node.get('name'):
                         if node.get('class') not in nodeable: continue
                         if node.get('class') == 'rpg_grid_handler':
-                            try: newstr = Parse.NameSpaceGrid(find[x+1], node); break
+                            try: newstr = self.NameSpaceGrid(find[x+1], node); break
                             except: newstr = 'Invalid Grid Reference!'
                         try:
                             if Parse.FutureCheck(node, find[x+1]): break

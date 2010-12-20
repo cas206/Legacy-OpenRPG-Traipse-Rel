@@ -30,7 +30,7 @@ __version__ = "$Id: forms.py,v Traipse 'Ornery-Orc' prof.ebral Exp $"
 
 from containers import *
 import orpg.minidom as minidom
-from orpg.orpg_xml import xml
+#from orpg.orpg_xml import xml
 from wx.lib.scrolledpanel import ScrolledPanel
 from orpg.tools.settings import settings
 from orpg.tools.InterParse import Parse
@@ -149,7 +149,7 @@ class form_edit_panel(ScrolledPanel):
         txt = self.text[id].GetValue()
         if not len(txt): return
         if id == P_TITLE:
-            self.handler.xml.set('name',txt)
+            #self.handler.xml.set('name',txt)
             self.handler.rename(txt)
         elif id == F_HEIGHT or id == F_WIDTH:
             try: int(txt)
@@ -222,8 +222,9 @@ class textctrl_handler(node_handler):
 
     def tohtml(self):
         txt = self.get_value()
-        txt = string.replace(txt,'\n',"<br />")
-        if not self.is_hide_title(): txt = "<b>"+self.xml.get("name")+":</b> "+txt
+        if txt == None: txt = ''
+        txt = txt.replace('\n','<br />')
+        if not self.is_hide_title(): txt = '<b>'+self.xml.get('name')+':</b> '+txt
         return txt
 
     def get_value(self):
@@ -421,7 +422,7 @@ class textctrl_edit_panel(wx.Panel):
         if id == P_TITLE:
             txt = self.title.GetValue()
             if not len(txt): return
-            self.handler.xml.set('name',txt)
+            #self.handler.xml.set('name',txt)
             self.handler.rename(txt)
         if id == F_TEXT:
             txt = self.text.GetValue()
@@ -926,7 +927,7 @@ class listbox_edit_panel(wx.Panel):
         txt = self.text.GetValue()
         if not len(txt): return
         if id == P_TITLE:
-            self.handler.xml.set('name',txt)
+            #self.handler.xml.set('name',txt)
             self.handler.rename(txt)
 
     def on_send_button(self,evt):
@@ -1003,7 +1004,7 @@ class link_edit_panel(wx.Panel):
         txt = self.text[id].GetValue()
         if not len(txt): return
         if id == P_TITLE:
-            self.handler.xml.set('name',txt)
+            #self.handler.xml.set('name',txt)
             self.handler.rename(txt)
         elif id == P_URL: self.handler.link.set('href',txt)
 

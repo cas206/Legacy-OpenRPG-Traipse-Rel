@@ -47,7 +47,7 @@ from nodehandlers import core
 import string, urllib, time, os
 from shutil import copytree, copystat, copy, copyfile
 
-from orpg.orpg_xml import xml
+#from orpg.orpg_xml import xml
 from orpg.tools.validate import validate
 from orpg.tools.orpg_log import logger, debug
 from orpg.tools.orpg_settings import settings
@@ -239,7 +239,7 @@ class game_tree(wx.TreeCtrl):
             emsg = "Gametree Missing!\n"+filename+" cannot be found.\n\n"\
                  "Would you like to locate it?\n"\
                  "(Selecting 'No' will cause a new default gametree to be generated)"
-            self.locate_valid_tree("Gametree Error", emsg)
+            self.locate_valid_tree("Gametree Error", emsg, filename)
             return
         try:
             self.xml_root = False
@@ -265,7 +265,7 @@ class game_tree(wx.TreeCtrl):
             emsg = filename+" does not appear to be a valid gametree file.\n\n"\
                  "Would you like to select a different gametree file to use?\n"\
                  "(Selecting 'No' will cause a new default gametree to be generated)"
-            self.locate_valid_tree("Invalid Gametree!", emsg)
+            self.locate_valid_tree("Invalid Gametree!", emsg, filename)
             return
         try:
             # version = self.xml_root.get("version")
@@ -700,8 +700,10 @@ class game_tree(wx.TreeCtrl):
     
     def load_xml(self, xml_element, parent_node, prev_node=None, drag_drop=False):
         if parent_node == self.root:
-            self.tree_map[xml_element.get('name')] = {}
-            self.tree_map[xml_element.get('name')]['node'] = xml_element
+            name = xml_element.get('name').replace(u'\xa0', ' ') #Required for XSLT sheets
+            xml_element.set('name', name)
+            self.tree_map[str(xml_element.get('name'))] = {}
+            self.tree_map[str(xml_element.get('name'))]['node'] = xml_element
             xml_element.set('map', '')
         if parent_node != self.root:
             ## Loading XML seems to lag on Grids and Images need a cache for load speed ##
@@ -829,7 +831,8 @@ class game_tree(wx.TreeCtrl):
         self.rename_flag = 0
         if txt != "":
             obj = self.GetPyData(item)
-            obj.xml_root.set('name',txt)
+            #obj.xml.set('name', txt)
+            obj.rename(txt)
         else: evt.Veto()
     
     def on_label_begin(self, evt):

@@ -44,15 +44,16 @@ class InterParse():
         tab.set_colors()
         tab.Post(s, send, myself)
 
-    def ParseLogic(self, s, node):
+    def ParseLogic(self, s, node=None):
         'Nodes now parse through ParsLogic. Easily add new parse rules right here!!'
-        s = self.NameSpaceE(s)
+        if not node: s = self.NameSpaceE(s)
         s = self.NameSpaceI(s, node)
-        s = self.NodeMap(s, node)
-        s = self.NodeParent(s, node.get('map'))
+        #s = self.NodeMap(s, node)
+        #s = self.NodeParent(s, node)
         return s
 
-    def Normalize(self, s, tab):
+    def Normalize(self, s, tab=False):
+        if not tab: tab = component.get('chat')
         for plugin_fname in tab.activeplugins.keys():
             plugin = tab.activeplugins[plugin_fname]
             try: s = plugin.pre_parse(s)
@@ -158,18 +159,52 @@ class InterParse():
         anyone. Using !" :: "! will allow you to use an internal namespace from within another internal 
         namespace -- TaS, Prof. Ebral"""
         reg2 = re.compile("(!=(.*?)=!)")
-        matches = reg1.findall(s) + reg2.findall(s)
-        tree_map = node.get('map')
+        """Adding the Parent and Child references to Namespace Internal. Namespace 2.0 is powerful enough it
+        should be able to handle them with no problem. For future reference, if you are paying attention, Namespace
+        will include two methods for Internal and External. !@ :: @! and !& :: &! for External and !" :: "! and != :: =!
+        for Internal. See above Easter Egg for reasoning."""
+        reg3 = re.compile("(!!(.*?)!!)")
+        reg4 = re.compile("(!#(.*?)#!)")
+        matches = reg1.findall(s) + reg2.findall(s) + reg3.findall(s) + reg4.findall(s)
+        try: tree_map = node.get('map')
+        except: return node
         for i in xrange(0,len(matches)):
             ## Build the new tree_map
             new_map = tree_map.split('::')
+            if new_map == ['']: new_map = [node.get('name')]
             find = matches[i][1].split('::')
             ## Backwards Reference the Parent Children
             node = self.get_node(new_map)
             newstr = self.LocationCheck(node, tree_map, new_map, find)
             s = s.replace(matches[i][0], newstr, 1)
-            s = self.ParseLogic(s, node)
+            s = s.replace(u'\xa0', ' ')
+            s = self.NameSpaceI(s, node)
         return s
+
+    def NameSpaceXE(self, s):
+        reg = re.compile("(!&(.*?)&!)")
+        matches = reg.findall(s)
+        nodeable = ['rpg_grid_handler', 'container_handler', 
+                    'group_handler', 'tabber_handler', 
+                    'splitter_handler', 'form_handler', 'textctrl_handler']
+
+        for i in xrange(0,len(matches)):
+            find = matches[i][1].split('::')
+            node = component.get('tree').xml_root
+            for x in xrange(0, len(find)):
+                namespace = node.getiterator('nodehandler')
+                for node in namespace:
+                    if find[x] == node.get('name'):
+                        if node.get('class') not in nodeable: continue
+                        try:
+                            if self.FutureCheck(node, find[x+1]): break
+                            else: continue
+                        except:
+                            if x == len(find)-1:
+                                return node
+                                break
+                            else: break
+        return None
 
     def NameSpaceE(self, s):
         reg = re.compile("(!&(.*?)&!)")
@@ -204,6 +239,7 @@ class InterParse():
                             else: break
             if not newstr: newstr = 'Invalid Reference!'
             s = s.replace(matches[i][0], newstr, 1)
+            s = s.replace(u'\xa0', ' ') #Required for XSLT sheets
             s = self.ParseLogic(s, node)
         return s
 
@@ -224,15 +260,18 @@ class InterParse():
         matches = reg.findall(s)
         for i in xrange(0,len(matches)):
             tree_map = node.get('map')
-            tree_map = tree_map + '::' + matches[i][1]
-            newstr = '!@'+ tree_map +'@!'
+            tree_map = str(tree_map + '::' + matches[i][1])
+            if tree_map[:2] == '::': tree_map = tree_map[2:]
+            newstr = '!@'+ str(tree_map) +'@!'
             s = s.replace(matches[i][0], newstr, 1)
             s = self.Node(s)
-            s = self.NodeParent(s, tree_map)
+            s = self.NodeParent(s, node)
         return s
 
-    def NodeParent(self, s, tree_map):
+    def NodeParent(self, s, node):
         """Parses player input for embedded nodes rolls"""
+        if node == 'Invalid Reference!': return node
+        tree_map = node.get('map')
         cur_loc = 0
         reg = re.compile("(!#(.*?)#!)")
         matches = reg.findall(s)

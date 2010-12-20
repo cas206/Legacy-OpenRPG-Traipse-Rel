@@ -63,7 +63,7 @@ from orpg.tools.InterParse import Parse
 
 from xml.etree.ElementTree import ElementTree, Element, parse
 from xml.etree.ElementTree import fromstring, tostring
-from orpg.orpg_xml import xml #to be replaced by etree
+#from orpg.orpg_xml import xml #to be replaced by etree
 
 
 ####################################
@@ -207,7 +207,7 @@ class orpgFrame(wx.Frame):
                     ['  -'],
                     ['  Tab Styles'],
                     ['    Slanted'],
-                    ['      Colorful', "check"],
+                    #['      Colorful', "check"],
                     ['      Black and White', "check"],
                     ['      Aqua', "check"],
                     ['      Custom', "check"],
@@ -257,7 +257,8 @@ class orpgFrame(wx.Frame):
 
         self.mainmenu.SetMenuState('ToolsPasswordManager', True if settings.get('PWMannager') == 'On' else False)
         tabtheme = settings.get('TabTheme')  #This change is stable. TaS.
-        self.mainmenu.SetMenuState("OpenRPGTabStylesSlantedColorful", tabtheme == 'slanted&colorful')
+        if tabtheme == 'slanted&colorful': tabtheme = 'customflat'; settings.change('TabTheme', 'customflat')
+        #self.mainmenu.SetMenuState("OpenRPGTabStylesSlantedColorful", tabtheme == 'slanted&colorful')
         self.mainmenu.SetMenuState("OpenRPGTabStylesSlantedBlackandWhite", tabtheme == 'slanted&bw')
         self.mainmenu.SetMenuState("OpenRPGTabStylesSlantedAqua", tabtheme == 'slanted&aqua')
         self.mainmenu.SetMenuState("OpenRPGTabStylesFlatBlackandWhite", tabtheme == 'flat&bw')
@@ -323,9 +324,8 @@ class orpgFrame(wx.Frame):
     #Tab Styles Menus
     
     def SetTabStyles(self, *args, **kwargs):
-
         tabtheme = settings.get('TabTheme')  #This change is stable. TaS.
-        self.mainmenu.SetMenuState("OpenRPGTabStylesSlantedColorful", tabtheme == 'slanted&colorful')
+        #self.mainmenu.SetMenuState("OpenRPGTabStylesSlantedColorful", tabtheme == 'slanted&colorful')
         self.mainmenu.SetMenuState("OpenRPGTabStylesSlantedBlackandWhite", tabtheme == 'slanted&bw')
         self.mainmenu.SetMenuState("OpenRPGTabStylesSlantedAqua", tabtheme == 'slanted&aqua')
         self.mainmenu.SetMenuState("OpenRPGTabStylesFlatBlackandWhite", tabtheme == 'flat&bw')
@@ -341,7 +341,6 @@ class orpgFrame(wx.Frame):
         else:
             try: menu = args[0]
             except: logger.general('Invalid Syntax for orpgFrame->SetTabStyles(self, *args, **kwargs)'); return
-
         if kwargs.has_key('graidentTo'): graidentTo = kwargs['graidentTo']
         else: graidentTo = None
         if kwargs.has_key('graidentFrom'): graidentFrom = kwargs['graidentFrom']
@@ -365,7 +364,7 @@ class orpgFrame(wx.Frame):
         for wnd in tabbedwindows:
             style = wnd.GetWindowStyleFlag()
             # remove old tabs style
-            mirror = ~(FNB.FNB_VC71 | FNB.FNB_VC8 | FNB.FNB_FANCY_TABS | FNB.FNB_COLORFUL_TABS)
+            mirror = ~(FNB.FNB_VC71 | FNB.FNB_VC8 | FNB.FNB_FANCY_TABS )
             style &= mirror
             style |= newstyle
             wnd.SetWindowStyleFlag(style)
@@ -752,11 +751,11 @@ class orpgFrame(wx.Frame):
 
     def do_tab_window(self, xml_dom, parent_wnd):
         # if container window loop through childern and do a recursive call
-        temp_wnd = orpgTabberWnd(parent_wnd, style=FNB.FNB_ALLOW_FOREIGN_DND)
+        temp_wnd = orpgTabberWnd(parent_wnd)
 
         children = xml_dom.getchildren()
         for c in children:
-            wnd = self.build_window(c,temp_wnd)
+            wnd = self.build_window(c, temp_wnd)
             name = c.get("name")
             temp_wnd.AddPage(wnd, name, False)
         return temp_wnd
@@ -936,12 +935,15 @@ class orpgFrame(wx.Frame):
         except: etreeEl.text = data
 
         display_name = self.chat.chat_display_name(player)
-        if etreeEl.text:self.chat.Post(display_name+etreeEl.text)
+        if etreeEl.text:
+            if "is creating room" in etreeEl.text: self.chat.Post(etreeEl.text)
+            else: self.chat.Post(display_name+etreeEl.text)
 
         for child in etreeEl.getchildren():
             if child.tag == 'tree':
-                dlg = wx.MessageDialog(None, component.strip_html(display_name) + ' is trying to send you a tree node. Accept?', 'Question', 
-                    wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+                dlg = wx.MessageDialog(None, 
+                    component.strip_html(display_name) + ' is trying to send you a tree node. Accept?', 
+                    'Question', wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
                 if dlg.ShowModal() == wx.ID_YES:
                   dlg.Destroy()
                   self.tree.on_receive_data(tostring(child))
@@ -1129,7 +1131,7 @@ class orpgApp(wx.App):
     
     def OnInit(self):
         component.add('log', logger)
-        component.add('xml', xml)
+        #component.add('xml', xml)
         component.add('settings', settings)
         component.add('validate', validate)
         component.add("tabbedWindows", [])

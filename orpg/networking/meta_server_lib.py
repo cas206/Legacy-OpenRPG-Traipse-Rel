@@ -42,17 +42,15 @@ import urllib, time, sys, traceback, re
 
 from threading import *
 from random import uniform
+import urllib2
 from urllib import urlopen, urlencode
-from orpg.tools.orpg_log import debug
+#from orpg.tools.orpg_log import debug
 
 from xml.etree.ElementTree import Element, fromstring, parse, tostring
 metacache_lock = RLock()
 
-def get_server_dom(data=None,path=None, string=False):
-    # post data at server and get the resulting DOM
-    #if path == None:
-        # get meta server URI
-    #    path = getMetaServerList()
+def get_server_dom(data=None, path=None, string=False):
+    if path[len(path)-1] != "/": path += '/'
 
     # POST the data
     if META_DEBUG:
@@ -61,10 +59,9 @@ def get_server_dom(data=None,path=None, string=False):
         print "=========================================="
         print data
         print
-    recvdata = urlopen(path, data)
-    etreeEl = parse(recvdata)
-    etreeEl = etreeEl.getroot()
-    data = tostring(etreeEl)
+    #recvdata = urllib2.Request(path, data)
+    response = urllib2.urlopen(path, data)
+    data = response.read()
 
     # Remove any leading or trailing data.  This can happen on some satellite connections
     p = re.compile('(<servers>.*?</servers>)',re.DOTALL|re.IGNORECASE)
@@ -78,7 +75,8 @@ def get_server_dom(data=None,path=None, string=False):
         print data
         print
     # build dom
-    return etreeEl
+    if string: return data
+    else: return fromstring(data)
 
 def post_server_data(name, realHostName=None):
     if realHostName: data = urlencode({"server_data[name]":name,
@@ -136,8 +134,10 @@ def get_server_list(versions=None, sort_by="start"):
         #get the server's xml from the current meta
         bad_meta = 0
         #print "Getting server list from " + meta + "..."
-        try: xml_dom = get_server_dom(data, meta.get('url'))
-        except: bad_meta = 1; print "Trouble getting servers from " + meta + "..."
+        try: meta_path = meta.get('url'); xml_dom = get_server_dom(data, meta_path)
+        except:
+            if meta_path == None: meta_path = 'No URL available'
+            bad_meta = 1; print "Trouble getting servers from " +meta_path+ "..."
         if bad_meta: continue
         node_list = xml_dom.findall('server')
         if len(node_list): 
@@ -195,8 +195,14 @@ def updateMetaCache(xml_dom):
 
 def getMetaServerList():
     # get meta server URL
-    url = "http://orpgmeta.appspot.com/"
+    meta_list = fromstring("""
+        <metaservers>
+            <meta url="http://orpgmeta.appspot.com" versions="1 2" />
+            <meta url="http://traipsemeta.madmathlabs.info" versions="1 2" />
+        </metaservers>"""
+        )
     try:
+        component.get('validate').config_file("metaservers.xml","default_metaservers.xml")
         component.get('validate').config_file("settings.xml","default_settings.xml")
         setting = parse(dir_struct["user"]+"settings.xml")
         tree = setting.getroot()
@@ -210,10 +216,8 @@ def getMetaServerList():
             metas = parse(dir_struct["user"]+meta).getroot()
         meta_list = metas.findall('meta')
         return meta_list
-    except Exception,e:
-        print e
-    #print "using meta server URI: " + url
-    return url
+    except Exception,e: print e
+    return meta_list
 
 """
   Beginning of Class registerThread
@@ -268,6 +272,7 @@ class registerThread(Thread):
         self.destroy = 0                        #  Used to flag that this thread should die
         self.port = str(port)
         self.register_callback = register_callback  # set a method to call to report result of register
+        self.IdAttempts = 0
         """
           This thread will communicate with one and only one
           Meta.  If the Meta in ini.xml is changed after
@@ -357,11 +362,12 @@ class registerThread(Thread):
                                         "act":"unregister"} )
             for path in getMetaServerList():
                 try: # this POSTS the request and returns the result
-                    etreeEl = get_server_dom(data, path.get('url'))
-                    if xml_dom.get("errmsg"):
-                        print "Error durring unregistration:  " + xml_dom.get("errmsg")
-                except:
+                    etreeEl = get_server_dom(data, self.path)
+                    if etreeEl.get("errmsg") != None:
+                        print "Error durring unregistration:  " +etreeEl.get("errmsg")
+                except Exception, e:
                     if META_DEBUG: print "Problem talking to Meta.  Will go ahead and die, letting Meta remove us."
+                    if META_DEBUG: print e
             #  If there's an error, echo it to the console
 
             #  No special handling is required.  If the de-registration worked we're done.  If
@@ -392,7 +398,10 @@ class registerThread(Thread):
 
             #  Set the server's attibutes, if specified.
             if name: self.name = name
-            if num_users != None: self.num_users = num_users
+            if num_users != None: 
+                try: self.num_users = len(num_users)
+                except: self.num_users = num_users
+            else: self.num_users = 0
             if realHostName: self.realHostName = realHostName
             # build POST data
             if self.realHostName:
@@ -413,33 +422,32 @@ class registerThread(Thread):
                                         "server_data[version]":PROTOCOL_VERSION,
                                         "server_data[num_users]":self.num_users,
                                         "act":"register"} )
-            for path in getMetaServerList():
-                try: # this POSTS the request and returns the result
-                    etreeEl = get_server_dom(data, path.get('url'))
-                except:
-                    if META_DEBUG: print "Problem talking to server.  Setting interval for retry ..."
-                    if META_DEBUG: print data
-                    if META_DEBUG: print
-                    self.interval = 0
-                    """
-                      If we are in the registerThread thread, then setting interval to 0
-                      will end up causing a retry in about 6 seconds (see self.run())
-                      If we are in the main thread, then setting interval to 0 will do one
-                      of two things:
-                      1)  Do the same as if we were in the registerThread
-                      2)  Cause the next, normally scheduled register() call to use the values
-                          provided in this call.
-                    
-                      Which case occurs depends on where the registerThread thread is when
-                      the main thread calls register().
-                    """
-                    return 0  # indicates that it was okay to call, not that no errors occurred
+            try: # this POSTS the request and returns the result
+                etreeEl = get_server_dom(data, self.path)
+            except Exception, e:
+                if META_DEBUG: print "Problem talking to server.  Setting interval for retry ..."
+                if META_DEBUG: print data
+                if META_DEBUG: print e
+                self.interval = 0
+                """
+                  If we are in the registerThread thread, then setting interval to 0
+                  will end up causing a retry in about 6 seconds (see self.run())
+                  If we are in the main thread, then setting interval to 0 will do one
+                  of two things:
+                  1)  Do the same as if we were in the registerThread
+                  2)  Cause the next, normally scheduled register() call to use the values
+                      provided in this call.
+                
+                  Which case occurs depends on where the registerThread thread is when
+                  the main thread calls register().
+                """
+                return 0  # indicates that it was okay to call, not that no errors occurred
 
             #  If there is a DOM returned ....
             if etreeEl != None:
                 #  If there's an error, echo it to the console
-                if etreeEl.get("errmsg"):
-                    print "Error durring registration:  " + etreeEl.get("errmsg")
+                if etreeEl.get("errmsg") != None:
+                    print "Error durring registration at: " +self.path+ " Error: " +etreeEl.get("errmsg")
                     if META_DEBUG: print data
                     if META_DEBUG: print
                 """
@@ -465,10 +473,11 @@ class registerThread(Thread):
                     self.id = etreeEl.get("id")
                     self.cookie = etreeEl.get("cookie")
                     #if etreeEl.get("errmsg") == None: updateMetaCache(xml_dom)
-                except:
+                except Exception, e:
                     if META_DEBUG: print
                     if META_DEBUG: print "OOPS!  Is the Meta okay?  It should be returning an id, cookie, and interval."
                     if META_DEBUG: print "Check to see what it really returned.\n"
+                    if META_DEBUG: print e
                 #  Let xml_dom get garbage collected
                 try: xml_dom.unlink()
                 except: pass
