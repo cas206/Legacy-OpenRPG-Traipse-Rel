@@ -182,11 +182,9 @@ class minilib_handler( node_handler ):
             # translate our attributes to map attributes
             key = FROM_MINILIB_MAP.get( k, k )
             if key != None:
-                if not addName and k == 'name': pass
+                if not addName and k == 'name': msg.init_prop( key, mini_xml.get( '' ) )
                 else: msg.init_prop( key, mini_xml.get( k ) )
         unique = self.is_unique( mini_xml )
-        if addName: label = mini_xml.get( 'name' )
-        else: label = ''
         return msg.get_all_xml()
 
     def is_unique( self, mini ):
